@@ -4,36 +4,87 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject LeftArm;
+    float LeftArmValue = 0;
+    float punchAcc = .01f;
+    float punchCD = .8f;
+    bool canLeftPunch = true;
 
+    public float speed = 5;
     public float Force = 5;
-    RaycastHit2D m_Hit;
 
-    public GameObject sandbag;
-    Vector2 dir = Vector2.zero;
     void Start()
     {
-        m_Hit = new RaycastHit2D();
     }
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            Attack();
+            transform.position += new Vector3(0, speed * Time.deltaTime, 0);
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
+
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            transform.position -= new Vector3(speed * Time.deltaTime, 0);
+
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            transform.position += new Vector3(speed * Time.deltaTime, 0);
+        }
+
+
+
+
+        if (Input.GetMouseButtonUp(0) && LeftArmValue >= .8f)
+        {
+            LeftArmValue = 0;
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, 2, 0);
+            StartCoroutine(CdPunch());
+
+        }
+        if (Input.GetMouseButton(0) && canLeftPunch)
+        {
+            LeftArmValue += punchAcc;
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(0,-1,LeftArmValue),0);
+            
+        }
+        else if (canLeftPunch)
+        {
+            LeftArmValue -= punchAcc*2;
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(0, -1, LeftArmValue), 0);
+        }
+
+
+        LeftArmValue = Mathf.Clamp01(LeftArmValue);
+
     }
 
-    void Attack()   
+    IEnumerator CdPunch()
     {
-        dir = sandbag.transform.position - transform.position;
-        Rigidbody2D rb = sandbag.GetComponent<Rigidbody2D>();
-        rb.velocity = dir * Force;
+        canLeftPunch = false;
+        float aa = 0;
+        while (LeftArm.transform.localPosition.y != 0)
+        {
+            aa += .1f; 
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(2, 0, aa), 0);
+            //print(LeftArm.transform.localPosition.y);   
+
+            yield return null;
+        }
+        canLeftPunch = true;
     }
-    private void OnDrawGizmos()
+
+    private void OnTriggerEnter2D(Collider2D col)
     {
-
-        Gizmos.DrawRay(transform.position, dir);
-
+        print("HELLO");
+        Vector2 Dir = col.transform.position - transform.position;
+        Debug.DrawRay(transform.position, Dir, Color.red, 9999);
+        col.GetComponent<Rigidbody2D>().AddForce(Dir * Force, ForceMode2D.Impulse);
     }
 }
