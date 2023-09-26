@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  distRaycast: 1.55
+  distRaycast: 2
+  breakDist: 3
   nbdeLiane: 6
 --- !u!212 &280152512
 SpriteRenderer:
