@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;  
 
 public class CarrionScript : MonoBehaviour
@@ -7,6 +8,8 @@ public class CarrionScript : MonoBehaviour
 
     public float speed = 5;
     public float distRaycast = 5;
+    public float breakDist = 5;
+
     public int nbdeLiane = 6;
 
     public List<RaycastHit2D> hit = new List<RaycastHit2D>();
@@ -94,7 +97,10 @@ public class CarrionScript : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(0, 255, 0, .6f);
+        Handles.color = new Color(255, 0, 0, 1f);
+        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, breakDist);
+
+        Handles.color = new Color(0, 255, 0, 1f);
         UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back ,distRaycast);
 
         Gizmos.color = Color.red;
