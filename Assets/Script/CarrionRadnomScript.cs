@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;  
 
 public class CarrionRandomScript : MonoBehaviour
@@ -8,8 +9,13 @@ public class CarrionRandomScript : MonoBehaviour
     public float speed = 5;
     public float distRaycast = 5;
     public int nbdeLiane = 6;
+    [SerializeField] GameObject hook;
 
     public List<RaycastHit2D> hit = new List<RaycastHit2D>();
+
+    public List<GameObject> hooks = new List<GameObject>();
+
+   
     
 
     void Start()
@@ -46,28 +52,44 @@ public class CarrionRandomScript : MonoBehaviour
             float randAngle = Random.Range(0, 361);
             Vector2 randDir = new Vector2(Mathf.Cos(randAngle), Mathf.Sin(randAngle)) * distRaycast;
             RaycastHit2D hitr = Physics2D.Raycast(transform.position, randDir, distRaycast);
+            GameObject newHook = Instantiate(hook, transform.position, Quaternion.identity);
+            
+            hooks.Add(newHook);
             if (hitr)
             {
                 hit.Add(hitr);
+                newHook.SetActive(true);
+
+                
             }
             else
             {
                 hit.Add(Physics2D.Raycast(transform.position,Vector2.zero));
+                newHook.SetActive(false);
             }
+            newHook.GetComponent<Tentacle>().dir = hitr.point;
         }
-        for (int i = 0; i < hit.Count; i++)
-        {
-            Debug.Log(hit[i].point);
-        }
+        
     }
 
     void ReconnectOne(RaycastHit2D hitToReco)
     {
+        GameObject hook = hooks[hit.IndexOf(hitToReco)];
+        hook.GetComponent<Tentacle>().dir = transform.position;
+        hook.SetActive(false);
         hit.Remove(hitToReco);
+
         float randAngle = Random.Range(0, 361);
         Vector2 randDir = new Vector2(Mathf.Cos(randAngle), Mathf.Sin(randAngle)) * distRaycast;
         hitToReco = Physics2D.Raycast(transform.position, randDir, distRaycast);
-        hit.Add(hitToReco);
+
+        hit.Insert(hooks.IndexOf(hook), hitToReco);
+        hook.transform.position = transform.position;
+        hook.SetActive(true);
+        hook.GetComponent<Tentacle>().dir = hitToReco.point;
+
+
+
 
 
     }
@@ -88,7 +110,7 @@ public class CarrionRandomScript : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(0, 255, 0, .6f);
+        Handles.color = new Color(255, 0, 0, .6f);
         UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back ,distRaycast);
 
         Gizmos.color = Color.red;
