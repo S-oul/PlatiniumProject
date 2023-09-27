@@ -19,23 +19,23 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z))
         {
-            transform.position += new Vector3(0, speed * Time.deltaTime, 0);
+            transform.position += new Vector3(0, 0, speed * Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
+            transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
 
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
-            transform.position -= new Vector3(speed * Time.deltaTime, 0);
+            transform.position -= new Vector3(speed * Time.deltaTime, 0,0);
 
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(speed * Time.deltaTime, 0);
+            transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
         }
 
 
@@ -44,36 +44,33 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && LeftArmValue >= .8f)
         {
             LeftArmValue = 0;
-            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, 2, 0);
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, 2);
             StartCoroutine(CdPunch());
-
         }
+
         if (Input.GetMouseButton(0) && canLeftPunch)
         {
             LeftArmValue += punchAcc;
-            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(0,-1,LeftArmValue),0);
-            
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(0, -1, LeftArmValue));
         }
         else if (canLeftPunch)
         {
-            LeftArmValue -= punchAcc*2;
-            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(0, -1, LeftArmValue), 0);
+            LeftArmValue -= punchAcc * 2;
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(-1, 0, LeftArmValue));
         }
 
-
         LeftArmValue = Mathf.Clamp01(LeftArmValue);
-
     }
 
     IEnumerator CdPunch()
     {
         canLeftPunch = false;
         float aa = 0;
-        while (LeftArm.transform.localPosition.y != 0)
+        while (LeftArm.transform.localPosition.z != 0)
         {
-            aa += .1f; 
-            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(2, 0, aa), 0);
-            //print(LeftArm.transform.localPosition.y);   
+            aa += .1f;
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(2, 0, aa));
+            //print(LeftArm.transform.localPosition.z);   
 
             yield return null;
         }
