@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;  
+using UnityEditor;
+using UnityEngine;
 
 public class CarrionRandomScript : MonoBehaviour
 {
@@ -8,9 +9,14 @@ public class CarrionRandomScript : MonoBehaviour
     public float speed = 5;
     public float distRaycast = 5;
     public int nbdeLiane = 6;
+    [SerializeField] GameObject hook;
 
     public List<RaycastHit2D> hit = new List<RaycastHit2D>();
-    
+
+    public List<GameObject> hooks = new List<GameObject>();
+
+
+
 
     void Start()
     {
@@ -20,15 +26,25 @@ public class CarrionRandomScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(speed * Time.deltaTime,0,0);
+            transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
             //Check();
         }
         if (Input.GetKey(KeyCode.Q))
         {
             transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+            //Check();
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.position -= new Vector3(0,speed * Time.deltaTime,  0);
+            //Check();
+        }
+        if (Input.GetKey(KeyCode.Z))
+        {
+            transform.position += new Vector3(0,speed * Time.deltaTime,  0);
             //Check();
         }
 
@@ -38,7 +54,7 @@ public class CarrionRandomScript : MonoBehaviour
         }
 
     }
-    
+
     void ConnectAll()
     {
         for (int i = 0; i < nbdeLiane; i++)
@@ -46,30 +62,41 @@ public class CarrionRandomScript : MonoBehaviour
             float randAngle = Random.Range(0, 361);
             Vector2 randDir = new Vector2(Mathf.Cos(randAngle), Mathf.Sin(randAngle)) * distRaycast;
             RaycastHit2D hitr = Physics2D.Raycast(transform.position, randDir, distRaycast);
+            GameObject newHook = Instantiate(hook, hitr.point, Quaternion.identity);
+
+            hooks.Add(newHook);
             if (hitr)
             {
                 hit.Add(hitr);
+                newHook.SetActive(true);
+
+
             }
             else
             {
-                hit.Add(Physics2D.Raycast(transform.position,Vector2.zero));
+                hit.Add(Physics2D.Raycast(transform.position, Vector2.zero));
+                newHook.SetActive(false);
             }
+            newHook.GetComponent<Hook>().ToConnect= transform;
         }
-        for (int i = 0; i < hit.Count; i++)
-        {
-            Debug.Log(hit[i].point);
-        }
+
     }
 
     void ReconnectOne(RaycastHit2D hitToReco)
     {
+        GameObject hook = hooks[hit.IndexOf(hitToReco)];
+        hook.GetComponent<Hook>().ToConnect = transform;
+        hook.SetActive(false);
         hit.Remove(hitToReco);
+
         float randAngle = Random.Range(0, 361);
         Vector2 randDir = new Vector2(Mathf.Cos(randAngle), Mathf.Sin(randAngle)) * distRaycast;
         hitToReco = Physics2D.Raycast(transform.position, randDir, distRaycast);
-        hit.Add(hitToReco);
 
-
+        hit.Insert(hooks.IndexOf(hook), hitToReco);
+        if(hitToReco) hook.transform.position = hitToReco.point;
+        hook.SetActive(true);
+        hook.GetComponent<Hook>().ToConnect = transform;
     }
     void Check(RaycastHit2D hit)
     {
@@ -84,12 +111,12 @@ public class CarrionRandomScript : MonoBehaviour
         {
             ReconnectOne(hit);
         }
-        
+
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(0, 255, 0, .6f);
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back ,distRaycast);
+        Handles.color = new Color(255, 0, 0, .6f);
+        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, distRaycast);
 
         Gizmos.color = Color.red;
         for (int i = 0; i < hit.Count; i++)
