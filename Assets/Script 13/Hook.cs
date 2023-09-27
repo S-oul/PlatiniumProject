@@ -4,7 +4,7 @@ public class Hook : MonoBehaviour
 {
     public Transform ToConnect; // Start point
 
-    public int segments = 10; // Number of segments in the rope
+    public int segments = 5; // Number of segments in the rope
 
 
     private LineRenderer lineRenderer;
@@ -16,17 +16,15 @@ public class Hook : MonoBehaviour
 
     void Update()
     {
-        lineRenderer.positionCount = 5;
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, Vector2.Lerp(transform.position, ToConnect.position + Vector3.down * .25f, .25f));
-        lineRenderer.SetPosition(2, Vector2.Lerp(transform.position, ToConnect.position + Vector3.down * .75f, .5f));
-        lineRenderer.SetPosition(3, Vector2.Lerp(transform.position, ToConnect.position + Vector3.down * .25f, .75f));
-        lineRenderer.SetPosition(4, ToConnect.position);
-
-        //lineRenderer.positionCount = segments;
-/*       for (int i = 0; i < segments; i++)
+        lineRenderer.positionCount = segments+1;
+/*        for(float i = 0; i <= segments; i++)
         {
-            lineRenderer.SetPosition(i, new Vector2(Mathf.Lerp(posA.position.x, posB.position.x, i / segments), Mathf.Lerp(posA.position.y, posB.position.y, i / segments)));
+            print(i/segments + "  " + i +"/"+ segments);
+            lineRenderer.SetPosition((int)i, Vector2.Lerp(new Vector2(transform.position.x, i/segments*Physics2D.gravity.y + transform.position.y), ToConnect.position, i/segments));
         }*/
+
+
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, ToConnect.position);
     }
 }
