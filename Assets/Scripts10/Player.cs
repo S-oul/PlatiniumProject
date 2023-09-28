@@ -21,11 +21,11 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Z))
         {
-            transform.position += new Vector3(0, 0, speed * Time.deltaTime);
+            transform.position += new Vector3(0, speed * Time.deltaTime, 0);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
+            transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
 
         }
         if (Input.GetKey(KeyCode.Q))
@@ -51,12 +51,12 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButton(0) && canLeftPunch)
         {
             LeftArmValue += punchAcc;
-            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(0, -1, LeftArmValue));
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(1, 0, LeftArmValue));
         }
         else if (canLeftPunch)
         {
             LeftArmValue -= punchAcc * 2;
-            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(-1, 0, LeftArmValue));
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(0, 1, LeftArmValue));
         }
 
         LeftArmValue = Mathf.Clamp01(LeftArmValue);
@@ -66,10 +66,10 @@ public class Player : MonoBehaviour
     {
         canLeftPunch = false;
         float aa = 0;
-        while (LeftArm.transform.localPosition.z != 0)
+        while (LeftArm.transform.localPosition.y != 0)
         {
             aa += .1f;
-            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(2, 0, aa));
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(1.5f, 0, aa));
             //print(LeftArm.transform.localPosition.z);   
 
             yield return null;
