@@ -38,7 +38,14 @@ public class Cam : MonoBehaviour
         {
             bounds.Encapsulate(target.transform.position);
         }
-        return bounds.size.x;
+        if(bounds.size.x > bounds.size.y)
+        {
+            return bounds.size.x;
+        }
+        else
+        {
+            return bounds.size.y;
+        }
     }
     private void Move()
     {
