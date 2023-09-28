@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b76626a88a2bf419ce1afd63528678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NombreDeSalle: 8
+  NombreDeSalle: 3
   NombreDetage: 4
   EspaceDetage: 3
   Pool:

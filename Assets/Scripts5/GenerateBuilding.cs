@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -16,15 +17,24 @@ public class GenerateBuilding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < NombreDetage; i++)
+        for (int y = 0; y < NombreDetage; y++)
         {
-            float EspaceEtage = i * EspaceDetage;
+            float EspaceEtage = y * EspaceDetage;
             isFisrt = true;
-            int y = 0;
-            while(y < NombreDeSalle)
+            int i = 0;
+            while(i <= NombreDeSalle)
             {
-                //TODO
+                GameObject go = Instantiate(Pool[Random.Range(0,Pool.Count)], transform);
 
+                float dist = 0;
+                foreach(GameObject olds in PlacedRoom) 
+                {
+                    dist += olds.transform.localScale.x*1.5f;
+                }
+                go.transform.position += new Vector3(dist, 0,0);
+                go.name = "Room " + i;
+                PlacedRoom.Add(go);
+                i += go.GetComponent<Room>().roomType;
             }
         }
     }
