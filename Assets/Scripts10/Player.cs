@@ -69,8 +69,7 @@ public class Player : MonoBehaviour
         while (LeftArm.transform.localPosition.y != 0)
         {
             aa += .1f;
-            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(1.5f, 0, aa));
-            //print(LeftArm.transform.localPosition.z);   
+            LeftArm.transform.localPosition = new Vector3(LeftArm.transform.localPosition.x, Mathf.Lerp(1.5f, 0, aa)); 
 
             yield return null;
         }
