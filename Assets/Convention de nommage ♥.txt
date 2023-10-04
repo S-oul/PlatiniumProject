@@ -1,0 +1,33 @@
+
+CONVENTION DE NOMMAGE & REGLES A RESPECTER SINON T MORT
+
+ON EVITE LE PUBLIC, MERCI MES PTITS CHOUBIDOUS <3
+
+ON ECRIT EN ANGLAIS
+
+JE SUIS PAS GENTIL DONC ON MET LE RAPPEL DES TRUCS CHIANTS
+
+Juste des rappels:
+
+- variables: 
+
+	- boolean: isDoingSomething (public) / _isDoingSomething (private) => is + Verbe
+
+	- enum: Enum {Enum1, Enum2, Enum3} => nom en un mot avec une majuscule & composants également
+
+	- autres: maVaribale (public) / _maVariable => mot (+ Mot + Mot + Mot)
+
+
+
+- méthodes:
+	- MaFonction() ou MaFonction(var maVariable) & on utilise un verbe: Reload() / Buy() / Fire()
+
+- classes & scripts: 
+	- MonScript / MaClasse
+
+- interfaces: 
+	- IMonInterface (ne pas oublier le I devant)
+
+- events:
+	- Verbes au présent ou passé simple (oui c'est raciste)
+
