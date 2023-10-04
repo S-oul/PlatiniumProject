@@ -350,7 +350,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.13399053, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -419,8 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f1c036fcad3a24a88c2ca45b77af7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxRooms: 5
-  _maxFloors: 8
+  _maxRooms: 3
+  _maxFloors: 4
   _heightBetweenFloor: 1
   _poolType1:
   - {fileID: 2502474018757536157, guid: 91268cae7f5c3ab47b535a4256a26db5, type: 3}
@@ -590,12 +590,37 @@ MonoBehaviour:
   - {fileID: 325570729}
   - {fileID: 608311046}
   - {fileID: 181380719}
-  offset: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  SmoothTime: 0.5
-  minZoom: 5
-  maxZoom: 30
-  zoomLimiter: 80
+  _offset: {x: 0, y: 0, z: 0}
+  _velocity: {x: 0, y: 0, z: 0}
+  _SmoothTime: 0.5
+  _minZoom: 5
+  _maxZoom: 20
+  _zoomLimiter: 50
+  _zoomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.15
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _fixeOnZ: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
