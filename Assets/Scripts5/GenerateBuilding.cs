@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class GenerateBuilding : MonoBehaviour
     public float EspaceDetage = 20;
     public List<GameObject> Pool = new List<GameObject>();
 
-    List<GameObject> PlacedRoom = new List<GameObject>();
+    List<int> PlacedRoom;
     bool isFisrt = true;
 
     // Start is called before the first frame update
@@ -23,7 +24,36 @@ public class GenerateBuilding : MonoBehaviour
 
     private void Generate()
     {
-        int espaceEtageRestant = NombreDeSalle;
+        PlacedRoom = new List<int>(NombreDeSalle * NombreDetage);
+        print(NombreDeSalle * NombreDetage);
+        string str = "";
+        foreach(int i in PlacedRoom)
+        {
+            PlacedRoom[i] = Random.Range(1,4);
+            if(str.Count() % 3 == 0)
+            {
+                str += "\n";
+            }
+            str += PlacedRoom[i].ToString();
+            
+        }
+        print(str);
+
+        /*switch ()
+        {
+            case 1:
+                PlacedRoom.Add(R) ;
+
+
+                break;
+                
+
+            *//*case 2: Instantiate(go, transform); break;
+            case 3: Instantiate(go, transform); break;*//*
+
+        }*/
+
+        /*int espaceEtageRestant = NombreDeSalle;
         while(espaceEtageRestant != 0)
         {
             GameObject go = Pool[Random.Range(0,Pool.Count)];
@@ -48,7 +78,7 @@ public class GenerateBuilding : MonoBehaviour
             espaceEtageRestant -= roomspace;
             go.name = espaceEtageRestant.ToString();
             PlacedRoom.Add(go);
-        }
+        }*/
     }
 
     // Update is called once per frame
