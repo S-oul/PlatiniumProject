@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 181380719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.52, y: 0.24, z: 0}
+  m_LocalPosition: {x: -13.2, y: -14.74, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 325570729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.516528, y: 0.24, z: 0}
+  m_LocalPosition: {x: -17.196527, y: -14.74, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 608311046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3100004, y: 0.24, z: 0}
+  m_LocalPosition: {x: -6.99, y: -14.74, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -416,16 +416,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 631766146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b76626a88a2bf419ce1afd63528678, type: 3}
+  m_Script: {fileID: 11500000, guid: d5f1c036fcad3a24a88c2ca45b77af7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NombreDeSalle: 6
-  NombreDetage: 4
-  EspaceDetage: 3
-  Pool:
+  _maxRooms: 3
+  _maxFloors: 5
+  _heightBetweenFloor: 2
+  _poolType1:
   - {fileID: 2502474018757536157, guid: 91268cae7f5c3ab47b535a4256a26db5, type: 3}
+  _poolType2:
   - {fileID: 491415545771377428, guid: 25708e7bd51284b4cb6dfdf9130d49c7, type: 3}
+  _poolType3:
   - {fileID: 3898858819580628589, guid: d2c937afe1be0b048830c031f6142629, type: 3}
+  _floors: []
 --- !u!1 &714691280
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +589,7 @@ MonoBehaviour:
   SmoothTime: 0.5
   minZoom: 5
   maxZoom: 30
-  zoomLimiter: 50
+  zoomLimiter: 80
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

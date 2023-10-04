@@ -5,17 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [Range(1,3)]
-    public int roomType = 0;
+    [SerializeField] int _roomSize = 0;
+    public int RoomSize { get => _roomSize; }
 
-
-    void Awake()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

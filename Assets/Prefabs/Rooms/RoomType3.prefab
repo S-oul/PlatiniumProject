@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4780585793026012674}
   - component: {fileID: 5859770283138685351}
-  - component: {fileID: 3309770493468127523}
+  - component: {fileID: -678763171300210559}
   m_Layer: 0
   m_Name: RoomType3
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 5, z: 1}
+  m_LocalScale: {x: 60, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3309770493468127523
+--- !u!114 &-678763171300210559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde2a555959aadc44adc4d1bf44c6de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 3
+  _roomSize: 3
