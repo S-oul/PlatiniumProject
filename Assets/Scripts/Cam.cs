@@ -8,16 +8,17 @@ public class Cam : MonoBehaviour
 {
     public Camera cam;
 
-    public List<GameObject> targets = new List<GameObject>();
-    public Vector3 offset;
-    public Vector3 velocity;
-    public float SmoothTime = .5f;
+    [SerializeField] private List<GameObject> targets = new List<GameObject>();
+    [SerializeField] private Vector3 _offset;
+    [SerializeField] private Vector3 _velocity;
+    [SerializeField] private float _SmoothTime = .5f;
 
-    public float minZoom = 5;
-    public float maxZoom = 20;
-    public float zoomLimiter = 50;
+    [SerializeField] private float _minZoom = 5;
+    [SerializeField] private float _maxZoom = 20;
+    [SerializeField] private float _zoomLimiter = 50;
+    [SerializeField] private AnimationCurve _zoomCurve;
 
-    public bool fixeOnZ = true;
+    [SerializeField] private bool _fixeOnZ = true;
 
     private void LateUpdate()
     {
@@ -28,7 +29,9 @@ public class Cam : MonoBehaviour
 
     private void Zoom()
     {
-        float newZoom = Mathf.Lerp(minZoom, maxZoom,GetMaxDist()/zoomLimiter);
+        float MaxDist = GetMaxDist();
+        float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
+        print(MaxDist / _zoomLimiter + " ::::::::: " + _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
     }
     float GetMaxDist()
@@ -50,10 +53,10 @@ public class Cam : MonoBehaviour
     private void Move()
     {
         Vector3 centralPoint = GetCentralPoint();
-        Vector3 NewPos = centralPoint + offset;
+        Vector3 NewPos = centralPoint + _offset;
 
-        transform.position = Vector3.SmoothDamp(transform.position, NewPos, ref velocity, SmoothTime);
-        if (fixeOnZ)
+        transform.position = Vector3.SmoothDamp(transform.position, NewPos, ref _velocity, _SmoothTime);
+        if (_fixeOnZ)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         }

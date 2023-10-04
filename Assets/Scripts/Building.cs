@@ -39,7 +39,7 @@ public class Building : MonoBehaviour
                 r -= 1;
                 if (r == 0)
                 {
-                    print("mmmmmmmmmmmmmh" );
+                    print("NOPE R = 0" );
                     return;
                 }
             }
