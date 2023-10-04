@@ -17,15 +17,15 @@ public class Cam : MonoBehaviour
     public float maxZoom = 20;
     public float zoomLimiter = 50;
 
+    public bool fixeOnZ = true;
+
     private void LateUpdate()
     {
         if(targets.Count == 0) { return; }
         Move();
         Zoom();
     }
-    private void Update()
-    {
-    }
+
     private void Zoom()
     {
         float newZoom = Mathf.Lerp(minZoom, maxZoom,GetMaxDist()/zoomLimiter);
@@ -53,8 +53,10 @@ public class Cam : MonoBehaviour
         Vector3 NewPos = centralPoint + offset;
 
         transform.position = Vector3.SmoothDamp(transform.position, NewPos, ref velocity, SmoothTime);
-        transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-
+        if (fixeOnZ)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        }
     }
 
     Vector3 GetCentralPoint()
