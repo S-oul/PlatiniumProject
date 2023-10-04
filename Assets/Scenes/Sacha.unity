@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 181380719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.2, y: -14.74, z: -1}
+  m_LocalPosition: {x: 6.9965277, y: 3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 325570729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.196527, y: -14.74, z: -1}
+  m_LocalPosition: {x: 3, y: 3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 608311046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.99, y: -14.74, z: -1}
+  m_LocalPosition: {x: 13.206528, y: 3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -419,15 +419,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f1c036fcad3a24a88c2ca45b77af7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxRooms: 3
-  _maxFloors: 5
-  _heightBetweenFloor: 2
+  _maxRooms: 5
+  _maxFloors: 8
+  _heightBetweenFloor: 1
   _poolType1:
   - {fileID: 2502474018757536157, guid: 91268cae7f5c3ab47b535a4256a26db5, type: 3}
+  - {fileID: 2502474018757536157, guid: 73ac9c9a7bcc65b449cd8162fce7873d, type: 3}
+  - {fileID: 2502474018757536157, guid: acf12d8013c63f944914d863f84134bc, type: 3}
   _poolType2:
   - {fileID: 491415545771377428, guid: 25708e7bd51284b4cb6dfdf9130d49c7, type: 3}
+  - {fileID: 491415545771377428, guid: e37fbdbcf1e7f3443b620bf293b27484, type: 3}
+  - {fileID: 491415545771377428, guid: d200749d735ba8744a22eb59b9ac17dc, type: 3}
   _poolType3:
   - {fileID: 3898858819580628589, guid: d2c937afe1be0b048830c031f6142629, type: 3}
+  - {fileID: 3898858819580628589, guid: 2b6aaec25f255fa45b2e20f4013ba750, type: 3}
+  - {fileID: 3898858819580628589, guid: a46937eaf906e3b48980ba75823400b3, type: 3}
   _floors: []
 --- !u!1 &714691280
 GameObject:
@@ -574,7 +580,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714691280}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8588ddd1af68c0f4ba9ba5164b5bbe08, type: 3}
   m_Name: 
