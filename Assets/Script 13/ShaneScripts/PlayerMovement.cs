@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     public CharacterController2D controller;
 
     float horisontalMove = 0f;
@@ -18,19 +19,10 @@ public class PlayerMovement : MonoBehaviour
     {
         horisontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-        }
-
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
-        } else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
-        }
-        //Debug.Log(crouch);
+        if (Input.GetButtonDown("Jump")) { jump = true; }
+        if (Input.GetButtonDown("Crouch")) { crouch = true; } 
+        else if (Input.GetButtonUp("Crouch")) { crouch = false; }
+    
     }
 
     private void FixedUpdate()
