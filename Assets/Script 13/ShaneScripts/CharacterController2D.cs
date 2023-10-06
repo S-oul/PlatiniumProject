@@ -1,5 +1,7 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -30,7 +32,12 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
-	private void Awake()
+    //to comunicate with CharacterStateManager
+    [HideInInspector] public bool isCrouching { get; private set; }
+    [HideInInspector] public bool isIdle { get; private set; }
+
+
+    private void Awake()
 	{
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -132,7 +139,10 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
-	}
+
+        isIdle = !crouch ? true : false;
+        isCrouching = crouch ? true : false;
+    }
 
 
 	private void Flip()
