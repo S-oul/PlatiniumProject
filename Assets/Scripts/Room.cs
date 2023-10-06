@@ -8,4 +8,11 @@ public class Room : MonoBehaviour
     [SerializeField] int _roomSize = 0;
     public int RoomSize { get => _roomSize; }
 
+
+
+    public Room(DataRoom data)
+    {
+        
+    }
+
 }
