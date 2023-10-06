@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxRooms: 3
-  _maxFloors: 4
+  _maxFloors: 5
   _heightBetweenFloor: 1
   _poolType1:
   - {fileID: 2502474018757536157, guid: 91268cae7f5c3ab47b535a4256a26db5, type: 3}
@@ -594,7 +594,7 @@ MonoBehaviour:
   _velocity: {x: 0, y: 0, z: 0}
   _SmoothTime: 0.5
   _minZoom: 5
-  _maxZoom: 20
+  _maxZoom: 21
   _zoomLimiter: 50
   _zoomCurve:
     serializedVersion: 2

@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using NaughtyAttributes;
+using UnityEditor;
+using Unity.VisualScripting.FullSerializer;
 
 public class Building : MonoBehaviour
 {
+    #region Visible Variable 
     [SerializeField] private int _maxRooms = 3;
     [SerializeField] private int _maxFloors = 5;
+
+    [Tooltip("The Space Between each floor")]
     [SerializeField] private float _heightBetweenFloor = 2f;
 
     [SerializeField] private List<GameObject> _poolType1 = new List<GameObject>();
@@ -15,15 +21,14 @@ public class Building : MonoBehaviour
     [SerializeField] private List<GameObject> _poolType3 = new List<GameObject>();
 
     [SerializeField] private List<Floors> _floors = new List<Floors>();
+    #endregion
 
-    private void Start()
+    [Button("Sort Room")]
+    public void SortingRoom()
     {
-        for (float i = 0; i < _maxFloors; i++)
-        {
-            GenerateFloor(i*5f + i* _heightBetweenFloor);
-
-        }
+        Debug.Log("ayo");
     }
+
 
     void GenerateFloor(float height)
     {
@@ -93,16 +98,39 @@ public class Building : MonoBehaviour
             }
         }
     }
-/*    bool isFloorFull(Floors floor)
+
+    #region Generate & Destroy
+    [Button("Generate Building")]
+    private void Generate()
     {
-        int current = 0;
-        foreach(Room room in floor.Rooms)
+        for (float i = 0; i < _maxFloors; i++)
         {
-            current += room.RoomSize;
+            GenerateFloor(i * 5f + i * _heightBetweenFloor);
+
         }
-        if(current == _maxRooms) { return true; }
-        else { return false; }
-    }*/
+    }
+
+
+
+
+    [Button("DestroyALL")]
+    public void DestroyALL()
+    {
+        for (int i = transform.childCount - 1; i != -1; i--)
+        {
+            print(i);
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
+    }
+
+
+    [Button("Destroy & Generate")]
+    public void DestroyAndGenerate()
+    {
+        DestroyALL();
+        Generate();
+    }
+    #endregion
 
     [System.Serializable]
     public struct Floors
