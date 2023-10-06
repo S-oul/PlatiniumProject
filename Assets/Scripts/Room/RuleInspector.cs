@@ -1,18 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.Collections;
+using System;
+using Unity.VisualScripting;
+using UnityEditor.Timeline.Actions;
+using NaughtyAttributes.Editor;
 
-public class RuleInspector : MonoBehaviour
+
+
+//[EditorWindowTitle(title ="Inspector Rule")]
+public class RuleInspector : EditorWindow
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string myString = "Hello World";
 
-    // Update is called once per frame
-    void Update()
-    {
+    [SerializeField] public SerializedObject SelectedRules = new SerializedObject(Selection.activeContext.GameObject().transform); 
+        //Selection.activeContext.GameObject().GetComponent<Rules>().ConvertTo<SerializedProperty>();
+    
         
+
+
+    [MenuItem("Window/Room rule")]
+    public static void ShowWindow()
+    {
+        GetWindow(typeof(RuleInspector));
+    }
+    void OnGUI()
+    {
+        GUILayout.Label("Room Rule Settings \n", EditorStyles.boldLabel);
+
+        EditorGUILayout.ObjectField(SelectedRules.ConvertTo<SerializedProperty>());
+            
+            //(Resources.LoadAll("Assets/Resources/Prefabs/Rooms/").ConvertTo<SerializedObject>());
+
+        //EditorGUILayout.ObjectField(SelectedRules);
+        EditorGUILayout.BeginToggleGroup("Optional Settings",true);
+        {
+            //EditorGUILayout.ObjectField(SelectedRules);
+
+
+        }
+
+
+
+        EditorGUILayout.EndToggleGroup();
     }
 }
