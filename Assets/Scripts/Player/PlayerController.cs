@@ -7,51 +7,49 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController2D))]
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController2D controller;
+    [SerializeField]
+    float _moveSpeed = 40f;
 
-    float horisontalMove = 0f;
+    [SerializeField]
+    Collider2D _colliderToEnableWhenCrouch;
+    
 
-    public float runSpeed = 40f;
-    bool isJumping = false;
-    bool isCrouched = false;
+    float _horizontalMove = 0f;
+    bool _isJumping = false;
+    bool _isGrounded = false;
+    bool _isCrouched = false;
+
+    CharacterController2D _controller;
+    Collider2D _colliderPlayer;
+
+
 
     private void Awake()
     {
-        controller = GetComponent<CharacterController2D>();
+        _controller = GetComponent<CharacterController2D>();
     }
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        horisontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-        if (Input.GetButtonDown("Jump")) { isJumping = true; }
-        if (Input.GetButtonDown("Crouch")) { isCrouched = true; }
-        else if (Input.GetButtonUp("Crouch")) { isCrouched = false; }
-
-    }*/
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        horisontalMove = context.ReadValue<Vector2>().x * runSpeed;
+        _horizontalMove = context.ReadValue<Vector2>().x * _moveSpeed;
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-
-        /*isJumping = context.ReadValue<bool>();*/
-        isJumping = context.action.triggered;
+        _isJumping = context.ReadValueAsButton();
+        _isJumping = context.action.triggered;
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
-
+        _isCrouched = context.ReadValueAsButton();
     }
 
     private void FixedUpdate()
     {
-        controller.Move(horisontalMove * Time.fixedDeltaTime, isCrouched, isJumping);
-        isJumping = false;
-
+        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isCrouched, _isJumping);
+        _isJumping = false;
     }
+
+    
 }

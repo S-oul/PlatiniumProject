@@ -83,7 +83,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec195b6573cd894ea90f497666e00ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 80
+  _moveSpeed: 40
+  _colliderToEnableWhenCrouch: {fileID: 0}
 --- !u!114 &4960940516979384560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +142,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 88f16755-d11a-4470-80ba-9811145be39c
     m_ActionName: Player/Jump[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8173569083855266966}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnCrouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ffa3a006-c195-44f1-a68f-9212de96628a
+    m_ActionName: Player/Crouch[/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -216,10 +233,10 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 1846
   m_GroundCheck: {fileID: 2974644016071864153}
   m_CeilingCheck: {fileID: 1303110093453141598}
-  m_CrouchDisableCollider: {fileID: 0}
+  m_CrouchDisableCollider: {fileID: 8172278444268334938}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
