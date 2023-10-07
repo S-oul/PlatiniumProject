@@ -8,4 +8,5 @@ public class DataRoom : ScriptableObject
     [Range(1, 3)]
     public int _roomSize;
 
+
 }
