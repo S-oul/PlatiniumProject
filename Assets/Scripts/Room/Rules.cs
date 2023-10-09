@@ -25,6 +25,7 @@ public class Rules : MonoBehaviour
             {
                 case RuleType.appearOnce:
                     ///Execute code here
+                    
                     break; 
 
                 case RuleType.appearMultipleTimes:

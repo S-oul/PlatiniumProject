@@ -19,9 +19,23 @@ public class Building : MonoBehaviour
     [SerializeField] private List<GameObject> _poolType1 = new List<GameObject>();
     [SerializeField] private List<GameObject> _poolType2 = new List<GameObject>();
     [SerializeField] private List<GameObject> _poolType3 = new List<GameObject>();
+    [SerializeField] private List<GameObject> _poolType4 = new List<GameObject>();
+
+    [SerializeField] private List<List<GameObject>> _allPool = new List<List<GameObject>>();
+
+    //[MenuItem("Assets/Create Room")]
 
     [SerializeField] private List<Floors> _floors = new List<Floors>();
     #endregion
+    private void OnValidate()
+    {
+        _allPool.Add(_poolType1);
+        _allPool.Add(_poolType2);
+        _allPool.Add(_poolType3);
+        _allPool.Add(_poolType4);
+    }
+
+  
 
     [Button("Sort Room")]
     public void SortingRoom()
@@ -36,9 +50,9 @@ public class Building : MonoBehaviour
         int currentRoom = 0;
         bool isfirst = true;
 
-        while (currentRoom != _maxRooms)
+        while (currentRoom < _maxRooms)
         {
-            int r = Random.Range(1, 4);
+            int r = Random.Range(2, 5);
             while (currentRoom + r > _maxRooms)
             {
                 r -= 1;
@@ -48,54 +62,20 @@ public class Building : MonoBehaviour
                     return;
                 }
             }
-            if (r == 1)
-            {
-                GameObject go = Instantiate(_poolType1[Random.Range(0, _poolType1.Count)], transform);
-                Room room = go.GetComponent<Room>();
-                currentRoom += room.RoomSize;
-                if (isfirst) 
-                { 
-                    isfirst = false;
-                    go.transform.position = new Vector3(Mathf.Abs(room.transform.localScale.x/2), height, 0);
-                }
-                else
-                {
-                    go.transform.position = new Vector3(rooms[^1].transform.localPosition.x + rooms[^1].transform.localScale.x/2 + go.transform.localScale.x/2, height, 0);
-                }
-                rooms.Add(go);
-            }
-            else if (r == 2)
-            {
-                GameObject go = Instantiate(_poolType2[Random.Range(0, _poolType2.Count)], transform);
-                Room room = go.GetComponent<Room>();
-                currentRoom += room.RoomSize;
-                if (isfirst)
-                {
-                    isfirst = false;
-                    go.transform.position = new Vector3(Mathf.Abs(room.transform.localScale.x / 2), height, 0);
-                }
-                else
-                {
-                    go.transform.position = new Vector3(rooms[^1].transform.localPosition.x + rooms[^1].transform.localScale.x / 2 + go.transform.localScale.x / 2, height, 0);
-                }
-                rooms.Add(go);
+
+            GameObject go = Instantiate(_allPool[r-1][Random.Range(0, _allPool[r-1].Count)], transform);
+            Room room = go.GetComponent<Room>();
+            currentRoom += room.RoomSize;
+            if (isfirst) 
+            { 
+                isfirst = false;
+                go.transform.position = new Vector3(Mathf.Abs(room.transform.localScale.x/2), height, 0);
             }
             else
             {
-                GameObject go = Instantiate(_poolType3[Random.Range(0, _poolType3.Count)], transform);
-                Room room = go.GetComponent<Room>();
-                currentRoom += room.RoomSize;
-                if (isfirst)
-                {
-                    isfirst = false;
-                    go.transform.position = new Vector3(Mathf.Abs(room.transform.localScale.x / 2), height, 0);
-                }
-                else
-                {
-                    go.transform.position = new Vector3(rooms[^1].transform.localPosition.x + rooms[^1].transform.localScale.x / 2 + go.transform.localScale.x / 2, height, 0);
-                }
-                rooms.Add(go);
+                go.transform.position = new Vector3(rooms[^1].transform.localPosition.x + rooms[^1].transform.localScale.x/2 + go.transform.localScale.x/2, height, 0);
             }
+            rooms.Add(go);
         }
     }
 
@@ -140,4 +120,6 @@ public class Building : MonoBehaviour
         public List<Room> Rooms { get => rooms; set => rooms = value; }
 
     }
+
+
 }

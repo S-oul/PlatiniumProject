@@ -1,0 +1,92 @@
+Bool Random Room
+[Room] : - [Rule]  [Var]
+	 - [Rule]
+	 - ...
+
+
+Quel Regle ?
+
+Rule : 
+- N'apparait qu'une fois
+- Apparait [Nombre de fois] [Int]
+- Apparait en Premier/Dernier
+- //Contient [Item]
+- Next Room is [Room]
+- Spawn Left / Rigth
+
+
+Rule ()
+
+
+enum type
+
+
+
+
+List<Rule> Rules
+
+List <Room> Possible_Room
+
+
+R = random(Room)  <---------------------
+for each Rule in Rules 			|
+\					|
+ -> Check if R Works with Rules		|
+if no 					|
+\					|
+ ->   Possible_Rooms.Remove(R)		|
+      retry; ---------------------------
+
+if Sucsesse 
+
+
+Instantiate Room
+\
+ -> Room.InitRoom()
+	\
+	 -> Add Room.Rule to Rule
+
+
+
+
+
+
+
+
+Game Manager
+
+List<Event> "Chose a faire"
+List<GO> ObjectList
+List<GO> PersonnageList
+
+
+Room
+
+Room -> List<GO> RoomObject
+Room -> List<GO> RoomPersonnage
+
+Room -> Room Init() 
+	|
+	-> Get GameManager -> gm.ObjectList.Add(RoomObject) 
+			      gm.PersonnageList(RoomPerso)
+
+
+Game manager -> Genere Event
+{
+   Faire "Chose a faire" avec "Object" et/ou "Perso"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

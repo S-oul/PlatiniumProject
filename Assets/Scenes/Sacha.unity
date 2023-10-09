@@ -201,8 +201,8 @@ Transform:
   m_GameObject: {fileID: 181380719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9965277, y: 3, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.97, y: -0.97, z: -1}
+  m_LocalScale: {x: 1, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -266,7 +266,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.6756983, a: 1}
+  m_Color: {r: 1, g: 0.06895265, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -285,8 +285,92 @@ Transform:
   m_GameObject: {fileID: 325570729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 3, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 48.47, y: 19, z: -1}
+  m_LocalScale: {x: 1, y: 1.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &567819355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 567819357}
+  - component: {fileID: 567819356}
+  m_Layer: 0
+  m_Name: Obj1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &567819356
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567819355}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &567819357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567819355}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.8599987, y: -1.0400019, z: -1}
+  m_LocalScale: {x: 1, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -369,8 +453,8 @@ Transform:
   m_GameObject: {fileID: 608311046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.206528, y: 3, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.2600002, y: -1.0400019, z: -1}
+  m_LocalScale: {x: 1, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -419,21 +503,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f1c036fcad3a24a88c2ca45b77af7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxRooms: 3
+  _maxRooms: 10
   _maxFloors: 5
   _heightBetweenFloor: 1
   _poolType1:
-  - {fileID: 2502474018757536157, guid: 91268cae7f5c3ab47b535a4256a26db5, type: 3}
-  - {fileID: 2502474018757536157, guid: 73ac9c9a7bcc65b449cd8162fce7873d, type: 3}
-  - {fileID: 2502474018757536157, guid: acf12d8013c63f944914d863f84134bc, type: 3}
+  - {fileID: 2502474018757536157, guid: 61c683c4150182b4ba854cc2eef5c9ba, type: 3}
+  - {fileID: 2502474018757536157, guid: 70600e7143418b246b608e98d3f45afd, type: 3}
+  - {fileID: 2502474018757536157, guid: 9fb6a8de2cb813341872a5d94d3860da, type: 3}
   _poolType2:
-  - {fileID: 491415545771377428, guid: 25708e7bd51284b4cb6dfdf9130d49c7, type: 3}
-  - {fileID: 491415545771377428, guid: e37fbdbcf1e7f3443b620bf293b27484, type: 3}
-  - {fileID: 491415545771377428, guid: d200749d735ba8744a22eb59b9ac17dc, type: 3}
+  - {fileID: 2502474018757536157, guid: 91268cae7f5c3ab47b535a4256a26db5, type: 3}
+  - {fileID: 2502474018757536157, guid: eb01dec2342f416488873e9f9e566768, type: 3}
+  - {fileID: 2502474018757536157, guid: c80a66eb0da7efd4dbfe6ea894816636, type: 3}
   _poolType3:
+  - {fileID: 491415545771377428, guid: 25708e7bd51284b4cb6dfdf9130d49c7, type: 3}
+  - {fileID: 491415545771377428, guid: 5f3e30ab749b1c64a9bebc0666dc9ffa, type: 3}
+  - {fileID: 491415545771377428, guid: 2318a8646ebca5540924e8fd85d3f62b, type: 3}
+  _poolType4:
   - {fileID: 3898858819580628589, guid: d2c937afe1be0b048830c031f6142629, type: 3}
-  - {fileID: 3898858819580628589, guid: 2b6aaec25f255fa45b2e20f4013ba750, type: 3}
-  - {fileID: 3898858819580628589, guid: a46937eaf906e3b48980ba75823400b3, type: 3}
+  - {fileID: 3898858819580628589, guid: 57b9d5d035144f949b5106d2a28ae50c, type: 3}
+  - {fileID: 3898858819580628589, guid: 477e7836a2e1a2d428e8b4524b9f1efb, type: 3}
   _floors: []
 --- !u!1 &714691280
 GameObject:
@@ -590,6 +678,7 @@ MonoBehaviour:
   - {fileID: 325570729}
   - {fileID: 608311046}
   - {fileID: 181380719}
+  - {fileID: 181380719}
   _offset: {x: 0, y: 0, z: 0}
   _velocity: {x: 0, y: 0, z: 0}
   _SmoothTime: 0.5
@@ -629,4 +718,5 @@ SceneRoots:
   - {fileID: 631766147}
   - {fileID: 325570731}
   - {fileID: 608311048}
+  - {fileID: 567819357}
   - {fileID: 181380721}
