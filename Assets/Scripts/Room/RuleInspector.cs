@@ -13,7 +13,7 @@ public class RuleInspector : EditorWindow
 {
     public string myString = "Hello World";
 
-    [SerializeField] public SerializedObject SelectedRules = new SerializedObject(Selection.activeContext.GameObject().transform); 
+    [SerializeField] public SerializedObject SelectedRules; 
         //Selection.activeContext.GameObject().GetComponent<Rules>().ConvertTo<SerializedProperty>();
     
         
