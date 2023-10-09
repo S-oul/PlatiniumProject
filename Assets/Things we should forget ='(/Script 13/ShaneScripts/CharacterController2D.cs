@@ -1,5 +1,8 @@
+using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -30,7 +33,12 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
-	private void Awake()
+    //to comunicate with CharacterStateManager
+    [HideInInspector] public bool isCrouching { get; private set; }
+    [HideInInspector] public bool isIdle { get; private set; }
+
+
+    private void Awake()
 	{
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -70,7 +78,7 @@ public class CharacterController2D : MonoBehaviour
 			// If the character has a ceiling preventing them from standing up, keep them crouching
 			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
 			{
-				crouch = true;
+                crouch = true;
 			}
 		}
 
@@ -91,6 +99,7 @@ public class CharacterController2D : MonoBehaviour
 				move *= m_CrouchSpeed;
 
 				// Disable one of the colliders when crouching
+				
 				if (m_CrouchDisableCollider != null)
 					m_CrouchDisableCollider.enabled = false;
 			} else
@@ -132,7 +141,10 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
-	}
+
+        isIdle = !crouch ? true : false;
+        isCrouching = crouch ? true : false;
+    }
 
 
 	private void Flip()
@@ -145,4 +157,5 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
 }
