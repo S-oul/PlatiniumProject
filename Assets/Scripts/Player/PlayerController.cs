@@ -7,12 +7,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    float _moveSpeed = 40f;
+    [Header ("For Game Design")]   
+    [Range(1, 100)][SerializeField] float _moveSpeed = 40f;                 //Movement speed
+    [Range(0, 1)] public float crouchSpeed = .36f;                 // Amount of maxSpeed applied to crouching movement. 1 = 100%
+    [Range(0, .3f)] public float movementSmoothing = .05f;         // How much to smooth out the movement
+    [Range(0.1f, 20f)]public float normalFallGravityForce = 3;  // Fall Speed
+    [Range(0.1f, 20f)]public float fastFallGravityForce = 5;    // Fall Speed when holding Crouch
+    [SerializeField] public bool AirControl = true;                      // Can contoll character while not Grounded
 
-    [SerializeField]
-    Collider2D _colliderToEnableWhenCrouch;
-    
 
     float _horizontalMove = 0f;
     bool _isJumping = false;
@@ -29,22 +31,24 @@ public class PlayerController : MonoBehaviour
         _controller = GetComponent<CharacterController2D>();
     }
 
+
+    // Functions called by the Player Input component. 
     public void OnMove(InputAction.CallbackContext context)
     {
         _horizontalMove = context.ReadValue<Vector2>().x * _moveSpeed;
     }
-
     public void OnJump(InputAction.CallbackContext context)
     {
         _isJumping = context.ReadValueAsButton();
         _isJumping = context.action.triggered;
     }
-
     public void OnCrouch(InputAction.CallbackContext context)
     {
         _isCrouched = context.ReadValueAsButton();
     }
+    
 
+    // Comunicate contol inputs to CharacterContoller2D Script component
     private void FixedUpdate()
     {
         _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isCrouched, _isJumping);
