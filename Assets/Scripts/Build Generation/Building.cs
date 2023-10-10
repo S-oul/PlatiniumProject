@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-
+using System.Linq;
 
 public class Building : MonoBehaviour
 {
@@ -11,6 +11,8 @@ public class Building : MonoBehaviour
 
     [Tooltip("The Space Between each floor")]
     [SerializeField] private float _heightBetweenFloor = 2f;
+
+    [SerializeField] private GameObject _spawnRoom; 
 
     [SerializeField] private List<GameObject> _poolType1 = new List<GameObject>();
     [SerializeField] private List<GameObject> _poolType2 = new List<GameObject>();
@@ -50,10 +52,55 @@ public class Building : MonoBehaviour
 
     void GenerateFloor(float height)
     {
+        string floorID = GenerateFloorID();
         List<GameObject> rooms = new List<GameObject>();
-        int currentRoom = 0;
-        bool isfirst = true;
+    }
+    void GenerateFloor(float height, GameObject firstRoom)
+    {
+        string floorID = GenerateFloorID();
+        List<GameObject> rooms = new List<GameObject>();
+    }
 
+    string GenerateFloorID()
+    {
+        string floorsID = "";
+        for (int i = 0; i < _maxRooms; i++)
+        {
+            floorsID += 'A';
+        }
+        return floorsID;
+    }
+    bool CheckAddID(string fID, string AddID)
+    {
+        int i = AddID.Count();
+        string emp = "";
+        while(i != 0)
+        {
+            emp += 'A';
+            i--;
+        }
+        print(emp + " // "+fID);
+        if (fID.Contains(emp)) return true;
+        else return false;
+    }
+    
+
+
+    #region Generate & Destroy
+    [Button("Generate Building")]
+    private void Generate()
+    {
+        _hasBigRoom = false;
+        for (float i = 0; i < _maxFloors; i++)
+        {
+            GenerateFloor(i * 5f + i * _heightBetweenFloor, _spawnRoom);
+
+        }
+    }
+
+    #region Instatiate Room OLD
+    /*
+    
         bool hasLift = false;
 
         int oldR = -999;
@@ -73,38 +120,33 @@ public class Building : MonoBehaviour
             if (r == 4) _hasBigRoom = true;
 
 
-            #region Instatiate Room
-            GameObject go = Instantiate(_allPool[r-1][Random.Range(0, _allPool[r-1].Count)], transform);
-            Room room = go.GetComponent<Room>();
-            room.InitRoom();
-            currentRoom += room.RoomSize;
-            if (isfirst) 
-            { 
-                isfirst = false;
-                go.transform.position = new Vector3(Mathf.Abs(room.transform.localScale.x/2), height, 0);
-            }
-            else
-            {
-                go.transform.position = new Vector3(rooms[^1].transform.localPosition.x + rooms[^1].transform.localScale.x/2 + go.transform.localScale.x/2, height, 0);
-            }
-            rooms.Add(go);
-            #endregion 
+
             oldR = r;
         }
+ 
+ 
+ GameObject go = Instantiate(_allPool[r-1][Random.Range(0, _allPool[r-1].Count)], transform);
+    Room room = go.GetComponent<Room>();
+    room.InitRoom();
+    currentRoom += room.RoomSize;
+    if (isfirst) 
+    { 
+        isfirst = false;
+        go.transform.position = new Vector3(Mathf.Abs(room.transform.localScale.x/2), height, 0);
     }
-
-    #region Generate & Destroy
-    [Button("Generate Building")]
-    private void Generate()
+    else
     {
-        _hasBigRoom = false;
-        for (float i = 0; i < _maxFloors; i++)
-        {
-            GenerateFloor(i * 5f + i * _heightBetweenFloor);
-
-        }
+        go.transform.position = new Vector3(rooms[^1].transform.localPosition.x + rooms[^1].transform.localScale.x/2 + go.transform.localScale.x/2, height, 0);
     }
-
+    rooms.Add(go);
+    
+     
+     
+     
+     
+     
+     */
+    #endregion
 
 
 
