@@ -1,11 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using NaughtyAttributes;
-using UnityEditor;
-using Unity.VisualScripting.FullSerializer;
+
 
 public class Building : MonoBehaviour
 {
@@ -25,8 +21,15 @@ public class Building : MonoBehaviour
 
     //[MenuItem("Assets/Create Room")]
 
+
+
     [SerializeField] private List<Floors> _floors = new List<Floors>();
+
     #endregion
+
+    private bool _hasBigRoom = false;
+
+
     private void OnValidate()
     {
         _allPool.Clear();
@@ -51,21 +54,29 @@ public class Building : MonoBehaviour
         int currentRoom = 0;
         bool isfirst = true;
 
+        bool hasLift = false;
+
+        int oldR = -999;
+
         while (currentRoom < _maxRooms)
         {
-            int r = Random.Range(1, 5);
-            while (currentRoom + r > _maxRooms)
-            {
-                r -= 1;
-                if (r == 0)
-                {
-                    print("NOPE R = 0" );
-                    return;
-                }
-            }
+            int r;
+            if (!_hasBigRoom) r = Random.Range(1, 5);
+            else r = Random.Range(1, 4);
 
+            if (hasLift) { r = Random.Range(2, 4); }
+            if (currentRoom + r == _maxRooms && hasLift == false ) { r = 1; }
+
+            while (currentRoom + r > _maxRooms) { r -= 1; }
+
+            if (r == 1) hasLift = true;
+            if (r == 4) _hasBigRoom = true;
+
+
+            #region Instatiate Room
             GameObject go = Instantiate(_allPool[r-1][Random.Range(0, _allPool[r-1].Count)], transform);
             Room room = go.GetComponent<Room>();
+            room.InitRoom();
             currentRoom += room.RoomSize;
             if (isfirst) 
             { 
@@ -77,6 +88,8 @@ public class Building : MonoBehaviour
                 go.transform.position = new Vector3(rooms[^1].transform.localPosition.x + rooms[^1].transform.localScale.x/2 + go.transform.localScale.x/2, height, 0);
             }
             rooms.Add(go);
+            #endregion 
+            oldR = r;
         }
     }
 
@@ -84,6 +97,7 @@ public class Building : MonoBehaviour
     [Button("Generate Building")]
     private void Generate()
     {
+        _hasBigRoom = false;
         for (float i = 0; i < _maxFloors; i++)
         {
             GenerateFloor(i * 5f + i * _heightBetweenFloor);
