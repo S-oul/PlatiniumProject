@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    GameObject[] _players = new GameObject[4];
+    [SerializeField] GameObject[] _players = new GameObject[4];
 
     public GameObject[] Players { get => _players; }
 
