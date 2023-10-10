@@ -29,6 +29,7 @@ public class Building : MonoBehaviour
     #endregion
     private void OnValidate()
     {
+        _allPool.Clear();
         _allPool.Add(_poolType1);
         _allPool.Add(_poolType2);
         _allPool.Add(_poolType3);
@@ -52,7 +53,7 @@ public class Building : MonoBehaviour
 
         while (currentRoom < _maxRooms)
         {
-            int r = Random.Range(2, 5);
+            int r = Random.Range(1, 5);
             while (currentRoom + r > _maxRooms)
             {
                 r -= 1;
