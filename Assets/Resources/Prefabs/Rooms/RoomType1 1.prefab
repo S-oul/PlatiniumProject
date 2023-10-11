@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomSize: 1
+  _id: 1L
   _objectList: []
-  _persoList: []
+  _npcList: []
   _EventList: []

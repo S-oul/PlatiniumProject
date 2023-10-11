@@ -11,13 +11,16 @@ public class Room : MonoBehaviour
 
     [Range(1,4)]
     [SerializeField] int _roomSize = 0;
+    [SerializeField] string _id = "UNSET ==> go to room prefab";
 
     [SerializeField] List<GameObject> _objectList;
     [SerializeField] List<GameObject> _npcList;
     [SerializeField] List<GameObject> _EventList;
     
     public int RoomSize { get => _roomSize; }
-    
+    public string Id { get => _id; set => _id = value; }
+
+
     public void InitRoom()
     {
         if(GameManager.Instance != null) gameManager = GameManager.Instance;
@@ -55,6 +58,8 @@ public class Room : MonoBehaviour
             return obj.ToString();
         }
     }
+
+
     private static void CreatePrefabInProject(string prefabName)
     {
         var prefab = UnityEngine.Resources.Load(prefabName);
