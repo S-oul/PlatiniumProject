@@ -7,8 +7,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] GameObject[] _players = new GameObject[4];
-
+    
     public GameObject[] Players { get => _players; }
+
+
+
+    
 
     private void Awake()
     {
@@ -19,4 +23,5 @@ public class GameManager : MonoBehaviour
         }
         
     }
+
 }

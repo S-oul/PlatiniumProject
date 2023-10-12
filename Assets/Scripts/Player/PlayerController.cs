@@ -18,15 +18,17 @@ public class PlayerController : MonoBehaviour
     bool _isJumping = false;
     bool _isGrounded = false;
     bool _isCrouched = false;
+    public bool _isInteracting = false;
 
     CharacterController2D _controller;
     Collider2D _colliderPlayer;
 
-
+    public string currentContextName;
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController2D>();
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -45,6 +47,24 @@ public class PlayerController : MonoBehaviour
         _isCrouched = context.ReadValueAsButton();
     }
 
+    public void OnQTE(InputAction.CallbackContext context)
+    {
+        if (context.ReadValueAsButton())
+        {
+            currentContextName = context.action.activeControl.displayName;
+        }
+        else
+        {
+            currentContextName = "";
+        }
+        
+    }
+
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        _isInteracting = context.ReadValueAsButton();
+    }
     private void FixedUpdate()
     {
         _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isCrouched, _isJumping);

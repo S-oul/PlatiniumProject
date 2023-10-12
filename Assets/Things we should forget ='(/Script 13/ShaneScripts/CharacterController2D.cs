@@ -21,6 +21,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	private SpriteRenderer m_SpriteRenderer;
 
 	[Header("Events")]
 	[Space]
@@ -41,6 +42,7 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
 	{
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		m_SpriteRenderer = GetComponent<SpriteRenderer>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -53,7 +55,6 @@ public class CharacterController2D : MonoBehaviour
 	{
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
-
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -152,10 +153,15 @@ public class CharacterController2D : MonoBehaviour
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
+        // Multiply the player's x local scale by -1.
+
+        /*Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+		transform.localScale = theScale;*/
+
+        m_SpriteRenderer.flipX = !m_FacingRight;
+
+
+    }
 
 }
