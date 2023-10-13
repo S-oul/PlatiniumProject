@@ -51,6 +51,13 @@ public class Building : MonoBehaviour
 
     #region GENERATE FLOOR 
 
+    private void Start()
+    {
+        OnValidate();
+        _gameManager.ResetAllList();
+        DestroyALL();
+        Generate();
+    }
     void GenerateFloor(int floor,float height)
     {
         //Chance to spawn a Big3 Room

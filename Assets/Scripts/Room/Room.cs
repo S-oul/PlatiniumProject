@@ -21,7 +21,7 @@ public class Room : MonoBehaviour
     public string Id { get => _id; set => _id = value; }
 
 
-    public virtual void InitRoom()
+    public void InitRoom()
     {
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
 
@@ -41,6 +41,10 @@ public class Room : MonoBehaviour
         if (_id.Contains("L"))
         {
             _gameManager._liftList.Add(GetComponent<Lift>());
+        }
+        if (_id.Contains("S"))
+        {
+
         }
     }
 

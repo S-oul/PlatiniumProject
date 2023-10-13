@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 45750764}
   - component: {fileID: 45750763}
   - component: {fileID: 45750762}
+  - component: {fileID: 45750766}
+  - component: {fileID: 45750765}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -215,8 +217,158 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &45750765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45750761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8588ddd1af68c0f4ba9ba5164b5bbe08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  targets: []
+  _offset: {x: 0, y: 0, z: 0}
+  _velocity: {x: 0, y: 0, z: 0}
+  _SmoothTime: 0.5
+  _minZoom: 5
+  _maxZoom: 20
+  _zoomLimiter: 50
+  _zoomCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _fixeOnZ: 1
+--- !u!114 &45750766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45750761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
+--- !u!1 &1047833651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047833653}
+  - component: {fileID: 1047833652}
+  m_Layer: 0
+  m_Name: Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1047833652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047833651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f1c036fcad3a24a88c2ca45b77af7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxRooms: 10
+  _maxFloors: 5
+  _heightBetweenFloor: 1
+  _spawnRoom: {fileID: 2502474018757536157, guid: 9fb6a8de2cb813341872a5d94d3860da, type: 3}
+  _poolType1:
+  - {fileID: 2502474018757536157, guid: 61c683c4150182b4ba854cc2eef5c9ba, type: 3}
+  _poolType2:
+  - {fileID: 2502474018757536157, guid: 91268cae7f5c3ab47b535a4256a26db5, type: 3}
+  - {fileID: 2502474018757536157, guid: eb01dec2342f416488873e9f9e566768, type: 3}
+  - {fileID: 2502474018757536157, guid: c80a66eb0da7efd4dbfe6ea894816636, type: 3}
+  _poolType3:
+  - {fileID: 491415545771377428, guid: 25708e7bd51284b4cb6dfdf9130d49c7, type: 3}
+  - {fileID: 491415545771377428, guid: 5f3e30ab749b1c64a9bebc0666dc9ffa, type: 3}
+  - {fileID: 491415545771377428, guid: 2318a8646ebca5540924e8fd85d3f62b, type: 3}
+  _poolType4:
+  - {fileID: 3898858819580628589, guid: d2c937afe1be0b048830c031f6142629, type: 3}
+  - {fileID: 3898858819580628589, guid: 57b9d5d035144f949b5106d2a28ae50c, type: 3}
+  - {fileID: 3898858819580628589, guid: 477e7836a2e1a2d428e8b4524b9f1efb, type: 3}
+  _spawnFloors:
+  - _roomstype: 02S11
+  - _roomstype: 20S11
+  - _roomstype: 11S02
+  _floorsW3Max:
+  - _roomstype: 3201
+  - _roomstype: 2031
+  - _roomstype: 1302
+  - _roomstype: 1032
+  _floorsW2Max:
+  - _roomstype: 11021
+  - _roomstype: 10112
+  - _roomstype: 10121
+  - _roomstype: 10211
+  - _roomstype: 11102
+  - _roomstype: 02111
+--- !u!4 &1047833653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047833651}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 45750764}
+  - {fileID: 1047833653}
