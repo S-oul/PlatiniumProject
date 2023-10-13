@@ -11,7 +11,6 @@ public class Building : MonoBehaviour
     #region Visible Variable 
     [SerializeField] private int _maxRooms = 3;
     [SerializeField] private int _maxFloors = 5;
-    private string[,] _roomMatrix; 
     [Tooltip("The Space Between each floor")]
     [SerializeField] private float _heightBetweenFloor = 2f;
 
@@ -29,6 +28,8 @@ public class Building : MonoBehaviour
     [SerializeField] private List<FloorData> _floorsW3Max = new List<FloorData>();
     [SerializeField] private List<FloorData> _floorsW2Max = new List<FloorData>();
 
+    private GameManager _gameManager;
+
     #endregion
 
     #region Generation value;
@@ -40,6 +41,7 @@ public class Building : MonoBehaviour
 
     private void OnValidate()
     {
+        _gameManager = GameManager.Instance;
         _allPool.Clear();
         _allPool.Add(_poolType1);
         _allPool.Add(_poolType2);
@@ -47,13 +49,14 @@ public class Building : MonoBehaviour
         _allPool.Add(_poolType4);
     }
 
+    #region GENERATE FLOOR 
 
     void GenerateFloor(int floor,float height)
     {
         //Chance to spawn a Big3 Room
         float treshold = ((float)floor +1) / (float)_maxFloors;
         float chancetoSpawn = Random.Range(0, 101) / 100f;
-        print(treshold + " / " + chancetoSpawn + " / hasBigRoom : " + _hasBigRoom);
+        // print(treshold + " / " + chancetoSpawn + " / hasBigRoom : " + _hasBigRoom);
         
         string data;
         if (chancetoSpawn < treshold && !_hasBigRoom)
@@ -66,10 +69,17 @@ public class Building : MonoBehaviour
             data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
 
         }
+        //print(data);
 
+        int randomReverse = Random.Range(0,2);
+        //print(randomReverse);
+        if (randomReverse == 1)
+        {
+            data = Reverse(data);
+            //print("REVERSED : " + data);
+        }
 
         int i = 0;
-        print(data);
         foreach (char c in data)
         {
             if(c == 'S')
@@ -108,7 +118,6 @@ public class Building : MonoBehaviour
         }
 
     }
-
     Room instantiateRoom(GameObject room, float height, int roomStart)
     {
         GameObject go = Instantiate(room);
@@ -120,12 +129,109 @@ public class Building : MonoBehaviour
         return ro;
     }
 
+        #region Instantiate Room V2 
+        /*//Spawn room on 3 floor n Middle
+            if(floor == 2 && !_hasSpawnRoom)
+            {
+                _hasSpawnRoom = true;
+                //string SpawnRoomID = instantiateRoom(_spawnRoom, height, _maxRooms / 2 - 1);;
+                /*            _roomMatrix[floor, _maxRooms / 2 - 1] = SpawnRoomID;
+                            _roomMatrix[floor, _maxRooms / 2] = SpawnRoomID;
+                instantiateRoom(_spawnRoom, height, _maxRooms / 2 - 1);
 
-    #region Generate & Destroy
-    [Button("Generate Building")]
+
+    }
+    if (floor == 3)
+    {
+        int j = 0;
+        foreach (int i in _floors[0]._roomstype)
+        {
+            instantiateRoom(_allPool[i][Random.RandomRange(0, _allPool[i].Count)], height, j);
+            j += _floors[0]._roomstype[i];
+
+        }
+    }
+
+    //BIG Room
+    if (!_hasBigRoom)
+    {
+        int r = Random.Range(0, 101);
+        int treshhold = 20 * (floor + 1);
+        if (floor == _maxFloors - 1)
+        {
+            r = 100;
+        }
+
+        if (r < treshhold)
+        {
+            print(r + " " + treshhold);
+            r = Random.Range(0, _maxRooms - 3);
+            while (_roomMatrix[floor, r] != null || _roomMatrix[floor, r + 1] != null || _roomMatrix[floor, r + 2] != null || _roomMatrix[floor, r + 3] != null)
+            {
+                r = Random.Range(0, _maxRooms - 4);
+            }
+            _hasBigRoom = true;
+            /*string SpawnRoomID = instantiateRoom(_allPool[3][0], height, r);
+            _roomMatrix[floor, r] = SpawnRoomID;
+            _roomMatrix[floor, r + 1] = SpawnRoomID;
+            _roomMatrix[floor, r + 2] = SpawnRoomID;
+            _roomMatrix[floor, r + 3] = SpawnRoomID;
+        }
+    }
+    for (int i = 0; i < _maxRooms - 3; i++)
+    {
+        if (_roomMatrix[floor, i] == null)
+        {
+
+        }
+    }
+
+    for (int i = 0; i < _maxRooms; i++)
+    {
+        //print(floor + "/" + i + " : " + _roomMatrix[floor, i]);
+        if (_roomMatrix[floor, i] == null)
+        {
+            instantiateRoom(_allPool[0][1], height, i);
+        }
+    }
+
+
+    */
+        #endregion
+
+        #region Instatiate Room OLD
+        /*
+
+            bool hasLift = false;
+
+            int oldR = -999;
+
+            while (currentRoom < _maxRooms)
+            {
+                int r;
+                if (!_hasBigRoom) r = Random.Range(1, 5);
+                else r = Random.Range(1, 4);
+
+                if (hasLift) { r = Random.Range(2, 4); }
+                if (currentRoom + r == _maxRooms && hasLift == false ) { r = 1; }
+
+                while (currentRoom + r > _maxRooms) { r -= 1; }
+
+                if (r == 1) hasLift = true;
+                if (r == 4) _hasBigRoom = true;
+
+
+
+                oldR = r;
+            }     */
+        #endregion
+
+
+    #endregion
+
+    #region Generate & Destroy Button
     private void Generate()
     {
-        OnValidate();
         _hasSpawnRoom = false;
         _hasBigRoom = false;
         System.Console.Clear();
@@ -139,104 +245,9 @@ public class Building : MonoBehaviour
             else GenerateFloor((int)i, i * 5f + i * _heightBetweenFloor);
 
         }
+        _gameManager.LinkLifts();
     }
 
-    #region Instantiate Room V2 
-    /*//Spawn room on 3 floor n Middle
-        if(floor == 2 && !_hasSpawnRoom)
-        {
-            _hasSpawnRoom = true;
-            //string SpawnRoomID = instantiateRoom(_spawnRoom, height, _maxRooms / 2 - 1);;
-            /*            _roomMatrix[floor, _maxRooms / 2 - 1] = SpawnRoomID;
-                        _roomMatrix[floor, _maxRooms / 2] = SpawnRoomID;
-            instantiateRoom(_spawnRoom, height, _maxRooms / 2 - 1);
-
-
-}
-if (floor == 3)
-{
-    int j = 0;
-    foreach (int i in _floors[0]._roomstype)
-    {
-        instantiateRoom(_allPool[i][Random.RandomRange(0, _allPool[i].Count)], height, j);
-        j += _floors[0]._roomstype[i];
-
-    }
-}
-
-//BIG Room
-if (!_hasBigRoom)
-{
-    int r = Random.Range(0, 101);
-    int treshhold = 20 * (floor + 1);
-    if (floor == _maxFloors - 1)
-    {
-        r = 100;
-    }
-
-    if (r < treshhold)
-    {
-        print(r + " " + treshhold);
-        r = Random.Range(0, _maxRooms - 3);
-        while (_roomMatrix[floor, r] != null || _roomMatrix[floor, r + 1] != null || _roomMatrix[floor, r + 2] != null || _roomMatrix[floor, r + 3] != null)
-        {
-            r = Random.Range(0, _maxRooms - 4);
-        }
-        _hasBigRoom = true;
-        /*string SpawnRoomID = instantiateRoom(_allPool[3][0], height, r);
-        _roomMatrix[floor, r] = SpawnRoomID;
-        _roomMatrix[floor, r + 1] = SpawnRoomID;
-        _roomMatrix[floor, r + 2] = SpawnRoomID;
-        _roomMatrix[floor, r + 3] = SpawnRoomID;
-    }
-}
-for (int i = 0; i < _maxRooms - 3; i++)
-{
-    if (_roomMatrix[floor, i] == null)
-    {
-
-    }
-}
-
-for (int i = 0; i < _maxRooms; i++)
-{
-    //print(floor + "/" + i + " : " + _roomMatrix[floor, i]);
-    if (_roomMatrix[floor, i] == null)
-    {
-        instantiateRoom(_allPool[0][1], height, i);
-    }
-}
-
-
-*/
-#endregion
-
-    #region Instatiate Room OLD
-/*
-
-    bool hasLift = false;
-
-    int oldR = -999;
-
-    while (currentRoom < _maxRooms)
-    {
-        int r;
-        if (!_hasBigRoom) r = Random.Range(1, 5);
-        else r = Random.Range(1, 4);
-
-        if (hasLift) { r = Random.Range(2, 4); }
-        if (currentRoom + r == _maxRooms && hasLift == false ) { r = 1; }
-
-        while (currentRoom + r > _maxRooms) { r -= 1; }
-
-        if (r == 1) hasLift = true;
-        if (r == 4) _hasBigRoom = true;
-
-
-
-        oldR = r;
-    }     */
-#endregion
 
 
 
@@ -251,9 +262,11 @@ for (int i = 0; i < _maxRooms; i++)
     }
 
 
-    [Button("Destroy & Generate")]
+    [Button("Generate")]
     public void DestroyAndGenerate()
     {
+        OnValidate();
+        _gameManager.ResetAllList();
         DestroyALL();
         Generate();
     }
@@ -268,7 +281,13 @@ for (int i = 0; i < _maxRooms; i++)
 
     }
 
-
+    #region Utilities Func
+    string Reverse(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        System.Array.Reverse(charArray);
+        return new string(charArray);
+    }
 
     int CharToInt(char c)
     {
@@ -289,8 +308,9 @@ for (int i = 0; i < _maxRooms; i++)
                 return -1;
         }
     }
-}
 
+    #endregion
+}
 [System.Serializable]
 public class FloorData
 {

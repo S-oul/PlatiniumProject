@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    GameManager gameManager;
+    GameManager _gameManager;
 
     [Range(1,4)]
     [SerializeField] int _roomSize = 0;
@@ -15,29 +15,33 @@ public class Room : MonoBehaviour
 
     [SerializeField] List<GameObject> _objectList;
     [SerializeField] List<GameObject> _npcList;
-    [SerializeField] List<GameObject> _EventList;
+    [SerializeField] List<GameObject> _eventList;
     
     public int RoomSize { get => _roomSize; }
     public string Id { get => _id; set => _id = value; }
 
 
-    public void InitRoom()
+    public virtual void InitRoom()
     {
-        if(GameManager.Instance != null) gameManager = GameManager.Instance;
+        if(GameManager.Instance != null) _gameManager = GameManager.Instance;
 
         foreach(var o in _npcList)
         {
-            gameManager._npcList.Add(o);
+            _gameManager._npcList.Add(o);
         }
         foreach (var o in _objectList)
         {
-            gameManager._objectList.Add(o);
+            _gameManager._objectList.Add(o);
         }
-        foreach (var o in _EventList)
+        foreach (var o in _eventList)
         {
-            gameManager._EventList.Add(o);
+            _gameManager._eventList.Add(o);
         }
 
+        if (_id.Contains("L"))
+        {
+            _gameManager._liftList.Add(GetComponent<Lift>());
+        }
     }
 
     #region UNITY EDITOR

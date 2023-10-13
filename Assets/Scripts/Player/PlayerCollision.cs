@@ -13,14 +13,40 @@ public class PlayerCollision : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<Task>() != null)
+
+
+        Task task = collision.gameObject.GetComponent<Task>();
+        if(task != null && _controller._isInteracting)
         {
-            if(_controller._isInteracting)
-            {
-                collision.gameObject.GetComponent<Task>()._player = gameObject;
-                collision.gameObject.GetComponent<Task>().StartTask();
-            }
-            
+            task._player = gameObject;
+            task.StartTask();
+            return;
+        }
+
+        Lift lift = collision.gameObject.GetComponent<Lift>();
+        if(lift != null && _controller._isInteracting)
+        {
+            lift.InteractLift(this.gameObject);
         }
     }
+
+
+
+
+
+/*
+    public T[] GetComponentsInDirectChildren<T>() where T : Component
+    {
+        List<T> children = new List<T>();
+        foreach(Transform childTransform in transform)
+        {
+            T childComponent = childTransform.GetComponent<T>();
+            if(childComponent != null)
+            {
+                children.Add(childComponent);
+            }
+        }
+
+        return children.ToArray();
+    }*/
 }
