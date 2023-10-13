@@ -4,7 +4,7 @@ using NaughtyAttributes;
 using System.Linq;
 using UnityEditor;
 using static Building;
-
+using UnityEngine.Rendering;
 
 public class Building : MonoBehaviour
 {
@@ -26,7 +26,8 @@ public class Building : MonoBehaviour
 
     //[MenuItem("Assets/Create Room")]
     [SerializeField] private List<FloorData> _spawnFloors = new List<FloorData>();
-    [SerializeField] private List<FloorData> _floors = new List<FloorData>();
+    [SerializeField] private List<FloorData> _floorsW3Max = new List<FloorData>();
+    [SerializeField] private List<FloorData> _floorsW2Max = new List<FloorData>();
 
     #endregion
 
@@ -49,7 +50,24 @@ public class Building : MonoBehaviour
 
     void GenerateFloor(int floor,float height)
     {
-        string data = _floors[Random.Range(0, _floors.Count)]._roomstype;
+        //Chance to spawn a Big3 Room
+        float treshold = ((float)floor +1) / (float)_maxFloors;
+        float chancetoSpawn = Random.Range(0, 101) / 100f;
+        print(treshold + " / " + chancetoSpawn + " / hasBigRoom : " + _hasBigRoom);
+        
+        string data;
+        if (chancetoSpawn < treshold && !_hasBigRoom)
+        {
+            data = _floorsW3Max[Random.Range(0, _floorsW3Max.Count)]._roomstype;
+            _hasBigRoom = true;
+        }
+        else
+        {
+            data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
+
+        }
+
+
         int i = 0;
         print(data);
         foreach (char c in data)
@@ -57,10 +75,6 @@ public class Building : MonoBehaviour
             if(c == 'S')
             {
                 i += instantiateRoom(_spawnRoom, height,i).RoomSize;
-            }
-            else if (c == 'B')
-            {
-                //i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
             else
             {
@@ -83,10 +97,6 @@ public class Building : MonoBehaviour
             if (c == 'S')
             {
                 i += instantiateRoom(_spawnRoom, height, i).RoomSize;
-            }
-            else if (c == 'B')
-            {
-                //i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
             else
             {
@@ -116,11 +126,9 @@ public class Building : MonoBehaviour
     private void Generate()
     {
         OnValidate();
-        _roomMatrix = new string[_maxFloors,_maxRooms];
         _hasSpawnRoom = false;
         _hasBigRoom = false;
         System.Console.Clear();
-
 
         for (float i = 0; i < _maxFloors; i++)
         {

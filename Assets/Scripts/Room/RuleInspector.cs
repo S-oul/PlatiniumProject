@@ -45,7 +45,7 @@ public class RuleInspector : EditorWindow
         MiddleSize = new Rect(0,50, Screen.width, 300);
         //new Rect(0,350,);
 
-        RoomSize = new Rect(0, MiddleSize.y + ButtonAddSize.y + 10, 150, 150);
+        RoomSize = new Rect(0, MiddleSize.y + ButtonAddSize.y + 10, 50, 50);
 
         ButtonAddSize = new Rect(0 + 5, MiddleSize.y + 5, 75, 20);
         ButtonRemoveSize = new Rect(80 + 5, MiddleSize.y + 5, 100, 20);
@@ -72,14 +72,17 @@ public class RuleInspector : EditorWindow
         bool removeRoom = GUI.Button(ButtonRemoveSize, "Remove Room");
         if (removeRoom) RemoveRoom();
 
+        int maxX = 0; 
+
         for(int i = 0; i < _roomList.Count; i++)
         {
+            foreach (int j in _roomList) { maxX += j; }
+
             GUI.color = Color.Lerp(Color.red, Color.blue, (float)i/_roomList.Count);
             Texture2D texture = new Texture2D(1, 1);
             texture.Apply();
-            RoomSize.x = i * RoomSize.size.x + 5*i;
+            RoomSize.x = maxX;
             GUI.DrawTexture(RoomSize, texture);
-            
         }
 
     }
