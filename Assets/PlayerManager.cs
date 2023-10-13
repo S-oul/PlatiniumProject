@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     void OnPlayerJoined(PlayerInput playerInput)
     {
         GameManager.Instance.Players[playerInput.playerIndex] = playerInput.gameObject;
-        playerInput.actions["QTE"].Disable();
+        playerInput.actions["InputTask"].Disable();
     }
 
 }

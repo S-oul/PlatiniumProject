@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class QTE : Task, ITimedTask
 {
     public float _givenTime => _givenTimeTask;
-    
+
     [SerializeField] private float _givenTimeTask = 0f;
     InputAction action = new InputAction();
     public enum QTEInputs
@@ -52,8 +52,8 @@ public class QTE : Task, ITimedTask
     bool _hasPressedRightInput = false;
 
     string _contextName;
-
     int _currentInputID = 0;
+    Coroutine _inputCoroutine;
 
 
     public override void StartTask()
@@ -64,7 +64,8 @@ public class QTE : Task, ITimedTask
         _playerInput.actions["Movement"].Disable();
         _playerInput.actions["Jump"].Disable();
         _playerInput.actions["Crouch"].Disable();
-        _playerInput.actions["QTE"].Enable();
+        _playerInput.actions["InputTask"].Enable();
+        _contextName = "";
         _controller = _player.GetComponent<PlayerController>();
         action.Enable();
         _data = DataManager.Instance;
@@ -89,28 +90,39 @@ public class QTE : Task, ITimedTask
     IEnumerator TimerToPressInput(float time, QTEInputs input)
     {
         float _tempTime = time;
-        while(!CheckIfRightInput(input)  && time > 0)
+        while (!CheckIfRightInput() && time > 0)
         {
-            
+
             time -= Time.deltaTime;
             _playerUI._sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
             yield return null;
 
         }
-        if(time <= 0)
+        if (time <= 0)
         {
             _isInputTimeUp = true;
-            Debug.Log("Time's up");
+            LoseInput();
             yield return null;
         }
+        if(!_hasPressedRightInput)
+        {
+            Debug.Log("BadInput");
+            //LoseInput();
+            yield return null;
+        }
+
         if (_currentInputID == _inputsNeeded.Count)
         {
             Debug.Log("wp!");
+            yield return null;
         }
         else if (_currentInputID != _inputsNeeded.Count)
         {
             DisplayInput(_inputsNeeded[_currentInputID]);
+            yield return null;
         }
+
+        OnTaskCompleted?.Invoke(this);
     }
 
 
@@ -126,55 +138,46 @@ public class QTE : Task, ITimedTask
     //Display a new input
     void DisplayInput(QTEInputs input)
     {
-        _hasPressedRightInput = false;
         _isInputTimeUp = false;
         _playerUI._sliderPercentValue = 1f;
+        _playerUI.ChangeUIInputs(Color.white);
         _playerUI.ChangeUIInputs(_dicInputs[input]);
-        StartCoroutine(TimerToPressInput(_data.TimeBetweenInputsQTE[_difficulty - 1], input));
+        _inputCoroutine = StartCoroutine(TimerToPressInput(_data.TimeBetweenInputsQTE[_difficulty - 1], input));
     }
 
-    bool CheckIfRightInput(QTEInputs input)
+    bool CheckIfRightInput()
     {
         _contextName = _controller.currentContextName;
-        if(_contextName != "")
+        if (string.IsNullOrEmpty(_contextName)) return false;
+
+        _data.InputNamesConverter.TryGetValue(_contextName, out string userInputName);
+
+
+
+        if( userInputName == _dicInputs[_inputsNeeded[_currentInputID]])
         {
-            if (_data.InputNamesConverter[_contextName] == _dicInputs[_inputsNeeded[_currentInputID]])
-            {
-                _playerUI.ChangeUIInputs(Color.green);
-                _hasPressedRightInput = true;
-                _contextName = "";
-                _currentInputID++;
-                
-                
-
-                //StopCoroutine(TimerToPressInput(_data.TimeBetweenInputsQTE[_difficulty - 1], input));
-                return true;
-            }
-            else
-            {
-                //StopCoroutine(TimerToPressInput(_data.TimeBetweenInputsQTE[_difficulty - 1], input));
-                //WrongInput();
-                return false;
-                
-
-            }
+            _playerUI.ChangeUIInputs(Color.green);
+            _hasPressedRightInput = true;
+            _contextName = "";
+            _currentInputID++;
+            //StopCoroutine(_inputCoroutine);
+            return true;
         }
-        
         else
         {
-
-            return false;
+            _hasPressedRightInput = false;
+            return true;
         }
-    
+    }
 
-     }
-
-    void WrongInput()
+    void LoseInput()
     {
+        StopAllCoroutines();
         _playerUI.ChangeUIInputs(Color.red);
-        _hasPressedRightInput = false;
         _contextName = "";
         StartQTE();
     }
+
+
 
 }
