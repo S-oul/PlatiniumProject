@@ -47,9 +47,10 @@ public class PlayerController : MonoBehaviour
         _isCrouched = context.ReadValueAsButton();
     }
 
-    public void OnQTE(InputAction.CallbackContext context)
+    public void OnInputTask(InputAction.CallbackContext context)
     {
-        if (context.ReadValueAsButton())
+        currentContextName = "";
+        if (context.action.IsPressed())
         {
             currentContextName = context.action.activeControl.displayName;
         }
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
         {
             currentContextName = "";
         }
-        
+        Debug.Log(currentContextName);
     }
 
 

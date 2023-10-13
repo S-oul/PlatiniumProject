@@ -665,7 +665,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8173569083855266966}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnQTE
+        m_MethodName: OnInputTask
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
