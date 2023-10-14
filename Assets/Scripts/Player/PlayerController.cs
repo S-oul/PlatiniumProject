@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float _moveSpeed = 40f;
 
-    [SerializeField]
-    Collider2D _colliderToEnableWhenCrouch;
+
     
 
     float _horizontalMove = 0f;
@@ -49,16 +48,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnInputTask(InputAction.CallbackContext context)
     {
-        currentContextName = "";
-        if (context.action.IsPressed())
+        
+        if (context.started)
         {
+            
             currentContextName = context.action.activeControl.displayName;
         }
-        else
+        else if(context.performed && context.canceled) 
         {
             currentContextName = "";
         }
-        Debug.Log(currentContextName);
     }
 
 

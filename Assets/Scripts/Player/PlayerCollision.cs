@@ -18,7 +18,7 @@ public class PlayerCollision : MonoBehaviour
             if(_controller._isInteracting)
             {
                 collision.gameObject.GetComponent<Task>()._player = gameObject;
-                collision.gameObject.GetComponent<Task>().StartTask();
+                collision.gameObject.GetComponent<Task>().Init();
             }
             
         }
