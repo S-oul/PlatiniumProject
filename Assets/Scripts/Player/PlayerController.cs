@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,15 +50,15 @@ public class PlayerController : MonoBehaviour
     public void OnInputTask(InputAction.CallbackContext context)
     {
         
-        if (context.started)
+        if(context.performed)
         {
-            
             currentContextName = context.action.activeControl.displayName;
         }
-        else if(context.performed && context.canceled) 
+        else
         {
             currentContextName = "";
         }
+        
     }
 
 

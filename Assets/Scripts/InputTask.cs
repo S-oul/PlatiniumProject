@@ -43,16 +43,20 @@ public abstract class InputTask : Task
 
     public PlayerInputValue CheckInputValue(string contextName, string inputNeeded)
     {
+        
         contextName = _controller.currentContextName;
+        Debug.Log(contextName);
         if (string.IsNullOrEmpty(contextName))
         {
             _inputValue = PlayerInputValue.None;
             return PlayerInputValue.None;
         }
+        
         _data.InputNamesConverter.TryGetValue(contextName, out string userInputName);
+        Debug.Log(userInputName + " = " + inputNeeded);
         if (userInputName == inputNeeded)
-        { 
-            
+        {
+            contextName = "";
             _inputValue = PlayerInputValue.RightValue;
             return PlayerInputValue.RightValue;
         }

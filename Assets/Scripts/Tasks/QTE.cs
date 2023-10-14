@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class QTE : InputTask, ITimedTask
 {
+    #region Variables
     public float _givenTime => _givenTimeTask;
 
     [SerializeField] private float _givenTimeTask = 0f;
@@ -44,16 +45,13 @@ public class QTE : InputTask, ITimedTask
     };
 
     QTEInputs _currentInput;
-    bool _isQTETimeUp = false;
-    bool _isInputTimeUp = false;
-    bool _hasPressedRightInput = false;
 
     string _contextName;
     int _currentInputID = 0;
     Coroutine _inputCoroutine;
 
 
-    
+    #endregion
 
     public override void StartTask()
     {
@@ -66,41 +64,39 @@ public class QTE : InputTask, ITimedTask
             QTEInputs newInput = (QTEInputs)((int)(Random.Range(0, 9)));
             _inputsNeeded.Add(newInput);
         }
-        TimeToDoQTE();
+        StartCoroutine(TimeToDoQTE());
         DisplayInput(_inputsNeeded[0]);
     }
 
-    
-
     //Timer to press the input
-    IEnumerator TimerToPressInput(float time, QTEInputs input)
+    IEnumerator TimerToPressInput(float time)
     {
         float _tempTime = time;
-        
         while (CheckInputValue(_contextName, _dicInputs[_currentInput]) == PlayerInputValue.None && time > 0)
         {
+           
             time -= Time.deltaTime;
             _playerUI._sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
-            yield return null;
+            yield return null; //=> Inportant
 
         }
+        Debug.Log("Input Value = " + _inputValue);
         if (time <= 0)
         {
-            _isInputTimeUp = true;
             InputValue(false);
-            yield return null;
         }
 
         else if (_inputValue == PlayerInputValue.WrongValue)
         {
+            /*Debug.Log("Faux");*/
             InputValue(false);
-            yield return null;
 
         }
         else if (_inputValue == PlayerInputValue.RightValue)
         {
+            /*Debug.Log("Vraie");*/
             InputValue(true);
-            yield return null;
+
         }
 
 
@@ -113,7 +109,6 @@ public class QTE : InputTask, ITimedTask
     IEnumerator TimeToDoQTE()
     {
         yield return new WaitForSeconds(_givenTime);
-        _isQTETimeUp = true;
         StartTask();
     }
 
@@ -121,22 +116,23 @@ public class QTE : InputTask, ITimedTask
     //Display a new input
     void DisplayInput(QTEInputs input)
     {
-        _contextName = "";
-        _isInputTimeUp = false;
+        Debug.Log("Display");
+        if(_inputCoroutine != null)
+        {
+            StopCoroutine(_inputCoroutine);
+        }
         _playerUI._sliderPercentValue = 1f;
         _playerUI.ChangeUIInputs(Color.white);
         _playerUI.ChangeUIInputs(_dicInputs[input]);
         _currentInput = input;
-        _inputCoroutine = StartCoroutine(TimerToPressInput(_data.TimeBetweenInputsQTE[_difficulty - 1], input));
+        _inputCoroutine = StartCoroutine(TimerToPressInput(_data.TimeBetweenInputsQTE[_difficulty - 1]));
     }
 
 
     //Action when the input is the wrong or the right one
     void InputValue(bool isInputRight)
     {
-        Debug.Log("Input right: " + isInputRight);
-        StopCoroutine(_inputCoroutine);
-        _contextName = "";
+        _controller.currentContextName = "";
         if (isInputRight)
         {
             _playerUI.ChangeUIInputs(Color.green);
@@ -147,9 +143,9 @@ public class QTE : InputTask, ITimedTask
                 return;
             }
             //Stack overflow because it goes here directly
-            else if (_currentInputID != _inputsNeeded.Count)
+            else
             {
-                Debug.Log("Pas finito");
+                /*Debug.Log("Pas finito");*/
                 //Display Input fait une overflow
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
@@ -159,7 +155,7 @@ public class QTE : InputTask, ITimedTask
         {
             _playerUI.ChangeUIInputs(Color.red);
             //Start Task fait une overflow
-            //StartTask();
+            StartTask();
             return;
         }
     }
