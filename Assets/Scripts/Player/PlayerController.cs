@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float _moveSpeed = 40f;
 
-    [SerializeField]
-    Collider2D _colliderToEnableWhenCrouch;
+
     
 
     float _horizontalMove = 0f;
@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnInputTask(InputAction.CallbackContext context)
     {
-        currentContextName = "";
-        if (context.action.IsPressed())
+        
+        if(context.performed)
         {
             currentContextName = context.action.activeControl.displayName;
         }
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         {
             currentContextName = "";
         }
-        Debug.Log(currentContextName);
+        
     }
 
 

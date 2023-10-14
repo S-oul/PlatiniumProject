@@ -585,7 +585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 40
-  _colliderToEnableWhenCrouch: {fileID: 0}
   _isInteracting: 0
   currentContextName: 
 --- !u!114 &4960940516979384560
