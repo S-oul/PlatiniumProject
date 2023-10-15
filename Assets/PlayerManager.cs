@@ -15,7 +15,9 @@ public class PlayerManager : MonoBehaviour
     void OnPlayerJoined(PlayerInput playerInput)
     {
         GameManager.Instance.Players[playerInput.playerIndex] = playerInput.gameObject;
+        GameManager.Instance.Players[playerInput.playerIndex].transform.position = transform.position;
         playerInput.actions["InputTask"].Disable();
+        Camera.current.gameObject.GetComponent<Cam>().Targets.Add(playerInput.gameObject);
     }
 
 }

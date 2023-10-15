@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteAlways]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -64,7 +63,8 @@ public class GameManager : MonoBehaviour
         {
             Lift l = list[n-1];
             int r = Random.Range(0, list.Count);
-            list.Insert(r, l);
+            list.Remove(l);
+            list.Add(l);
             n--;
         }
         return list;

@@ -20,6 +20,10 @@ public class Cam : MonoBehaviour
 
     [SerializeField] private bool _fixeOnZ = true;
 
+    #region ACCESSEUR
+    public List<GameObject> Targets { get => targets; set => targets = value; }
+
+    #endregion
     private void LateUpdate()
     {
         if(targets.Count == 0) { return; }

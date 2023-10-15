@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class Lift : Room
+public class Lift : MonoBehaviour
 {
     private Transform _myPos;
     private Transform _teleportPos;

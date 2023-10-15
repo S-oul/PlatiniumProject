@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5859770283138685351}
   - component: {fileID: -678763171300210559}
   - component: {fileID: -4423146573377704310}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RoomType4 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   _id: 3B
   _objectList: []
   _npcList: []
-  _EventList: []
+  _eventList: []
 --- !u!61 &-4423146573377704310
 BoxCollider2D:
   m_ObjectHideFlags: 0

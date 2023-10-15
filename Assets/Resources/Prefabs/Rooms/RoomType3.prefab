@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3617605336626875981}
   - component: {fileID: 4790097282283042081}
   - component: {fileID: -3945898072289539671}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RoomType3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   _id: UNSET ==> go to room prefab
   _objectList: []
   _npcList: []
-  _EventList: []
+  _eventList: []
 --- !u!212 &4790097282283042081
 SpriteRenderer:
   m_ObjectHideFlags: 0

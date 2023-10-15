@@ -19,7 +19,7 @@ public class PlayerCollision : MonoBehaviour
         if(task != null && _controller._isInteracting)
         {
             task._player = gameObject;
-            task.StartTask();
+            task.Init();
             return;
         }
 

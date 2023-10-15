@@ -10,7 +10,7 @@ public class Room : MonoBehaviour
     GameManager _gameManager;
 
     [Range(1,4)]
-    [SerializeField] int _roomSize = 0;
+    [SerializeField] int _roomSize = 1;
     [SerializeField] string _id = "UNSET ==> go to room prefab";
 
     [SerializeField] List<GameObject> _objectList;
