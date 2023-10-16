@@ -7,19 +7,28 @@ using UnityEngine.EventSystems;
 public class CharacterController2D : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
-	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
-	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
-	[SerializeField] private bool m_AirControl = true;							// Whether or not a player can steer while jumping;
+	//[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
+	//[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
+	//[SerializeField] private bool m_AirControl = true;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
-	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
+	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+																				//[SerializeField] private float m_normalFallGravityForce = 3;
+																				//[SerializeField] private float m_fastFallGravityForce = 5;
+	// PlayerController and values to retreive from PlayerControler
+	PlayerController _playerController;
+	float m_CrouchSpeed;
+	float m_MovementSmoothing;
+	bool m_AirControl;
+	float m_normalFallGravityForce;
+	float m_fastFallGravityForce;
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
-	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	private SpriteRenderer m_SpriteRenderer;
 
@@ -34,7 +43,7 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
-    //to comunicate with CharacterStateManager
+    // Information for PlayerStateManager
     [HideInInspector] public bool isCrouching { get; private set; }
     [HideInInspector] public bool isIdle { get; private set; }
 
@@ -53,7 +62,14 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = m_Grounded;
+		// retreive variables from PlayerController 
+		m_CrouchSpeed = _playerController.crouchSpeed;
+		m_MovementSmoothing = _playerController.movementSmoothing;
+		m_AirControl = _playerController.AirControl;
+		m_normalFallGravityForce = _playerController.normalFallGravityForce;
+		m_fastFallGravityForce = _playerController.fastFallGravityForce;
+
+        bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -103,6 +119,17 @@ public class CharacterController2D : MonoBehaviour
 				
 				if (m_CrouchDisableCollider != null)
 					m_CrouchDisableCollider.enabled = false;
+
+				// Increase fall speed if holding crouch while falling
+				if (!m_Grounded)
+				{
+					m_Rigidbody2D.gravityScale = m_fastFallGravityForce;
+				} 
+				else
+				{
+					m_Rigidbody2D.gravityScale = m_normalFallGravityForce;
+				}
+
 			} else
 			{
 				// Enable the collider when not crouching
@@ -142,7 +169,8 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
-
+		
+		// Information for PlayerStateManager
         isIdle = !crouch ? true : false;
         isCrouching = crouch ? true : false;
     }
@@ -151,17 +179,17 @@ public class CharacterController2D : MonoBehaviour
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
-
-        // Multiply the player's x local scale by -1.
-
+		m_FacingRight = !m_FacingRight;
+
+        // Multiply the player's x local scale by -1.
+
         /*Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
-		transform.localScale = theScale;*/
-
-        m_SpriteRenderer.flipX = !m_FacingRight;
-
-
-    }
+		transform.localScale = theScale;*/
+
+        m_SpriteRenderer.flipX = !m_FacingRight;
+
+
+    }
 
 }
