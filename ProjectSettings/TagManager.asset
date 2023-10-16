@@ -40,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: roomWall
+    uniqueID: 3130462515
+    locked: 0
+  - name: Board
+    uniqueID: 2446425409
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
