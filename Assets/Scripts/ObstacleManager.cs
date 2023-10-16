@@ -19,7 +19,7 @@ public class ObstacleManager : MonoBehaviour
     void Start()
     {
         //_layer1Trans = Layer1Center.GetComponent<Transform>();
-        Debug.Log(_layer1Trans.position);
+        //Debug.Log(_layer1Trans.position);
     }
 
     // Update is called once per frame
