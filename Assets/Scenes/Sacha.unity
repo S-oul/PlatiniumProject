@@ -1124,11 +1124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715113b25f40fba4daa0c0028a4c2599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomSize: 0
-  _id: UNSET ==> go to room prefab
-  _objectList: []
-  _npcList: []
-  _eventList: []
 --- !u!61 &358222122
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2882,11 +2877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715113b25f40fba4daa0c0028a4c2599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomSize: 0
-  _id: UNSET ==> go to room prefab
-  _objectList: []
-  _npcList: []
-  _eventList: []
 --- !u!61 &811272699
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3242,11 +3232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715113b25f40fba4daa0c0028a4c2599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomSize: 0
-  _id: UNSET ==> go to room prefab
-  _objectList: []
-  _npcList: []
-  _eventList: []
 --- !u!61 &1024049368
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3750,11 +3735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715113b25f40fba4daa0c0028a4c2599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomSize: 0
-  _id: UNSET ==> go to room prefab
-  _objectList: []
-  _npcList: []
-  _eventList: []
 --- !u!61 &1591955364
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4406,11 +4386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715113b25f40fba4daa0c0028a4c2599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomSize: 0
-  _id: UNSET ==> go to room prefab
-  _objectList: []
-  _npcList: []
-  _eventList: []
 --- !u!61 &1932358713
 BoxCollider2D:
   m_ObjectHideFlags: 0
