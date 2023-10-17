@@ -7,8 +7,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    GameManager _gameManager;
-
+    #region Variables
     [Range(1,4)]
     [SerializeField] int _roomSize = 1;
     [SerializeField] string _id = "UNSET ==> go to room prefab";
@@ -16,10 +15,22 @@ public class Room : MonoBehaviour
     [SerializeField] List<GameObject> _objectList;
     [SerializeField] List<GameObject> _npcList;
     [SerializeField] List<GameObject> _eventList;
+    #endregion
     
+    GameManager _gameManager;
+
+
+    #region in Game Variable
+
+    [SerializeField] bool _isPlayerRoom;
+    [SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
+
+    #endregion
+
+    #region Accesseur
     public int RoomSize { get => _roomSize; }
     public string Id { get => _id; set => _id = value; }
-
+    #endregion
 
     public void InitRoom()
     {
