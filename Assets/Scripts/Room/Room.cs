@@ -37,11 +37,13 @@ public class Room : MonoBehaviour
         {
             _gameManager._eventList.Add(o);
         }
-
+        ///Lift
         if (_id.Contains("L"))
         {
             _gameManager._liftList.Add(GetComponent<Lift>());
         }
+
+        ///Spawn
         if (_id.Contains("S"))
         {
 
@@ -50,30 +52,7 @@ public class Room : MonoBehaviour
 
     #region UNITY EDITOR
 #if UNITY_EDITOR
-    [MenuItem("Assets/Create Room")]
 
-    void PrefabCreator()
-    {
-        CreatePrefabInProject("RoomType1.prefab");
-    }
-    public static string CurrentProjectFolderPath
-    {
-        get
-        {
-            var projectWindowUtilType = typeof(ProjectWindowUtil);
-            MethodInfo getActiveFolderPath = projectWindowUtilType.GetMethod("GetActiveFolderPath", BindingFlags.Static | BindingFlags.NonPublic);
-            object obj = getActiveFolderPath.Invoke(null, new object[0]);
-            return obj.ToString();
-        }
-    }
-
-
-    private static void CreatePrefabInProject(string prefabName)
-    {
-        var prefab = UnityEngine.Resources.Load(prefabName);
-        string targetPath = $"{CurrentProjectFolderPath}/{prefabName}.prefab";
-        AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(prefab), targetPath);
-    }
     private void OnValidate()
     {
         transform.localScale = new Vector3(RoomSize * 5, transform.localScale.y, 1);
