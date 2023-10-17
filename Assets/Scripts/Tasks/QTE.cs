@@ -74,10 +74,10 @@ public class QTE : InputTask, ITimedTask
         float _tempTime = time;
         while (CheckInputValue(_contextName, _dicInputs[_currentInput]) == PlayerInputValue.None && time > 0)
         {
-           
+            print("BBBBBBBBBBBBBB");
             time -= Time.deltaTime;
             _playerUI._sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
-            yield return null; //=> Inportant
+            yield return null; //=> Inportant => Inbecile
 
         }
         Debug.Log("Input Value = " + _inputValue);

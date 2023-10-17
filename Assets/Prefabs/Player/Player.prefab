@@ -586,7 +586,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 40
-  _colliderToEnableWhenCrouch: {fileID: 0}
+  crouchSpeed: 0.36
+  movementSmoothing: 0.05
+  normalFallGravityForce: 3
+  fastFallGravityForce: 5
+  AirControl: 1
+  _isInteracting: 0
+  currentContextName: 
 --- !u!114 &8814755984296022983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,9 +606,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 750
-  m_CrouchSpeed: 0.4
-  m_MovementSmoothing: 0.05
-  m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1846
@@ -765,7 +768,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class Cam : MonoBehaviour
 {
-    public Camera cam;
+    private Camera _camera;
 
     [SerializeField] private List<GameObject> targets = new List<GameObject>();
     [SerializeField] private Vector3 _offset;
@@ -24,6 +24,11 @@ public class Cam : MonoBehaviour
     public List<GameObject> Targets { get => targets; set => targets = value; }
 
     #endregion
+
+    public void Start()
+    {
+        _camera = GetComponent<Camera>();
+    }
     private void LateUpdate()
     {
         if(targets.Count == 0) { return; }
@@ -36,7 +41,7 @@ public class Cam : MonoBehaviour
         float MaxDist = GetMaxDist();
         float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
         //print(MaxDist / _zoomLimiter + " ::::::::: " + _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+        _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, newZoom, Time.deltaTime);
     }
     float GetMaxDist()
     {
@@ -81,10 +86,10 @@ public class Cam : MonoBehaviour
     private void OnDrawGizmos()
     {
         Handles.color = Color.red;
-        Handles.DrawLine(cam.ScreenToWorldPoint(new Vector2(cam.scaledPixelWidth / 10,cam.scaledPixelHeight/10)), cam.ScreenToWorldPoint(new Vector2(cam.scaledPixelWidth / 10, cam.scaledPixelHeight - cam.scaledPixelHeight / 10)));
-        Handles.DrawLine(cam.ScreenToWorldPoint(new Vector2(cam.scaledPixelWidth / 10,cam.scaledPixelHeight/10)), cam.ScreenToWorldPoint(new Vector2(cam.scaledPixelWidth - cam.scaledPixelWidth / 10,cam.scaledPixelHeight / 10)));
+        Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10,_camera.scaledPixelHeight/10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
+        Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10,_camera.scaledPixelHeight/10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10,_camera.scaledPixelHeight / 10)));
 
-        Handles.DrawLine(cam.ScreenToWorldPoint(new Vector2(cam.scaledPixelWidth - cam.scaledPixelWidth / 10, cam.scaledPixelHeight / 10)), cam.ScreenToWorldPoint(new Vector2(cam.scaledPixelWidth - cam.scaledPixelWidth / 10, cam.scaledPixelHeight - cam.scaledPixelHeight / 10)));
-        Handles.DrawLine(cam.ScreenToWorldPoint(new Vector2(cam.scaledPixelWidth / 10, cam.scaledPixelHeight - cam.scaledPixelHeight / 10)), cam.ScreenToWorldPoint(new Vector2(cam.scaledPixelWidth - cam.scaledPixelWidth / 10, cam.scaledPixelHeight - cam.scaledPixelHeight / 10)));
+        Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight / 10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
+        Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
     }
 }
