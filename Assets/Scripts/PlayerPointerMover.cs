@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerPointerMover : MonoBehaviour
-{
+{    
     Transform _playerPointerTrans;
     Vector3 _playerStartPosition;
 
@@ -40,7 +40,7 @@ public class PlayerPointerMover : MonoBehaviour
     Dictionary<PlayerLayerPosition, Vector3> _positionDict;
 
     public void Awake()
-    {
+    {   
         _playerPointerTrans = GetComponent<Transform>();
         _playerStartPosition = _playerPointerTrans.position;
 
@@ -51,25 +51,16 @@ public class PlayerPointerMover : MonoBehaviour
         _positionDict = CreatePositionDictionary();
     }
 
-    public void MovePlayerForward(InputAction.CallbackContext context) 
+    public void InputManager(InputAction.CallbackContext context)
     {
-        if ( _currentState is not PlayerPointerState.IDLE) { return; }
-        if (context.performed) _currentState = PlayerPointerState.MOVING_RIGHT;
-        /*
-if (context.started)
-    Debug.Log("Action was started");
-else if (context.performed)
-    Debug.Log("Action was performed");
-else if (context.canceled)
-    Debug.Log("Action was cancelled");
-*/
-    }   //called by PlayerInput System
+        if (context.ReadValue<float>() > 0) { MovePlayerForward(); }
+        if (context.ReadValue<float>() < 0) { MovePlayerBack(); }
+    } //called by PlayerInput System
 
-    //called by PlayerInput System
-    public void MovePlayerBack(InputAction.CallbackContext context)
+    private void MovePlayerForward() 
     {
         if (_currentState is not PlayerPointerState.IDLE) { return; }
-        if (context.performed) _currentState = PlayerPointerState.MOVING_LEFT;
+        _currentState = PlayerPointerState.MOVING_RIGHT;
         /*
 if (context.started)
     Debug.Log("Action was started");
@@ -78,7 +69,20 @@ else if (context.performed)
 else if (context.canceled)
     Debug.Log("Action was cancelled");
 */
-    }   //called by PlayerInput System
+    }   
+    private void MovePlayerBack()
+    {
+        if (_currentState is not PlayerPointerState.IDLE) { return; }
+        _currentState = PlayerPointerState.MOVING_LEFT;
+        /*
+if (context.started)
+    Debug.Log("Action was started");
+else if (context.performed)
+    Debug.Log("Action was performed");
+else if (context.canceled)
+    Debug.Log("Action was cancelled");
+*/
+    }   
 
     public void FixedUpdate()
     {

@@ -1244,26 +1244,18 @@ MonoBehaviour:
     m_ActionId: ffa3a006-c195-44f1-a68f-9212de96628a
     m_ActionName: Player/Crouch[/Keyboard/ctrl]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1802425882}
-        m_TargetAssemblyTypeName: PlayerPointerMover, Assembly-CSharp
-        m_MethodName: MovePlayerBack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: fa07193b-f686-46e3-8da0-1c9ee4973f5e
-    m_ActionName: Player/Decryptage[LEFT][/Keyboard/leftArrow]
+      m_Calls: []
+    m_ActionId: a6ab1757-14da-4782-aa2e-942dd22dddea
+    m_ActionName: Player/InputTask
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d8120aec-740c-4ddb-8acd-fa682338fa60
+    m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1802425882}
         m_TargetAssemblyTypeName: PlayerPointerMover, Assembly-CSharp
-        m_MethodName: MovePlayerForward
+        m_MethodName: InputManager
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1273,8 +1265,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 0f3d6632-322b-47c4-9971-191f8810c8c6
-    m_ActionName: Player/Decryptafe[RIGHT][/Keyboard/rightArrow]
+    m_ActionId: 0e361b32-cab0-4783-aac7-f51b56710d46
+    m_ActionName: Player/Decryptage[/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
