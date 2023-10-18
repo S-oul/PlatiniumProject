@@ -58,12 +58,12 @@ public class GameManager : MonoBehaviour
 
     private List<Lift> Shuffle(List<Lift> list)
     {
+        int r = Random.Range(0, list.Count - 2);
         int n = list.Count;
         while (n> 1)
         {
-            Lift l = list[n-1];
-            int r = Random.Range(0, list.Count);
-            list.Remove(l);
+            Lift l = list[r];
+            list.RemoveAt(r);
             list.Add(l);
             n--;
         }

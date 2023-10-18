@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 1
   _id: 1L
+  _sprite: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
