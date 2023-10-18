@@ -22,14 +22,15 @@ public class Room : MonoBehaviour
 
     #region in Game Variable
 
-    [SerializeField] bool _isPlayerRoom;
     [SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
+    [SerializeField] bool _isPlayerInRoom() { if (_listPlayer.Count > 0) return true; else return false; }
 
     #endregion
 
     #region Accesseur
     public int RoomSize { get => _roomSize; }
     public string Id { get => _id; set => _id = value; }
+    public List<GameObject> ListPlayer { get => _listPlayer; set => _listPlayer = value; }
     #endregion
 
     public void InitRoom()

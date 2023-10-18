@@ -93,7 +93,7 @@ public class Cam : MonoBehaviour
         return bounds.center;
     }
 
-    private void OnDrawGizmos()
+/*    private void OnDrawGizmos()
     {
         Handles.color = Color.red;
         Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10,_camera.scaledPixelHeight/10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
@@ -101,5 +101,5 @@ public class Cam : MonoBehaviour
 
         Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight / 10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
         Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
-    }
+    }*/
 }

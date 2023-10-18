@@ -23,6 +23,7 @@ public class PlayerCollision : MonoBehaviour
             return;
         }
 
+
         Lift lift = collision.transform.parent.GetComponent<Lift>();
         if(lift != null && _controller._isInteracting)
         {
@@ -30,23 +31,41 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
-
-
-
-
-/*
-    public T[] GetComponentsInDirectChildren<T>() where T : Component
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        List<T> children = new List<T>();
-        foreach(Transform childTransform in transform)
+        Room room = collision.transform.GetComponent<Room>();
+        if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
         {
-            T childComponent = childTransform.GetComponent<T>();
-            if(childComponent != null)
-            {
-                children.Add(childComponent);
-            }
+            room.ListPlayer.Add(gameObject);
+            //room.ListPlayer.RemoveAt(room.ListPlayer.Count - 1);
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Room room = collision.transform.GetComponent<Room>();
+        if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
+        {
+            room.ListPlayer.Remove(gameObject);
+        }
+    }
 
-        return children.ToArray();
-    }*/
+
+
+
+
+    /*
+        public T[] GetComponentsInDirectChildren<T>() where T : Component
+        {
+            List<T> children = new List<T>();
+            foreach(Transform childTransform in transform)
+            {
+                T childComponent = childTransform.GetComponent<T>();
+                if(childComponent != null)
+                {
+                    children.Add(childComponent);
+                }
+            }
+
+            return children.ToArray();
+        }*/
 }
