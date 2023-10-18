@@ -13,9 +13,9 @@ public class PlayerCollision : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+        print(collision.name);
 
-
-        Task task = collision.gameObject.GetComponent<Task>();
+        Task task = collision.transform.GetComponent<Task>();
         if(task != null && _controller._isInteracting)
         {
             task._player = gameObject;
@@ -23,7 +23,7 @@ public class PlayerCollision : MonoBehaviour
             return;
         }
 
-        Lift lift = collision.gameObject.GetComponent<Lift>();
+        Lift lift = collision.transform.parent.GetComponent<Lift>();
         if(lift != null && _controller._isInteracting)
         {
             lift.InteractLift(this.gameObject);

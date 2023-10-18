@@ -723,6 +723,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d8120aec-740c-4ddb-8acd-fa682338fa60
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e361b32-cab0-4783-aac7-f51b56710d46
+    m_ActionName: Player/Decryptage[/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
