@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.Rendering.Universal;
 
 public class Room : MonoBehaviour
 {
@@ -12,9 +12,18 @@ public class Room : MonoBehaviour
     [SerializeField] int _roomSize = 1;
     [SerializeField] string _id = "UNSET ==> go to room prefab";
 
+    [SerializeField] SpriteRenderer _sprite;
+    //Color
+    float h = 0;
+    float s = 0;
+    float v = 0;
+
     [SerializeField] List<GameObject> _objectList;
     [SerializeField] List<GameObject> _npcList;
     [SerializeField] List<GameObject> _eventList;
+
+
+
     #endregion
     
     GameManager _gameManager;
@@ -36,8 +45,15 @@ public class Room : MonoBehaviour
     public void InitRoom()
     {
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
+        if(_sprite == null) { _sprite = GetComponentInChildren<SpriteRenderer>(); }
 
-        foreach(var o in _npcList)
+
+        Color.RGBToHSV(_sprite.color, out h, out s, out v);
+        print(gameObject.name + " : " + h + " " + s + " " + v);
+        _sprite.color = Color.HSVToRGB(h, s, 0.1f);
+
+
+        foreach (var o in _npcList)
         {
             _gameManager._npcList.Add(o);
         }
@@ -62,6 +78,15 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void OnRoomEnter()
+    {
+        _sprite.color = Color.HSVToRGB(h, s, v);
+    }
+    public void OnRoomExit()
+    {
+        //_sprite.color = Color.HSVToRGB(h, s, 0.1f);
+
+    }
     #region UNITY EDITOR
 #if UNITY_EDITOR
 

@@ -37,6 +37,7 @@ public class PlayerCollision : MonoBehaviour
         if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
         {
             room.ListPlayer.Add(gameObject);
+            room.OnRoomEnter();
             //room.ListPlayer.RemoveAt(room.ListPlayer.Count - 1);
         }
     }
@@ -46,6 +47,7 @@ public class PlayerCollision : MonoBehaviour
         if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
         {
             room.ListPlayer.Remove(gameObject);
+            room.OnRoomExit();
         }
     }
 
