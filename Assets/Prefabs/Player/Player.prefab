@@ -543,8 +543,6 @@ GameObject:
   - component: {fileID: 4960940516979384560}
   - component: {fileID: -7071700089345353590}
   - component: {fileID: 8854476238277740422}
-  - component: {fileID: 3550524342496839673}
-  - component: {fileID: 7427920700297616529}
   - component: {fileID: 5950414361143431717}
   m_Layer: 7
   m_Name: Player
@@ -836,6 +834,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &-7071700089345353590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987782103059285169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91eddb30de02f94d99fdb0d1b43b0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8854476238277740422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987782103059285169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255e8629e7f67094dbba6ed54c9a2410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textInputsUI: {fileID: 4155481562643311797}
+  _sliderInputsUI: {fileID: 8800751062772865906}
+  _input: {fileID: 6285910396351761080}
+  _sliderPercentValue: 0
 --- !u!70 &5950414361143431717
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
