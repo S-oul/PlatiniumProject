@@ -23,7 +23,7 @@ public class PlayerCollision : MonoBehaviour
         }*/
 
         NPC npc = collision.transform.GetComponent<NPC>();
-        if (npc != null && _controller._isInteracting)
+        if (npc != null && _controller.IsInteracting)
         {
             npc.Interact();
         }
@@ -31,7 +31,7 @@ public class PlayerCollision : MonoBehaviour
         if(transform.parent != null)
         {
             Lift lift = collision.transform.parent.GetComponent<Lift>();
-            if (lift != null && _controller._isInteracting)
+            if (lift != null && _controller.IsInteracting)
             {
                 lift.InteractLift(this.gameObject);
             }

@@ -21,12 +21,14 @@ public class PlayerController : MonoBehaviour
     bool _isJumping = false;
     bool _isGrounded = false;
     bool _isCrouched = false;
-    public bool _isInteracting = false;
+    bool _isInteracting = false;
 
     CharacterController2D _controller;
     Collider2D _colliderPlayer;
 
     public string currentContextName;
+
+    public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
 
     private void Awake()
     {
