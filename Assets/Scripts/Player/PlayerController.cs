@@ -45,10 +45,6 @@ public class PlayerController : MonoBehaviour
         _isJumping = context.ReadValueAsButton();
         _isJumping = context.action.triggered;
     }
-    public void OnCrouch(InputAction.CallbackContext context)
-    {
-        _isCrouched = context.ReadValueAsButton();
-    }
     
 
     public void OnInputTask(InputAction.CallbackContext context)

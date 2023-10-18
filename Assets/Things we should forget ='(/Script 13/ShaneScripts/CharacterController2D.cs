@@ -58,14 +58,12 @@ public class CharacterController2D : MonoBehaviour
         if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
-		if (OnCrouchEvent == null)
-			OnCrouchEvent = new BoolEvent();
 	}
 
 	private void FixedUpdate()
 	{
 		// retreive variables from PlayerController 
-		m_CrouchSpeed = _playerController.crouchSpeed;
+
 		m_MovementSmoothing = _playerController.movementSmoothing;
 		m_AirControl = _playerController.AirControl;
 		m_normalFallGravityForce = _playerController.normalFallGravityForce;
@@ -105,46 +103,6 @@ public class CharacterController2D : MonoBehaviour
 		if (m_Grounded || m_AirControl)
 		{
 
-			// If crouching
-			if (crouch)
-			{
-				if (!m_wasCrouching)
-				{
-					m_wasCrouching = true;
-					OnCrouchEvent.Invoke(true);
-				}
-
-				// Reduce the speed by the crouchSpeed multiplier
-				move *= m_CrouchSpeed;
-
-				// Disable one of the colliders when crouching
-				
-				if (m_CrouchDisableCollider != null)
-					m_CrouchDisableCollider.enabled = false;
-
-				// Increase fall speed if holding crouch while falling
-				if (!m_Grounded)
-				{
-					m_Rigidbody2D.gravityScale = m_fastFallGravityForce;
-				} 
-				else
-				{
-					m_Rigidbody2D.gravityScale = m_normalFallGravityForce;
-				}
-
-			} else
-			{
-				// Enable the collider when not crouching
-				if (m_CrouchDisableCollider != null)
-					m_CrouchDisableCollider.enabled = true;
-
-				if (m_wasCrouching)
-				{
-					m_wasCrouching = false;
-					OnCrouchEvent.Invoke(false);
-				}
-			}
-
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
@@ -174,7 +132,6 @@ public class CharacterController2D : MonoBehaviour
 		
 		// Information for PlayerStateManager
         isIdle = !crouch ? true : false;
-        isCrouching = crouch ? true : false;
     }
 
 
