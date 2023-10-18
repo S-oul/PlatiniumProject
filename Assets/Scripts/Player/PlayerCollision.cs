@@ -13,28 +13,30 @@ public class PlayerCollision : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print(collision.name);
 
-        Task task = collision.transform.GetComponent<Task>();
+        /*Task task = collision.transform.GetComponent<Task>();
         if(task != null && _controller._isInteracting)
         {
             task._player = gameObject;
             task.Init();
             return;
-        }
+        }*/
 
-
-        Lift lift = collision.transform.parent.GetComponent<Lift>();
-        if(lift != null && _controller._isInteracting)
-        {
-            lift.InteractLift(this.gameObject);
-        }
-
-        NPC npc = collision.gameObject.GetComponent<NPC>();
+        NPC npc = collision.transform.GetComponent<NPC>();
         if (npc != null && _controller._isInteracting)
         {
             npc.Interact();
         }
+
+        if(transform.parent != null)
+        {
+            Lift lift = collision.transform.parent.GetComponent<Lift>();
+            if (lift != null && _controller._isInteracting)
+            {
+                lift.InteractLift(this.gameObject);
+            }
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
