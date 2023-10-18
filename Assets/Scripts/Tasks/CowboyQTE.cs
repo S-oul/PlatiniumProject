@@ -5,7 +5,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class QTE : InputTask, ITimedTask
+public class CowboyQTE : InputTask, ITimedTask
 {
     #region Variables
     public float _givenTime => _givenTimeTask;
@@ -118,7 +118,7 @@ public class QTE : InputTask, ITimedTask
     void DisplayInput(QTEInputs input)
     {
         Debug.Log("Display");
-        if (_inputCoroutine != null)
+        if(_inputCoroutine != null)
         {
             StopCoroutine(_inputCoroutine);
         }

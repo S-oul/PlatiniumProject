@@ -29,6 +29,12 @@ public class PlayerCollision : MonoBehaviour
         {
             lift.InteractLift(this.gameObject);
         }
+
+        NPC npc = collision.gameObject.GetComponent<NPC>();
+        if (npc != null && _controller._isInteracting)
+        {
+            npc.Interact();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

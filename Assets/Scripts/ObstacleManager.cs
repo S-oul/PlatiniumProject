@@ -1,30 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    [SerializeField] float _layer1Speed;
-    [SerializeField] float _layer2Speed;
-    [SerializeField] float _layer3Speed;
-    [SerializeField] float _layer4Speed;
+    [SerializeField] List<LayerCenterSt> _layerStructs;
 
-
-    LayerCenter _layer1 = new LayerCenter() { };
-    LayerCenter _layer2 = new LayerCenter();
-    LayerCenter _layer3 = new LayerCenter();
-    LayerCenter _layer4 = new LayerCenter();
+    public List<float> speedList;
 
     // Start is called before the first frame update
     void Start()
     {
-        //_layer1Trans = Layer1Center.GetComponent<Transform>();
-        //Debug.Log(_layer1Trans.position);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            _layerStructs.Add(new(transform.GetChild(i), speedList[i]));
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        for (int i = 0; i < transform.childCount; i++)
+            _layerStructs[i].transform.Rotate(0, 0, _layerStructs[i].spinSpeed);
     }
 }

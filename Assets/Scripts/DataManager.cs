@@ -6,12 +6,6 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
 
-
-    [Header("QTE")]
-    [SerializeField]float[] _timeBetweenInputsQTE = new float[5];
-    [SerializeField] int _minQTENumberInputs;
-    [SerializeField] int _maxQTENumberInputs;
-
     Dictionary<string, string> inputsNamesConverter = new Dictionary<string, string>()
     {
         {"X", "X" },
@@ -26,18 +20,29 @@ public class DataManager : MonoBehaviour
         {"Left Stick Press", "L3" },
     };
 
-    public float[] TimeBetweenInputsQTE { get => _timeBetweenInputsQTE; }
-    public int MinQTENumberInputs { get => _minQTENumberInputs; }
-    public int MaxQTENumberInputs { get => _maxQTENumberInputs; }
-
     public Dictionary<string, string> InputNamesConverter { get => inputsNamesConverter; }
+
+    [SerializeField] List<Task> _allTasks = new List<Task>();
+
+    public List<Task> AllTasks { get => _allTasks; }
+
+    public enum TaskEnum
+    {
+        CowboyQTE
+    }
+
+    
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
     }
+
+   
+
+
 }
