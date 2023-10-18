@@ -50,7 +50,7 @@ public class Room : MonoBehaviour
 
         Color.RGBToHSV(_sprite.color, out h, out s, out v);
         print(gameObject.name + " : " + h + " " + s + " " + v);
-        _sprite.color = Color.HSVToRGB(h, s, 0.1f);
+        _sprite.color = Color.HSVToRGB(h, s, .7f);
 
 
         foreach (var o in _npcList)
