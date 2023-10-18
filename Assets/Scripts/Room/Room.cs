@@ -7,8 +7,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    GameManager _gameManager;
-
+    #region Variables
     [Range(1,4)]
     [SerializeField] int _roomSize = 1;
     [SerializeField] string _id = "UNSET ==> go to room prefab";
@@ -16,10 +15,23 @@ public class Room : MonoBehaviour
     [SerializeField] List<GameObject> _objectList;
     [SerializeField] List<GameObject> _npcList;
     [SerializeField] List<GameObject> _eventList;
+    #endregion
     
+    GameManager _gameManager;
+
+
+    #region in Game Variable
+
+    [SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
+    [SerializeField] bool _isPlayerInRoom() { if (_listPlayer.Count > 0) return true; else return false; }
+
+    #endregion
+
+    #region Accesseur
     public int RoomSize { get => _roomSize; }
     public string Id { get => _id; set => _id = value; }
-
+    public List<GameObject> ListPlayer { get => _listPlayer; set => _listPlayer = value; }
+    #endregion
 
     public void InitRoom()
     {
@@ -37,11 +49,13 @@ public class Room : MonoBehaviour
         {
             _gameManager._eventList.Add(o);
         }
-
+        ///Lift
         if (_id.Contains("L"))
         {
             _gameManager._liftList.Add(GetComponent<Lift>());
         }
+
+        ///Spawn
         if (_id.Contains("S"))
         {
 
@@ -50,30 +64,7 @@ public class Room : MonoBehaviour
 
     #region UNITY EDITOR
 #if UNITY_EDITOR
-    [MenuItem("Assets/Create Room")]
 
-    void PrefabCreator()
-    {
-        CreatePrefabInProject("RoomType1.prefab");
-    }
-    public static string CurrentProjectFolderPath
-    {
-        get
-        {
-            var projectWindowUtilType = typeof(ProjectWindowUtil);
-            MethodInfo getActiveFolderPath = projectWindowUtilType.GetMethod("GetActiveFolderPath", BindingFlags.Static | BindingFlags.NonPublic);
-            object obj = getActiveFolderPath.Invoke(null, new object[0]);
-            return obj.ToString();
-        }
-    }
-
-
-    private static void CreatePrefabInProject(string prefabName)
-    {
-        var prefab = UnityEngine.Resources.Load(prefabName);
-        string targetPath = $"{CurrentProjectFolderPath}/{prefabName}.prefab";
-        AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(prefab), targetPath);
-    }
     private void OnValidate()
     {
         transform.localScale = new Vector3(RoomSize * 5, transform.localScale.y, 1);

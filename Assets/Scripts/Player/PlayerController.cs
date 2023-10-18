@@ -68,7 +68,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        _isInteracting = context.ReadValueAsButton();
+        if (context.performed)
+        {
+            _isInteracting = true ;
+        }
+        else
+        {
+            _isInteracting = false;
+        }
     }
     // Comunicate contol inputs to CharacterContoller2D Script component
     private void FixedUpdate()

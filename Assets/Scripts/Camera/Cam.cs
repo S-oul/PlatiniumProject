@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class Cam : MonoBehaviour
 {
-    private Camera _camera;
+    #region Variables
 
     [SerializeField] private List<GameObject> targets = new List<GameObject>();
     [SerializeField] private Vector3 _offset;
@@ -16,15 +16,22 @@ public class Cam : MonoBehaviour
     [SerializeField] private float _minZoom = 5;
     [SerializeField] private float _maxZoom = 20;
     [SerializeField] private float _zoomLimiter = 50;
+    [SerializeField] private float _reduceZoomYLimiter = 20;
     [SerializeField] private AnimationCurve _zoomCurve;
 
     [SerializeField] private bool _fixeOnZ = true;
+
+    #endregion
+
+    private Camera _camera;
+
+    private float _yMinusZoomLimiter;
 
     #region ACCESSEUR
     public List<GameObject> Targets { get => targets; set => targets = value; }
 
     #endregion
-
+    
     public void Start()
     {
         _camera = GetComponent<Camera>();
@@ -39,7 +46,7 @@ public class Cam : MonoBehaviour
     private void Zoom()
     {
         float MaxDist = GetMaxDist();
-        float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
+        float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(MaxDist / (_zoomLimiter - _reduceZoomYLimiter)));
         //print(MaxDist / _zoomLimiter + " ::::::::: " + _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
         _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, newZoom, Time.deltaTime);
     }
@@ -52,10 +59,13 @@ public class Cam : MonoBehaviour
         }
         if(bounds.size.x > bounds.size.y)
         {
+            _yMinusZoomLimiter = 0;
             return bounds.size.x;
+
         }
         else
         {
+            _yMinusZoomLimiter = _reduceZoomYLimiter;
             return bounds.size.y;
         }
     }
@@ -83,7 +93,7 @@ public class Cam : MonoBehaviour
         return bounds.center;
     }
 
-    private void OnDrawGizmos()
+/*    private void OnDrawGizmos()
     {
         Handles.color = Color.red;
         Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10,_camera.scaledPixelHeight/10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
@@ -91,5 +101,5 @@ public class Cam : MonoBehaviour
 
         Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight / 10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
         Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
-    }
+    }*/
 }

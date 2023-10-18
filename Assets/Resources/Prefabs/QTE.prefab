@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfPlayers: 1
-  _difficulty: 1
+  _difficulty: 3
+  _givenTimeTask: 10
   _inputsNeeded: 
