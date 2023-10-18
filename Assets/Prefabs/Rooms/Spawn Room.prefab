@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8665029958405812661}
   - component: {fileID: 3189240542465512968}
-  - component: {fileID: -9184734653999699641}
+  - component: {fileID: -1723389438714349275}
   m_Layer: 6
   m_Name: Spawn Room
   m_TagString: Untagged
@@ -211,11 +211,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 2
   _id: 2S
+  _sprite: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
   _listPlayer: []
---- !u!61 &-9184734653999699641
+--- !u!61 &-1723389438714349275
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

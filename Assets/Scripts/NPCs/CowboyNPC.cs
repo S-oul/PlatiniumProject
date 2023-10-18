@@ -28,6 +28,4 @@ public class CowboyNPC : NPC, IChattyNPC, ITaskNPC
     {
         Debug.Log(_name + ": " + text);
     }
-
-    
 }

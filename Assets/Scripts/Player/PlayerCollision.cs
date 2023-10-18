@@ -13,19 +13,11 @@ public class PlayerCollision : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-
-        /*Task task = collision.transform.GetComponent<Task>();
-        if(task != null && _controller._isInteracting)
-        {
-            task._player = gameObject;
-            task.Init();
-            return;
-        }*/
-
         NPC npc = collision.transform.GetComponent<NPC>();
         if (npc != null && _controller.IsInteracting)
         {
             npc.Interact();
+            _controller.IsInteracting = false;
         }
 
         if(transform.parent != null)
@@ -34,6 +26,7 @@ public class PlayerCollision : MonoBehaviour
             if (lift != null && _controller.IsInteracting)
             {
                 lift.InteractLift(this.gameObject);
+                _controller.IsInteracting = false;
             }
         }
         

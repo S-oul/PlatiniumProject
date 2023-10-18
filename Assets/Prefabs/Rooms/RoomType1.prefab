@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8665029958405812661}
   - component: {fileID: 4492411100970815110}
-  - component: {fileID: 5240695806124098409}
+  - component: {fileID: -573729857295420596}
   m_Layer: 6
   m_Name: RoomType1
   m_TagString: Untagged
@@ -139,7 +139,7 @@ MonoBehaviour:
   _npcList: []
   _eventList: []
   _listPlayer: []
---- !u!61 &5240695806124098409
+--- !u!61 &-573729857295420596
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,7 +182,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99, y: 0.99}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &2983325204449264791
 GameObject:

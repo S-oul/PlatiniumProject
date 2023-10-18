@@ -45,7 +45,6 @@ public abstract class InputTask : Task
     {
         
         contextName = _controller.currentContextName;
-        Debug.Log(contextName);
         if (string.IsNullOrEmpty(contextName))
         {
             _inputValue = PlayerInputValue.None;
@@ -53,7 +52,6 @@ public abstract class InputTask : Task
         }
         
         _data.InputNamesConverter.TryGetValue(contextName, out string userInputName);
-        Debug.Log(userInputName + " = " + inputNeeded);
         if (userInputName == inputNeeded)
         {
             contextName = "";

@@ -66,8 +66,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        
         if (context.performed)
         {
+            
             _isInteracting = true ;
         }
         else

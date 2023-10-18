@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4780585793026012674}
   - component: {fileID: -678763171300210559}
-  - component: {fileID: 1620955897860925304}
+  - component: {fileID: 1877957529937847395}
   m_Layer: 6
   m_Name: RoomType4
   m_TagString: Untagged
@@ -210,11 +210,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 4
   _id: 3B
+  _sprite: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
   _listPlayer: []
---- !u!61 &1620955897860925304
+--- !u!61 &1877957529937847395
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

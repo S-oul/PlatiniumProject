@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2465499368048737776}
   - component: {fileID: 3617605336626875981}
-  - component: {fileID: -3987614170844703046}
+  - component: {fileID: 8973785233046841869}
   m_Layer: 6
   m_Name: RoomType3 1
   m_TagString: Untagged
@@ -49,11 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 3
   _id: UNSET ==> go to room prefab
+  _sprite: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
   _listPlayer: []
---- !u!61 &-3987614170844703046
+--- !u!61 &8973785233046841869
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

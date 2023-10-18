@@ -8,13 +8,23 @@ public class PlayerUI : MonoBehaviour
 {
 
     [Header("InputsUI")]
-    [SerializeField] TextMeshProUGUI _textInputsUI;
-    [SerializeField] Slider _sliderInputsUI;
-    [SerializeField] Image _input;
+    [SerializeField] Canvas _canvas;
+
+    //QTE UI
+    Transform _qteUI;
+    TextMeshProUGUI _textInputsUI;
+    Slider _sliderInputsUI;
+    Image _input;
 
    /*[HideInInspector]*/ public float _sliderPercentValue;
 
-
+    private void Start()
+    { 
+        _qteUI = _canvas.transform.Find("QTEInputs");
+        _textInputsUI = _qteUI.transform.Find("TextInputs").Find("Text").GetComponent<TextMeshProUGUI>();
+        _sliderInputsUI = _qteUI.transform.Find("Slider").GetComponent<Slider>();
+        _input = _sliderInputsUI.gameObject.transform.Find("SmallerCircle").Find("Image").GetComponent<Image>();
+    }
     public void ChangeUIInputs(string text)
     {
         _textInputsUI.text = text;
