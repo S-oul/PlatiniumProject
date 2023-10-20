@@ -13,6 +13,7 @@ public class PlayerCollision : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+
         NPC npc = collision.transform.GetComponent<NPC>();
         if (npc != null && _controller.IsInteracting)
         {
@@ -20,20 +21,18 @@ public class PlayerCollision : MonoBehaviour
             _controller.IsInteracting = false;
         }
 
-        if(transform.parent != null)
+        Lift lift = collision.transform.parent.GetComponent<Lift>();
+        if (lift != null && _controller.IsInteracting)
         {
-            Lift lift = collision.transform.parent.GetComponent<Lift>();
-            if (lift != null && _controller.IsInteracting)
-            {
-                lift.InteractLift(this.gameObject);
-                _controller.IsInteracting = false;
-            }
-        }
-        
+            lift.InteractLift(this.gameObject);
+            _controller.IsInteracting = false;
+        }        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        print("Enter :" + collision.gameObject.name);
+
         Room room = collision.transform.GetComponent<Room>();
         if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
         {

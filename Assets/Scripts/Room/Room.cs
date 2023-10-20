@@ -12,8 +12,8 @@ public class Room : MonoBehaviour
     [SerializeField] int _roomSize = 1;
     [SerializeField] string _id = "UNSET ==> go to room prefab";
 
-    [SerializeField] SpriteRenderer _sprite;
     //Color
+    [SerializeField] SpriteRenderer _sprite;
     float h = 0;
     float s = 0;
     float v = 0;
@@ -50,7 +50,7 @@ public class Room : MonoBehaviour
 
         Color.RGBToHSV(_sprite.color, out h, out s, out v);
         print(gameObject.name + " : " + h + " " + s + " " + v);
-        _sprite.color = Color.HSVToRGB(h, s, .7f);
+        _sprite.color = Color.HSVToRGB(h, s, .4f);
 
 
         foreach (var o in _npcList)

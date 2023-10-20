@@ -81,7 +81,7 @@ public class RuleInspector : EditorWindow
             GUI.color = Color.Lerp(Color.red, Color.blue, (float)i/_roomList.Count);
             Texture2D texture = new Texture2D(1, 1);
             texture.Apply();
-            RoomSize.x = maxX;
+            RoomSize.x = 50 * i + 5 * i;
             GUI.DrawTexture(RoomSize, texture);
         }
 
