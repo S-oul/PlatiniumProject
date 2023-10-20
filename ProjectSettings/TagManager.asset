@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Carrion
-  - Arm
   - GameManager
+  - NPC
+  - Lift
   layers:
   - Default
   - TransparentFX

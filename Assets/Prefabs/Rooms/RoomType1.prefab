@@ -182,7 +182,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
 --- !u!1 &2983325204449264791
 GameObject:
@@ -272,8 +272,8 @@ GameObject:
   - component: {fileID: 1003391027001568174}
   - component: {fileID: 5119743597784125924}
   m_Layer: 0
-  m_Name: Lift
-  m_TagString: Untagged
+  m_Name: Lift Collider
+  m_TagString: Lift
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
