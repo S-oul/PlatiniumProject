@@ -34,11 +34,11 @@ public class PlayerCollision : MonoBehaviour
         //Debug.Log("AAAAAAAAAAAAAAAAAA" + collision.name);
         if (_controller.IsInteracting)
         {
-            Debug.Log("HAAAAAAAAAA" + collidertype.name);
+            if (collidertype == null) { return; }
             switch (collidertype)
             {
                 case NPC:
-                    ((NPC)collidertype).Interact();
+                    ((NPC)collidertype).Interact(gameObject);
                     _controller.IsInteracting = false;
                 break;
                 case Lift:
@@ -60,7 +60,7 @@ public class PlayerCollision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        print("Enter :" + collision.gameObject.name);
+        //print("Enter :" + collision.gameObject.name);
 
         Room room = collision.transform.GetComponent<Room>();
         if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))

@@ -8,24 +8,26 @@ public class CowboyNPC : NPC, IChattyNPC, ITaskNPC
     [SerializeField] List<string> _dialogues = new List<string>();
     public List<string> dialogueTexts { get => _dialogues; set =>  _dialogues = value; }
 
-    [SerializeField] Task _npcTask;
+    [SerializeField] GameObject _npcTask;
 
     [SerializeField] DataManager.TaskEnum _typeTask;
-    public Task task { get => _npcTask; }
+    public GameObject task { get => _npcTask; }
 
     
     private void Awake()
     {
-        _npcTask = DataManager.Instance.AllTasks[(int)_typeTask];
+        _npcTask = Instantiate(DataManager.Instance.AllTasks[(int)_typeTask], this.transform);
+        
+        //_npcTask = DataManager.Instance.AllTasks[(int)_typeTask];
     }
 
-    public override void Interact()
+    public override void Interact(GameObject player)
     {
-        string currentDialogue = dialogueTexts[Random.Range(0, dialogueTexts.Count)];
-        Talk(currentDialogue);
+        _npcTask.GetComponent<Task>().OnPlayerJoinedTask(player);
     }
     public void Talk(string text)
     {
-        Debug.Log(_name + ": " + text);
+        string currentDialogue = dialogueTexts[Random.Range(0, dialogueTexts.Count)];
+        Debug.Log(currentDialogue);
     }
 }

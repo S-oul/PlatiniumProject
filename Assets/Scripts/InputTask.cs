@@ -24,8 +24,9 @@ public abstract class InputTask : Task
         RightValue,
         WrongValue
     }
-
+    
     public abstract void StartTask();
+    
     public override void Init()
     {
         _playerInput = _player.GetComponent<PlayerInput>();
@@ -40,10 +41,17 @@ public abstract class InputTask : Task
         StartTask();
     }
 
-
+    public override void End()
+    {
+        _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Enable();
+        _playerInput.actions["Jump"].Enable();
+        _playerInput.actions["Crouch"].Enable();
+        _playerInput.actions["InputTask"].Disable();
+        _playerUI.ClearUIInputs();
+    }
     public PlayerInputValue CheckInputValue(string contextName, string inputNeeded)
     {
-        
         contextName = _controller.currentContextName;
         if (string.IsNullOrEmpty(contextName))
         {
@@ -56,6 +64,7 @@ public abstract class InputTask : Task
         {
             contextName = "";
             _inputValue = PlayerInputValue.RightValue;
+            
             return PlayerInputValue.RightValue;
         }
         else
@@ -64,5 +73,7 @@ public abstract class InputTask : Task
             return PlayerInputValue.WrongValue;
         }
     }
+
+    
 
 }

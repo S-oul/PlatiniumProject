@@ -16,7 +16,7 @@ public abstract class NPC : MonoBehaviour
 
     }
     
-    public abstract void Interact();
+    public abstract void Interact(GameObject player);
 }
 
 public interface IChattyNPC
@@ -27,7 +27,7 @@ public interface IChattyNPC
 
 public interface ITaskNPC
 {
-    Task task { get;}
+    GameObject task { get;}
 
 
     

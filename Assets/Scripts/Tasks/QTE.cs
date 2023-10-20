@@ -10,8 +10,7 @@ public class QTE : InputTask, ITimedTask
     #region Variables
     public float _givenTime => _givenTimeTask;
 
-    [SerializeField] private float _givenTimeTask = 0f;
-    InputAction action = new InputAction();
+    [SerializeField] private float _givenTimeTask = 20f;
     public enum QTEInputs
     {
         X,
@@ -102,7 +101,7 @@ public class QTE : InputTask, ITimedTask
 
 
 
-        //OnTaskCompleted?.Invoke(this);
+        OnTaskCompleted?.Invoke(this);
     }
 
 
@@ -160,7 +159,5 @@ public class QTE : InputTask, ITimedTask
             return;
         }
     }
-
-
 
 }

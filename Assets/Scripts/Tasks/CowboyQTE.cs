@@ -53,6 +53,10 @@ public class CowboyQTE : InputTask, ITimedTask
 
     public float _timeToDoQTE = 3f;
 
+    bool _isCurrentInputRight = false;
+    bool _wasLastInputRight = false;
+    int _index = 0;
+    int _numberOfFails = 0;
     #endregion
 
     public override void StartTask()
@@ -81,7 +85,6 @@ public class CowboyQTE : InputTask, ITimedTask
             yield return null; //=> Inportant => Inbecile
 
         }
-        Debug.Log("Input Value = " + _inputValue);
         if (time <= 0)
         {
             InputValue(false);
@@ -89,13 +92,11 @@ public class CowboyQTE : InputTask, ITimedTask
 
         else if (_inputValue == PlayerInputValue.WrongValue)
         {
-            /*Debug.Log("Faux");*/
             InputValue(false);
 
         }
         else if (_inputValue == PlayerInputValue.RightValue)
         {
-            /*Debug.Log("Vraie");*/
             InputValue(true);
 
         }
@@ -117,7 +118,6 @@ public class CowboyQTE : InputTask, ITimedTask
     //Display a new input
     void DisplayInput(QTEInputs input)
     {
-        Debug.Log("Display");
         if(_inputCoroutine != null)
         {
             StopCoroutine(_inputCoroutine);
@@ -133,14 +133,17 @@ public class CowboyQTE : InputTask, ITimedTask
     //Action when the input is the wrong or the right one
     void InputValue(bool isInputRight)
     {
+        _isCurrentInputRight = isInputRight;
         _controller.currentContextName = "";
         if (isInputRight)
         {
-            _playerUI.ChangeUIInputs(Color.green);
+            
             _currentInputID++;
             if (_currentInputID == _inputsNeeded.Count)
             {
-                Debug.Log("Finito");
+                _playerUI.ChangeUIInputsValidation(_index, Color.green);
+                IndexValue();
+                
                 return;
             }
             //Stack overflow because it goes here directly
@@ -148,19 +151,53 @@ public class CowboyQTE : InputTask, ITimedTask
             {
                 /*Debug.Log("Pas finito");*/
                 //Display Input fait une overflow
+                _playerUI.ChangeUIInputsValidation(_index, Color.green);
+                IndexValue();
+                
+                _wasLastInputRight = _isCurrentInputRight;
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
             }
         }
         else
         {
-            _playerUI.ChangeUIInputs(Color.red);
-            //Start Task fait une overflow
-            StartTask();
-            return;
+            _numberOfFails++;
+            if (_numberOfFails == 3)
+            {
+                _playerUI.ChangeUIInputsValidation(_index, Color.red);
+                End();
+                return;
+            }
+            else
+            {
+                _playerUI.ChangeUIInputsValidation(_index, Color.red);
+                IndexValue();
+
+                _wasLastInputRight = _isCurrentInputRight;
+                //Start Task fait une overflow
+                StartTask();
+                return;
+            }
+            
         }
+
     }
 
-
+    void IndexValue()
+    {
+        
+        if (_wasLastInputRight != _isCurrentInputRight)
+        {
+            
+            _playerUI.ClearUIInputsValidation();
+            _index = 0;
+            
+            
+        }
+        
+        _index++;
+    }
+        
+        
 
 }

@@ -22,9 +22,9 @@ public class DataManager : MonoBehaviour
 
     public Dictionary<string, string> InputNamesConverter { get => inputsNamesConverter; }
 
-    [SerializeField] List<Task> _allTasks = new List<Task>();
+    [SerializeField] List<GameObject> _allTasks = new List<GameObject>();
 
-    public List<Task> AllTasks { get => _allTasks; }
+    public List<GameObject> AllTasks { get => _allTasks; }
 
     public enum TaskEnum
     {

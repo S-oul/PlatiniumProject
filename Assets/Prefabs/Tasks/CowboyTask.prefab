@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPlayers: 1
   _difficulty: 1
-  _givenTimeTask: 0
+  _givenTimeTask: 50
   _inputsNeeded: 
-  _numberOfInputs: 1
+  _numberOfInputs: 3
+  _timeToDoQTE: 3
