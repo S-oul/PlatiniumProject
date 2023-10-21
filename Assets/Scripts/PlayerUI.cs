@@ -8,20 +8,29 @@ using JetBrains.Annotations;
 public class PlayerUI : MonoBehaviour
 {
 
-    [Header("InputsUI")]
+    
     [SerializeField] Canvas _canvas;
 
-    //QTE UI
+    [Header("InputsUI")]
     Transform _qteUI;
     TextMeshProUGUI _textInputsUI;
     Slider _sliderInputsUI;
     Image _input;
     List<Transform> _validationInputs = new List<Transform>();
-
-   /*[HideInInspector]*/ public float _sliderPercentValue;
+    bool qteInputIsActive = false;
+    [HideInInspector] public float _sliderPercentValue;
 
     private void Start()
-    { 
+    {
+        
+        StartUI();
+        DisplayUI(false);
+    }
+
+
+    #region InputsUI
+    void StartUI()
+    {
         _qteUI = _canvas.transform.Find("QTEInputs");
         _textInputsUI = _qteUI.transform.Find("TextInputs").Find("Text").GetComponent<TextMeshProUGUI>();
         _sliderInputsUI = _qteUI.transform.Find("Slider").GetComponent<Slider>();
@@ -32,6 +41,7 @@ public class PlayerUI : MonoBehaviour
             _validationInputs.Add(validationInput);
         }
     }
+
     public void ChangeUIInputs(string text)
     {
         _textInputsUI.text = text;
@@ -64,9 +74,23 @@ public class PlayerUI : MonoBehaviour
         ClearUIInputsValidation();
     }
 
+    public void DisplayUI(bool value)
+    {
+        qteInputIsActive = value;
+        _qteUI.gameObject.SetActive(value);
+        
+    }
+
+    #endregion
+
+
     private void Update()
     {
-        _sliderInputsUI.value = _sliderPercentValue;
+        if(qteInputIsActive) 
+        {
+            _sliderInputsUI.value = _sliderPercentValue;
+        }
+        
     }
 
     

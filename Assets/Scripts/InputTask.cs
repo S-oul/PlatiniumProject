@@ -38,6 +38,7 @@ public abstract class InputTask : Task
         _playerInput.actions["Jump"].Disable();
         _playerInput.actions["Crouch"].Disable();
         _playerInput.actions["InputTask"].Enable();
+        _playerUI.DisplayUI(true);
         StartTask();
     }
 
@@ -49,6 +50,7 @@ public abstract class InputTask : Task
         _playerInput.actions["Crouch"].Enable();
         _playerInput.actions["InputTask"].Disable();
         _playerUI.ClearUIInputs();
+        _playerUI.DisplayUI(false);
     }
     public PlayerInputValue CheckInputValue(string contextName, string inputNeeded)
     {

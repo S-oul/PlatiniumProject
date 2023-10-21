@@ -57,6 +57,7 @@ public class CowboyQTE : InputTask, ITimedTask
     bool _wasLastInputRight = false;
     int _index = 0;
     int _numberOfFails = 0;
+    bool _isFirstTimeGuessing = true;
     #endregion
 
     public override void StartTask()
@@ -137,23 +138,20 @@ public class CowboyQTE : InputTask, ITimedTask
         _controller.currentContextName = "";
         if (isInputRight)
         {
-            
             _currentInputID++;
             if (_currentInputID == _inputsNeeded.Count)
             {
                 _playerUI.ChangeUIInputsValidation(_index, Color.green);
                 IndexValue();
-                
+                End();
                 return;
             }
             //Stack overflow because it goes here directly
             else
             {
-                /*Debug.Log("Pas finito");*/
                 //Display Input fait une overflow
                 _playerUI.ChangeUIInputsValidation(_index, Color.green);
                 IndexValue();
-                
                 _wasLastInputRight = _isCurrentInputRight;
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
@@ -172,7 +170,6 @@ public class CowboyQTE : InputTask, ITimedTask
             {
                 _playerUI.ChangeUIInputsValidation(_index, Color.red);
                 IndexValue();
-
                 _wasLastInputRight = _isCurrentInputRight;
                 //Start Task fait une overflow
                 StartTask();
@@ -188,16 +185,16 @@ public class CowboyQTE : InputTask, ITimedTask
         
         if (_wasLastInputRight != _isCurrentInputRight)
         {
-            
-            _playerUI.ClearUIInputsValidation();
+            if (_isFirstTimeGuessing)
+            {
+                _isFirstTimeGuessing = false;
+            }
+            else
+            {
+                _playerUI.ClearUIInputsValidation();
+            }
             _index = 0;
-            
-            
         }
-        
         _index++;
     }
-        
-        
-
 }

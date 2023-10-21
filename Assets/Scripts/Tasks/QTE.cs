@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
@@ -76,7 +76,7 @@ public class QTE : InputTask, ITimedTask
         while (CheckInputValue(_contextName, _dicInputs[_currentInput]) == PlayerInputValue.None && time > 0)
         {
             time -= Time.deltaTime;
-            _playerUI._sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
+            _sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
             yield return null; //=> Inportant => Inbecile
 
         }
@@ -88,13 +88,13 @@ public class QTE : InputTask, ITimedTask
 
         else if (_inputValue == PlayerInputValue.WrongValue)
         {
-            /*Debug.Log("Faux");*/
+            *//*Debug.Log("Faux");*//*
             InputValue(false);
 
         }
         else if (_inputValue == PlayerInputValue.RightValue)
         {
-            /*Debug.Log("Vraie");*/
+            *//*Debug.Log("Vraie");*//*
             InputValue(true);
 
         }
@@ -145,7 +145,7 @@ public class QTE : InputTask, ITimedTask
             //Stack overflow because it goes here directly
             else
             {
-                /*Debug.Log("Pas finito");*/
+                *//*Debug.Log("Pas finito");*//*
                 //Display Input fait une overflow
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
@@ -161,3 +161,4 @@ public class QTE : InputTask, ITimedTask
     }
 
 }
+*/
