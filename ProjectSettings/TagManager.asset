@@ -7,6 +7,8 @@ TagManager:
   - Carrion
   - Arm
   - GameManager
+  - DecryptageEnemy
+  - DecryptageTarget
   layers:
   - Default
   - TransparentFX
