@@ -42,8 +42,9 @@ public abstract class InputTask : Task
         StartTask();
     }
 
-    public override void End()
+    public override void End(bool isSuccessful)
     {
+        IsDone = isSuccessful;
         _playerInput.actions["Interact"].Enable();
         _playerInput.actions["Movement"].Enable();
         _playerInput.actions["Jump"].Enable();
@@ -51,6 +52,7 @@ public abstract class InputTask : Task
         _playerInput.actions["InputTask"].Disable();
         _playerUI.ClearUIInputs();
         _playerUI.DisplayUI(false);
+
     }
     public PlayerInputValue CheckInputValue(string contextName, string inputNeeded)
     {

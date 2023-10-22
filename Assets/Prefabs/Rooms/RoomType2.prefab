@@ -270,7 +270,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2261009269161751469}
-  - component: {fileID: 5898024969875000990}
   - component: {fileID: 8177998728149535614}
   - component: {fileID: 2252220808677909714}
   m_Layer: 0
@@ -295,24 +294,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8665029958405812661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5898024969875000990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8542941769660501879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7e1a4a75ba6a84c9bf6afb0e945427, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _numberOfPlayers: 1
-  _difficulty: 5
-  _givenTimeTask: 6
-  _inputsNeeded: 
-  _numberOfInputs: 1
-  _timeToDoQTE: 3
 --- !u!212 &8177998728149535614
 SpriteRenderer:
   m_ObjectHideFlags: 0

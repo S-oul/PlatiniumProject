@@ -32,19 +32,18 @@ public class PlayerCollision : MonoBehaviour
     {
 
         //Debug.Log("AAAAAAAAAAAAAAAAAA" + collision.name);
+        if (collidertype == null) { return; }
         if (_controller.IsInteracting)
         {
-            if (collidertype == null) { return; }
             switch (collidertype)
             {
                 case NPC:
                     ((NPC)collidertype).Interact(gameObject);
                     _controller.IsInteracting = false;
-                break;
+                    break;
                 case Lift:
                     ((Lift)collidertype).InteractLift(gameObject);
                     Debug.Log("Lift" + collidertype.name);
-
                     break;
             }
         }
@@ -79,6 +78,10 @@ public class PlayerCollision : MonoBehaviour
             case "Lift":
                 //_IsInLift = true;
                 collidertype = collision.transform.parent.GetComponent<Lift>();
+                break;
+            case "ZoneEvent":
+                collidertype = collision.transform.GetComponent<ZoneEvent>();
+                ((ZoneEvent)collidertype).PlayerEnter(gameObject);
                 break;
         }
     }

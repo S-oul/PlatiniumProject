@@ -13,12 +13,15 @@ public abstract class Task : MonoBehaviour
     [Range(1, 5)] public int _difficulty = 1;
     [NonSerialized] public GameObject _player;
     bool isAlreadyUsed = false;
+
+    bool _isDone = false;
     public GameObject PlayerGameObject { get => _player; }
+    public bool IsDone { get => _isDone; set => _isDone = value; }
 
 
     public abstract void Init();
 
-    public abstract void End();
+    public abstract void End(bool isSuccessful);
     public void OnPlayerJoinedTask(GameObject player)
     {
         _player = player;

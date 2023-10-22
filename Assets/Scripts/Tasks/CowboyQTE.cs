@@ -104,7 +104,7 @@ public class CowboyQTE : InputTask, ITimedTask
 
 
 
-        //OnTaskCompleted?.Invoke(this);
+        OnTaskCompleted?.Invoke(this);
     }
 
 
@@ -141,17 +141,17 @@ public class CowboyQTE : InputTask, ITimedTask
             _currentInputID++;
             if (_currentInputID == _inputsNeeded.Count)
             {
-                _playerUI.ChangeUIInputsValidation(_index, Color.green);
-                IndexValue();
-                End();
+                Debug.Log("Win");
+                //_playerUI.ChangeUIInputsValidation(_index, Color.green);
+                End(true);
                 return;
             }
             //Stack overflow because it goes here directly
             else
             {
                 //Display Input fait une overflow
-                _playerUI.ChangeUIInputsValidation(_index, Color.green);
-                IndexValue();
+               // _playerUI.ChangeUIInputsValidation(_index, Color.green);
+                IndexValue(true);
                 _wasLastInputRight = _isCurrentInputRight;
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
@@ -162,14 +162,15 @@ public class CowboyQTE : InputTask, ITimedTask
             _numberOfFails++;
             if (_numberOfFails == 3)
             {
-                _playerUI.ChangeUIInputsValidation(_index, Color.red);
-                End();
+                Debug.Log("Lose");
+               // _playerUI.ChangeUIInputsValidation(_index, Color.red);
+                End(false);
                 return;
             }
             else
             {
-                _playerUI.ChangeUIInputsValidation(_index, Color.red);
-                IndexValue();
+                //_playerUI.ChangeUIInputsValidation(_index, Color.red);
+                IndexValue(false);
                 _wasLastInputRight = _isCurrentInputRight;
                 //Start Task fait une overflow
                 StartTask();
@@ -180,9 +181,11 @@ public class CowboyQTE : InputTask, ITimedTask
 
     }
 
-    void IndexValue()
+    void IndexValue(bool rightInput)
     {
         
+        Debug.Log("Last Input = " + _wasLastInputRight + " | Current Input = " + _isCurrentInputRight);
+        Debug.Log(_index);
         if (_wasLastInputRight != _isCurrentInputRight)
         {
             if (_isFirstTimeGuessing)
@@ -191,10 +194,20 @@ public class CowboyQTE : InputTask, ITimedTask
             }
             else
             {
+                Debug.Log("Clear");
                 _playerUI.ClearUIInputsValidation();
             }
             _index = 0;
         }
+        if (rightInput)
+        {
+            _playerUI.ChangeUIInputsValidation(_index, Color.green);
+        }
+        else
+        {
+            _playerUI.ChangeUIInputsValidation(_index, Color.red);
+        }
+        
         _index++;
     }
 }
