@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             _isInteracting = true ;
-            Debug.Log("_isInteracting : " + _isInteracting);
+            
         }
         else
         {
