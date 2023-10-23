@@ -23,6 +23,7 @@ public abstract class Task : MonoBehaviour
     public bool IsStarted { get => _isStarted; set => _isStarted = value; }
 
     public Room RoomTask { get => _room; set => _room = value; }
+    public Room ThisRoom { get => _room; set => _room = value; }
 
     private void Start()
     {

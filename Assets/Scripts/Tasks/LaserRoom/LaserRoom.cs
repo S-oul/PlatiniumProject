@@ -9,9 +9,6 @@ using UnityEngine.InputSystem;
 public class LaserRoom : Task , ITimedTask
 {
     //[SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
-
-    Room _room;
-
     List<PlayerController> _players = new List<PlayerController>();
 
     Cam _cam;
@@ -20,6 +17,10 @@ public class LaserRoom : Task , ITimedTask
 
     [SerializeField] GameObject _doorL;
     [SerializeField] GameObject _doorR;
+
+    [SerializeField] Transform _spawnerL;
+    [SerializeField] Transform _spawnerR;
+
 
     [SerializeField] public float _givenTime => 20;
     float _actualTime;
@@ -31,22 +32,23 @@ public class LaserRoom : Task , ITimedTask
     {
         print(_difficulty);
         _actualTime = _givenTime * _difficulty;
-        _room = transform.parent.parent.GetComponent<Room>();
+        ThisRoom = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
     }
     public override void End(bool isSuccessful)
     {
         Debug.Log("LA FIN DU CACA");
+        IsStarted = false;
         StopCoroutine(timeTask());
         BlockDoors(false);
     }
 
     public override void Init()
     {
-        Debug.Log(_room.ListPlayer.Count + " " + NumberOfPlayers);
-        if(_room.ListPlayer.Count >= NumberOfPlayers)
+        Debug.Log(ThisRoom.ListPlayer.Count + " " + NumberOfPlayers);
+        if(ThisRoom.ListPlayer.Count >= NumberOfPlayers)
         {
-            foreach (GameObject p in _room.ListPlayer)
+            foreach (GameObject p in ThisRoom.ListPlayer)
             {
                 _players.Add(p.GetComponent<PlayerController>());
             }
@@ -74,8 +76,9 @@ public class LaserRoom : Task , ITimedTask
     }
     void StartTask()
     {
+        IsStarted = true;
         StartCoroutine(BlockDoors(true));
-        _cam.FixOnRoomVoid(_room);
+        _cam.FixOnRoomVoid(ThisRoom);
         StartCoroutine(timeTask());
     }
 
@@ -90,7 +93,29 @@ public class LaserRoom : Task , ITimedTask
         }
         return false;
     }
+    IEnumerator SpawnLaser()
+    {
+        yield return new WaitForSeconds(6 - (_difficulty/2));
+        SpawnLaser(_laser);
+    }
+    private void SpawnLaser(GameObject go)
+    {
+        if (Random.Range(0, 2) == 1)
+        {
+            GameObject g = Instantiate(go, transform);
+            Laser l = g.GetComponent<Laser>();
+            l.ToFar = _spawnerL;
+        }
+        else
+        {
+            GameObject g = Instantiate(go, transform);
+            Laser l = g.GetComponent<Laser>();
+            l.ToFar = _spawnerR;
+            l._goLeft = false;
+        }
 
+
+    }
     IEnumerator timeTask()
     {
         while (_actualTime > 0) 
