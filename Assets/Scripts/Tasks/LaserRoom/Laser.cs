@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    bool _goLeft = true;
-    float _speed = 2;
+    public bool _goLeft = true;
+    public float _speed = 20;
 
     void Start()
     {
         
     }
-
 
     void Update()
     {

@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LaserSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void SpawnLaser(GameObject go)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject g = Instantiate(go, transform);
     }
 }

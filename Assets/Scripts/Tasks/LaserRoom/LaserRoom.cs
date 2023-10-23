@@ -16,6 +16,8 @@ public class LaserRoom : Task , ITimedTask
 
     Cam _cam;
 
+    [SerializeField] GameObject _laser;
+
     [SerializeField] GameObject _doorL;
     [SerializeField] GameObject _doorR;
 
@@ -27,6 +29,7 @@ public class LaserRoom : Task , ITimedTask
 
     void Start()
     {
+        print(_difficulty);
         _actualTime = _givenTime * _difficulty;
         _room = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
@@ -52,11 +55,11 @@ public class LaserRoom : Task , ITimedTask
         }
     }
 
-    void BlockDoors(bool block)
+    IEnumerator BlockDoors(bool block)
     {
         BoxCollider2D b = _doorL.GetComponent<BoxCollider2D>();
         BoxCollider2D b2 = _doorR.GetComponent<BoxCollider2D>();
-
+        yield return new WaitForSeconds(.5f);
         if (block)
         {
             b.enabled = true;
@@ -64,14 +67,14 @@ public class LaserRoom : Task , ITimedTask
         }
         else
         {
+            print("BLOCKED");
             b.enabled = false;
             b2.enabled = false;
         }
     }
     void StartTask()
     {
-        Debug.Log("LE CACA");
-        //BlockDoors(true);
+        StartCoroutine(BlockDoors(true));
         _cam.FixOnRoomVoid(_room);
         StartCoroutine(timeTask());
     }
@@ -80,9 +83,11 @@ public class LaserRoom : Task , ITimedTask
     {
         foreach (PlayerController _controller in _players)
         {
-            if(_controller.CanMove) return true;
+            if (_controller.CanMove) 
+            {
+                return true;
+            }
         }
-        Debug.Log("NO PLAYER ALIVE");
         return false;
     }
 
@@ -94,8 +99,8 @@ public class LaserRoom : Task , ITimedTask
             {
                 End(false);
             }
-            _actualTime =- Time.deltaTime;
-            Debug.Log("LE CACA QUI TOURNE : " + _actualTime);
+            _actualTime -= Time.deltaTime;
+            Debug.Log(_actualTime);
             yield return null;
         }       
         if (_actualTime <= 0)
