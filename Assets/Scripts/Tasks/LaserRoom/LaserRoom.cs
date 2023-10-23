@@ -106,14 +106,14 @@ public class LaserRoom : Task , ITimedTask
     {
         if (Random.Range(0, 2) == 1)
         {
-            GameObject g = Instantiate(go, transform);
+            GameObject g = Instantiate(go, _spawnerR);
             g.transform.parent = null;
             Laser l = g.GetComponent<Laser>();
             l.ToFar = _spawnerL;
         }
         else
         {
-            GameObject g = Instantiate(go, transform);
+            GameObject g = Instantiate(go, _spawnerL);
             g.transform.parent = null;
             Laser l = g.GetComponent<Laser>();
             l.ToFar = _spawnerR;

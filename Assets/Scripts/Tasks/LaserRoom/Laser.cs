@@ -8,17 +8,24 @@ public class Laser : MonoBehaviour
     public bool _goLeft = true;
     public float _speed = 5;
 
+    LineRenderer _lineRenderer;
 
+    private void OnEnable()
+    {
+        _lineRenderer = GetComponent<LineRenderer>();
+    }
 
     void Update()
     {
-        print(transform.localPosition.x + " //// " + ToFar.position.x);
+        _lineRenderer.SetPosition(0,transform.position);
+        _lineRenderer.SetPosition(1, transform.position - new Vector3(0,5,1));
+
+        //print(transform.localPosition.x + " //// " + ToFar.position.x);
         if (_goLeft)
         {
             transform.localPosition += Vector3.left * Time.deltaTime * _speed;
             if (transform.localPosition.x < ToFar.position.x)
             {
-                Debug.Log("AHAAAAAAAAAAAAAAAAA");
                 Destroy(gameObject);
             }
         }
@@ -27,7 +34,6 @@ public class Laser : MonoBehaviour
             transform.localPosition += Vector3.right * Time.deltaTime * _speed;
             if (transform.localPosition.x > ToFar.position.x)
             {
-                Debug.Log("AHAAAAAAAAAAAAAAAAA");
                 Destroy(gameObject);
             }
         }
