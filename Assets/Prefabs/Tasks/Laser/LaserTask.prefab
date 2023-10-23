@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4517922004863254132}
   m_Layer: 0
-  m_Name: LaserSpawner (1)
+  m_Name: LaserSpawnerR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 126487083958764032}
   m_Layer: 0
-  m_Name: LaserSpawner
+  m_Name: LaserSpawnerL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,3 +269,5 @@ MonoBehaviour:
   _laser: {fileID: 7741461767121130828, guid: 4bd164bb021a9c7448951302ef6ed145, type: 3}
   _doorL: {fileID: 4363406617373923662}
   _doorR: {fileID: 4113381672678326440}
+  _spawnerL: {fileID: 126487083958764032}
+  _spawnerR: {fileID: 4517922004863254132}

@@ -261,7 +261,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _fixeOnZ: 0
+  _fixeOnZ: 1
 --- !u!114 &45750766
 MonoBehaviour:
   m_ObjectHideFlags: 0

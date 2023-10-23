@@ -12,29 +12,24 @@ public class Laser : MonoBehaviour
 
     void Update()
     {
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
-        if(hit.collider.tag == "Player")
-        {
-            hit.collider.GetComponent<PlayerController>().DisableMovement();
-        }
-
+        print(transform.localPosition.x + " //// " + ToFar.position.x);
         if (_goLeft)
         {
-            transform.position += Vector3.left * Time.deltaTime * _speed;
-            if(transform.position.x > ToFar.position.x)
+            transform.localPosition += Vector3.left * Time.deltaTime * _speed;
+            if (transform.localPosition.x < ToFar.position.x)
             {
-                Destroy(this);
+                Debug.Log("AHAAAAAAAAAAAAAAAAA");
+                Destroy(gameObject);
             }
         }
         else
         {
-            transform.position += Vector3.right * Time.deltaTime * _speed;
-            if (transform.position.x < ToFar.position.x)
+            transform.localPosition += Vector3.right * Time.deltaTime * _speed;
+            if (transform.localPosition.x > ToFar.position.x)
             {
-                Destroy(this);
+                Debug.Log("AHAAAAAAAAAAAAAAAAA");
+                Destroy(gameObject);
             }
         }
     }
-
 }

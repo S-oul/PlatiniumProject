@@ -77,9 +77,10 @@ public class LaserRoom : Task , ITimedTask
     void StartTask()
     {
         IsStarted = true;
+        StartCoroutine(SpawnLaserTimer());
         StartCoroutine(BlockDoors(true));
-        _cam.FixOnRoomVoid(ThisRoom);
         StartCoroutine(timeTask());
+        _cam.FixOnRoomVoid(ThisRoom);
     }
 
     bool OnePlayerAlive()
@@ -93,22 +94,27 @@ public class LaserRoom : Task , ITimedTask
         }
         return false;
     }
-    IEnumerator SpawnLaser()
+    IEnumerator SpawnLaserTimer()
     {
-        yield return new WaitForSeconds(6 - (_difficulty/2));
-        SpawnLaser(_laser);
+        while (IsStarted)
+        {
+            yield return new WaitForSeconds(6 - (_difficulty/2));
+            SpawnLaser(_laser);
+        }
     }
     private void SpawnLaser(GameObject go)
     {
         if (Random.Range(0, 2) == 1)
         {
             GameObject g = Instantiate(go, transform);
+            g.transform.parent = null;
             Laser l = g.GetComponent<Laser>();
             l.ToFar = _spawnerL;
         }
         else
         {
             GameObject g = Instantiate(go, transform);
+            g.transform.parent = null;
             Laser l = g.GetComponent<Laser>();
             l.ToFar = _spawnerR;
             l._goLeft = false;
@@ -125,7 +131,7 @@ public class LaserRoom : Task , ITimedTask
                 End(false);
             }
             _actualTime -= Time.deltaTime;
-            Debug.Log(_actualTime);
+            //Debug.Log(_actualTime);
             yield return null;
         }       
         if (_actualTime <= 0)
