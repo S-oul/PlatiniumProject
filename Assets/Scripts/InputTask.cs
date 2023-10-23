@@ -29,6 +29,7 @@ public abstract class InputTask : Task
     
     public override void Init()
     {
+        
         _playerInput = _player.GetComponent<PlayerInput>();
         _playerUI = _player.GetComponent<PlayerUI>();
         _controller = _player.GetComponent<PlayerController>();
@@ -39,11 +40,13 @@ public abstract class InputTask : Task
         _playerInput.actions["Crouch"].Disable();
         _playerInput.actions["InputTask"].Enable();
         _playerUI.DisplayUI(true);
+        _playerUI.ChangeUIInputsValidation(1);
         StartTask();
     }
 
     public override void End(bool isSuccessful)
     {
+        
         IsDone = isSuccessful;
         _playerInput.actions["Interact"].Enable();
         _playerInput.actions["Movement"].Enable();

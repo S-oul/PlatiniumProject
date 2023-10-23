@@ -16,9 +16,9 @@ public class PlayerUI : MonoBehaviour
     TextMeshProUGUI _textInputsUI;
     Slider _sliderInputsUI;
     Image _input;
-    List<Transform> _validationInputs = new List<Transform>();
     bool qteInputIsActive = false;
     [HideInInspector] public float _sliderPercentValue;
+    Slider _validationBadInputSlider;
 
     private void Start()
     {
@@ -35,11 +35,7 @@ public class PlayerUI : MonoBehaviour
         _textInputsUI = _qteUI.transform.Find("TextInputs").Find("Text").GetComponent<TextMeshProUGUI>();
         _sliderInputsUI = _qteUI.transform.Find("Slider").GetComponent<Slider>();
         _input = _sliderInputsUI.gameObject.transform.Find("SmallerCircle").Find("Image").GetComponent<Image>();
-        Transform validation = _qteUI.transform.Find("Validation");
-        foreach (Transform validationInput in validation)
-        {
-            _validationInputs.Add(validationInput);
-        }
+        _validationBadInputSlider = _qteUI.transform.Find("Validation").Find("BadInputs").GetComponent<Slider>();
     }
 
     public void ChangeUIInputs(string text)
@@ -52,26 +48,26 @@ public class PlayerUI : MonoBehaviour
         _input.color = color;
     }
 
-    public void ChangeUIInputsValidation(int index, Color color)
+    public void ChangeUIInputsValidation(float value)
     {
-        _validationInputs[index].GetComponent<Image>().color = color;
+        _validationBadInputSlider.value = value;
     }
 
-    public void ClearUIInputsValidation()
+/*    public void ClearUIInputsValidation()
     {
         foreach (Transform validationInput in _validationInputs)
         {
             validationInput.GetComponent<Image>().color = Color.white;
         }
 
-    }
+    }*/
 
     public void ClearUIInputs()
     {
         ChangeUIInputs(Color.white);
         ChangeUIInputs("");
         _sliderInputsUI.value = 1;
-        ClearUIInputsValidation();
+/*        ClearUIInputsValidation();*/
     }
 
     public void DisplayUI(bool value)
