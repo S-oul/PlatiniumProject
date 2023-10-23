@@ -21,7 +21,11 @@ public class Cam : MonoBehaviour
 
     [SerializeField] private bool _fixeOnZ = true;
 
+
     #endregion
+
+    private bool _fixOnRoom = false;
+    private Room _room;
 
     private Camera _camera;
 
@@ -29,9 +33,10 @@ public class Cam : MonoBehaviour
 
     #region ACCESSEUR
     public List<GameObject> Targets { get => targets; set => targets = value; }
+    public bool FixOnRoom { get => _fixOnRoom; set => _fixOnRoom = value; }
 
     #endregion
-    
+
     public void Start()
     {
         _camera = GetComponent<Camera>();
@@ -39,10 +44,43 @@ public class Cam : MonoBehaviour
     private void LateUpdate()
     {
         if(targets.Count == 0) { return; }
-        Move();
-        Zoom();
+        if (!_fixOnRoom)
+        {
+            Move();
+            Zoom();
+        }else
+        {
+            ZoomOnRoom(_room);
+            MoveOnRoom(_room);
+        }
     }
 
+    public void FixOnRoomVoid(Room r)
+    {
+        //Debug.Log("LE CACA DE LA CAMERA");
+        _fixOnRoom = true;
+        _room = r;
+    }
+
+    private void ZoomOnRoom(Room room)
+    {
+        Bounds bounds = room.transform.GetComponent<BoxCollider2D>().bounds;
+        float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x/50 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
+        //print(MaxDist / _zoomLimiter + " ::::::::: " + _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
+        _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, newZoom, Time.deltaTime);
+    }
+    private void MoveOnRoom(Room room)
+    {
+        Bounds bounds = room.transform.GetComponent<BoxCollider2D>().bounds;
+        float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x / 30 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
+        Vector3 centralPoint = bounds.center;
+        //print(MaxDist / _zoomLimiter + " ::::::::: " + _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
+        transform.position = Vector3.SmoothDamp(transform.position, centralPoint, ref _velocity, _SmoothTime);
+        if (_fixeOnZ)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        }
+    }
     private void Zoom()
     {
         float MaxDist = GetMaxDist();

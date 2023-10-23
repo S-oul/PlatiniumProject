@@ -34,11 +34,7 @@ public abstract class InputTask : Task
         _playerUI = _player.GetComponent<PlayerUI>();
         _controller = _player.GetComponent<PlayerController>();
         _data = DataManager.Instance;
-        _playerInput.actions["Interact"].Disable();
-        _playerInput.actions["Movement"].Disable();
-        _playerInput.actions["Jump"].Disable();
-        _playerInput.actions["Crouch"].Disable();
-        _playerInput.actions["InputTask"].Enable();
+        _controller.DisableMovementExceptInteract();
         _playerUI.DisplayUI(true);
         _playerUI.ChangeUIInputsValidation(1);
         StartTask();
@@ -48,10 +44,7 @@ public abstract class InputTask : Task
     {
         IsStarted = false;
         IsDone = isSuccessful;
-        _playerInput.actions["Interact"].Enable();
-        _playerInput.actions["Movement"].Enable();
-        _playerInput.actions["Jump"].Enable();
-        _playerInput.actions["Crouch"].Enable();
+        _controller.EnableMovement();
         _playerInput.actions["InputTask"].Disable();
         _playerUI.ClearUIInputs();
         _playerUI.DisplayUI(false);

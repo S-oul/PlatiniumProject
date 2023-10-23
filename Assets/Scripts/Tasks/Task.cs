@@ -18,6 +18,7 @@ public abstract class Task : MonoBehaviour
 
     public GameObject PlayerGameObject { get => _player; }
     public bool IsDone { get => _isDone; set => _isDone = value; }
+    public int NumberOfPlayers { get => _numberOfPlayers; set => _numberOfPlayers = value; }
 
     public bool IsStarted { get => _isStarted; set => _isStarted = value; }
 

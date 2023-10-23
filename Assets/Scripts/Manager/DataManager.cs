@@ -38,7 +38,9 @@ public class DataManager : MonoBehaviour
 
     public enum TaskEnum
     {
-        CowboyQTE
+        CowboyQTE,
+        LaserRoom
+
     }
 
     
