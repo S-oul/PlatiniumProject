@@ -5,12 +5,9 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CowboyQTE : InputTask, ITimedTask
+public class CowboyQTE : InputTask
 {
     #region Variables
-    public float _givenTime => _givenTimeTask;
-
-    [SerializeField] private float _givenTimeTask = 0f;
     InputAction action = new InputAction();
     public enum QTEInputs
     {
@@ -52,13 +49,17 @@ public class CowboyQTE : InputTask, ITimedTask
     Coroutine _inputCoroutine;
 
     public float _timeToDoQTE = 3f;
-
-    bool _isCurrentInputRight = false;
-    bool _wasLastInputRight = false;
-    int _index = 0;
     int _numberOfFails = 0;
-    bool _isFirstTimeGuessing = true;
+
+    CowboyNPC _npcCowboy;
+
+    [SerializeField] float _repulseForce = 100f;
     #endregion
+
+    private void Start()
+    {
+        _npcCowboy = transform.parent.parent.GetComponentInChildren<NPC>().gameObject.GetComponent<CowboyNPC>();
+    }
 
     public override void StartTask()
     {
@@ -71,7 +72,6 @@ public class CowboyQTE : InputTask, ITimedTask
             QTEInputs newInput = (QTEInputs)((int)(Random.Range(0, 9)));
             _inputsNeeded.Add(newInput);
         }
-        StartCoroutine(TimeToDoQTE());
         DisplayInput(_inputsNeeded[0]);
     }
 
@@ -108,13 +108,6 @@ public class CowboyQTE : InputTask, ITimedTask
     }
 
 
-    //=> Global timer for the task
-    IEnumerator TimeToDoQTE()
-    {
-        yield return new WaitForSeconds(_givenTime);
-        StartTask();
-    }
-
 
     //Display a new input
     void DisplayInput(QTEInputs input)
@@ -128,20 +121,19 @@ public class CowboyQTE : InputTask, ITimedTask
         _playerUI.ChangeUIInputs(_dicInputs[input]);
         _currentInput = input;
         _inputCoroutine = StartCoroutine(TimerToPressInput(_timeToDoQTE));
+        _npcCowboy.Fire();
     }
 
 
     //Action when the input is the wrong or the right one
     void InputValue(bool isInputRight)
     {
-        _isCurrentInputRight = isInputRight;
         _controller.currentContextName = "";
         if (isInputRight)
         {
             _currentInputID++;
-            if (_currentInputID == _inputsNeeded.Count)
+            if (_currentInputID ==_numberOfInputs)
             {
-                Debug.Log("Win");
                 //_playerUI.ChangeUIInputsValidation(_index, Color.green);
                 End(true);
                 return;
@@ -150,9 +142,8 @@ public class CowboyQTE : InputTask, ITimedTask
             else
             {
                 //Display Input fait une overflow
-               // _playerUI.ChangeUIInputsValidation(_index, Color.green);
-                IndexValue(true);
-                _wasLastInputRight = _isCurrentInputRight;
+                // _playerUI.ChangeUIInputsValidation(_index, Color.green);
+                
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
             }
@@ -160,18 +151,18 @@ public class CowboyQTE : InputTask, ITimedTask
         else
         {
             _numberOfFails++;
+            FeedBackBadInputs();
             if (_numberOfFails == 3)
             {
-                Debug.Log("Lose");
                // _playerUI.ChangeUIInputsValidation(_index, Color.red);
                 End(false);
+                PushBack();
                 return;
             }
             else
             {
                 //_playerUI.ChangeUIInputsValidation(_index, Color.red);
-                IndexValue(false);
-                _wasLastInputRight = _isCurrentInputRight;
+                
                 //Start Task fait une overflow
                 StartTask();
                 return;
@@ -181,33 +172,17 @@ public class CowboyQTE : InputTask, ITimedTask
 
     }
 
-    void IndexValue(bool rightInput)
+    void FeedBackBadInputs()
     {
-        
-        Debug.Log("Last Input = " + _wasLastInputRight + " | Current Input = " + _isCurrentInputRight);
-        Debug.Log(_index);
-        if (_wasLastInputRight != _isCurrentInputRight)
-        {
-            if (_isFirstTimeGuessing)
-            {
-                _isFirstTimeGuessing = false;
-            }
-            else
-            {
-                Debug.Log("Clear");
-                _playerUI.ClearUIInputsValidation();
-            }
-            _index = 0;
-        }
-        if (rightInput)
-        {
-            _playerUI.ChangeUIInputsValidation(_index, Color.green);
-        }
-        else
-        {
-            _playerUI.ChangeUIInputsValidation(_index, Color.red);
-        }
-        
-        _index++;
+        float value = 1f - ((float)_numberOfFails / (float)_numberOfInputs);
+        Debug.Log(_numberOfInputs);
+        _playerUI.ChangeUIInputsValidation(value);
+    }
+
+    void PushBack()
+    {
+        Vector2 _dir = new Vector2(-1 * (_npcCowboy.gameObject.transform.position.x - _player.transform.position.x), 0).normalized;
+        Debug.Log(_dir);
+        _player.GetComponent<Rigidbody2D>().AddForce(_dir * _repulseForce, ForceMode2D.Impulse);
     }
 }

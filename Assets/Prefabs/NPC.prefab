@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2353578007512903286}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.164, y: -0.256, z: 0.0325998}
   m_LocalScale: {x: 0.012163, y: 0.02432, z: 0.1216}
   m_ConstrainProportionsScale: 0
@@ -47,12 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
-  _dialogues:
-  - Feur
-  - Couber
-  - Apagnang
-  _npcTask: {fileID: 0}
-  _typeTask: 0
+  _dialogues: []
 --- !u!212 &7404137357259685074
 SpriteRenderer:
   m_ObjectHideFlags: 0
