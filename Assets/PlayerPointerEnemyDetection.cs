@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class PlayerPointerEnemyDetection : MonoBehaviour
 {
-    PlayerPointerMover _playerPointerMover;
-
-    public void Awake()
-    {
-        _playerPointerMover = new PlayerPointerMover();
-    }
+    public PlayerPointerMover _playerPointerMover;
 
     void OnTriggerEnter2D (Collider2D otherCollider)
     {

@@ -820,6 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e400cd11e81c6e74fab273c100a85fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerPointerMover: {fileID: 1802425882}
 --- !u!1 &868922350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,6 +1395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580135727}
   - component: {fileID: 1580135728}
+  - component: {fileID: 1580135729}
   m_Layer: 0
   m_Name: CenterManager
   m_TagString: Untagged
@@ -1438,6 +1440,18 @@ MonoBehaviour:
   - -1.12
   - 1.64
   - -0.93
+--- !u!114 &1580135729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580135726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68af317ba486cee4e9e8d9d56f6b4feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1629293121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2133589883995975240, guid: 879a716da57647847876b603216fed0a, type: 3}
@@ -1647,7 +1661,7 @@ Transform:
   m_GameObject: {fileID: 1802425878}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.834, y: 0, z: 0}
+  m_LocalPosition: {x: -3.88, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1668,6 +1682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpeed: 0.1
+  _deathDuriation: 0.5
 --- !u!114 &1802425883
 MonoBehaviour:
   m_ObjectHideFlags: 0

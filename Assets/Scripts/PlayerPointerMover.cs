@@ -13,7 +13,7 @@ public class PlayerPointerMover : MonoBehaviour
     Vector3 _playerStepDistance;
     [SerializeField] [Range(0.01f, 0.5f)] float _playerSpeed = 0.1f;
 
-    [SerializeField] float _deathDuriation = 10;
+    [SerializeField] float _deathDuriation = 0.5f;
     float _deathCountDown;
 
     readonly int _numberOfLayers = 6;
@@ -29,7 +29,7 @@ public class PlayerPointerMover : MonoBehaviour
     }
     PlayerPointerState _starterState = PlayerPointerState.IDLE;
     PlayerPointerState _currentState;
-    PlayerPointerState _previousState;
+    //PlayerPointerState _previousState; 
 
     enum PlayerLayerPosition
     {
@@ -54,8 +54,9 @@ public class PlayerPointerMover : MonoBehaviour
         _playerPointerTrans = GetComponent<Transform>();
         _playerStartPosition = _playerPointerTrans.position;
 
-        _currentState = _starterState;
-        _previousState = _starterState;
+        SetState(_starterState);
+        //_currentState = _starterState;
+        //_previousState = _starterState;
 
         _playerStepDistance = new Vector3(_playerStepDistanceInput, 0, 0);
         _positionDict = CreatePositionDictionary();
@@ -68,6 +69,7 @@ public class PlayerPointerMover : MonoBehaviour
     {
         if (context.ReadValue<float>() > 0) { MovePlayerForward(); }
         if (context.ReadValue<float>() < 0) { MovePlayerBack(); }
+        return;
     } //called by PlayerInput System
 
     private void MovePlayerForward() 
@@ -97,54 +99,53 @@ else if (context.canceled)
 */
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         //Debug.Log("_player his is " + _playerHit);
         //if (_currentState == PlayerPointerState.HIT) { _currentState = PlayerPointerState.HIT; _playerHit = false; }
-        //Debug.Log(_currentState);
-
-        switch (_currentState)
         {
-            case PlayerPointerState.MOVING_RIGHT:
-                if ((int)_currentPlayerLayerPosition +1 >= _numberOfLayers) { SetState(PlayerPointerState.IDLE); break; }
-                _currentPlayerLayerPosition++;
-                SetState(PlayerPointerState.ANIMATING);
-                break;
-            case PlayerPointerState.MOVING_LEFT:
-                if ((int)_currentPlayerLayerPosition -1 < 0) { SetState(PlayerPointerState.IDLE); break; }
-                _currentPlayerLayerPosition--;
-                SetState(PlayerPointerState.ANIMATING);
-                break;
-            case PlayerPointerState.ANIMATING:
-                if (_positionDict[_currentPlayerLayerPosition] == _playerPointerTrans.position) { SetState(PlayerPointerState.IDLE); break; }
-                AnimatePlayer(_positionDict[_currentPlayerLayerPosition]);
-                break;
-            case PlayerPointerState.HIT:
-                Debug.Log("STATE DIEING");
-                _ppVisualsSprite.enabled = false;
-                _ppDeathVisualsSprite.enabled = true;
-                _deathCountDown = _deathDuriation;
-                SetState(PlayerPointerState.DIEING);
-                break;
-            case PlayerPointerState.DIEING:
-                if (_deathCountDown > 0) { _deathCountDown -= Time.deltaTime; break; }
-                _ppVisualsSprite.enabled = true;
-                _ppDeathVisualsSprite.enabled = false;
-                _currentPlayerLayerPosition = PlayerLayerPosition.START;
-                _playerPointerTrans.position = _positionDict[_currentPlayerLayerPosition];
-                SetState(PlayerPointerState.IDLE);
-                break;
-            //Debug.Log("default"); break; ;
+            Debug.Log(_currentState);
+            switch (_currentState)
+            {
+                case PlayerPointerState.HIT:
+                    _ppVisualsSprite.enabled = false;
+                    _ppDeathVisualsSprite.enabled = true;
+                    _deathCountDown = _deathDuriation;
+                    SetState(PlayerPointerState.DIEING);
+                    break; 
+                case PlayerPointerState.MOVING_RIGHT:
+                    if ((int)_currentPlayerLayerPosition + 1 >= _numberOfLayers) { SetState(PlayerPointerState.IDLE); break; }
+                    _currentPlayerLayerPosition++;
+                    SetState(PlayerPointerState.ANIMATING);
+                    break;
+                case PlayerPointerState.MOVING_LEFT:
+                    if ((int)_currentPlayerLayerPosition - 1 < 0) { SetState(PlayerPointerState.IDLE); break; }
+                    _currentPlayerLayerPosition--;
+                    SetState(PlayerPointerState.ANIMATING);
+                    break;
+                case PlayerPointerState.ANIMATING:
+                    if (_positionDict[_currentPlayerLayerPosition] == _playerPointerTrans.position) { SetState(PlayerPointerState.IDLE); break;}
+                    AnimatePlayer(_positionDict[_currentPlayerLayerPosition]);
+                    break;
+                case PlayerPointerState.DIEING:
+                    if (_deathCountDown > 0) { _deathCountDown -= Time.deltaTime; break; }
+                    _ppVisualsSprite.enabled = true;
+                    _ppDeathVisualsSprite.enabled = false;
+                    _currentPlayerLayerPosition = PlayerLayerPosition.START;
+                    _playerPointerTrans.position = _positionDict[_currentPlayerLayerPosition];
+                    SetState(PlayerPointerState.IDLE);
+                    break; 
+            }
         }
     }
 
     private void SetState(PlayerPointerState newState)
     {
-        if(_currentState != newState)
+        if (_currentState != newState)
         {
-            Debug.Log("Changing state to: " + newState.ToString());
             _currentState = newState;
         }
+        Debug.Log("State is now " + _currentState);
     }
 
     private void AnimatePlayer(Vector3 targetPosition)
@@ -163,13 +164,11 @@ else if (context.canceled)
         }
         return dict;
     }
-
+    //public void killPlayerPointer() { killPlayerPointerHelper(); }
     public void killPlayerPointer()
     {
-        Debug.Log("Called KillPlayerPointer");
+        if (_currentState == PlayerPointerState.DIEING ||  _currentState == PlayerPointerState.HIT || _currentPlayerLayerPosition == PlayerLayerPosition.HOME) { return; }
         SetState(PlayerPointerState.HIT);
-        //_playerHit = true;
-        //Debug.Log("_player his is " + _playerHit);
     }
 }
 
