@@ -22,6 +22,8 @@ public class Room : MonoBehaviour
     [SerializeField] List<GameObject> _npcList;
     [SerializeField] List<GameObject> _eventList;
 
+    Task _task;
+
 
 
     #endregion
@@ -40,6 +42,8 @@ public class Room : MonoBehaviour
     public int RoomSize { get => _roomSize; }
     public string Id { get => _id; set => _id = value; }
     public List<GameObject> ListPlayer { get => _listPlayer; set => _listPlayer = value; }
+
+    public Task TaskRoom { get => _task; set => _task = value; }
     #endregion
 
     public void InitRoom()

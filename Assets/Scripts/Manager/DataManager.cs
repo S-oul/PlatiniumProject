@@ -18,6 +18,16 @@ public class DataManager : MonoBehaviour
         {"Left Bumper", "L1" },
         {"Left Trigger", "L2" },
         {"Left Stick Press", "L3" },
+        {"Square", "X" },
+        {"Triangle", "Y" },
+        {"Cross", "A" },
+        {"Circle", "B" },
+        {"R1", "R1" },
+        {"R2", "R2" },
+        {"R3", "R3" },
+        {"L1", "L1" },
+        {"L2", "L2" },
+        {"L3", "L3" },
     };
 
     public Dictionary<string, string> InputNamesConverter { get => inputsNamesConverter; }

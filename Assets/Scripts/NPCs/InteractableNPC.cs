@@ -21,13 +21,12 @@ public class InteractableNPC : NPC, IChattyNPC, ITaskNPC
         //_npcTask = DataManager.Instance.AllTasks[(int)_typeTask];
     }
 
-    public override void Interact(GameObject player)
+    public void Interact(GameObject player)
     {
         _npcTask.GetComponent<Task>().OnPlayerJoinedTask(player);
     }
     public void Talk(string text)
     {
         string currentDialogue = dialogueTexts[Random.Range(0, dialogueTexts.Count)];
-        Debug.Log(currentDialogue);
     }
 }

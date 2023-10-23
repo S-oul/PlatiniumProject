@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<CharacterController2D>();
-        
     }
 
 
@@ -60,7 +59,9 @@ public class PlayerController : MonoBehaviour
         {
             currentContextName = "";
         }
-        
+
+        Debug.Log(currentContextName);
+
     }
 
 

@@ -37,8 +37,8 @@ public class PlayerCollision : MonoBehaviour
         {
             switch (collidertype)
             {
-                case NPC:
-                    ((NPC)collidertype).Interact(gameObject);
+                case InteractableNPC:
+                    ((InteractableNPC)collidertype).Interact(gameObject);
                     _controller.IsInteracting = false;
                     break;
                 case Lift:

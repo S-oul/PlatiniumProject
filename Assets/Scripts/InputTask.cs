@@ -29,7 +29,7 @@ public abstract class InputTask : Task
     
     public override void Init()
     {
-        
+        IsStarted = true;
         _playerInput = _player.GetComponent<PlayerInput>();
         _playerUI = _player.GetComponent<PlayerUI>();
         _controller = _player.GetComponent<PlayerController>();
@@ -46,7 +46,7 @@ public abstract class InputTask : Task
 
     public override void End(bool isSuccessful)
     {
-        
+        IsStarted = false;
         IsDone = isSuccessful;
         _playerInput.actions["Interact"].Enable();
         _playerInput.actions["Movement"].Enable();

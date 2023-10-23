@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6561570807395735329}
-  - component: {fileID: 5577982487904603206}
+  - component: {fileID: 8826583871954619486}
   m_Layer: 0
-  m_Name: CowboyTask
+  m_Name: DuolingoTask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5577982487904603206
+--- !u!114 &8826583871954619486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6164837858597373043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ce63f2cb51b1d448b938c4a8bab4c6, type: 3}
+  m_Script: {fileID: 11500000, guid: c6b01727f04590447b6b74a96da178cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfPlayers: 1
-  _difficulty: 1
-  _inputsNeeded: 
-  _numberOfInputs: 3
-  _timeToDoQTE: 3
-  _repulseForce: 100

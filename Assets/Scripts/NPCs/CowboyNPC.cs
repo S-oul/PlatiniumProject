@@ -26,13 +26,9 @@ public class CowboyNPC : NPC, IChattyNPC
         Debug.Log(currentDialogue);
     }
 
-    public override void Interact(GameObject player)
-    {
-        return;
-    }
 
     public void Fire()
     {
-        Debug.Log("Pan");
+        /*Debug.Log("Pan");*/
     }
 }

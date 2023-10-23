@@ -63,6 +63,12 @@ public class CowboyQTE : InputTask
 
     public override void StartTask()
     {
+        _numberOfFails = 0;
+        StartTaskQTE();
+    }
+
+    void StartTaskQTE()
+    {
         StopAllCoroutines();
         _inputsNeeded.Clear();
         _contextName = "";
@@ -162,9 +168,9 @@ public class CowboyQTE : InputTask
             else
             {
                 //_playerUI.ChangeUIInputsValidation(_index, Color.red);
-                
+
                 //Start Task fait une overflow
-                StartTask();
+                StartTaskQTE();
                 return;
             }
             
@@ -175,14 +181,12 @@ public class CowboyQTE : InputTask
     void FeedBackBadInputs()
     {
         float value = 1f - ((float)_numberOfFails / (float)_numberOfInputs);
-        Debug.Log(_numberOfInputs);
         _playerUI.ChangeUIInputsValidation(value);
     }
 
     void PushBack()
     {
         Vector2 _dir = new Vector2(-1 * (_npcCowboy.gameObject.transform.position.x - _player.transform.position.x), 0).normalized;
-        Debug.Log(_dir);
         _player.GetComponent<Rigidbody2D>().AddForce(_dir * _repulseForce, ForceMode2D.Impulse);
     }
 }
