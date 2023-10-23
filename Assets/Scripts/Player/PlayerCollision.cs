@@ -43,7 +43,9 @@ public class PlayerCollision : MonoBehaviour
                     break;
                 case Lift:
                     ((Lift)collidertype).InteractLift(gameObject);
-                    Debug.Log("Lift" + collidertype.name);
+                    break;
+                case Object:
+                    ((Object)collidertype).Interact(gameObject);
                     break;
             }
         }
