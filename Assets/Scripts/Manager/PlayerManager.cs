@@ -15,9 +15,17 @@ public class PlayerManager : MonoBehaviour
     void OnPlayerJoined(PlayerInput playerInput)
     {
         GameManager.Instance.Players[playerInput.playerIndex] = playerInput.gameObject;
+        PickRandomSprite(GameManager.Instance.Players[playerInput.playerIndex]);
         GameManager.Instance.Players[playerInput.playerIndex].transform.position = transform.position;
         playerInput.actions["InputTask"].Disable();
         Camera.main.gameObject.GetComponent<Cam>().Targets.Add(playerInput.gameObject);
     }
 
+
+    void PickRandomSprite(GameObject player)
+    {
+        Sprite temp = DataManager.Instance.SpritePlayers[Random.Range(0, DataManager.Instance.SpritePlayers.Count)];
+        DataManager.Instance.SpritePlayers.Remove(temp);
+        player.GetComponent<SpriteRenderer>().sprite = temp;
+    }
 }

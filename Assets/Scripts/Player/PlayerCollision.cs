@@ -43,9 +43,11 @@ public class PlayerCollision : MonoBehaviour
                     break;
                 case Lift:
                     ((Lift)collidertype).InteractLift(gameObject);
+                    _controller.IsInteracting = false;
                     break;
                 case Object:
                     ((Object)collidertype).Interact(gameObject);
+                    _controller.IsInteracting = false;
                     break;
             }
         }
@@ -84,6 +86,10 @@ public class PlayerCollision : MonoBehaviour
             case "ZoneEvent":
                 collidertype = collision.transform.GetComponent<ZoneEvent>();
                 ((ZoneEvent)collidertype).PlayerEnter(gameObject);
+                break;
+            case "Object":
+                collidertype = collision.transform.GetComponent<Object>();
+                
                 break;
         }
     }

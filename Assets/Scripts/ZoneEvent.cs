@@ -9,7 +9,7 @@ public class ZoneEvent : MonoBehaviour
     [SerializeField] DataManager.TaskEnum _typeTask;
     public GameObject Task { get => _task; }
 
-    private void Awake()
+    private void OnEnable()
     {
         _task = Instantiate(DataManager.Instance.AllTasks[(int)_typeTask], this.transform);
     }

@@ -7,19 +7,25 @@ public class DeskRH : Object
     GameObject _player;
     bool _isUsed;
 
-    [SerializeField] Task _task;
-
     public GameObject Player { get =>  _player; }
 
     public bool IsUsed { get => _isUsed; set => _isUsed = value; }
+    GameObject _task;
+    [SerializeField] DataManager.TaskEnum _typeTask;
 
+    public GameObject Task { get => _task; }
+
+    private void Awake()
+    {
+        _task = Instantiate(DataManager.Instance.AllTasks[(int)_typeTask], this.transform);
+    }
     public override void Interact(GameObject player)
     {
         if(!_isUsed)
         {
             _player = player;
             _isUsed = true;
-            _task.Init();
+            _task.GetComponent<Task>().Init();
         }
         
         

@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: _dialogues.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8376708295621770097, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8606743795658603397, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.01
@@ -333,8 +337,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2353578007512903286, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 229209552568451124}
   m_SourcePrefab: {fileID: 100100000, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+--- !u!1 &3917718103676931200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2353578007512903286, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+  m_PrefabInstance: {fileID: 1654810500069696246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &229209552568451124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917718103676931200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295ef888155fb4946a46323cec1521ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Cowboy
+  _dialogues: []
+  _bulletPrefab: {fileID: 0}
 --- !u!4 &7027403776209885555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8606743795658603397, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
@@ -350,19 +377,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 660218442487467802, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Size.x
-      value: 9.897661
+      value: 4.0359397
       objectReference: {fileID: 0}
     - target: {fileID: 660218442487467802, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Size.y
-      value: 4.6646986
+      value: 4.1892724
       objectReference: {fileID: 0}
     - target: {fileID: 660218442487467802, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Offset.x
-      value: 0.0034759045
+      value: -0.18033767
       objectReference: {fileID: 0}
     - target: {fileID: 660218442487467802, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Offset.y
-      value: 0.015882015
+      value: -0.1677134
       objectReference: {fileID: 0}
     - target: {fileID: 1539541497662645154, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_LocalPosition.x

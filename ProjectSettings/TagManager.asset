@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - Lift
   - ZoneEvent
+  - Object
   layers:
   - Default
   - TransparentFX

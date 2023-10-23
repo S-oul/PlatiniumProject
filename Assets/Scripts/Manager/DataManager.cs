@@ -34,13 +34,16 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] List<GameObject> _allTasks = new List<GameObject>();
 
+    [SerializeField] List<Sprite> _spritePlayers = new List<Sprite>();
+
     public List<GameObject> AllTasks { get => _allTasks; }
+    public List<Sprite> SpritePlayers { get => _spritePlayers; }
 
     public enum TaskEnum
     {
         CowboyQTE,
-        LaserRoom
-
+        LaserRoom,
+        RHTask
     }
 
     
