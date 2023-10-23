@@ -43,10 +43,11 @@ public class PlayerCollision : MonoBehaviour
                     break;
                 case Lift:
                     ((Lift)collidertype).InteractLift(gameObject);
+                    _controller.IsInteracting = false;
                     break;
                 case Object:
                     ((Object)collidertype).Interact(gameObject);
-                    Debug.Log("Object");
+                    _controller.IsInteracting = false;
                     break;
             }
         }
@@ -88,7 +89,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "Object":
                 collidertype = collision.transform.GetComponent<Object>();
-                ((Object)collidertype).Interact(gameObject);
+                
                 break;
         }
     }

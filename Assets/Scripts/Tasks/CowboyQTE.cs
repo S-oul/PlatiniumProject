@@ -58,6 +58,7 @@ public class CowboyQTE : InputTask
 
     private void Start()
     {
+        
         _npcCowboy = transform.parent.parent.GetComponentInChildren<CowboyNPC>();
     }
 

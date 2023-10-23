@@ -436,14 +436,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DataManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8363959002101346493, guid: ba2a037bd99b1e047b3d49167fa352d0, type: 3}
-      propertyPath: _allTasks.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363959002101346493, guid: ba2a037bd99b1e047b3d49167fa352d0, type: 3}
-      propertyPath: _allTasks.Array.data[2]
-      value: 
-      objectReference: {fileID: 5358245097260875424, guid: 18a52dfdd52cf3648b1e2bb239cd64db, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

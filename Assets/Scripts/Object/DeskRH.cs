@@ -13,8 +13,6 @@ public class DeskRH : Object
     GameObject _task;
     [SerializeField] DataManager.TaskEnum _typeTask;
 
-
-
     public GameObject Task { get => _task; }
 
     private void Awake()

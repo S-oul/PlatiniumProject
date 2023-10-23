@@ -506,17 +506,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 701608106418324031, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7057794631856306106, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
       propertyPath: m_Name
       value: Desk
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057794631856306106, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
-      propertyPath: m_TagString
-      value: Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

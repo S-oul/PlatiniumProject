@@ -9,11 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3036557406143262523}
-<<<<<<< Updated upstream
-  - component: {fileID: 7849696610429170803}
-=======
-  - component: {fileID: 2775601688012361487}
->>>>>>> Stashed changes
+  - component: {fileID: -3199056328917352359}
   m_Layer: 0
   m_Name: RHTask
   m_TagString: Untagged
@@ -36,11 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
---- !u!114 &7849696610429170803
-=======
---- !u!114 &2775601688012361487
->>>>>>> Stashed changes
+--- !u!114 &-3199056328917352359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

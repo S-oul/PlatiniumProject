@@ -10,7 +10,8 @@ public class RH : NPC, IChattyNPC
 
     public void DisplayPlayer(GameObject player)
     {
-        NPCUI.ChangeBubbleContent(player.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite);
+
+        NPCUI.ChangeBubbleContent(player.transform.GetComponent<SpriteRenderer>().sprite);
     }
 
     public void Talk(string text)

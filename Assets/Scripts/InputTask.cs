@@ -30,6 +30,7 @@ public abstract class InputTask : Task
     public override void Init()
     {
         IsStarted = true;
+
         _playerInput = _player.GetComponent<PlayerInput>();
         _playerUI = _player.GetComponent<PlayerUI>();
         _controller = _player.GetComponent<PlayerController>();
