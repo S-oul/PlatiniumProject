@@ -11,7 +11,7 @@ public class InteractableNPC : NPC, IChattyNPC, ITaskNPC
     [SerializeField] GameObject _npcTask;
 
     [SerializeField] DataManager.TaskEnum _typeTask;
-    public GameObject task { get => _npcTask; }
+    public GameObject Task { get => _npcTask; }
 
     
     private void Awake()

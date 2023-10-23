@@ -28,7 +28,7 @@ public interface IChattyNPC
 
 public interface ITaskNPC
 {
-    GameObject task { get;}
+    GameObject Task { get;}
 
 
     
