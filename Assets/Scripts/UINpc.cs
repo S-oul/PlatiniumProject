@@ -16,7 +16,7 @@ public class UINpc : MonoBehaviour
         _canvas = transform.Find("Canvas").GetComponent<Canvas>();
         _talkingBubble = _canvas.transform.Find("TalkingBubble");
         _talkingBubbleImage = _talkingBubble.Find("Image").GetComponent<Image>();
-        _talkingBubbleText = _talkingBubble.Find("Texte").GetComponent<TextMeshProUGUI>();
+        _talkingBubbleText = _talkingBubble.Find("Text").GetComponent<TextMeshProUGUI>();
     }
 
 
