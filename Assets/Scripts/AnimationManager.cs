@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-
+    /*
     Animator _animator;
     CharacterStateManager _characterStateManager;
 
@@ -40,4 +40,5 @@ public class AnimationManager : MonoBehaviour
         _animator.SetBool(_currentAnimation, false);
         _currentAnimation = newAnimation;
     }
+    */
 }

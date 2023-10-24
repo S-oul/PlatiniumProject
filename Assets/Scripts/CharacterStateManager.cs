@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterStateManager : MonoBehaviour
 {
-
+    /*
     public enum STATE
     {
         IDLE = 0,
@@ -25,5 +25,6 @@ public class CharacterStateManager : MonoBehaviour
     {
         playerState = _characterController2D.isCrouching ? STATE.CROUCHING : STATE.IDLE;
 
-    }
+    } 
+    */
 }

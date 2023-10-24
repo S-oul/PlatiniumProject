@@ -9,6 +9,8 @@ TagManager:
   - Lift
   - ZoneEvent
   - Object
+  - DecryptageTarget
+  - DecryptageEnemy
   layers:
   - Default
   - TransparentFX
@@ -51,4 +53,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: MiniGame
+    uniqueID: 3731426517
     locked: 0

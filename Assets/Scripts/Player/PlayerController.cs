@@ -10,18 +10,15 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class PlayerController : MonoBehaviour
 {
     [Header ("For Game Design")]   
-    [Range(1, 100)][SerializeField] float _moveSpeed = 40f;                 //Movement speed
-    [Range(0, 1)] public float crouchSpeed = .36f;                 // Amount of maxSpeed applied to crouching movement. 1 = 100%
+    [Range(1, 100)][SerializeField] float _moveSpeed = 40f;                 //Movement speed                 
     [Range(0, .3f)] public float movementSmoothing = .05f;         // How much to smooth out the movement
     [Range(0.1f, 20f)]public float normalFallGravityForce = 3;  // Fall Speed
-    [Range(0.1f, 20f)]public float fastFallGravityForce = 5;    // Fall Speed when holding Crouch
     [SerializeField] public bool AirControl = true;                      // Can contoll character while not Grounded
 
 
     float _horizontalMove = 0f;
     bool _isJumping = false;
     bool _isGrounded = false;
-    bool _isCrouched = false;
     bool _isInteracting = false;
     bool _canMove = true;
 
@@ -56,7 +53,6 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Interact"].Disable();
         _playerInput.actions["Movement"].Disable();
         _playerInput.actions["Jump"].Disable();
-        _playerInput.actions["Crouch"].Disable();
         _playerInput.actions["InputTask"].Enable();
         _canMove = false;
     }
@@ -67,7 +63,6 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Interact"].Disable();
         _playerInput.actions["Movement"].Disable();
         _playerInput.actions["Jump"].Disable();
-        _playerInput.actions["Crouch"].Disable();
         _playerInput.actions["InputTask"].Disable();
         _canMove = false;
     }
@@ -77,7 +72,6 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Interact"].Enable();
         _playerInput.actions["Movement"].Enable();
         _playerInput.actions["Jump"].Enable();
-        _playerInput.actions["Crouch"].Enable();
         _playerInput.actions["InputTask"].Enable();
         _canMove = true;
     }
@@ -114,7 +108,7 @@ public class PlayerController : MonoBehaviour
     // Comunicate contol inputs to CharacterContoller2D Script component
     private void FixedUpdate()
     {
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isCrouched, _isJumping);
+        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumping);
         _isJumping = false;
     }
 
