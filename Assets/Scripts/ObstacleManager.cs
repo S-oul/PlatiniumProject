@@ -7,7 +7,6 @@ using UnityEngine;
 public class ObstacleManager : MonoBehaviour
 {
     [SerializeField] List<LayerCenterSt> _layerStructs;
-
     public List<float> speedList;
 
     // Start is called before the first frame update
@@ -20,9 +19,9 @@ public class ObstacleManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         for (int i = 0; i < transform.childCount; i++)
-            _layerStructs[i].transform.Rotate(0, 0, _layerStructs[i].spinSpeed);
+            _layerStructs[i].transform.Rotate(0, 0, _layerStructs[i].spinSpeed); 
     }
 }

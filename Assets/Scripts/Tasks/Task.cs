@@ -45,6 +45,14 @@ public abstract class Task : MonoBehaviour
         
     }
 
+    public void OnRoomSuccess()
+    {
+
+    }
+    public void OnRoomFail()
+    {
+
+    }
     public void OnPlayerExitTaskRoom(GameObject player)
     {
 

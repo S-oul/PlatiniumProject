@@ -9,6 +9,8 @@ TagManager:
   - Lift
   - ZoneEvent
   - Object
+  - DecryptageEnemy
+  - DecryptageTarget
   layers:
   - Default
   - TransparentFX

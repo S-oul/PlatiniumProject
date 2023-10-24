@@ -11,6 +11,9 @@ public class LaserRoom : Task , ITimedTask
     //[SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
     List<PlayerController> _players = new List<PlayerController>();
 
+    List<GameObject> _laserGO = new List<GameObject>();
+
+
     Cam _cam;
 
     [SerializeField] GameObject _laser;
@@ -23,6 +26,9 @@ public class LaserRoom : Task , ITimedTask
 
 
     [SerializeField] public float _givenTime => 20;
+    [SerializeField] public float _recuperateTime => 2;
+
+
     float _actualTime;
 
     public float GivenTime { get => _givenTime;}
@@ -31,18 +37,35 @@ public class LaserRoom : Task , ITimedTask
     void Start()
     {
         print(_difficulty);
-        _actualTime = _givenTime * _difficulty;
+        _actualTime = _givenTime /** _difficulty*/;
         ThisRoom = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
     }
     public override void End(bool isSuccessful)
     {
-        Debug.Log("LA FIN DU CACA");
+        Debug.Log("END PTDRRRRRRRRR : " + isSuccessful);
+        KillAllLaser();
         IsStarted = false;
-        StopCoroutine(timeTask());
-        BlockDoors(false);
+        IsDone = true;
+        _cam.FixOnRoom = false;
+        StopAllCoroutines();
+        StartCoroutine(BlockDoors(false));
+        if (isSuccessful)
+        {
+            RecuperatePlayer();
+        }
+        else
+        {
+            StartCoroutine(RecuperatePlayer());
+        }
     }
-
+    void KillAllLaser()
+    {
+        foreach(GameObject g in _laserGO)
+        {
+            Destroy(g);
+        }
+    }
     public override void Init()
     {
         Debug.Log(ThisRoom.ListPlayer.Count + " " + NumberOfPlayers);
@@ -61,15 +84,14 @@ public class LaserRoom : Task , ITimedTask
     {
         BoxCollider2D b = _doorL.GetComponent<BoxCollider2D>();
         BoxCollider2D b2 = _doorR.GetComponent<BoxCollider2D>();
-        yield return new WaitForSeconds(.5f);
         if (block)
         {
+            yield return new WaitForSeconds(.5f);
             b.enabled = true;
             b2.enabled = true;
         }
         else
         {
-            print("BLOCKED");
             b.enabled = false;
             b2.enabled = false;
         }
@@ -87,55 +109,75 @@ public class LaserRoom : Task , ITimedTask
     {
         foreach (PlayerController _controller in _players)
         {
-            if (_controller.CanMove) 
+            if (!_controller.IsPlayerDown) 
             {
+
                 return true;
             }
         }
         return false;
     }
-    IEnumerator SpawnLaserTimer()
+    bool AllPlayerAlive()
     {
-        while (IsStarted)
-        {
-            yield return new WaitForSeconds(6 - (_difficulty/2));
-            SpawnLaser(_laser);
-        }
+        return false;
     }
+    
     private void SpawnLaser(GameObject go)
     {
+        GameObject g = Instantiate(go);
         if (Random.Range(0, 2) == 1)
         {
-            GameObject g = Instantiate(go, _spawnerR);
             g.transform.parent = null;
+            g.transform.position = _spawnerR.position;
+            g.transform.localScale = new Vector3(.16f, .16f, .16f);
             Laser l = g.GetComponent<Laser>();
             l.ToFar = _spawnerL;
         }
         else
         {
-            GameObject g = Instantiate(go, _spawnerL);
             g.transform.parent = null;
+            g.transform.position = _spawnerL.position;
+            g.transform.localScale = new Vector3(.16f, .16f, .16f);
             Laser l = g.GetComponent<Laser>();
             l.ToFar = _spawnerR;
             l._goLeft = false;
         }
 
+        _laserGO.Add(g);
+    }
+    IEnumerator RecuperatePlayer()
+    {
+        yield return new WaitForSeconds(_recuperateTime);
+        foreach (PlayerController _controller in _players)
+        {
+            _controller.EnableMovement();
 
+        }
+
+    }
+    IEnumerator SpawnLaserTimer()
+    {
+        while (IsStarted)
+        {
+            yield return new WaitForSeconds(6 - (_difficulty / 2));
+            SpawnLaser(_laser);
+        }
     }
     IEnumerator timeTask()
     {
         while (_actualTime > 0) 
         {
+            Debug.Log(_actualTime);
             if (!OnePlayerAlive())
             {
                 End(false);
             }
             _actualTime -= Time.deltaTime;
-            //Debug.Log(_actualTime);
             yield return null;
         }       
         if (_actualTime <= 0)
         {
+            End(true);
             _cam.FixOnRoom = false;
         }
 
