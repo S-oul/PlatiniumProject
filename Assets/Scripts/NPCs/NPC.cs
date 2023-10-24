@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public abstract class NPC : MonoBehaviour
 {
-    [SerializeField] string _name = "";
-    Sprite _spriteRenderer;
+    DataManager _DM;
+    [SerializeField] protected string _name = "";
+    SpriteRenderer _spriteRenderer;
+    UINpc _npcUI;
+
+    public UINpc NPCUI { get => _npcUI; }
+
+    private void Start()
+    {
+        _DM = DataManager.Instance;  
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _npcUI = GetComponent<UINpc>();
+    }
 }
 
 public interface IChattyNPC
@@ -17,6 +28,8 @@ public interface IChattyNPC
 
 public interface ITaskNPC
 {
-    Task dialogueTexts { get; set; }
-    void Talk(string text);
+    GameObject Task { get;}
+
+
+    
 }

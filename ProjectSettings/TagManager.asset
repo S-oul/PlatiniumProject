@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Carrion
-  - Arm
   - GameManager
-  - DecryptageEnemy
-  - DecryptageTarget
+  - NPC
+  - Lift
+  - ZoneEvent
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -16,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Room
   - Player
   - Building
   - Background

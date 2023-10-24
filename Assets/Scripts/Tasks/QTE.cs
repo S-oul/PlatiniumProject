@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
@@ -10,8 +10,7 @@ public class QTE : InputTask, ITimedTask
     #region Variables
     public float _givenTime => _givenTimeTask;
 
-    [SerializeField] private float _givenTimeTask = 0f;
-    InputAction action = new InputAction();
+    [SerializeField] private float _givenTimeTask = 20f;
     public enum QTEInputs
     {
         X,
@@ -29,6 +28,7 @@ public class QTE : InputTask, ITimedTask
 
     [Header("QTE variables")]
     [SerializeField] List<QTEInputs> _inputsNeeded;
+    [SerializeField] int _numberOfInputs = 1;
 
     Dictionary<QTEInputs, string> _dicInputs = new Dictionary<QTEInputs, string>()
     {
@@ -50,6 +50,7 @@ public class QTE : InputTask, ITimedTask
     int _currentInputID = 0;
     Coroutine _inputCoroutine;
 
+    public float _timeToDoQTE = 3f;
 
     #endregion
 
@@ -59,7 +60,7 @@ public class QTE : InputTask, ITimedTask
         _inputsNeeded.Clear();
         _contextName = "";
         _currentInputID = 0;
-        for (int i = 0; i < (int)Random.Range(_data.MinQTENumberInputs, _data.MaxQTENumberInputs); i++)
+        for (int i = 0; i < _numberOfInputs; i++)
         {
             QTEInputs newInput = (QTEInputs)((int)(Random.Range(0, 9)));
             _inputsNeeded.Add(newInput);
@@ -74,9 +75,8 @@ public class QTE : InputTask, ITimedTask
         float _tempTime = time;
         while (CheckInputValue(_contextName, _dicInputs[_currentInput]) == PlayerInputValue.None && time > 0)
         {
-            print("BBBBBBBBBBBBBB");
             time -= Time.deltaTime;
-            _playerUI._sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
+            _sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
             yield return null; //=> Inportant => Inbecile
 
         }
@@ -88,20 +88,20 @@ public class QTE : InputTask, ITimedTask
 
         else if (_inputValue == PlayerInputValue.WrongValue)
         {
-            /*Debug.Log("Faux");*/
+            *//*Debug.Log("Faux");*//*
             InputValue(false);
 
         }
         else if (_inputValue == PlayerInputValue.RightValue)
         {
-            /*Debug.Log("Vraie");*/
+            *//*Debug.Log("Vraie");*//*
             InputValue(true);
 
         }
 
 
 
-        //OnTaskCompleted?.Invoke(this);
+        OnTaskCompleted?.Invoke(this);
     }
 
 
@@ -117,7 +117,7 @@ public class QTE : InputTask, ITimedTask
     void DisplayInput(QTEInputs input)
     {
         Debug.Log("Display");
-        if(_inputCoroutine != null)
+        if (_inputCoroutine != null)
         {
             StopCoroutine(_inputCoroutine);
         }
@@ -125,7 +125,7 @@ public class QTE : InputTask, ITimedTask
         _playerUI.ChangeUIInputs(Color.white);
         _playerUI.ChangeUIInputs(_dicInputs[input]);
         _currentInput = input;
-        _inputCoroutine = StartCoroutine(TimerToPressInput(_data.TimeBetweenInputsQTE[_difficulty - 1]));
+        _inputCoroutine = StartCoroutine(TimerToPressInput(_timeToDoQTE));
     }
 
 
@@ -145,7 +145,7 @@ public class QTE : InputTask, ITimedTask
             //Stack overflow because it goes here directly
             else
             {
-                /*Debug.Log("Pas finito");*/
+                *//*Debug.Log("Pas finito");*//*
                 //Display Input fait une overflow
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
@@ -160,6 +160,5 @@ public class QTE : InputTask, ITimedTask
         }
     }
 
-
-
 }
+*/

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
@@ -7,46 +9,122 @@ public class PlayerCollision : MonoBehaviour
 {
 
     PlayerController _controller;
+
+    MonoBehaviour collidertype;
+
+    #region In Game Var
+    bool _IsInLift = false;
+    bool _isInNPC = false;
+    bool _ = false;
+    #endregion
+
+    #region Accesseur
+    public bool IsInLift { get => _IsInLift; set => _IsInLift = value; }
+    public bool IsInNPC { get => _isInNPC; set => _isInNPC = value; }
+
+    #endregion
+
     private void Awake()
     {
         _controller = gameObject.GetComponent<PlayerController>();
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
     {
 
-
-        Task task = collision.gameObject.GetComponent<Task>();
-        if(task != null && _controller._isInteracting)
+        //Debug.Log("AAAAAAAAAAAAAAAAAA" + collision.name);
+        if (collidertype == null) { return; }
+        if (_controller.IsInteracting)
         {
-            task._player = gameObject;
-            task.Init();
+            switch (collidertype)
+            {
+                case InteractableNPC:
+                    ((InteractableNPC)collidertype).Interact(gameObject);
+                    _controller.IsInteracting = false;
+                    break;
+                case Lift:
+                    ((Lift)collidertype).InteractLift(gameObject);
+                    _controller.IsInteracting = false;
+                    break;
+                case Object:
+                    ((Object)collidertype).Interact(gameObject);
+                    _controller.IsInteracting = false;
+                    break;
+            }
+        }
+/*
+        Lift lift = collision.transform.parent.GetComponent<Lift>();
+        if (lift != null && _controller.IsInteracting)
+        {
+            lift.InteractLift(this.gameObject);
+            _controller.IsInteracting = false;
+        }*/       
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        //print("Enter :" + collision.gameObject.name);
+
+        Room room = collision.transform.GetComponent<Room>();
+        if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
+        {
+            room.ListPlayer.Add(gameObject);
+            room.OnRoomEnter();
             return;
         }
 
-        Lift lift = collision.gameObject.GetComponent<Lift>();
-        if(lift != null && _controller._isInteracting)
+        switch (collision.tag)
         {
-            lift.InteractLift(this.gameObject);
+            case "NPC":
+                //_isInNPC = true;
+                collidertype = collision.transform.GetComponent<NPC>();
+                break;
+            case "Lift":
+                //_IsInLift = true;
+                collidertype = collision.transform.parent.GetComponent<Lift>();
+                break;
+            case "ZoneEvent":
+                collidertype = collision.transform.GetComponent<ZoneEvent>();
+                ((ZoneEvent)collidertype).PlayerEnter(gameObject);
+                break;
+            case "Object":
+                collidertype = collision.transform.GetComponent<Object>();
+                
+                break;
         }
     }
 
-
-
-
-
-/*
-    public T[] GetComponentsInDirectChildren<T>() where T : Component
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        List<T> children = new List<T>();
-        foreach(Transform childTransform in transform)
+        collidertype = null;
+        Room room = collision.transform.GetComponent<Room>();
+        if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
         {
-            T childComponent = childTransform.GetComponent<T>();
-            if(childComponent != null)
-            {
-                children.Add(childComponent);
-            }
+            room.ListPlayer.Remove(gameObject);
+            room.OnRoomExit();
+            return;
         }
+/*
+        switch (collision.tag)
+        {
+            case "NPC":
+                //_isInNPC = true;
+                collidertype = null;
+                break;
+            case "Lift":
+                _IsInLift = true;
+                break;
+        }*/
+    }
 
-        return children.ToArray();
-    }*/
+    public class ColliderData<T> where T : MonoBehaviour
+    {
+        private T _colidertype;
+        public T Colidertype { get => _colidertype; set => _colidertype = value; }
+
+        public ColliderData(T type)
+        {
+            Colidertype = type;
+        }
+    }    
 }

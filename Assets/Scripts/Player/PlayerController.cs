@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 [RequireComponent(typeof(CharacterController2D))]
@@ -21,17 +22,20 @@ public class PlayerController : MonoBehaviour
     bool _isJumping = false;
     bool _isGrounded = false;
     bool _isCrouched = false;
-    public bool _isInteracting = false;
+    bool _isInteracting = false;
+    bool _canMove = true;
 
     CharacterController2D _controller;
     Collider2D _colliderPlayer;
 
     public string currentContextName;
 
+    public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
+    public bool CanMove { get => _canMove; set => _canMove = value; }
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController2D>();
-        
     }
 
 
@@ -45,12 +49,38 @@ public class PlayerController : MonoBehaviour
         _isJumping = context.ReadValueAsButton();
         _isJumping = context.action.triggered;
     }
-    public void OnCrouch(InputAction.CallbackContext context)
-    {
-        _isCrouched = context.ReadValueAsButton();
-    }
     
+    public void DisableMovementExceptInteract()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _playerInput.actions["Crouch"].Disable();
+        _playerInput.actions["InputTask"].Enable();
+        _canMove = false;
+    }
 
+    public void DisableMovement()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _playerInput.actions["Crouch"].Disable();
+        _playerInput.actions["InputTask"].Disable();
+        _canMove = false;
+    }
+    public void EnableMovement()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Enable();
+        _playerInput.actions["Jump"].Enable();
+        _playerInput.actions["Crouch"].Enable();
+        _playerInput.actions["InputTask"].Enable();
+        _canMove = true;
+    }
     public void OnInputTask(InputAction.CallbackContext context)
     {
         
@@ -62,13 +92,24 @@ public class PlayerController : MonoBehaviour
         {
             currentContextName = "";
         }
-        
+
+        Debug.Log(currentContextName);
+
     }
 
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        _isInteracting = context.ReadValueAsButton();
+        
+        if (context.performed)
+        {
+            _isInteracting = true ;
+            
+        }
+        else
+        {
+            _isInteracting = false;
+        }
     }
     // Comunicate contol inputs to CharacterContoller2D Script component
     private void FixedUpdate()

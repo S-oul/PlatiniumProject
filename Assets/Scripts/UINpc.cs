@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class UINpc : MonoBehaviour
+{
+    Canvas _canvas;
+
+    Transform _talkingBubble;
+    TextMeshProUGUI _talkingBubbleText;
+    Image _talkingBubbleImage;
+    void Start()
+    {
+        _canvas = transform.Find("Canvas").GetComponent<Canvas>();
+        _talkingBubble = _canvas.transform.Find("TalkingBubble");
+        _talkingBubbleImage = _talkingBubble.Find("Image").GetComponent<Image>();
+        _talkingBubbleText = _talkingBubble.Find("Text").GetComponent<TextMeshProUGUI>();
+    }
+
+
+    public void ChangeBubbleContent(Sprite image)
+    {
+        _talkingBubbleImage.sprite = image;
+    }
+    public void ChangeBubbleContent(string text)
+    {
+        _talkingBubbleText.text = text;
+    }
+}

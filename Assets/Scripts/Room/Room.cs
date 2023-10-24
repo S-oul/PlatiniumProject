@@ -3,29 +3,61 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.Rendering.Universal;
 
 public class Room : MonoBehaviour
 {
-    GameManager _gameManager;
-
+    #region Variables
     [Range(1,4)]
     [SerializeField] int _roomSize = 1;
     [SerializeField] string _id = "UNSET ==> go to room prefab";
 
+    //Color
+    [SerializeField] SpriteRenderer _sprite;
+    float h = 0;
+    float s = 0;
+    float v = 0;
+
     [SerializeField] List<GameObject> _objectList;
     [SerializeField] List<GameObject> _npcList;
     [SerializeField] List<GameObject> _eventList;
+
+    Task _task;
+
+
+
+    #endregion
     
+    GameManager _gameManager;
+
+
+    #region in Game Variable
+
+    [SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
+    [SerializeField] bool _isPlayerInRoom() { if (_listPlayer.Count > 0) return true; else return false; }
+
+    #endregion
+
+    #region Accesseur
     public int RoomSize { get => _roomSize; }
     public string Id { get => _id; set => _id = value; }
+    public List<GameObject> ListPlayer { get => _listPlayer; set => _listPlayer = value; }
 
+    public Task TaskRoom { get => _task; set => _task = value; }
+    #endregion
 
     public void InitRoom()
     {
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
+        if(_sprite == null) { _sprite = GetComponentInChildren<SpriteRenderer>(); }
 
-        foreach(var o in _npcList)
+
+        Color.RGBToHSV(_sprite.color, out h, out s, out v);
+        print(gameObject.name + " : " + h + " " + s + " " + v);
+        _sprite.color = Color.HSVToRGB(h, s, .4f);
+
+
+        foreach (var o in _npcList)
         {
             _gameManager._npcList.Add(o);
         }
@@ -37,43 +69,32 @@ public class Room : MonoBehaviour
         {
             _gameManager._eventList.Add(o);
         }
-
+        ///Lift
         if (_id.Contains("L"))
         {
             _gameManager._liftList.Add(GetComponent<Lift>());
         }
+
+        ///Spawn
         if (_id.Contains("S"))
         {
 
         }
     }
 
+    public void OnRoomEnter()
+    {
+        _sprite.color = Color.HSVToRGB(h, s, v);
+    }
+    public void OnRoomExit()
+    {
+        //_sprite.color = Color.HSVToRGB(h, s, 0.1f);
+
+    }
+
     #region UNITY EDITOR
 #if UNITY_EDITOR
-    [MenuItem("Assets/Create Room")]
 
-    void PrefabCreator()
-    {
-        CreatePrefabInProject("RoomType1.prefab");
-    }
-    public static string CurrentProjectFolderPath
-    {
-        get
-        {
-            var projectWindowUtilType = typeof(ProjectWindowUtil);
-            MethodInfo getActiveFolderPath = projectWindowUtilType.GetMethod("GetActiveFolderPath", BindingFlags.Static | BindingFlags.NonPublic);
-            object obj = getActiveFolderPath.Invoke(null, new object[0]);
-            return obj.ToString();
-        }
-    }
-
-
-    private static void CreatePrefabInProject(string prefabName)
-    {
-        var prefab = UnityEngine.Resources.Load(prefabName);
-        string targetPath = $"{CurrentProjectFolderPath}/{prefabName}.prefab";
-        AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(prefab), targetPath);
-    }
     private void OnValidate()
     {
         transform.localScale = new Vector3(RoomSize * 5, transform.localScale.y, 1);

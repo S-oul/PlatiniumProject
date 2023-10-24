@@ -24,28 +24,36 @@ public abstract class InputTask : Task
         RightValue,
         WrongValue
     }
-
+    
     public abstract void StartTask();
+    
     public override void Init()
     {
+        IsStarted = true;
+
         _playerInput = _player.GetComponent<PlayerInput>();
         _playerUI = _player.GetComponent<PlayerUI>();
         _controller = _player.GetComponent<PlayerController>();
         _data = DataManager.Instance;
-        _playerInput.actions["Interact"].Disable();
-        _playerInput.actions["Movement"].Disable();
-        _playerInput.actions["Jump"].Disable();
-        _playerInput.actions["Crouch"].Disable();
-        _playerInput.actions["InputTask"].Enable();
+        _controller.DisableMovementExceptInteract();
+        _playerUI.DisplayUI(true);
+        _playerUI.ChangeUIInputsValidation(1);
         StartTask();
     }
 
+    public override void End(bool isSuccessful)
+    {
+        IsStarted = false;
+        IsDone = isSuccessful;
+        _controller.EnableMovement();
+        _playerInput.actions["InputTask"].Disable();
+        _playerUI.ClearUIInputs();
+        _playerUI.DisplayUI(false);
 
+    }
     public PlayerInputValue CheckInputValue(string contextName, string inputNeeded)
     {
-        
         contextName = _controller.currentContextName;
-        Debug.Log(contextName);
         if (string.IsNullOrEmpty(contextName))
         {
             _inputValue = PlayerInputValue.None;
@@ -53,11 +61,11 @@ public abstract class InputTask : Task
         }
         
         _data.InputNamesConverter.TryGetValue(contextName, out string userInputName);
-        Debug.Log(userInputName + " = " + inputNeeded);
         if (userInputName == inputNeeded)
         {
             contextName = "";
             _inputValue = PlayerInputValue.RightValue;
+            
             return PlayerInputValue.RightValue;
         }
         else
@@ -66,5 +74,7 @@ public abstract class InputTask : Task
             return PlayerInputValue.WrongValue;
         }
     }
+
+    
 
 }
