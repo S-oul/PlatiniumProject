@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     void PickRandomSprite(GameObject player)
     {
+        print(player);
         Sprite temp = DataManager.Instance.SpritePlayers[Random.Range(0, DataManager.Instance.SpritePlayers.Count)];
         DataManager.Instance.SpritePlayers.Remove(temp);
         player.GetComponent<SpriteRenderer>().sprite = temp;

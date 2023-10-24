@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 3189240542465512968}
   - component: {fileID: 3108168623149331971}
   m_Layer: 6
-  m_Name: RoomType2 1
+  m_Name: Decryptage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,7 +211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 2
   _id: UNSET ==> go to room prefab
-  _sprite: {fileID: 0}
+  _spriteRoom: {fileID: 0}
+  _screenTexture: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []

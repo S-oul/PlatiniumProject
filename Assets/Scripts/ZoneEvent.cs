@@ -11,7 +11,9 @@ public class ZoneEvent : MonoBehaviour
 
     private void OnEnable()
     {
-        _task = Instantiate(DataManager.Instance.AllTasks[(int)_typeTask], this.transform);
+        _task = Instantiate(DataManager.Instance.AllTasks[(int)_typeTask]);
+        _task.transform.parent = this.transform;
+        _task.transform.position = this.transform.position;
     }
 
     public void PlayerEnter(GameObject player)
