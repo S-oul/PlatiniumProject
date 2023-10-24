@@ -211,7 +211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 2
   _id: UNSET ==> go to room prefab
-  _sprite: {fileID: 0}
+  _spriteRoom: {fileID: 0}
+  _screenTexture: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
@@ -316,6 +317,10 @@ PrefabInstance:
     - target: {fileID: 3513065608492074799, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Name
       value: ZoneEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3513065608492074799, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

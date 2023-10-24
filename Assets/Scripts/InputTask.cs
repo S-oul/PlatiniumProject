@@ -35,9 +35,7 @@ public abstract class InputTask : Task
         _playerUI = PlayerGameObject.GetComponent<PlayerUI>();
         _controller = PlayerGameObject.GetComponent<PlayerController>();
         _data = DataManager.Instance;
-        _controller.DisableMovementExceptInteract();
-        _playerUI.DisplayUI(true);
-        _playerUI.ChangeUIInputsValidation(1);
+        _controller.DisableMovementExceptInput();
         StartTask();
     }
 

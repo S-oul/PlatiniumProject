@@ -64,6 +64,8 @@ public class CowboyQTE : InputTask
 
     public override void StartTask()
     {
+        _playerUI.DisplayUI(true);
+        _playerUI.ChangeUIInputsValidation(1);
         _numberOfFails = 0;
         StartTaskQTE();
     }
