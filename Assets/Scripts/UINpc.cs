@@ -28,4 +28,9 @@ public class UINpc : MonoBehaviour
     {
         _talkingBubbleText.text = text;
     }
+    public void DisplayTalkingBubble(bool isActive)
+    {
+        _talkingBubble.gameObject.SetActive(isActive);
+    }
+
 }

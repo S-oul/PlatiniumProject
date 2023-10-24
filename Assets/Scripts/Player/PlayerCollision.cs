@@ -47,6 +47,7 @@ public class PlayerCollision : MonoBehaviour
                     break;
                 case Object:
                     ((Object)collidertype).Interact(gameObject);
+
                     _controller.IsInteracting = false;
                     break;
             }

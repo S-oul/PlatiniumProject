@@ -108,7 +108,7 @@ public class Building : MonoBehaviour
     {
         string data = f._roomstype;
         int i = 0;
-        print(data);
+        //print(data);
         foreach (char c in data)
         {
             if (c == 'S')

@@ -12,11 +12,13 @@ public abstract class NPC : MonoBehaviour
 
     public UINpc NPCUI { get => _npcUI; }
 
-    private void Start()
+    private void Awake()
     {
+        
         _DM = DataManager.Instance;  
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _npcUI = GetComponent<UINpc>();
+
     }
 }
 

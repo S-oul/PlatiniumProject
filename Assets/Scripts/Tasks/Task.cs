@@ -11,12 +11,12 @@ public abstract class Task : MonoBehaviour
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
     [Range(1, 5)] public int _difficulty = 1;
-    [NonSerialized] public GameObject _player;
+    GameObject _player;
     Room _room;
     bool _isDone = false;
     private bool _isStarted = false;
 
-    public GameObject PlayerGameObject { get => _player; }
+    public GameObject PlayerGameObject { get => _player; set => _player = value; }
     public bool IsDone { get => _isDone; set => _isDone = value; }
     public int NumberOfPlayers { get => _numberOfPlayers; set => _numberOfPlayers = value; }
 

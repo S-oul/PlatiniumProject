@@ -187,7 +187,7 @@ public class CowboyQTE : InputTask
 
     void PushBack()
     {
-        Vector2 _dir = new Vector2(-1 * (_npcCowboy.gameObject.transform.position.x - _player.transform.position.x), 0).normalized;
-        _player.GetComponent<Rigidbody2D>().AddForce(_dir * _repulseForce, ForceMode2D.Impulse);
+        Vector2 _dir = new Vector2(-1 * (_npcCowboy.gameObject.transform.position.x - PlayerGameObject.transform.position.x), 0).normalized;
+        PlayerGameObject.GetComponent<Rigidbody2D>().AddForce(_dir * _repulseForce, ForceMode2D.Impulse);
     }
 }

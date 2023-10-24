@@ -93,8 +93,6 @@ public class PlayerController : MonoBehaviour
             currentContextName = "";
         }
 
-        Debug.Log(currentContextName);
-
     }
 
 

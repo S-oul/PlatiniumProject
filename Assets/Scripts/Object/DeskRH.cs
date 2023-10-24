@@ -25,6 +25,7 @@ public class DeskRH : Object
         {
             _player = player;
             _isUsed = true;
+            _task.GetComponent<Task>().PlayerGameObject = player;
             _task.GetComponent<Task>().Init();
         }
         

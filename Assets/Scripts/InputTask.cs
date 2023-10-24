@@ -31,9 +31,9 @@ public abstract class InputTask : Task
     {
         IsStarted = true;
 
-        _playerInput = _player.GetComponent<PlayerInput>();
-        _playerUI = _player.GetComponent<PlayerUI>();
-        _controller = _player.GetComponent<PlayerController>();
+        _playerInput = PlayerGameObject.GetComponent<PlayerInput>();
+        _playerUI = PlayerGameObject.GetComponent<PlayerUI>();
+        _controller = PlayerGameObject.GetComponent<PlayerController>();
         _data = DataManager.Instance;
         _controller.DisableMovementExceptInteract();
         _playerUI.DisplayUI(true);

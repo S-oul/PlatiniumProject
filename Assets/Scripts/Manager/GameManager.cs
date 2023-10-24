@@ -12,10 +12,12 @@ public class GameManager : MonoBehaviour
 
 
     public List<Lift> _liftList = new List<Lift>();
-
-
-    [SerializeField] GameObject[] _players = new GameObject[4];
+    int _playerCount;
     
+    [SerializeField] GameObject[] _players = new GameObject[4];
+
+    public int PlayerCount { get => _playerCount; set => _playerCount = value; }
+
     public GameObject[] Players { get => _players; }
 
 
