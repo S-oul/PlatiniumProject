@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerPointerMover : MonoBehaviour
-{    
+{
+    #region Declarations
     Transform _playerPointerTrans;
     Vector3 _playerStartPosition;
 
@@ -29,7 +28,6 @@ public class PlayerPointerMover : MonoBehaviour
     }
     PlayerPointerState _starterState = PlayerPointerState.IDLE;
     PlayerPointerState _currentState;
-    //PlayerPointerState _previousState; 
 
     enum PlayerLayerPosition
     {
@@ -46,8 +44,7 @@ public class PlayerPointerMover : MonoBehaviour
 
     Renderer _ppVisualsSprite;
     Renderer _ppDeathVisualsSprite;
-
-    bool _playerHit;
+    #endregion
 
     public void Awake()
     {
@@ -55,8 +52,6 @@ public class PlayerPointerMover : MonoBehaviour
         _playerStartPosition = _playerPointerTrans.position;
 
         SetState(_starterState);
-        //_currentState = _starterState;
-        //_previousState = _starterState;
 
         _playerStepDistance = new Vector3(_playerStepDistanceInput, 0, 0);
         _positionDict = CreatePositionDictionary();
@@ -101,10 +96,7 @@ else if (context.canceled)
 
     public void FixedUpdate()
     {
-        //Debug.Log("_player his is " + _playerHit);
-        //if (_currentState == PlayerPointerState.HIT) { _currentState = PlayerPointerState.HIT; _playerHit = false; }
         {
-            Debug.Log(_currentState);
             switch (_currentState)
             {
                 case PlayerPointerState.HIT:
@@ -145,7 +137,6 @@ else if (context.canceled)
         {
             _currentState = newState;
         }
-        Debug.Log("State is now " + _currentState);
     }
 
     private void AnimatePlayer(Vector3 targetPosition)
@@ -164,7 +155,6 @@ else if (context.canceled)
         }
         return dict;
     }
-    //public void killPlayerPointer() { killPlayerPointerHelper(); }
     public void killPlayerPointer()
     {
         if (_currentState == PlayerPointerState.DIEING ||  _currentState == PlayerPointerState.HIT || _currentPlayerLayerPosition == PlayerLayerPosition.HOME) { return; }

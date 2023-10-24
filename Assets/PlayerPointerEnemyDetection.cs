@@ -11,6 +11,7 @@ public class PlayerPointerEnemyDetection : MonoBehaviour
         if (otherCollider.gameObject.tag == "DecryptageEnemy")
         {
             _playerPointerMover.killPlayerPointer();
+            Debug.Log("Hit!");
         }
 
         if (otherCollider.gameObject.tag == "DecryptageTarget")
