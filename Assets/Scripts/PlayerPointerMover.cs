@@ -62,6 +62,7 @@ public class PlayerPointerMover : MonoBehaviour
 
     public void InputManager(InputAction.CallbackContext context)
     {
+        print(context);
         if (context.ReadValue<float>() > 0) { MovePlayerForward(); }
         if (context.ReadValue<float>() < 0) { MovePlayerBack(); }
         return;

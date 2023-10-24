@@ -295,10 +295,10 @@
                 {
                     "name": "negative",
                     "id": "014039b2-a989-4c88-9c12-323bc8cde2d2",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Keyboard;Controller",
                     "action": "Decryptage",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -306,10 +306,10 @@
                 {
                     "name": "positive",
                     "id": "c76d7b07-387f-43ce-8820-65e7039c3794",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Keyboard;Controller",
                     "action": "Decryptage",
                     "isComposite": false,
                     "isPartOfComposite": true

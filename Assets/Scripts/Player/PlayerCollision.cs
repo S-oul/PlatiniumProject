@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -30,7 +31,6 @@ public class PlayerCollision : MonoBehaviour
     }
     private void Update()
     {
-
         if (collidertype == null) { return; }
         if (_controller.IsInteracting)
         {
@@ -40,13 +40,22 @@ public class PlayerCollision : MonoBehaviour
                     ((InteractableNPC)collidertype).Interact(gameObject);
                     _controller.IsInteracting = false;
                     break;
+
                 case Lift:
                     ((Lift)collidertype).InteractLift(gameObject);
                     _controller.IsInteracting = false;
                     break;
+
                 case Object:
                     ((Object)collidertype).Interact(gameObject);
+                    _controller.IsInteracting = false;
+                    break;
 
+                case DecryptageTask:
+                    //((DecryptageTask)collidertype).PlayerInput = GetComponent<PlayerInput>();
+                    ((DecryptageTask)collidertype).Init();
+                    GetComponent<PlayerController>().DisableMovement();
+                    GetComponent<PlayerInput>().actions["Decryptage"].Enable();
                     _controller.IsInteracting = false;
                     break;
             }
@@ -62,8 +71,6 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
         Room room = collision.transform.GetComponent<Room>();
         if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
         {
@@ -71,20 +78,17 @@ public class PlayerCollision : MonoBehaviour
             room.OnRoomEnter();
             return;
         }
-            print("Enter :" + collision.gameObject.name);
+        
 
         switch (collision.tag)
         {
             case "NPC":
                 //_isInNPC = true;
                 collidertype = collision.transform.GetComponent<NPC>();
-                Debug.Log("AAAAAAAAAAAAAAAAAA" + collidertype.name);
                 break;
             case "Lift":
                 //_IsInLift = true;
                 collidertype = collision.transform.parent.GetComponent<Lift>();
-                Debug.Log("AAAAAAAAAAAAAAAAAA" + collidertype.name);
-
                 break;
             case "ZoneEvent":
                 collidertype = collision.transform.GetComponent<ZoneEvent>();
@@ -92,11 +96,12 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "Object":
                 collidertype = collision.transform.GetComponent<Object>();
-                
                 break;
             case "Laser":
-                collidertype = GetComponent<PlayerController>();
-                ((PlayerController)collidertype).DownPlayer();
+                GetComponent<PlayerController>().DownPlayer();
+                break;
+            case "DecryptInteract":
+                collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
                 break;
         }
     }

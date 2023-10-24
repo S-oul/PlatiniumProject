@@ -9,6 +9,10 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] List<LayerCenterSt> _layerStructs;
     public List<float> speedList;
 
+    bool _doSpin = false;
+
+    public bool DoSpin { get => _doSpin; set => _doSpin = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,10 @@ public class ObstacleManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        for (int i = 0; i < transform.childCount; i++)
-            _layerStructs[i].transform.Rotate(0, 0, _layerStructs[i].spinSpeed); 
+        if (_doSpin)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+                _layerStructs[i].transform.Rotate(0, 0, _layerStructs[i].spinSpeed); 
+        }
     }
 }

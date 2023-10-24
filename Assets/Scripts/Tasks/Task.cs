@@ -28,6 +28,9 @@ public abstract class Task : MonoBehaviour
     private void Start()
     {
         _room = transform.parent.parent.GetComponent<Room>();
+        if(_room == null) { _room = transform.parent.GetComponent<Room>();}
+        if (_room == null) { _room = transform.GetComponent<Room>(); }
+
         _room.TaskRoom = this;
     }
     public abstract void Init();
