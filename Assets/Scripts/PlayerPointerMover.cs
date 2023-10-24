@@ -8,7 +8,7 @@ public class PlayerPointerMover : MonoBehaviour
     Transform _playerPointerTrans;
     Vector3 _playerStartPosition;
 
-    float _playerStepDistanceInput = 0.69f;
+    float _playerStepDistanceInput = 0.45f;
     Vector3 _playerStepDistance;
     [SerializeField] [Range(0.01f, 0.5f)] float _playerSpeed = 0.1f;
 
@@ -155,6 +155,7 @@ else if (context.canceled)
         }
         return dict;
     }
+
     public void killPlayerPointer()
     {
         if (_currentState == PlayerPointerState.DIEING ||  _currentState == PlayerPointerState.HIT || _currentPlayerLayerPosition == PlayerLayerPosition.HOME) { return; }
