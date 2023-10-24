@@ -51,7 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 3
   _id: UNSET ==> go to room prefab
-  _sprite: {fileID: 0}
+  _spriteRoom: {fileID: 0}
+  _screenTexture: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
@@ -377,19 +378,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 660218442487467802, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Size.x
-      value: 4.0359397
+      value: 0.4039278
       objectReference: {fileID: 0}
     - target: {fileID: 660218442487467802, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Size.y
-      value: 4.1892724
+      value: 0.84733284
       objectReference: {fileID: 0}
     - target: {fileID: 660218442487467802, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Offset.x
-      value: -0.18033767
+      value: -0.014797814
       objectReference: {fileID: 0}
     - target: {fileID: 660218442487467802, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Offset.y
-      value: -0.1677134
+      value: -0.029901445
       objectReference: {fileID: 0}
     - target: {fileID: 1539541497662645154, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_LocalPosition.x
@@ -429,6 +430,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1539541497662645154, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807244619615674751, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
+      propertyPath: _typeTask
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3513065608492074799, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}

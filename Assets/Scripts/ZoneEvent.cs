@@ -20,6 +20,7 @@ public class ZoneEvent : MonoBehaviour
         if (!taskComp.IsDone)
         {
             taskComp.OnPlayerJoinedTask(player);
+            Debug.Log("ejzfhnkeazfnabofjka;, f");
         }
         
     }   
