@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool CanMove { get => _canMove; set => _canMove = value; }
+    public bool IsPlayerDown { get => _isPlayerDown; set => _isPlayerDown = value; }
 
     private void Awake()
     {
@@ -65,6 +66,16 @@ public class PlayerController : MonoBehaviour
     }
 
     public void DisableMovement()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _playerInput.actions["Crouch"].Disable();
+        _playerInput.actions["InputTask"].Disable();
+        _canMove = false;
+    }
+    public void DownPlayer()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Disable();

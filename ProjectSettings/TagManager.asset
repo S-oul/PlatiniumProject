@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameManager
-  - DecryptageEnemy
-  - DecryptageTarget
   - NPC
   - Lift
   - ZoneEvent
   - Object
+  - DecryptageEnemy
+  - DecryptageTarget
   layers:
   - Default
   - TransparentFX

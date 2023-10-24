@@ -31,7 +31,6 @@ public class PlayerCollision : MonoBehaviour
     private void Update()
     {
 
-        //Debug.Log("AAAAAAAAAAAAAAAAAA" + collision.name);
         if (collidertype == null) { return; }
         if (_controller.IsInteracting)
         {
@@ -63,7 +62,6 @@ public class PlayerCollision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        //print("Enter :" + collision.gameObject.name);
 
         Room room = collision.transform.GetComponent<Room>();
         if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
@@ -72,16 +70,20 @@ public class PlayerCollision : MonoBehaviour
             room.OnRoomEnter();
             return;
         }
+            print("Enter :" + collision.gameObject.name);
 
         switch (collision.tag)
         {
             case "NPC":
                 //_isInNPC = true;
                 collidertype = collision.transform.GetComponent<NPC>();
+                Debug.Log("AAAAAAAAAAAAAAAAAA" + collidertype.name);
                 break;
             case "Lift":
                 //_IsInLift = true;
                 collidertype = collision.transform.parent.GetComponent<Lift>();
+                Debug.Log("AAAAAAAAAAAAAAAAAA" + collidertype.name);
+
                 break;
             case "ZoneEvent":
                 collidertype = collision.transform.GetComponent<ZoneEvent>();
@@ -93,7 +95,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "Laser":
                 collidertype = GetComponent<PlayerController>();
-                ((PlayerController)collidertype).DisableMovement();
+                ((PlayerController)collidertype).DownPlayer();
                 break;
         }
     }
@@ -120,15 +122,5 @@ public class PlayerCollision : MonoBehaviour
                 break;
         }*/
     }
-
-    public class ColliderData<T> where T : MonoBehaviour
-    {
-        private T _colidertype;
-        public T Colidertype { get => _colidertype; set => _colidertype = value; }
-
-        public ColliderData(T type)
-        {
-            Colidertype = type;
-        }
-    }    
+   
 }
