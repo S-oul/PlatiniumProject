@@ -40,13 +40,25 @@ public abstract class Task : MonoBehaviour
     public abstract void End(bool isSuccessful);
     public void OnPlayerJoinedTask(GameObject player)
     {
-        _playersDoingTask.Add(player);
-        _player = player;
-        if(_playersDoingTask.Count == _numberOfPlayers)
+        if (_numberOfPlayers == 1)
         {
+            _player = player;
+            _playersDoingTask.Add(player);
             Init();
-            
         }
+        else
+        {
+            Debug.Log(_playersDoingTask.Count);
+            _playersDoingTask.Add(player);
+            if (_playersDoingTask.Count == _numberOfPlayers)
+            {
+                Init();
+
+            }
+        }
+        
+
+        
         
     }
 

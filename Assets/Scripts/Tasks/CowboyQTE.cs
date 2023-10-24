@@ -8,6 +8,11 @@ using UnityEngine.InputSystem;
 public class CowboyQTE : InputTask
 {
     #region Variables
+    protected PlayerInput _playerInput;
+    protected PlayerUI _playerUI;
+
+    protected PlayerController _controller;
+
     InputAction action = new InputAction();
     public enum QTEInputs
     {
@@ -64,7 +69,11 @@ public class CowboyQTE : InputTask
 
     public override void StartTask()
     {
-        _playerUI.DisplayUI(true);
+        _playerInput = PlayerGameObject.GetComponent<PlayerInput>();
+        _playerUI = PlayerGameObject.GetComponent<PlayerUI>();
+        _controller = PlayerGameObject.GetComponent<PlayerController>();
+        _controller.DisableMovementExceptInput();
+        _playerUI.DisplayQTEUI(true);
         _playerUI.ChangeUIInputsValidation(1);
         _numberOfFails = 0;
         StartTaskQTE();
@@ -88,7 +97,7 @@ public class CowboyQTE : InputTask
     IEnumerator TimerToPressInput(float time)
     {
         float _tempTime = time;
-        while (CheckInputValue(_contextName, _dicInputs[_currentInput]) == PlayerInputValue.None && time > 0)
+        while (CheckInputValue(_controller.currentContextName, _dicInputs[_currentInput], _controller) == PlayerInputValue.None && time > 0)
         {
             time -= Time.deltaTime;
             _playerUI._sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
@@ -111,9 +120,6 @@ public class CowboyQTE : InputTask
 
         }
 
-
-
-        OnTaskCompleted?.Invoke(this);
     }
 
 
@@ -144,7 +150,7 @@ public class CowboyQTE : InputTask
             if (_currentInputID ==_numberOfInputs)
             {
                 //_playerUI.ChangeUIInputsValidation(_index, Color.green);
-                End(true);
+                EndQTE(true);
                 return;
             }
             //Stack overflow because it goes here directly
@@ -163,8 +169,8 @@ public class CowboyQTE : InputTask
             FeedBackBadInputs();
             if (_numberOfFails == 3)
             {
-               // _playerUI.ChangeUIInputsValidation(_index, Color.red);
-                End(false);
+                // _playerUI.ChangeUIInputsValidation(_index, Color.red);
+                EndQTE(false);
                 PushBack();
                 return;
             }
@@ -191,5 +197,14 @@ public class CowboyQTE : InputTask
     {
         Vector2 _dir = new Vector2(-1 * (_npcCowboy.gameObject.transform.position.x - PlayerGameObject.transform.position.x), 0).normalized;
         PlayerGameObject.GetComponent<Rigidbody2D>().AddForce(_dir * _repulseForce, ForceMode2D.Impulse);
+    }
+
+    void EndQTE(bool value)
+    {
+        _controller.EnableMovement();
+        _playerInput.actions["InputTask"].Disable();
+        _playerUI.ClearUIInputs();
+        _playerUI.DisplayInputsUI(false);
+        End(value);
     }
 }
