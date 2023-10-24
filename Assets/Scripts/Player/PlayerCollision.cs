@@ -52,7 +52,7 @@ public class PlayerCollision : MonoBehaviour
                     break;
 
                 case DecryptageTask:
-                    //((DecryptageTask)collidertype).PlayerInput = GetComponent<PlayerInput>();
+                    ((DecryptageTask)collidertype).PlyrInput = GetComponent<PlayerInput>();
                     ((DecryptageTask)collidertype).Init();
                     GetComponent<PlayerController>().DisableMovement();
                     GetComponent<PlayerInput>().actions["Decryptage"].Enable();
@@ -98,6 +98,7 @@ public class PlayerCollision : MonoBehaviour
                 collidertype = collision.transform.GetComponent<Object>();
                 break;
             case "Laser":
+                print("haaaaaaaaaaaaaaaaaaaaaa");
                 GetComponent<PlayerController>().DownPlayer();
                 break;
             case "DecryptInteract":

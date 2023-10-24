@@ -9,14 +9,16 @@ public class DecryptageTask : InputTask
     
     [SerializeField] ObstacleManager _obstacles;
     [SerializeField] PlayerPointerMover _arrow;
-    //[SerializeField] PlayerInput _plyrInput;
+    [SerializeField] PlayerInput _plyrInput;
 
-    //public PlayerInput PlayerInput { get => _plyrInput; set => _plyrInput = value; }
+    public PlayerInput PlyrInput { get => _plyrInput; set => _plyrInput = value; }
 
     public override void End(bool isSuccessful)
     {
-/*        _playerInput.Disable();
-*/
+        if (!isSuccessful)
+        {
+        }
+        _plyrInput.transform.GetComponent<PlayerController>().EnableMovement();
         _obstacles.DoSpin = false;
     }
     public override void Init()

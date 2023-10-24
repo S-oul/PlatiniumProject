@@ -11,11 +11,13 @@ public class PlayerPointerEnemyDetection : MonoBehaviour
         if (otherCollider.gameObject.tag == "DecryptageEnemy")
         {
             _playerPointerMover.killPlayerPointer();
+            transform.parent.parent.GetComponent<DecryptageTask>().End(false);
             Debug.Log("Hit!");
         }
 
         if (otherCollider.gameObject.tag == "DecryptageTarget")
         {
+            transform.parent.parent.GetComponent<DecryptageTask>().End(true);
             Debug.Log("WIN!");
         }
     }

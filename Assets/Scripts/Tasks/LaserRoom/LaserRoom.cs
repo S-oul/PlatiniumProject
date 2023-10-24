@@ -84,6 +84,7 @@ public class LaserRoom : Task , ITimedTask
     {
         BoxCollider2D b = _doorL.GetComponent<BoxCollider2D>();
         BoxCollider2D b2 = _doorR.GetComponent<BoxCollider2D>();
+        print("DOOOOOOOOOOOOOOOORS" + block + " " + b + b2);
         if (block)
         {
             yield return new WaitForSeconds(.5f);
@@ -167,7 +168,7 @@ public class LaserRoom : Task , ITimedTask
     {
         while (_actualTime > 0) 
         {
-            Debug.Log(_actualTime);
+            //Debug.Log(_actualTime);
             if (!OnePlayerAlive())
             {
                 End(false);
