@@ -7,12 +7,16 @@ public class Laser : MonoBehaviour
     public Transform ToFar;
     public bool _goLeft = true;
     public float _speed = 5;
+    public float _timeToSwap = 2;
 
     LineRenderer _lineRenderer;
+    BoxCollider2D _boxCollider;
 
     private void OnEnable()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+        _boxCollider = GetComponent<BoxCollider2D>();
+        StartCoroutine(SwapperOn());
     }
 
     void Update()
@@ -26,6 +30,7 @@ public class Laser : MonoBehaviour
             transform.localPosition += Vector3.left * Time.deltaTime * _speed;
             if (transform.localPosition.x < ToFar.position.x)
             {
+                StopAllCoroutines();
                 Destroy(gameObject);
             }
         }
@@ -34,8 +39,25 @@ public class Laser : MonoBehaviour
             transform.localPosition += Vector3.right * Time.deltaTime * _speed;
             if (transform.localPosition.x > ToFar.position.x)
             {
+                StopAllCoroutines();
                 Destroy(gameObject);
             }
         }
+    }
+
+    IEnumerator SwapperOn()
+    {
+        yield return new WaitForSeconds(_timeToSwap);
+        _lineRenderer.enabled = true;
+        _boxCollider.enabled = true;
+        StartCoroutine(SwapperOff());
+    }
+    IEnumerator SwapperOff()
+    {
+        yield return new WaitForSeconds(_timeToSwap/2);
+        _lineRenderer.enabled = false;
+        _boxCollider.enabled = false;
+        StartCoroutine(SwapperOn());
+
     }
 }

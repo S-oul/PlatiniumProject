@@ -91,6 +91,10 @@ public class PlayerCollision : MonoBehaviour
                 collidertype = collision.transform.GetComponent<Object>();
                 
                 break;
+            case "Laser":
+                collidertype = GetComponent<PlayerController>();
+                ((PlayerController)collidertype).DisableMovement();
+                break;
         }
     }
 

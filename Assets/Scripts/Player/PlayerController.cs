@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
     bool _isGrounded = false;
     bool _isCrouched = false;
     bool _isInteracting = false;
+    bool _isPlayerDown = false;
+
     bool _canMove = true;
 
     CharacterController2D _controller;
@@ -70,6 +73,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Crouch"].Disable();
         _playerInput.actions["InputTask"].Disable();
         _canMove = false;
+        _isPlayerDown = true;
     }
     public void EnableMovement()
     {
@@ -80,6 +84,8 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Crouch"].Enable();
         _playerInput.actions["InputTask"].Enable();
         _canMove = true;
+        _isPlayerDown = false;
+
     }
     public void OnInputTask(InputAction.CallbackContext context)
     {
@@ -114,6 +120,8 @@ public class PlayerController : MonoBehaviour
     // Comunicate contol inputs to CharacterContoller2D Script component
     private void FixedUpdate()
     {
+        if(_isPlayerDown) { transform.localEulerAngles = new Vector3(0,0,90); }
+        else { transform.localEulerAngles = new Vector3(0, 0, 0); }
         _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isCrouched, _isJumping);
         _isJumping = false;
     }

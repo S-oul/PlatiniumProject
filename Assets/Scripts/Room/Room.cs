@@ -13,10 +13,12 @@ public class Room : MonoBehaviour
     [SerializeField] string _id = "UNSET ==> go to room prefab";
 
     //Color
-    [SerializeField] SpriteRenderer _sprite;
+    [SerializeField] SpriteRenderer _spriteRoom;
     float h = 0;
     float s = 0;
     float v = 0;
+
+    [SerializeField] SpriteRenderer _screenTexture;
 
     [SerializeField] List<GameObject> _objectList;
     [SerializeField] List<GameObject> _npcList;
@@ -44,17 +46,18 @@ public class Room : MonoBehaviour
     public List<GameObject> ListPlayer { get => _listPlayer; set => _listPlayer = value; }
 
     public Task TaskRoom { get => _task; set => _task = value; }
+    public SpriteRenderer ScreenTexture { get => _screenTexture; set => _screenTexture = value; }
     #endregion
 
     public void InitRoom()
     {
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
-        if(_sprite == null) { _sprite = GetComponentInChildren<SpriteRenderer>(); }
+        if(_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
 
 
-        Color.RGBToHSV(_sprite.color, out h, out s, out v);
-        print(gameObject.name + " : " + h + " " + s + " " + v);
-        _sprite.color = Color.HSVToRGB(h, s, .4f);
+        Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
+        //print(gameObject.name + " : " + h + " " + s + " " + v);
+        _spriteRoom.color = Color.HSVToRGB(h, s, .4f);
 
 
         foreach (var o in _npcList)
@@ -84,7 +87,7 @@ public class Room : MonoBehaviour
 
     public void OnRoomEnter()
     {
-        _sprite.color = Color.HSVToRGB(h, s, v);
+        _spriteRoom.color = Color.HSVToRGB(h, s, v);
     }
     public void OnRoomExit()
     {
