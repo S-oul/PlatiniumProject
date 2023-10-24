@@ -44,7 +44,8 @@ public class DataManager : MonoBehaviour
         CowboyQTE,
         LaserRoom,
         RHTask,
-        Decryptage
+        Decryptage,
+        Duolingo
     }
 
     

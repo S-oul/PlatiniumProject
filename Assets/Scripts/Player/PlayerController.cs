@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         _isJumping = context.action.triggered;
     }
     
-    public void DisableMovementExceptInteract()
+    public void DisableMovementExceptInput()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Disable();
