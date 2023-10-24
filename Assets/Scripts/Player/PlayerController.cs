@@ -76,7 +76,6 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Interact"].Disable();
         _playerInput.actions["Movement"].Disable();
         _playerInput.actions["Jump"].Disable();
-        _playerInput.actions["Crouch"].Disable();
         _playerInput.actions["InputTask"].Disable();
         _canMove = false;
         _isPlayerDown = true;
@@ -87,7 +86,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Interact"].Enable();
         _playerInput.actions["Movement"].Enable();
         _playerInput.actions["Jump"].Enable();
-        _playerInput.actions["InputTask"].Enable();
+        _playerInput.actions["InputTask"].Disable();
         _canMove = true;
         _isPlayerDown = false;
 

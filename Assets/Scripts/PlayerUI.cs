@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using JetBrains.Annotations;
+using UnityEngine.Windows;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -85,19 +86,22 @@ public class PlayerUI : MonoBehaviour
 
 
 
-    public void DisplayAnswersDuolingo(List<string> words)
+    public void DisplayAnswersDuolingo(List<string> words, List<string> inputs)
     {
-        List<string> inputs = new List<string>() { "Y", "X", "B" };
         if (words == null) { return; }
         for (int i = 0; i < 3; i++)
         {
-            string tempInput = inputs[Random.Range(0, inputs.Count)];
-            _answersDuolingo[i].text =  tempInput + ": " + words[i];
-            inputs.Remove(tempInput);
+            _answersDuolingo[i].text = inputs[i] + ": " + words[i];
         }
     }
 
-
+    public void ClearAnswersDuolingo()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            _answersDuolingo[i].text = "";
+        }
+    }
 
     public void DisplayQTEUI(bool value)
     {

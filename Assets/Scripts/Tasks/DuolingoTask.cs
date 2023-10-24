@@ -22,13 +22,13 @@ public class DuolingoTask : InputTask
 
     List<string> _inputsName = new List<string>() {  "Y", "X", "B" };
 
-    [SerializeField] List<string> answers;
-
     GameObject _currentPlayer;
     GameObject _otherPlayer;
 
     string _rightInputName;
+    bool _canPressInput = false;
 
+    int _rightAnswerIndex = 0;
     public NPC NPCDuolingo { get => _npcDuolingo; set => _npcDuolingo = value; }
     private void Start()
     {
@@ -38,19 +38,21 @@ public class DuolingoTask : InputTask
             _rightAnswers.Add(word, _wordsTranslated[wordIndex]);
         }
     }
+
+    
     public override void StartTask()
     {
         List<GameObject> players = PlayersDoingTask;
         _currentPlayer = PlayersDoingTask[Random.Range(0, 2)];
         players.Remove(_currentPlayer);
         _otherPlayer = players[0];
-        _controller = _currentPlayer.GetComponent<PlayerController>();
         TaskLoop();
     }
 
 
     void TaskLoop()
     {
+        _controller = _currentPlayer.GetComponent<PlayerController>();
         DisplayWordToFind();
     }
 
@@ -65,24 +67,29 @@ public class DuolingoTask : InputTask
     void DisplayAnswers(string word)
     {
         if (word == null) { return; }
-        /*List<string> */answers = new List<string>();
+        List<string> allWords = new List<string>();
+        foreach (string _word in _wordsTranslated)
+        {
+            allWords.Add(_word);
+        }
+        List<string> answers = new List<string>();
         string rightAnswer = _rightAnswers[word];
-
+        allWords.Remove(rightAnswer);
+        Debug.Log(rightAnswer);
         for (int i = 0; i < 3; i++)
         {
-            string tempWord = _wordsTranslated[Random.Range(0, _wordsTranslated.Count)];
-            
-            while (answers.Contains(tempWord) && tempWord == rightAnswer)
-            {
-                tempWord = _wordsTranslated[Random.Range(0, _wordsTranslated.Count)];
-            }
+            string tempWord = allWords[Random.Range(0, allWords.Count)];
+            allWords.Remove(tempWord);
+            Debug.Log(tempWord);
             answers.Add(tempWord);
         }
 
         answers[Random.Range(0, answers.Count)] = _rightAnswers[word];
-/*        ShuffleAnswers(answers);*/
+        _currentPlayer.GetComponent<PlayerUI>().DisplayDuolingoUI(true);
+        _currentPlayer.GetComponent<PlayerUI>().DisplayAnswersDuolingo(answers, _inputsName);
+        /*ShuffleAnswers(answers);*/
         InputAssignement(answers);
-        PressInputCheck();
+        _canPressInput = true;
     }
     
     /*void ShuffleAnswers(List<string> words)
@@ -98,37 +105,87 @@ public class DuolingoTask : InputTask
         
     }*/
 
+    
+
     void InputAssignement(List<string> words)
     {
         for (int i = 0; i < words.Count; i++)
         {
             _wordToKey.Add(words[i], _inputsName[i]);
-            Debug.Log(words[i] + ": " + _inputsName[i]);
+            
         }
         _rightInputName = _wordToKey[_rightAnswers[_rightWord]];
     }
 
     void PressInputCheck()
     {
-        //GetComponent toutes les frames
-        while(CheckInputValue(_contextName, _wordToKey[_rightAnswers[_rightWord]], _controller) == PlayerInputValue.None)
-        {
-            
-        }
         if (_inputValue == PlayerInputValue.WrongValue)
         {
-
-            Debug.Log("Caca nonono");
+            _canPressInput = false;
+            _contextName = "";
+            Debug.Log("Wrong");
+            EndDuolingo(false); 
         }
         else if (_inputValue == PlayerInputValue.RightValue)
         {
-
-            Debug.Log("Caca Miam Miam :D");
+            _canPressInput = false;
+            Debug.Log("Right");
+            _rightAnswerIndex++;
+            CheckIfReplay();
         }
     }
 
-    void AskTranslate()
+    void CheckIfReplay()
     {
+        if(_rightAnswerIndex < _numberOfWordsAsked)
+        {
+            _wordToKey.Clear();
+            _currentPlayer.GetComponent<PlayerUI>().DisplayDuolingoUI(false);
+            SwitchPlayer();
+            TaskLoop();
+        }
+        else if(_rightAnswerIndex == _numberOfWordsAsked)
+        {
+            _currentPlayer.GetComponent<PlayerUI>().DisplayDuolingoUI(false);
+            EndDuolingo(true);
+        }
+    }
+
+    private void Update()
+    {
+        if (_canPressInput)
+        {
+            _inputValue = CheckInputValue(_contextName, _wordToKey[_rightAnswers[_rightWord]], _controller);
+            PressInputCheck();
+        }
+       
+    }
+
+    void SwitchPlayer()
+    {
+        GameObject tempPlayer = _otherPlayer;
+        _otherPlayer = _currentPlayer;
+        _currentPlayer = tempPlayer;
         
+    }
+
+    void EndDuolingo(bool value)
+    {
+
+        if (value == true)
+        {
+            //To fix
+            foreach (GameObject player in PlayersDoingTask)
+            {
+                player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
+                player.GetComponent<SpriteRenderer>().sortingOrder = 5;
+                player.GetComponent<PlayerController>().EnableMovement();
+            }
+        }
+        else
+        {
+            
+        }
+        End(value);
     }
 }

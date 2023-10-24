@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class Task : MonoBehaviour
 {
     public Action<Task> OnTaskCompleted { get; set; }
-    private List<GameObject> _playersDoingTask = new List<GameObject>();
+    public List<GameObject> _playersDoingTask = new List<GameObject>();
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
     [Range(1, 5)] public int _difficulty = 1;
@@ -48,8 +48,9 @@ public abstract class Task : MonoBehaviour
         }
         else
         {
-            Debug.Log(_playersDoingTask.Count);
+            
             _playersDoingTask.Add(player);
+            Debug.Log(_playersDoingTask.Count);
             if (_playersDoingTask.Count == _numberOfPlayers)
             {
                 Init();

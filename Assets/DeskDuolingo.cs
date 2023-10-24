@@ -14,4 +14,8 @@ public class DeskDuolingo : Object
         player.GetComponent<PlayerController>().DisableMovementExceptInput();
         _task.OnPlayerJoinedTask(player);
     }
+
+    
+        
+    
 }
