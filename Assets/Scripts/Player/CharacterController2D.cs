@@ -11,24 +11,22 @@ public class CharacterController2D : MonoBehaviour
 	//[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	//[SerializeField] private bool m_AirControl = true;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
-	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
+	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded. 
 	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
 																				//[SerializeField] private float m_normalFallGravityForce = 3;
 																				//[SerializeField] private float m_fastFallGravityForce = 5;
 	// PlayerController and values to retreive from PlayerControler
 	PlayerController _playerController;
-	float m_CrouchSpeed;
 	float m_MovementSmoothing;
 	bool m_AirControl;
-	float m_normalFallGravityForce;
-	float m_fastFallGravityForce;
 
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+    float m_normalFallGravityForce;
+
+    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
-	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
-	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+
 	private Vector3 m_Velocity = Vector3.zero;
 	private SpriteRenderer m_SpriteRenderer;
 
@@ -41,10 +39,8 @@ public class CharacterController2D : MonoBehaviour
 	public class BoolEvent : UnityEvent<bool> { }
 
 	public BoolEvent OnCrouchEvent;
-	private bool m_wasCrouching = false;
 
     // Information for PlayerStateManager
-    [HideInInspector] public bool isCrouching { get; private set; }
     [HideInInspector] public bool isIdle { get; private set; }
 
 
@@ -67,7 +63,6 @@ public class CharacterController2D : MonoBehaviour
 		m_MovementSmoothing = _playerController.movementSmoothing;
 		m_AirControl = _playerController.AirControl;
 		m_normalFallGravityForce = _playerController.normalFallGravityForce;
-		m_fastFallGravityForce = _playerController.fastFallGravityForce;
 
         bool wasGrounded = m_Grounded;
 		m_Grounded = false;
@@ -86,18 +81,8 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump)
+	public void Move(float move, bool jump)
 	{
-
-        // If crouching, check to see if the character can stand up
-        if (!crouch)
-		{
-			// If the character has a ceiling preventing them from standing up, keep them crouching
-			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-			{
-                crouch = true;
-			}
-		}
 
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
@@ -130,25 +115,33 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
 		
-		// Information for PlayerStateManager
-        isIdle = !crouch ? true : false;
     }
 
 
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
-
-        // Multiply the player's x local scale by -1.
-
+		m_FacingRight = !m_FacingRight;
+
+
+
+        // Multiply the player's x local scale by -1.
+
+
+
         /*Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
-		transform.localScale = theScale;*/
-
-        m_SpriteRenderer.flipX = !m_FacingRight;
-
-
-    }
+		transform.localScale = theScale;*/
+
+
+
+        m_SpriteRenderer.flipX = !m_FacingRight;
+
+
+
+
+
+    }
+
 
 }

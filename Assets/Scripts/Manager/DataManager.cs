@@ -43,7 +43,8 @@ public class DataManager : MonoBehaviour
     {
         CowboyQTE,
         LaserRoom,
-        RHTask
+        RHTask,
+        Decryptage
     }
 
     
