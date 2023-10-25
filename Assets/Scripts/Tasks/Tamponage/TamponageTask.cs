@@ -41,7 +41,8 @@ public class TamponageTask : InputTask, ITimedTask
     }
     public override void End(bool isSuccessful)
     {
-        
+        _player1.EnableMovementDisableInputs();
+        _player2.EnableMovementDisableInputs();
     }
 
 
@@ -59,6 +60,12 @@ public class TamponageTask : InputTask, ITimedTask
     {
         if (IsStarted) 
         {
+            if(_numOfClicksDone >= _numOfClicksToDo)
+            {
+                End(true);
+            }
+
+
             if (_p1Value == 2 || _p2Value == 2)
             {
                 StartCoroutine(Penality());
