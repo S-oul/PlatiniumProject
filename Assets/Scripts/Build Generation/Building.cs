@@ -1,10 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-using System.Linq;
-using UnityEditor;
-using static Building;
-using UnityEngine.Rendering;
 
 public class Building : MonoBehaviour
 {
@@ -122,7 +118,7 @@ public class Building : MonoBehaviour
     }
     Room instantiateRoom(GameObject room, float height, int roomStart)
     {
-        GameObject go = Instantiate(room);
+        GameObject go = Instantiate(room);  
         go.transform.parent = transform;
         Room ro = go.GetComponent<Room>();
         ro.InitRoom();
