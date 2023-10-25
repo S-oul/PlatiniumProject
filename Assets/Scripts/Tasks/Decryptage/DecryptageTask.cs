@@ -18,7 +18,9 @@ public class DecryptageTask : Task
         if (!isSuccessful)
         {
         }
+        _controller.EnableMovementDisableInputs();
         _obstacles.DoSpin = false;
+        IsStarted = false;
     }
     public override void Init()
     {
@@ -33,14 +35,15 @@ public class DecryptageTask : Task
     {
         if (IsStarted)
         {
-            print(_controller.DecrytContext);
             switch (_controller.DecrytContext)
             {
                 case > 0:
+                    print(_controller.DecrytContext);
                     _arrow.MovePlayerForward();
                     _controller.DecrytContext = 0;
                     break;
                 case < 0:
+                    print(_controller.DecrytContext);
                     _arrow.MovePlayerBack();
                     _controller.DecrytContext = 0;
                     break;
@@ -53,7 +56,6 @@ public class DecryptageTask : Task
 
     public void StartTask()
     {
-        //print(_playerInput);
         IsStarted = true;
         _obstacles.DoSpin = true;
     }

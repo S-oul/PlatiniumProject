@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Movement"].Enable();
         _playerInput.actions["Jump"].Enable();
         _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Decryptage"].Enable();
         _canMove = true;
         _isPlayerDown = false;
 

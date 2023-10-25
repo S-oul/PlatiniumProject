@@ -11,6 +11,8 @@ public class PlayerPointerMover : MonoBehaviour
     Vector3 _playerStartPosition;
     [SerializeField] Vector3 _targetPosition;
 
+    DecryptageTask _tasker;
+
     float _playerStepDistanceX;
     Vector3 _playerStepDistance;
     [SerializeField] [Range(0.01f, 0.5f)] float _playerSpeed = 0.1f; 
@@ -62,6 +64,8 @@ public class PlayerPointerMover : MonoBehaviour
     {
         _playerPointerTrans = GetComponent<Transform>();
         _playerStartPosition = _playerPointerTrans.localPosition;
+
+        _tasker = transform.parent.GetComponent<DecryptageTask>();
 
         SetState(_starterState);
 
@@ -193,10 +197,12 @@ else if (context.canceled)
         switch (endState)
         {
             case END_STATE.WIN:
+                _tasker.End(true);
                 _winCoverSprite.enabled = true;
                 break;
 
             case END_STATE.LOSE:
+                _tasker.End(false);
                 _loseCoverSprite.enabled = true;
                 break;
         }
