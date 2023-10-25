@@ -36,7 +36,7 @@ public class LaserRoom : Task , ITimedTask
     {
         //_gameManager = GameManager.Instance;
         //NumberOfPlayers = _gameManager.PlayerCount;
-        _actualTime = _givenTime * (_difficulty / 3f);
+        _actualTime = _givenTime * (Difficulty / 3f);
         //print(_actualTime);
         ThisRoom = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
@@ -180,7 +180,7 @@ public class LaserRoom : Task , ITimedTask
     {
         while (IsStarted)
         {
-            yield return new WaitForSeconds(6 - _difficulty);
+            yield return new WaitForSeconds(6 - Difficulty);
             SpawnLaser(_laser);
         }
     }

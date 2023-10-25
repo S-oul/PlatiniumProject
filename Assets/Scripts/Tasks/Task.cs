@@ -8,7 +8,7 @@ public abstract class Task : MonoBehaviour
     public List<GameObject> _playersDoingTask = new List<GameObject>();
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
-    [Range(1, 5)] public int _difficulty = 1;
+    [Range(1, 5)][SerializeField] int _difficulty = 1;
     GameObject _player;
     Room _room;
     bool _isDone = false;
@@ -24,6 +24,7 @@ public abstract class Task : MonoBehaviour
 
     public Room RoomTask { get => _room; set => _room = value; }
     public Room ThisRoom { get => _room; set => _room = value; }
+    public int Difficulty { get => _difficulty; set => _difficulty = value; }
 
     private void Start()
     {

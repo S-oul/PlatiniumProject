@@ -26,7 +26,7 @@ public class DecryptageTask : Task
     {
         for(int i = 0; i < _obstacles.speedList.Count; i++ )
         {
-            _obstacles.speedList[i] = _obstacles.speedList[i] * _difficulty;
+            _obstacles.speedList[i] = _obstacles.speedList[i] * Difficulty;
         }
         StartTask();
     }
