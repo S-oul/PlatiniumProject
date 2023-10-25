@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody2D>().isKinematic = value;
     }
+
     public void DisableMovementEnableInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
