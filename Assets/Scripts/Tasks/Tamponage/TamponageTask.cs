@@ -33,6 +33,7 @@ public class TamponageTask : InputTask, ITimedTask
 
     Transform _clock;
 
+
     private void Start()
     {
         _numOfClicksToDo *= Difficulty;
@@ -62,10 +63,11 @@ public class TamponageTask : InputTask, ITimedTask
         {
             if(_numOfClicksDone >= _numOfClicksToDo)
             {
+
                 End(true);
             }
 
-
+            Debug.Log(_p1Value + " caca " + _p2Value);
             if (_p1Value == 2 || _p2Value == 2)
             {
                 StartCoroutine(Penality());
@@ -81,13 +83,15 @@ public class TamponageTask : InputTask, ITimedTask
                 _p1Value = 0;
                 _p2Value = 0;
             }
-            if (_player1.currentContextName == _inputName)
+            if (_player1.currentContextName != "" && _data.InputNamesConverter[_player1.currentContextName] == _inputName)
             {
                 _p1Value++;
+                _player1.currentContextName = "";
             }
-            if (_player2.currentContextName == _inputName)
+            if (_player2.currentContextName != "" && _data.InputNamesConverter[_player2.currentContextName] == _inputName)
             {
                 _p2Value++;
+                _player2.currentContextName = "";
             }
         }
     }
@@ -107,6 +111,7 @@ public class TamponageTask : InputTask, ITimedTask
 
      IEnumerator Penality()
     {
+        Debug.Log("Caca Penality");
         _p1Value = 0;
         _p2Value = 0;
         _player1.GetComponent<PlayerController>().DisableAllInputs();
