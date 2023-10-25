@@ -4,21 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DecryptageTask : InputTask
+public class DecryptageTask : Task
 {
     
     [SerializeField] ObstacleManager _obstacles;
     [SerializeField] PlayerPointerMover _arrow;
-    [SerializeField] PlayerInput _plyrInput;
+    [SerializeField] PlayerController _controller;
 
-    public PlayerInput PlyrInput { get => _plyrInput; set => _plyrInput = value; }
+    public PlayerController Controller { get => _controller; set => _controller = value; }
 
     public override void End(bool isSuccessful)
     {
         if (!isSuccessful)
         {
         }
-        _plyrInput.transform.GetComponent<PlayerController>().EnableMovementDisableInputs();
         _obstacles.DoSpin = false;
     }
     public override void Init()
@@ -34,11 +33,25 @@ public class DecryptageTask : InputTask
     {
         if (IsStarted)
         {
-            _arrow.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, 0) * Time.deltaTime;
+            print(_controller.DecrytContext);
+            switch (_controller.DecrytContext)
+            {
+                case > 0:
+                    _arrow.MovePlayerForward();
+                    _controller.DecrytContext = 0;
+                    break;
+                case < 0:
+                    _arrow.MovePlayerBack();
+                    _controller.DecrytContext = 0;
+                    break;
+                default:
+                    _controller.DecrytContext = 0;
+                    break;
+            }
         }
     }
 
-    public override void StartTask()
+    public void StartTask()
     {
         //print(_playerInput);
         IsStarted = true;

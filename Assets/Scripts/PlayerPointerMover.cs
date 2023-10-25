@@ -76,15 +76,15 @@ public class PlayerPointerMover : MonoBehaviour
         _loseCoverSprite = _loseCover.GetComponent<SpriteRenderer>();
     }
 
-    public void InputManager(InputAction.CallbackContext context)
+/*    public void InputManager(InputAction.CallbackContext context)
     {
         print(context);
         if (context.ReadValue<float>() > 0) { MovePlayerForward(); }
         if (context.ReadValue<float>() < 0) { MovePlayerBack(); }
         return;
-    } //called by PlayerInput System
+    } //called by PlayerInput System*/
 
-    private void MovePlayerForward() 
+    public void MovePlayerForward() 
     {
         if (_currentState is not PlayerPointerState.IDLE) { return; }
         SetState(PlayerPointerState.MOVING_RIGHT);
@@ -97,7 +97,7 @@ else if (context.canceled)
     Debug.Log("Action was cancelled");
 */
     }   
-    private void MovePlayerBack()
+    public void MovePlayerBack()
     {
         if (_currentState is not PlayerPointerState.IDLE) { return; }
         SetState(PlayerPointerState.MOVING_LEFT);
