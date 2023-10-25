@@ -11,8 +11,8 @@ public class TamponageGameManager : MonoBehaviour
     int _remainingClicks;
     float _remainingTime;
 
-    enum BUTTON_PRESS { NULL,LEFT_BUTTON, RIGHT_BUTTON }
-    BUTTON_PRESS _lastPressed = BUTTON_PRESS.NULL;
+    enum BUTTON { NULL,LEFT_BUTTON, RIGHT_BUTTON }
+    BUTTON _lastPressed = BUTTON.NULL;
 
     // Start is called before the first frame update
     void Start()
@@ -25,19 +25,30 @@ public class TamponageGameManager : MonoBehaviour
     void Update()
     {
         _remainingTime -= Time.deltaTime;
-        if (_remainingClicks > 0) { Debug.Log("win"); }
-        if (_remainingTime > 0) { Debug.Log("game over"); }
+        if (_remainingClicks < 0) { 
+            Debug.Log("win");
+            GetComponent<PlayerInput>().enabled = false;
+            this.enabled = false; 
+        }
+        if (_remainingTime < 0) { 
+            Debug.Log("game over");
+            GetComponent<PlayerInput>().enabled = false;
+            this.enabled = false; 
+        }
     }
 
     public void InputManager(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() > 0) { Press(BUTTON_PRESS.LEFT_BUTTON); }
-        if (context.ReadValue<float>() < 0) { Press(BUTTON_PRESS.RIGHT_BUTTON; }
+        if (context.started)
+        {
+            if (context.ReadValue<float>() > 0) { Press(BUTTON.LEFT_BUTTON); }
+            if (context.ReadValue<float>() < 0) { Press(BUTTON.RIGHT_BUTTON); }
+        }
     }
 
-    private void Press(BUTTON_PRESS pressedButton)
+    private void Press(BUTTON pressedButton)
     {
-        if (_lastPressed == pressedButton) { ResetCounter(); }
+        if (_lastPressed == pressedButton) { ResetCounter(); Debug.Log("WRONG!"); }
         else 
         { 
             _remainingClicks--;
