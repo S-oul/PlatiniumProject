@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2323354206506673884}
   - component: {fileID: 4511703152130446870}
   m_Layer: 0
-  m_Name: Meuble
+  m_Name: MeubleType3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
