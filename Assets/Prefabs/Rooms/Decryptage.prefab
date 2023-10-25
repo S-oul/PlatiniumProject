@@ -216,6 +216,7 @@ MonoBehaviour:
   _objectList: []
   _npcList: []
   _eventList: []
+  _posItPos: {fileID: 0}
   _listPlayer: []
 --- !u!61 &3108168623149331971
 BoxCollider2D:
@@ -270,6 +271,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8665029958405812661}
     m_Modifications:
+    - target: {fileID: 832548914065870767, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 832548914065870767, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 832548914065870767, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 54e07ef4-b6ad-4331-8ae6-342bb4347e96
+      objectReference: {fileID: 0}
+    - target: {fileID: 832548914065870767, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: Player/Code
+      objectReference: {fileID: 0}
     - target: {fileID: 1887970405050895401, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
       propertyPath: m_Name
       value: DecryptageMiniGame
