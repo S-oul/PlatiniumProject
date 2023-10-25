@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playersDoingTask: []
   _numberOfPlayers: 2
-  _difficulty: 2
+  _difficulty: 1
   _numOfClicksToDo: 10
   _timeLimit: 30
   _inputToPress: 0
