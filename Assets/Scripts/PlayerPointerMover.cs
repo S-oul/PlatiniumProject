@@ -49,7 +49,7 @@ public class PlayerPointerMover : MonoBehaviour
     public void Awake()
     {
         _playerPointerTrans = GetComponent<Transform>();
-        _playerStartPosition = _playerPointerTrans.position;
+        _playerStartPosition = _playerPointerTrans.localPosition;
 
         SetState(_starterState);
 
