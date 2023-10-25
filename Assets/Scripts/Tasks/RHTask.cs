@@ -33,7 +33,6 @@ public class RHTask : Task
 
             foreach (var playerInGame in _gameManager.Players)
             {
-                Debug.Log(PlayerGameObject);
                 if (playerInGame != PlayerGameObject && playerInGame != null)
                 {
                     _playersAsked.Add(playerInGame);

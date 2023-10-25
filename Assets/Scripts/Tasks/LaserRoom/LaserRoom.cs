@@ -133,6 +133,7 @@ public class LaserRoom : Task , ITimedTask
             g.transform.localScale = new Vector3(.16f, .16f, .16f);
             Laser l = g.GetComponent<Laser>();
             l.ToFar = _spawnerL;
+        
         }
         else
         {
