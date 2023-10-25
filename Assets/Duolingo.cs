@@ -17,8 +17,8 @@ public class Duolingo : NPC
     private void Awake()
     {
         _task = Instantiate(DataManager.Instance.AllTasks[(int)_typeTask], this.transform);
-        _leftDesk.TaskDuolingo = _task.GetComponent<Task>();
-        _rightDesk.TaskDuolingo = _task.GetComponent<Task>();
+        _leftDesk.TaskDuolingo = _task;
+        _rightDesk.TaskDuolingo = _task;
         _task.GetComponent<DuolingoTask>().NPCDuolingo = this;
     }
 

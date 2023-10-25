@@ -34,6 +34,7 @@ public class DuolingoTask : InputTask
     {
         foreach(var word in _words)
         {
+            _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
             int wordIndex = _words.LastIndexOf(word);
             _rightAnswers.Add(word, _wordsTranslated[wordIndex]);
         }
@@ -42,16 +43,17 @@ public class DuolingoTask : InputTask
     
     public override void StartTask()
     {
+        
         List<GameObject> players = PlayersDoingTask;
-        _currentPlayer = PlayersDoingTask[Random.Range(0, 2)];
-        players.Remove(_currentPlayer);
-        _otherPlayer = players[0];
+        _currentPlayer = players[0];
+        _otherPlayer = players[1];
         TaskLoop();
     }
 
 
     void TaskLoop()
     {
+        _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
         _controller = _currentPlayer.GetComponent<PlayerController>();
         DisplayWordToFind();
     }
@@ -171,21 +173,29 @@ public class DuolingoTask : InputTask
 
     void EndDuolingo(bool value)
     {
-
-        if (value == true)
+        foreach (GameObject player in PlayersDoingTask)
         {
-            //To fix
-            foreach (GameObject player in PlayersDoingTask)
+            player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
+            player.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            player.GetComponent<PlayerController>().EnableMovement();
+            if(value == false)
             {
-                player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
-                player.GetComponent<SpriteRenderer>().sortingOrder = 5;
-                player.GetComponent<PlayerController>().EnableMovement();
+                player.GetComponent<PlayerController>().DownPlayer();
+                StartCoroutine(RecuperatePlayer());
             }
         }
-        else
-        {
-            
-        }
+        _npcDuolingo.GetComponent<UINpc>().ChangeBubbleContent("");
+        _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
         End(value);
+    }
+
+    IEnumerator RecuperatePlayer()
+    {
+        yield return new WaitForSeconds(5);
+        foreach (GameObject player in PlayersDoingTask)
+        {
+            player.GetComponent<PlayerController>().EnableMovement();
+        }
+
     }
 }
