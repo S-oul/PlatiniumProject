@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using JetBrains.Annotations;
+using UnityEngine.Windows;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -19,23 +20,36 @@ public class PlayerUI : MonoBehaviour
     bool qteInputIsActive = false;
     [HideInInspector] public float _sliderPercentValue;
     Slider _validationBadInputSlider;
+   
 
+    [Header("Duolingo")]
+    Transform _duolingoUI;
+    List<TextMeshProUGUI> _answersDuolingo = new List<TextMeshProUGUI>();
     private void Start()
     {
         
         StartUI();
-        DisplayUI(false);
+        DisplayInputsUI(false);
     }
 
 
     #region InputsUI
     void StartUI()
     {
+        //QTE
         _qteUI = _canvas.transform.Find("QTEInputs");
         _textInputsUI = _qteUI.transform.Find("TextInputs").Find("Text").GetComponent<TextMeshProUGUI>();
         _sliderInputsUI = _qteUI.transform.Find("Slider").GetComponent<Slider>();
         _input = _sliderInputsUI.gameObject.transform.Find("SmallerCircle").Find("Image").GetComponent<Image>();
         _validationBadInputSlider = _qteUI.transform.Find("Validation").Find("BadInputs").GetComponent<Slider>();
+
+        //Duolingo
+        _duolingoUI = _canvas.transform.Find("DuolingoInputs");
+        foreach (Transform answer in _duolingoUI)
+        {
+            TextMeshProUGUI tempText = answer.Find("TextAnswer").GetComponent<TextMeshProUGUI>();
+            _answersDuolingo.Add(tempText);
+        }
     }
 
     public void ChangeUIInputs(string text)
@@ -70,11 +84,42 @@ public class PlayerUI : MonoBehaviour
 /*        ClearUIInputsValidation();*/
     }
 
-    public void DisplayUI(bool value)
+
+
+    public void DisplayAnswersDuolingo(List<string> words, List<string> inputs)
+    {
+        if (words == null) { return; }
+        for (int i = 0; i < 3; i++)
+        {
+            _answersDuolingo[i].text = inputs[i] + ": " + words[i];
+        }
+    }
+
+    public void ClearAnswersDuolingo()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            _answersDuolingo[i].text = "";
+        }
+    }
+
+    public void DisplayQTEUI(bool value)
     {
         qteInputIsActive = value;
         _qteUI.gameObject.SetActive(value);
         
+    }
+
+    public void DisplayDuolingoUI(bool value)
+    {
+       
+        _duolingoUI.gameObject.SetActive(value);
+    }
+
+    public void DisplayInputsUI(bool value)
+    {
+        DisplayDuolingoUI(value);
+        DisplayQTEUI(value);
     }
 
     #endregion

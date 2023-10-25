@@ -7,10 +7,8 @@ using System;
 
 public abstract class InputTask : Task
 {
-    protected PlayerInput _playerInput;
-    protected PlayerUI _playerUI;
     protected DataManager _data;
-    protected PlayerController _controller;
+
 
     string _name;
 
@@ -31,11 +29,8 @@ public abstract class InputTask : Task
     {
         IsStarted = true;
         
-        _playerInput = PlayerGameObject.GetComponent<PlayerInput>();
-        _playerUI = PlayerGameObject.GetComponent<PlayerUI>();
-        _controller = PlayerGameObject.GetComponent<PlayerController>();
+        
         _data = DataManager.Instance;
-        _controller.DisableMovementExceptInput();
         StartTask();
     }
 
@@ -43,15 +38,12 @@ public abstract class InputTask : Task
     {
         IsStarted = false;
         IsDone = isSuccessful;
-        _controller.EnableMovement();
-        _playerInput.actions["InputTask"].Disable();
-        _playerUI.ClearUIInputs();
-        _playerUI.DisplayUI(false);
+        
 
     }
-    public PlayerInputValue CheckInputValue(string contextName, string inputNeeded)
+    public PlayerInputValue CheckInputValue(string contextName, string inputNeeded, PlayerController controller)
     {
-        contextName = _controller.currentContextName;
+        contextName = controller.currentContextName;
         if (string.IsNullOrEmpty(contextName))
         {
             _inputValue = PlayerInputValue.None;
