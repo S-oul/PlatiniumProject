@@ -54,7 +54,7 @@ public class PlayerCollision : MonoBehaviour
                 case DecryptageTask:
                     ((DecryptageTask)collidertype).PlyrInput = GetComponent<PlayerInput>();
                     ((DecryptageTask)collidertype).Init();
-                    GetComponent<PlayerController>().DisableMovement();
+                    GetComponent<PlayerController>().DisableAllInputs();
                     GetComponent<PlayerInput>().actions["Decryptage"].Enable();
                     _controller.IsInteracting = false;
                     break;

@@ -264,7 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2447dc0fd4acfbe45bf6114b7a2cc5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfPlayers: 1
+  _playersDoingTask: []
+  _numberOfPlayers: 2
   _difficulty: 2
   _laser: {fileID: 7741461767121130828, guid: 4bd164bb021a9c7448951302ef6ed145, type: 3}
   _doorL: {fileID: 4363406617373923662}

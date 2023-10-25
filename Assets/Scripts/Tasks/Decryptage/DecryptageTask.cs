@@ -18,7 +18,7 @@ public class DecryptageTask : InputTask
         if (!isSuccessful)
         {
         }
-        _plyrInput.transform.GetComponent<PlayerController>().EnableMovement();
+        _plyrInput.transform.GetComponent<PlayerController>().EnableMovementDisableInputs();
         _obstacles.DoSpin = false;
     }
     public override void Init()

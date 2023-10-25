@@ -46,7 +46,7 @@ public abstract class Task : MonoBehaviour
             {
                 _player = player;
                 _playersDoingTask.Add(player);
-
+                _isStarted = true;
                 Init();
             }
             
@@ -54,11 +54,11 @@ public abstract class Task : MonoBehaviour
         else
         {
             _playersDoingTask.Add(player);
-            Debug.Log(_playersDoingTask.Count);
             if (_playersDoingTask.Count == _numberOfPlayers)
             {
                 if (!_isStarted)
                 {
+                    _isStarted = true;
                     Init();
                 }
                     
