@@ -6,9 +6,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public List<GameObject> _npcList = new List<GameObject>();
-    public List<GameObject> _objectList = new List<GameObject>();
-    public List<GameObject> _eventList = new List<GameObject> ();
+    List<GameObject> _npcList = new List<GameObject>();
+    List<GameObject> _objectList = new List<GameObject>();
+    List<GameObject> _eventList = new List<GameObject> ();
+    
+    List<Room> _roomList = new List<Room>();
 
 
     public List<Lift> _liftList = new List<Lift>();
@@ -19,8 +21,7 @@ public class GameManager : MonoBehaviour
     public int PlayerCount { get => _playerCount; set => _playerCount = value; }
 
     public GameObject[] Players { get => _players; }
-
-
+    public List<Room> RoomList { get => _roomList; set => _roomList = value; }
 
     public void ResetAllList()
     {

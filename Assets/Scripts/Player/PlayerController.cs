@@ -28,11 +28,14 @@ public class PlayerController : MonoBehaviour
     CharacterController2D _controller;
     Collider2D _colliderPlayer;
 
+    string _codeContext;
+
     public string currentContextName;
 
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool CanMove { get => _canMove; set => _canMove = value; }
     public bool IsPlayerDown { get => _isPlayerDown; set => _isPlayerDown = value; }
+    public string CodeContext { get => _codeContext; set => _codeContext = value; }
 
     private void Awake()
     {
@@ -119,8 +122,19 @@ public class PlayerController : MonoBehaviour
             _isInteracting = false;
         }
     }
-    // Comunicate contol inputs to CharacterContoller2D Script component
-    private void FixedUpdate()
+    public void OnCode(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _codeContext = context.action.activeControl.displayName;
+        }
+        else
+        {
+            _codeContext = "";
+        }
+    }
+        // Comunicate contol inputs to CharacterContoller2D Script component
+        private void FixedUpdate()
     {
         if(_isPlayerDown) { transform.localEulerAngles = new Vector3(0,0,90); }
         else { transform.localEulerAngles = new Vector3(0, 0, 0); }
