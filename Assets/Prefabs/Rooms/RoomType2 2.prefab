@@ -194,6 +194,7 @@ Transform:
   m_Children:
   - {fileID: 3916047045856323885}
   - {fileID: 1268198593378904038}
+  - {fileID: 7141521803795672407}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3189240542465512968
@@ -210,10 +211,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 2
   _id: UNSET ==> go to room prefab
-  _sprite: {fileID: 0}
+  _spriteRoom: {fileID: 0}
+  _screenTexture: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
+  _posItPos: {fileID: 7141521803795672407}
+  _hasPostIt: 0
   _listPlayer: []
 --- !u!61 &-9026450460620595213
 BoxCollider2D:
@@ -260,3 +264,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
+--- !u!1 &7503154462965320467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7141521803795672407}
+  m_Layer: 0
+  m_Name: PostItTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7141521803795672407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503154462965320467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.193, y: -0.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8665029958405812661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -140,6 +140,7 @@ MonoBehaviour:
   _objectList: []
   _npcList: []
   _eventList: []
+  _posItPos: {fileID: 1374155088170194126}
   _listPlayer: []
 --- !u!61 &4857214687516054678
 BoxCollider2D:

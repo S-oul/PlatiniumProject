@@ -27,7 +27,7 @@ public class Room : MonoBehaviour
     Task _task;
 
     [SerializeField] Transform _posItPos;
-    bool _hasPostIt = false;
+    [SerializeField] bool _hasPostIt = false;
 
     #endregion
 
@@ -49,6 +49,7 @@ public class Room : MonoBehaviour
     public Task TaskRoom { get => _task; set => _task = value; }
     public SpriteRenderer ScreenTexture { get => _screenTexture; set => _screenTexture = value; }
     public bool HasPostIt { get => _hasPostIt; set => _hasPostIt = value; }
+    public Transform PosItPos { get => _posItPos; set => _posItPos = value; }
     #endregion
 
     public virtual void InitRoom()
