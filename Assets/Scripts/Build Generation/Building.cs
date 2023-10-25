@@ -76,14 +76,11 @@ public class Building : MonoBehaviour
             data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
 
         }
-        //print(data);
 
         int randomReverse = Random.Range(0,2);
-        //print(randomReverse);
         if (randomReverse == 1)
         {
             data = Reverse(data);
-            //print("REVERSED : " + data);
         }
 
         int i = 0;
@@ -96,7 +93,6 @@ public class Building : MonoBehaviour
             else
             {
                 int intC = CharToInt(c);
-                //if(intC == -1) continue;
                 int r = Random.Range(0, _allPool[intC].Count);
                 i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
@@ -108,7 +104,6 @@ public class Building : MonoBehaviour
     {
         string data = f._roomstype;
         int i = 0;
-        //print(data);
         foreach (char c in data)
         {
             if (c == 'S')

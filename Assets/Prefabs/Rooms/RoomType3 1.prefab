@@ -51,10 +51,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 3
   _id: UNSET ==> go to room prefab
-  _sprite: {fileID: 0}
+  _spriteRoom: {fileID: 0}
+  _screenTexture: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
+  _posItPos: {fileID: 0}
   _listPlayer: []
 --- !u!61 &8973785233046841869
 BoxCollider2D:

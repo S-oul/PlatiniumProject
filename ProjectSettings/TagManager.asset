@@ -12,6 +12,8 @@ TagManager:
   - DecryptageEnemy
   - DecryptageTarget
   - DecryptInteract
+  - Laser
+  - CodeZone
   layers:
   - Default
   - TransparentFX
@@ -57,4 +59,7 @@ TagManager:
     locked: 0
   - name: MiniGame
     uniqueID: 3731426517
+    locked: 0
+  - name: Deco
+    uniqueID: 2057632499
     locked: 0

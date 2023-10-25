@@ -1,17 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerCollision : MonoBehaviour
 {
 
     PlayerController _controller;
+    PlayerInput _inputs;
+    PlayerUI _playerUI;
 
     MonoBehaviour collidertype;
+
 
     #region In Game Var
     bool _IsInLift = false;
@@ -27,7 +32,9 @@ public class PlayerCollision : MonoBehaviour
 
     private void Awake()
     {
+        _inputs = GetComponent<PlayerInput>();
         _controller = gameObject.GetComponent<PlayerController>();
+        _playerUI = gameObject.GetComponent<PlayerUI>();
     }
     private void Update()
     {
@@ -52,10 +59,10 @@ public class PlayerCollision : MonoBehaviour
                     break;
 
                 case DecryptageTask:
-                    ((DecryptageTask)collidertype).PlyrInput = GetComponent<PlayerInput>();
+                    ((DecryptageTask)collidertype).PlyrInput = _inputs;
                     ((DecryptageTask)collidertype).Init();
-                    GetComponent<PlayerController>().DisableAllInputs();
-                    GetComponent<PlayerInput>().actions["Decryptage"].Enable();
+                    _controller.DisableMovement();
+                    _inputs.actions["Decryptage"].Enable();
                     _controller.IsInteracting = false;
                     break;
             }
@@ -98,11 +105,24 @@ public class PlayerCollision : MonoBehaviour
                 collidertype = collision.transform.GetComponent<Object>();
                 break;
             case "Laser":
-                print("haaaaaaaaaaaaaaaaaaaaaa");
-                GetComponent<PlayerController>().DownPlayer();
+                //print("haaaaaaaaaaaaaaaaaaaaaa");
+                _controller.DownPlayer();
                 break;
             case "DecryptInteract":
                 collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
+                break;
+            case "CodeZone":
+                LeCode lecode = collision.transform.parent.GetComponent<LeCode>();
+                if (!lecode.HaveOnePlayer())
+                {
+                    lecode.Player = gameObject;
+                    lecode.Init();
+                    _playerUI.DisplayLeCodeUI(true);
+                    _inputs.actions["Interact"].Disable();
+                    _inputs.actions["Jump"].Disable();
+                    _inputs.actions["Code"].Enable();
+                    lecode.Controller = _controller;
+                }
                 break;
         }
     }
@@ -117,17 +137,21 @@ public class PlayerCollision : MonoBehaviour
             room.OnRoomExit();
             return;
         }
-/*
+
         switch (collision.tag)
         {
-            case "NPC":
-                //_isInNPC = true;
-                collidertype = null;
+            case "CodeZone":
+                LeCode lecode = collision.transform.parent.GetComponent<LeCode>();
+                if (lecode.Player == gameObject)
+                {
+                    lecode.Player = null;
+                    _playerUI.DisplayLeCodeUI(false);
+                    _inputs.actions["Interact"].Enable();
+                    _inputs.actions["Jump"].Enable();
+                    _inputs.actions["Code"].Disable();
+                }
                 break;
-            case "Lift":
-                _IsInLift = true;
-                break;
-        }*/
+        }
     }
    
 }
