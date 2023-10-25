@@ -25,6 +25,14 @@ public class PlayerUI : MonoBehaviour
     [Header("Duolingo")]
     Transform _duolingoUI;
     List<TextMeshProUGUI> _answersDuolingo = new List<TextMeshProUGUI>();
+
+    [Header("Le Code")]
+    Transform _leCodeUI;
+    Image _up;
+    Image _down;
+    Image _right;
+    Image _left;
+
     private void Start()
     {
         
@@ -50,6 +58,14 @@ public class PlayerUI : MonoBehaviour
             TextMeshProUGUI tempText = answer.Find("TextAnswer").GetComponent<TextMeshProUGUI>();
             _answersDuolingo.Add(tempText);
         }
+
+        //Le Code
+        _leCodeUI = _canvas.transform.Find("CodeInputs");
+        _up = _leCodeUI.transform.GetChild(0).GetComponent<Image>();
+        _right = _leCodeUI.transform.GetChild(1).GetComponent<Image>();
+        _left = _leCodeUI.transform.GetChild(2).GetComponent<Image>();
+        _down = _leCodeUI.transform.GetChild(3).GetComponent<Image>();
+
     }
 
     public void ChangeUIInputs(string text)
@@ -116,10 +132,16 @@ public class PlayerUI : MonoBehaviour
         _duolingoUI.gameObject.SetActive(value);
     }
 
+    public void DisplayLeCodeUI(bool value)
+    {
+        _leCodeUI.gameObject.SetActive(value);
+    }
+
     public void DisplayInputsUI(bool value)
     {
         DisplayDuolingoUI(value);
         DisplayQTEUI(value);
+        DisplayLeCodeUI(value);
     }
 
     #endregion

@@ -25,8 +25,10 @@ public class LaserRoom : Task , ITimedTask
     [SerializeField] Transform _spawnerR;
 
 
-    [SerializeField] public float _givenTime => 20;
-    [SerializeField] public float _recuperateTime => 2;
+    public float _givenTime => 20;
+    [SerializeField] float _recuperateTime => 2;
+
+    [SerializeField] float tttt = 5;
 
 
     float _actualTime;
@@ -36,8 +38,8 @@ public class LaserRoom : Task , ITimedTask
 
     void Start()
     {
-        print(_difficulty);
-        _actualTime = _givenTime /** _difficulty*/;
+        _actualTime = _givenTime * (_difficulty / 3f);
+        print(_actualTime);
         ThisRoom = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
     }
@@ -52,7 +54,7 @@ public class LaserRoom : Task , ITimedTask
         StartCoroutine(BlockDoors(false));
         if (isSuccessful)
         {
-            RecuperatePlayer();
+            StartCoroutine(RecuperatePlayer());
         }
         else
         {

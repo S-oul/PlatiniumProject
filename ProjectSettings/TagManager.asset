@@ -12,6 +12,8 @@ TagManager:
   - DecryptageEnemy
   - DecryptageTarget
   - DecryptInteract
+  - Laser
+  - CodeZone
   layers:
   - Default
   - TransparentFX

@@ -26,10 +26,11 @@ public class Room : MonoBehaviour
 
     Task _task;
 
-
+    [SerializeField] Transform _posItPos;
+    bool _hasPostIt = false;
 
     #endregion
-    
+
     GameManager _gameManager;
 
 
@@ -47,9 +48,10 @@ public class Room : MonoBehaviour
 
     public Task TaskRoom { get => _task; set => _task = value; }
     public SpriteRenderer ScreenTexture { get => _screenTexture; set => _screenTexture = value; }
+    public bool HasPostIt { get => _hasPostIt; set => _hasPostIt = value; }
     #endregion
 
-    public void InitRoom()
+    public virtual void InitRoom()
     {
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
         if(_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
@@ -57,10 +59,10 @@ public class Room : MonoBehaviour
 
         Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
         //print(gameObject.name + " : " + h + " " + s + " " + v);
-        _spriteRoom.color = Color.HSVToRGB(h, s, .4f);
+        _spriteRoom.color = Color.HSVToRGB(h, s, .2f);
 
-
-        foreach (var o in _npcList)
+        _gameManager.RoomList.Add(this);
+/*        foreach (var o in _npcList)
         {
             _gameManager._npcList.Add(o);
         }
@@ -71,7 +73,7 @@ public class Room : MonoBehaviour
         foreach (var o in _eventList)
         {
             _gameManager._eventList.Add(o);
-        }
+        }*/
         ///Lift
         if (_id.Contains("L"))
         {
