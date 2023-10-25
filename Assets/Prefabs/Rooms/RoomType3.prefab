@@ -56,6 +56,7 @@ MonoBehaviour:
   _objectList: []
   _npcList: []
   _eventList: []
+  _posItPos: {fileID: 0}
   _listPlayer: []
 --- !u!61 &-1268150158152592730
 BoxCollider2D:
@@ -271,6 +272,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2465499368048737776}
     m_Modifications:
+    - target: {fileID: 885543552384496065, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 885543552384496065, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 885543552384496065, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 885543552384496065, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 885543552384496065, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2353578007512903286, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -283,6 +304,10 @@ PrefabInstance:
       propertyPath: _dialogues.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8376708295621770097, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 10761fd03d2ceb047a7a051385712689, type: 3}
     - target: {fileID: 8376708295621770097, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_SortingOrder
       value: 1
