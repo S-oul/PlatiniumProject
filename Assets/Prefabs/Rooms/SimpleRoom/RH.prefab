@@ -57,7 +57,7 @@ MonoBehaviour:
   _objectList: []
   _npcList: []
   _eventList: []
-  _posItPos: {fileID: 0}
+  _posItPos: {fileID: 1830110488325419034}
   _hasPostIt: 0
   _listPlayer: []
 --- !u!61 &8973785233046841869
@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 9113556740904608470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.185, y: 0.017, z: 0}
+  m_LocalPosition: {x: 0.287, y: 0.082, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

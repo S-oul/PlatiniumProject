@@ -36,6 +36,7 @@ Transform:
   - {fileID: 3395804303080975911}
   - {fileID: 7027403776209885555}
   - {fileID: 5597121682970957215}
+  - {fileID: 1965961651334219512}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3617605336626875981
@@ -57,7 +58,7 @@ MonoBehaviour:
   _objectList: []
   _npcList: []
   _eventList: []
-  _posItPos: {fileID: 0}
+  _posItPos: {fileID: 1965961651334219512}
   _hasPostIt: 0
   _listPlayer: []
 --- !u!61 &-1268150158152592730
@@ -225,6 +226,37 @@ Transform:
   - {fileID: 3657983868265422693}
   - {fileID: 389844621272091961}
   - {fileID: 5749308120477745794}
+  m_Father: {fileID: 2465499368048737776}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5141263836423990067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1965961651334219512}
+  m_Layer: 0
+  m_Name: PostItPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1965961651334219512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5141263836423990067}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.308, y: 0.163, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 2465499368048737776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9155976374775985118
