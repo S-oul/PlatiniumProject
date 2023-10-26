@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class TamponageTask : InputTask, ITimedTask
 {
@@ -33,15 +34,22 @@ public class TamponageTask : InputTask, ITimedTask
 
     Transform _clock;
 
-
+    TextMeshProUGUI _textScore;
     private void Start()
     {
         _numOfClicksToDo *= Difficulty;
         _inputName = InputsToString[_inputToPress];
         _clock = gameObject.transform.parent.parent.Find("Timer").GetChild(0).GetChild(0);
+        _textScore = gameObject.transform.parent.parent.Find("Score").Find("TextScore").GetComponent<TextMeshProUGUI>();
     }
     public override void End(bool isSuccessful)
     {
+        _player1.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
+        _player2.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
+        _player1.GetComponent<PlayerController>().BlockPlayer(false);
+        _player2.GetComponent<SpriteRenderer>().sortingOrder = 8;
+        _player1.GetComponent<PlayerController>().BlockPlayer(false);
+        _player2.GetComponent<SpriteRenderer>().sortingOrder = 8;
         _player1.EnableMovementDisableInputs();
         _player2.EnableMovementDisableInputs();
     }
@@ -49,6 +57,7 @@ public class TamponageTask : InputTask, ITimedTask
 
     public override void StartTask()
     {
+        _textScore.text = "0/10";
         _angle = 360f;
         _player1 = PlayersDoingTask[0].GetComponent<PlayerController>();
         _player2 = PlayersDoingTask[1].GetComponent<PlayerController>();
@@ -67,19 +76,24 @@ public class TamponageTask : InputTask, ITimedTask
                 End(true);
             }
 
-            Debug.Log(_p1Value + " caca " + _p2Value);
             if (_p1Value == 2 || _p2Value == 2)
             {
+                _textScore.text = "Penality";
+                _textScore.color = Color.red;
                 StartCoroutine(Penality());
             }
             if (_p2Value ==  1 && _p1Value == 0)
             {
+                _textScore.text = "Penality";
+                _textScore.color = Color.red;
                 StartCoroutine(Penality());
             }
 
             if(_p1Value == 1 && _p2Value == 1)
             {
                 _numOfClicksDone++;
+                _textScore.color = Color.black;
+                _textScore.text = _numOfClicksDone +  "/10";
                 _p1Value = 0;
                 _p2Value = 0;
             }
@@ -117,6 +131,8 @@ public class TamponageTask : InputTask, ITimedTask
         _player1.GetComponent<PlayerController>().DisableAllInputs();
         _player2.GetComponent<PlayerController>().DisableAllInputs();
         yield return new WaitForSeconds(5);
+        _textScore.color = Color.black;
+        _textScore.text = _numOfClicksDone + "/10";
         _player1.GetComponent<PlayerController>().DisableMovementEnableInputs();
         _player2.GetComponent<PlayerController>().DisableMovementEnableInputs();
 
