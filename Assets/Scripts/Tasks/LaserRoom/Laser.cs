@@ -9,20 +9,19 @@ public class Laser : MonoBehaviour
     public float _speed = 5;
     public float _timeToSwap = 1;
 
-    LineRenderer _lineRenderer;
+    [SerializeField] SpriteRenderer _sprite;
     BoxCollider2D _boxCollider;
 
     private void OnEnable()
     {
-        _lineRenderer = GetComponent<LineRenderer>();
         _boxCollider = GetComponent<BoxCollider2D>();
         StartCoroutine(SwapperOn());
     }
 
     void Update()
     {
-        _lineRenderer.SetPosition(0,transform.position);
-        _lineRenderer.SetPosition(1, transform.position - new Vector3(0,5,1));
+/*        _sprite.SetPosition(0,transform.position);
+        _sprite.SetPosition(1, transform.position - new Vector3(0,5,1));*/
 
         //print(transform.localPosition.x + " //// " + ToFar.position.x);
         if (_goLeft)
@@ -48,14 +47,14 @@ public class Laser : MonoBehaviour
     IEnumerator SwapperOn()
     {
         yield return new WaitForSeconds(_timeToSwap);
-        _lineRenderer.enabled = true;
+        _sprite.enabled = true;
         _boxCollider.enabled = true;
         StartCoroutine(SwapperOff());
     }
     IEnumerator SwapperOff()
     {
         yield return new WaitForSeconds(_timeToSwap/2);
-        _lineRenderer.enabled = false;
+        _sprite.enabled = false;
         _boxCollider.enabled = false;
         StartCoroutine(SwapperOn());
 
