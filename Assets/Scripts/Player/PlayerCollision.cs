@@ -99,7 +99,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "Laser":
                 //print("haaaaaaaaaaaaaaaaaaaaaa");
-                StartCoroutine(_controller.PlayerDown(collision.transform.parent.GetComponent<Laser>().TimePlayerIsDown));
+                StartCoroutine(_controller.PlayerDown(collision.GetComponent<Laser>().TimePlayerIsDown));
                 break;
             case "DecryptInteract":
                 collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
