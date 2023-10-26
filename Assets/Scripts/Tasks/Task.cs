@@ -60,14 +60,8 @@ public abstract class Task : MonoBehaviour
                     _isStarted = true;
                     Init();
                 }
-                    
-
             }
         }
-        
-
-        
-        
     }
 
     public void OnRoomSuccess()
