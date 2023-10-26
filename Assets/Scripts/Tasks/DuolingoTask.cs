@@ -181,7 +181,7 @@ public class DuolingoTask : InputTask
             player.GetComponent<PlayerController>().EnableMovementDisableInputs();
             if(value == false)
             {
-                player.GetComponent<PlayerController>().DownPlayer();
+                StartCoroutine(player.GetComponent<PlayerController>().PlayerDown(2f));
                 player.GetComponent<PlayerUI>().ClearAnswersDuolingo();
                 player.GetComponent<PlayerUI>().DisplayDuolingoUI(false);
                 StartCoroutine(RecuperatePlayer(player));
