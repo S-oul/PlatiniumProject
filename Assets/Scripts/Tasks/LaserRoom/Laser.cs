@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public Transform ToFar;
-    public bool _goLeft = true;
-    public float _speed = 5;
-    public float _timeToSwap = 1;
+    [SerializeField] private Transform _toFar;
+    [SerializeField] private bool _goLeft = true;
+    [SerializeField] private float _speed = 5;
+    [SerializeField] private float _timeToSwap = 1;
+    [SerializeField] private float _timePlayerIsDown = 2;
 
     [SerializeField] SpriteRenderer _sprite;
     BoxCollider2D _boxCollider;
+
+    public float TimePlayerIsDown { get => _timePlayerIsDown; set => _timePlayerIsDown = value; }
+    public Transform ToFar { get => _toFar; set => _toFar = value; }
+    public bool GoLeft { get => _goLeft; set => _goLeft = value; }
 
     private void OnEnable()
     {
@@ -27,7 +32,7 @@ public class Laser : MonoBehaviour
         if (_goLeft)
         {
             transform.localPosition += Vector3.left * Time.deltaTime * _speed;
-            if (transform.localPosition.x < ToFar.position.x)
+            if (transform.localPosition.x < _toFar.position.x)
             {
                 StopAllCoroutines();
                 Destroy(gameObject);
@@ -36,7 +41,7 @@ public class Laser : MonoBehaviour
         else
         {
             transform.localPosition += Vector3.right * Time.deltaTime * _speed;
-            if (transform.localPosition.x > ToFar.position.x)
+            if (transform.localPosition.x > _toFar.position.x)
             {
                 StopAllCoroutines();
                 Destroy(gameObject);

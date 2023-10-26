@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,12 +52,10 @@ public class PlayerController : MonoBehaviour
         _isJumping = context.ReadValueAsButton();
         _isJumping = context.action.triggered;
     }
-    
     public void BlockPlayer(bool value)
     {
         gameObject.GetComponent<Rigidbody2D>().isKinematic = value;
     }
-
     public void DisableMovementEnableInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
@@ -66,7 +65,6 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["InputTask"].Enable();
         _canMove = false;
     }
-
     public void DisableAllInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
@@ -76,7 +74,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["InputTask"].Disable();
         _canMove = false;
     }
-    public void DownPlayer()
+    private void DownPlayer()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Disable();
@@ -85,6 +83,16 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["InputTask"].Disable();
         _canMove = false;
         _isPlayerDown = true;
+    }
+    private void UpPlayer()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Enable();
+        _playerInput.actions["Jump"].Enable();
+        _playerInput.actions["InputTask"].Enable();
+        _canMove = true;
+        _isPlayerDown = false;
     }
     public void EnableMovementDisableInputs()
     {
@@ -111,8 +119,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-
     public void OnInteract(InputAction.CallbackContext context)
     {
         
@@ -137,7 +143,6 @@ public class PlayerController : MonoBehaviour
             _codeContext = "";
         }
     }
-
     public void OnDecryptage(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -150,7 +155,7 @@ public class PlayerController : MonoBehaviour
         }
     }
         // Comunicate contol inputs to CharacterContoller2D Script component
-        private void FixedUpdate()
+    private void FixedUpdate()
     {
         if(_isPlayerDown) { transform.localEulerAngles = new Vector3(0,0,90); }
         else { transform.localEulerAngles = new Vector3(0, 0, 0); }
@@ -158,5 +163,10 @@ public class PlayerController : MonoBehaviour
         _isJumping = false;
     }
 
-    
+    public IEnumerator PlayerDown(float time)
+    {
+        DownPlayer();
+        yield return new WaitForSeconds(time);
+        UpPlayer();
+    }
 }

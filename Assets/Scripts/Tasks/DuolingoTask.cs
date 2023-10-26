@@ -181,8 +181,8 @@ public class DuolingoTask : InputTask
             player.GetComponent<PlayerController>().EnableMovementDisableInputs();
             if(value == false)
             {
-                player.GetComponent<PlayerController>().DownPlayer();
-                StartCoroutine(RecuperatePlayer(player));
+                StartCoroutine(player.GetComponent<PlayerController>().PlayerDown(2f));
+                //StartCoroutine(RecuperatePlayer(player));
             }
         }
 

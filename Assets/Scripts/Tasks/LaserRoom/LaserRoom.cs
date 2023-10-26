@@ -139,7 +139,7 @@ public class LaserRoom : Task , ITimedTask
             g2.transform.localScale = new Vector3(.16f, .16f, .16f);
             Laser l2 = g2.GetComponent<Laser>();
             l2.ToFar = _spawnerR;
-            l2._goLeft = false;
+            l2.GoLeft = false;
             _laserGO.Add(g);
 
         }
@@ -151,7 +151,7 @@ public class LaserRoom : Task , ITimedTask
             g.transform.localScale = new Vector3(.16f, .16f, .16f);
             Laser l = g.GetComponent<Laser>();
             l.ToFar = _spawnerR;
-            l._goLeft = false;
+            l.GoLeft = false;
             _laserGO.Add(g);
 
         }
