@@ -177,7 +177,7 @@ public class DuolingoTask : InputTask
         {
             player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
             player.GetComponent<PlayerController>().BlockPlayer(false);
-            player.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            player.GetComponent<SpriteRenderer>().sortingOrder = 8;
             player.GetComponent<PlayerController>().EnableMovementDisableInputs();
             if(value == false)
             {
