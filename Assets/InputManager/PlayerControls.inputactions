@@ -54,7 +54,7 @@
                     "name": "Decryptage",
                     "type": "Value",
                     "id": "0e361b32-cab0-4783-aac7-f51b56710d46",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Stick",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -301,39 +301,6 @@
                 },
                 {
                     "name": "1D Axis",
-                    "id": "4a8bcd8f-45d9-48d3-96af-b3ed89067c76",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Decryptage",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "014039b2-a989-4c88-9c12-323bc8cde2d2",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard;Controller",
-                    "action": "Decryptage",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "c76d7b07-387f-43ce-8820-65e7039c3794",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard;Controller",
-                    "action": "Decryptage",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
                     "id": "4a5c6b88-ba02-477c-80e2-79ea5ea0df94",
                     "path": "1DAxis",
                     "interactions": "",
@@ -408,6 +375,50 @@
                     "action": "Code",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f5e5bdb-f75c-4e8f-bf89-6dbc5bd0f886",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Decryptage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "b31e46b1-951e-45d0-a68a-396434e6bd9f",
+                    "path": "2DVector",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Decryptage",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "e2fbd041-977a-42a0-9daf-1ed1101f2c91",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Decryptage",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "ed065bce-5dcc-4e96-9b10-2a104576f22d",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Decryptage",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

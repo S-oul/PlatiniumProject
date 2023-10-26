@@ -1,12 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -59,8 +52,8 @@ public class PlayerCollision : MonoBehaviour
                     break;
 
                 case DecryptageTask:
-                    ((DecryptageTask)collidertype).PlyrInput = _inputs;
                     ((DecryptageTask)collidertype).Init();
+                    ((DecryptageTask)collidertype).Controller = _controller;
                     _controller.DisableAllInputs();
                     _inputs.actions["Decryptage"].Enable();
                     _controller.IsInteracting = false;

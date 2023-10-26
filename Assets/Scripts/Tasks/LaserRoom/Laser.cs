@@ -7,7 +7,7 @@ public class Laser : MonoBehaviour
     public Transform ToFar;
     public bool _goLeft = true;
     public float _speed = 5;
-    public float _timeToSwap = 2;
+    public float _timeToSwap = 1;
 
     [SerializeField] SpriteRenderer _sprite;
     BoxCollider2D _boxCollider;

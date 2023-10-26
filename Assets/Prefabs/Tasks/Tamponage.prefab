@@ -47,6 +47,7 @@ MonoBehaviour:
   _playersDoingTask: []
   _numberOfPlayers: 2
   _difficulty: 1
-  _numOfClicks: 5
+  _numOfClicksToDo: 10
   _timeLimit: 30
   _inputToPress: 0
+  _angle: 360

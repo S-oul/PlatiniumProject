@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3617605336626875981}
   - component: {fileID: -1268150158152592730}
   m_Layer: 6
-  m_Name: RoomType3
+  m_Name: CowBoy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,6 +58,7 @@ MonoBehaviour:
   _npcList: []
   _eventList: []
   _posItPos: {fileID: 0}
+  _hasPostIt: 0
   _listPlayer: []
 --- !u!61 &-1268150158152592730
 BoxCollider2D:

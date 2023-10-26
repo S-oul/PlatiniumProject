@@ -8,26 +8,24 @@ public class TamponageTask : InputTask, ITimedTask
     
     // Start is called before the first frame update
 
-    [SerializeField] int _numOfClicks;
+    int _numOfClicksDone = 0;
+    [SerializeField] int _numOfClicksToDo = 10;
+
     [SerializeField] float _timeLimit;
 
     [SerializeField] Inputs _inputToPress;
     string _inputName;
 
-    string _inputPressedP1;
-    string _inputPressedP2;
+    int _p1Value = 0;
+    int _p2Value = 0;
+
 
     PlayerController _player1;
     PlayerController _player2;
 
-    int _remainingClicks;
+    //int _remainingClicks;
     float _remainingTime;
 
-    string _lastPressed = "";
-
-    PlayerController _lastPlayer;
-
-    bool _inputsCanBePressed = false;
 
     [SerializeField] float _angle = 360;
 
@@ -35,73 +33,67 @@ public class TamponageTask : InputTask, ITimedTask
 
     Transform _clock;
 
-    bool _canCheckInput;
+
     private void Start()
     {
+        _numOfClicksToDo *= Difficulty;
         _inputName = InputsToString[_inputToPress];
         _clock = gameObject.transform.parent.parent.Find("Timer").GetChild(0).GetChild(0);
-        _canCheckInput = false;
     }
     public override void End(bool isSuccessful)
     {
-        
+        _player1.EnableMovementDisableInputs();
+        _player2.EnableMovementDisableInputs();
     }
 
 
     public override void StartTask()
     {
         _angle = 360f;
-        _canCheckInput = true;
-        _inputsCanBePressed = true;
         _player1 = PlayersDoingTask[0].GetComponent<PlayerController>();
         _player2 = PlayersDoingTask[1].GetComponent<PlayerController>();
-        _lastPlayer = _player2;
         _remainingTime = _timeLimit;
         StartCoroutine(TimerTask());
-        GameLoop();
-        
+        IsStarted = true;
     }
-
-    void GameLoop()
+    
+    void Update()
     {
-        _inputsCanBePressed = true;
-    }
-
-    void ResultInput()
-    {
-        if (_canCheckInput)
+        if (IsStarted) 
         {
-            
-            _canCheckInput = false;
-            if (CheckInputValue(_player1.currentContextName, _inputName, _player1) == PlayerInputValue.RightValue)
-            {
-                _inputPressedP1 = _player1.currentContextName;
-
-
-            }
-            else
+            if(_numOfClicksDone >= _numOfClicksToDo)
             {
 
-                _inputPressedP1 = "";
+                End(true);
             }
-            if (CheckInputValue(_player2.currentContextName, _inputName, _player2) == PlayerInputValue.RightValue)
-            {
 
-                _inputPressedP2 = _player2.currentContextName;
-
-            }
-            else
+            Debug.Log(_p1Value + " caca " + _p2Value);
+            if (_p1Value == 2 || _p2Value == 2)
             {
-                _inputPressedP2 = "";
+                StartCoroutine(Penality());
             }
-            ValueAction();
+            if (_p2Value ==  1 && _p1Value == 0)
+            {
+                StartCoroutine(Penality());
+            }
+
+            if(_p1Value == 1 && _p2Value == 1)
+            {
+                _numOfClicksDone++;
+                _p1Value = 0;
+                _p2Value = 0;
+            }
+            if (_player1.currentContextName != "" && _data.InputNamesConverter[_player1.currentContextName] == _inputName)
+            {
+                _p1Value++;
+                _player1.currentContextName = "";
+            }
+            if (_player2.currentContextName != "" && _data.InputNamesConverter[_player2.currentContextName] == _inputName)
+            {
+                _p2Value++;
+                _player2.currentContextName = "";
+            }
         }
-        
-        
-       
-        
-        
-       
     }
 
     IEnumerator TimerTask()
@@ -109,7 +101,6 @@ public class TamponageTask : InputTask, ITimedTask
         float timePercent;
         while( _remainingTime > 0)
         {
-            ResultInput();
             _remainingTime -= Time.deltaTime;
             timePercent = Mathf.InverseLerp(0, _timeLimit, _remainingTime);
             _clock.eulerAngles = new Vector3(0, 0, _angle * timePercent);
@@ -118,50 +109,16 @@ public class TamponageTask : InputTask, ITimedTask
         
     }
 
-    void ValueAction()
-    {
-        if (_inputPressedP1 == "" && _inputPressedP2 != "" )
-        {
-            if(_lastPlayer == _player1)
-            {
-                Debug.Log("Couber");
-                _lastPlayer = _player2;
-            }
-            else if(_lastPlayer == _player2)
-            {
-                StartCoroutine(Penality());
-                return;
-            }
-            
-        }
-        if(_inputPressedP2 == "" && _inputPressedP1 != "")
-        {
-            if (_lastPlayer == _player2)
-            {
-                Debug.Log("Couber");
-                _lastPlayer = _player1;
-            }
-            else if (_lastPlayer == _player1)
-            {
-                StartCoroutine(Penality());
-                return;
-            }
-        }
-        _inputPressedP1 = "";
-        _inputPressedP2 = "";
-        _canCheckInput = true;
-    }
      IEnumerator Penality()
     {
-        _inputPressedP1 = "";
-        _inputPressedP2 = "";
-        Debug.Log("Penality");
+        Debug.Log("Caca Penality");
+        _p1Value = 0;
+        _p2Value = 0;
         _player1.GetComponent<PlayerController>().DisableAllInputs();
         _player2.GetComponent<PlayerController>().DisableAllInputs();
         yield return new WaitForSeconds(5);
         _player1.GetComponent<PlayerController>().DisableMovementEnableInputs();
         _player2.GetComponent<PlayerController>().DisableMovementEnableInputs();
-        _canCheckInput = true;
 
     }
 

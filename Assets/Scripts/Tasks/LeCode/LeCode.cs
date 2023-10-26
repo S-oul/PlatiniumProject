@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using static CowboyQTE;
 
 public class LeCode : Task
 {
@@ -37,7 +33,7 @@ public class LeCode : Task
         print(_code);
         int r = Random.Range(0, _gameManager.RoomList.Count);
         int count = 0;
-        while (_gameManager.RoomList[r].HasPostIt && count < 500)
+        while ((_gameManager.RoomList[r].HasPostIt || _gameManager.RoomList[r].PosItPos == null) && count < 500)
         {
             r = Random.Range(0, _gameManager.RoomList.Count);
             count++;

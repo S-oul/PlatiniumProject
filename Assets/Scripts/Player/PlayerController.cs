@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 [RequireComponent(typeof(CharacterController2D))]
@@ -29,6 +25,7 @@ public class PlayerController : MonoBehaviour
     Collider2D _colliderPlayer;
 
     string _codeContext;
+    float _DecrytContext;
 
     public string currentContextName;
 
@@ -36,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public bool CanMove { get => _canMove; set => _canMove = value; }
     public bool IsPlayerDown { get => _isPlayerDown; set => _isPlayerDown = value; }
     public string CodeContext { get => _codeContext; set => _codeContext = value; }
+    public float DecrytContext { get => _DecrytContext; set => _DecrytContext = value; }
 
     private void Awake()
     {
@@ -95,6 +93,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Movement"].Enable();
         _playerInput.actions["Jump"].Enable();
         _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Decryptage"].Enable();
         _canMove = true;
         _isPlayerDown = false;
 
@@ -136,6 +135,18 @@ public class PlayerController : MonoBehaviour
         else
         {
             _codeContext = "";
+        }
+    }
+
+    public void OnDecryptage(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _DecrytContext = context.ReadValue<Vector2>().x;
+        }
+        else
+        {
+            _DecrytContext = 0;
         }
     }
         // Comunicate contol inputs to CharacterContoller2D Script component
