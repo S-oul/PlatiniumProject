@@ -10,8 +10,9 @@ public class DeskDuolingo : Object
     public override void Interact(GameObject player)
     {
         player.transform.position = gameObject.transform.Find("PlayerPosition").position;
+        player.GetComponent<PlayerController>().BlockPlayer(true);
         player.GetComponent<SpriteRenderer>().sortingOrder = 1;
-        player.GetComponent<PlayerController>().DisableMovementExceptInput();
+        player.GetComponent<PlayerController>().DisableMovementEnableInputs();
         _task.GetComponent<Task>().OnPlayerJoinedTask(player);
     }
 

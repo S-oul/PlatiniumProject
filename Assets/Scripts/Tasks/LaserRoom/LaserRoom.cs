@@ -154,7 +154,7 @@ public class LaserRoom : Task , ITimedTask
         yield return new WaitForSeconds(_recuperateTime);
         foreach (PlayerController _controller in _players)
         {
-            _controller.EnableMovement();
+            _controller.EnableMovementDisableInputs();
 
         }
 

@@ -54,7 +54,12 @@ public class PlayerController : MonoBehaviour
         _isJumping = context.action.triggered;
     }
     
-    public void DisableMovementExceptInput()
+    public void BlockPlayer(bool value)
+    {
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = value;
+    }
+
+    public void DisableMovementEnableInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Disable();
@@ -64,7 +69,7 @@ public class PlayerController : MonoBehaviour
         _canMove = false;
     }
 
-    public void DisableMovement()
+    public void DisableAllInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Disable();
@@ -83,7 +88,7 @@ public class PlayerController : MonoBehaviour
         _canMove = false;
         _isPlayerDown = true;
     }
-    public void EnableMovement()
+    public void EnableMovementDisableInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Enable();

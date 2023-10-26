@@ -176,26 +176,25 @@ public class DuolingoTask : InputTask
         foreach (GameObject player in PlayersDoingTask)
         {
             player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
+            player.GetComponent<PlayerController>().BlockPlayer(false);
             player.GetComponent<SpriteRenderer>().sortingOrder = 5;
-            player.GetComponent<PlayerController>().EnableMovement();
+            player.GetComponent<PlayerController>().EnableMovementDisableInputs();
             if(value == false)
             {
                 player.GetComponent<PlayerController>().DownPlayer();
-                StartCoroutine(RecuperatePlayer());
+                StartCoroutine(RecuperatePlayer(player));
             }
         }
+
         _npcDuolingo.GetComponent<UINpc>().ChangeBubbleContent("");
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
         End(value);
     }
 
-    IEnumerator RecuperatePlayer()
+    IEnumerator RecuperatePlayer(GameObject player)
     {
         yield return new WaitForSeconds(5);
-        foreach (GameObject player in PlayersDoingTask)
-        {
-            player.GetComponent<PlayerController>().EnableMovement();
-        }
+        player.GetComponent<PlayerController>().EnableMovementDisableInputs();
 
     }
 }

@@ -14,6 +14,9 @@ public class PostIt : MonoBehaviour
     private void Awake()
     {
         text = GetComponentInChildren<TextMeshPro>();
+    }
+    public void Initialize()
+    {
         text.text = SetCode(_code);
     }
 }

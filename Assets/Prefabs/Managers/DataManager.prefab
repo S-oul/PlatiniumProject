@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 2203151728919521307, guid: 0909399754d945448a3453519aacdcd9, type: 3}
   - {fileID: 1887970405050895401, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
   - {fileID: 6164837858597373043, guid: 3b1579053d438fa4ab1ffdf8822f3c9b, type: 3}
+  - {fileID: 6919338248750479993, guid: 21fdab9860ed05542aeb3b806c0afe02, type: 3}
   _spritePlayers:
   - {fileID: 21300000, guid: 6e94937d2bd925049b0c7b5e58d66dca, type: 3}
   - {fileID: 21300000, guid: 360d208337a555746a7d242968af3d19, type: 3}

@@ -45,7 +45,8 @@ public class DataManager : MonoBehaviour
         LaserRoom,
         RHTask,
         Decryptage,
-        Duolingo
+        Duolingo,
+        Tamponnage
     }
 
     
