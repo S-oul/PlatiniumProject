@@ -35,6 +35,8 @@ public class TamponageTask : InputTask, ITimedTask
     Transform _clock;
 
     TextMeshProUGUI _textScore;
+
+    Coroutine _timer;
     private void Start()
     {
         _numOfClicksToDo *= Difficulty;
@@ -44,6 +46,17 @@ public class TamponageTask : InputTask, ITimedTask
     }
     public override void End(bool isSuccessful)
     {
+        if(isSuccessful == true)
+        {
+            _textScore.text = "GG!";
+            _textScore.color = Color.green;
+        }
+        else
+        {
+            _textScore.text = "Too bad!";
+            _textScore.color = Color.red;
+        }
+        StopCoroutine(_timer);
         _player1.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
         _player2.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
         _player1.GetComponent<PlayerController>().BlockPlayer(false);
@@ -62,7 +75,7 @@ public class TamponageTask : InputTask, ITimedTask
         _player1 = PlayersDoingTask[0].GetComponent<PlayerController>();
         _player2 = PlayersDoingTask[1].GetComponent<PlayerController>();
         _remainingTime = _timeLimit;
-        StartCoroutine(TimerTask());
+        _timer = StartCoroutine(TimerTask());
         IsStarted = true;
     }
     
@@ -120,6 +133,7 @@ public class TamponageTask : InputTask, ITimedTask
             _clock.eulerAngles = new Vector3(0, 0, _angle * timePercent);
             yield return null;
         }
+        
         
     }
 
