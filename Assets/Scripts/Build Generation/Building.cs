@@ -112,9 +112,7 @@ public class Building : MonoBehaviour
                 int r = Random.Range(0, _allPool[intC].Count);
                 i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
-
         }
-
     }
     Room instantiateRoom(GameObject room, float height, int roomStart)
     {
