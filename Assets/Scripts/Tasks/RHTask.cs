@@ -19,7 +19,7 @@ public class RHTask : Task
     }
     public override void End(bool isSuccessful)
     {
-        _npcRH.NPCUI.DisplayTalkingBubble(false);
+        StartCoroutine(FeedBack(isSuccessful));
         _npcRH.IsPlayerNeeded = false;
         IsDone = true;
     }
@@ -52,5 +52,19 @@ public class RHTask : Task
         }
     }
         
-
+    IEnumerator FeedBack(bool value)
+    {
+        _npcRH.DisplayPlayer(null);
+        if (value == true)
+        {
+            
+            _npcRH.Talk("Thank you");
+        }
+        else
+        {
+            _npcRH.Talk(">:o");
+        }
+        yield return new WaitForSeconds(3f);
+        _npcRH.NPCUI.DisplayTalkingBubble(false);
+    }
 }

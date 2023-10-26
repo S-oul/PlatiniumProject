@@ -62,7 +62,7 @@ public class DuolingoTask : InputTask
     {
         _rightWord = _words[Random.Range(0, _words.Count)];
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
-        _npcDuolingo.GetComponent<UINpc>().ChangeBubbleContent(_rightWord + "?");
+        _npcDuolingo.GetComponent<UINpc>().ChangeBubbleText(_rightWord + "?");
         DisplayAnswers(_rightWord);
     }
 
@@ -182,11 +182,13 @@ public class DuolingoTask : InputTask
             if(value == false)
             {
                 player.GetComponent<PlayerController>().DownPlayer();
+                player.GetComponent<PlayerUI>().ClearAnswersDuolingo();
+                player.GetComponent<PlayerUI>().DisplayDuolingoUI(false);
                 StartCoroutine(RecuperatePlayer(player));
             }
         }
 
-        _npcDuolingo.GetComponent<UINpc>().ChangeBubbleContent("");
+        _npcDuolingo.GetComponent<UINpc>().ChangeBubbleText("");
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
         End(value);
     }

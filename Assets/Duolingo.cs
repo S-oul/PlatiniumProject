@@ -25,6 +25,6 @@ public class Duolingo : NPC
     public void Talk(string text)
     {
         NPCUI.DisplayTalkingBubble(true);
-        NPCUI.ChangeBubbleContent(text);
+        NPCUI.ChangeBubbleText(text);
     }
 }
