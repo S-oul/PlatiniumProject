@@ -95,12 +95,12 @@ public class Room : MonoBehaviour
     }
 
     #region UNITY EDITOR
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
 
     private void OnValidate()
     {
         transform.localScale = new Vector3(RoomSize * 5, transform.localScale.y, 1);
     }
-#endif
+#endif*/
     #endregion
 }
