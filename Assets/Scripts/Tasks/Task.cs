@@ -79,12 +79,12 @@ public abstract class Task : MonoBehaviour
     public void OnRoomSuccess()
     {
         
-        _room.WinStateScreen.ChangeColor(Color.green);
+        /*_room.WinStateScreen.ChangeColor(Color.green);*/
     }
     public void OnRoomFail()
     {
       
-        _room.WinStateScreen.ChangeColor(Color.red);
+       /* _room.WinStateScreen.ChangeColor(Color.red);*/
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {

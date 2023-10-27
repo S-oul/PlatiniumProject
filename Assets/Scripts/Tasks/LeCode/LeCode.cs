@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -58,15 +59,30 @@ public class LeCode : Task
 
     public override void End(bool isSuccessful)
     {
-        print("HAHHAHAHAHAHAHHAHA");
-        //throw new System.NotImplementedException();
+        if (isSuccessful)
+        {
+            _screenText.color = Color.green;
+            Debug.Log("Good code");
+        }
+        else
+        {
+            _screenText.color = Color.red;
+            Debug.Log("Wrong code");
+
+        }
+        base.End(isSuccessful);
     }
 
+
+    IEnumerator TimeBeforeRestart()
+    {
+        yield return new WaitForSeconds(2f);
+        _screenText.text = "";
+    }
     private void Update()
     {
         if (HaveOnePlayer())
         {
-            print(_controller.CodeContext);
             if(_controller.CodeContext != null)
             {
                 switch (_controller.CodeContext)

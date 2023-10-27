@@ -56,7 +56,7 @@ public class Room : MonoBehaviour
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
         if(_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
 
-        WinStateScreen.ChangeColor(Color.white);
+        //WinStateScreen.ChangeColor(Color.white);
         Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
         //print(gameObject.name + " : " + h + " " + s + " " + v);
         _spriteRoom.color = Color.HSVToRGB(h, s, .2f);
