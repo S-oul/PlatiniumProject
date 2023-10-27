@@ -56,6 +56,7 @@ public class LaserRoom : Task , ITimedTask
         {
             StartCoroutine(RecuperatePlayer());
         }
+        base.End(isSuccessful);
     }
     void KillAllLaser()
     {

@@ -21,7 +21,7 @@ public class RHTask : Task
     {
         StartCoroutine(FeedBack(isSuccessful));
         _npcRH.IsPlayerNeeded = false;
-        IsDone = true;
+        base.End(isSuccessful);
     }
 
     public override void Init()

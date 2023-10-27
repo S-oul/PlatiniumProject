@@ -36,7 +36,19 @@ public abstract class Task : MonoBehaviour
     }
     public abstract void Init();
 
-    public abstract void End(bool isSuccessful);
+    public virtual void End(bool isSuccessful)
+    {
+        IsStarted = false;
+        IsDone = isSuccessful;
+        if (isSuccessful)
+        {
+            OnRoomSuccess();
+        }
+        else
+        {
+            OnRoomFail();
+        }
+    }
     public void OnPlayerJoinedTask(GameObject player)
     {
         if (_numberOfPlayers == 1)
@@ -66,11 +78,13 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
-
+        
+        _room.WinStateScreen.ChangeColor(Color.green);
     }
     public void OnRoomFail()
     {
-
+      
+        _room.WinStateScreen.ChangeColor(Color.red);
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {

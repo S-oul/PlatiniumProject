@@ -68,6 +68,7 @@ public class TamponageTask : InputTask, ITimedTask
             player.GetComponent<SpriteRenderer>().sortingOrder = 8;
             player.GetComponent<PlayerController>().EnableMovementDisableInputs();
         }
+        base.End(isSuccessful);
     }
 
 

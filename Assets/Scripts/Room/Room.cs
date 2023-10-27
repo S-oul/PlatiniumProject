@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Room : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class Room : MonoBehaviour
 
     [SerializeField] Transform _posItPos;
     [SerializeField] bool _hasPostIt = false;
+    [SerializeField] WinStateScreen _winStateScreen;
 
     #endregion
 
@@ -46,6 +48,7 @@ public class Room : MonoBehaviour
     public SpriteRenderer ScreenTexture { get => _screenTexture; set => _screenTexture = value; }
     public bool HasPostIt { get => _hasPostIt; set => _hasPostIt = value; }
     public Transform PosItPos { get => _posItPos; set => _posItPos = value; }
+    public WinStateScreen WinStateScreen { get => _winStateScreen; set => _winStateScreen = value; }
     #endregion
 
     public virtual void InitRoom()
@@ -53,7 +56,7 @@ public class Room : MonoBehaviour
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
         if(_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
 
-
+        WinStateScreen.ChangeColor(Color.white);
         Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
         //print(gameObject.name + " : " + h + " " + s + " " + v);
         _spriteRoom.color = Color.HSVToRGB(h, s, .2f);

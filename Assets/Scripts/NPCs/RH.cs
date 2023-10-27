@@ -42,11 +42,11 @@ public class RH : NPC, IChattyNPC
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(_isPlayerNeeded && collision.gameObject == _playerNeeded)
+        if(_isPlayerNeeded && collision.gameObject == _playerNeeded )
         {
             _task.End(true);
         }
-        else if(_isPlayerNeeded && collision.tag == "Player")
+        else if(_isPlayerNeeded && collision.tag == "Player" && collision.gameObject != _task.PlayerGameObject)
         {
             _task.End(false);
         }

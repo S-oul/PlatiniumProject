@@ -63,13 +63,6 @@ public abstract class InputTask : Task
         StartTask();
     }
 
-    public override void End(bool isSuccessful)
-    {
-        IsStarted = false;
-        IsDone = isSuccessful;
-        
-
-    }
     public PlayerInputValue CheckInputValue(string contextName, string inputNeeded, PlayerController controller)
     {
         contextName = controller.currentContextName;
