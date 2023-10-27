@@ -21,7 +21,6 @@ public class Building : MonoBehaviour
 
     //[MenuItem("Assets/Create Room")]
     [SerializeField] private List<FloorData> _spawnFloors = new List<FloorData>();
-    [SerializeField] private List<FloorData> _floorsW3Max = new List<FloorData>();
     [SerializeField] private List<FloorData> _floorsW2Max = new List<FloorData>();
 
     private GameManager _gameManager;
@@ -62,16 +61,8 @@ public class Building : MonoBehaviour
         // print(treshold + " / " + chancetoSpawn + " / hasBigRoom : " + _hasBigRoom);
         
         string data;
-        if (chancetoSpawn < treshold && !_hasBigRoom)
-        {
-            data = _floorsW3Max[Random.Range(0, _floorsW3Max.Count)]._roomstype;
-            _hasBigRoom = true;
-        }
-        else
-        {
-            data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
+        data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
 
-        }
 
         int randomReverse = Random.Range(0,2);
         if (randomReverse == 1)
