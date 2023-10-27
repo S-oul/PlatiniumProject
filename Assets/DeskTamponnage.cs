@@ -28,20 +28,22 @@ public class DeskTamponnage : Object
     {
         if (!_isUsed)
         {
-            if(_playersOnDesk.Count == 2) 
-            {
-                _isUsed = true;
-            }
-            else if(_playersOnDesk.Count < 2)
+            
+            if(_playersOnDesk.Count < 2)
             {
                 _playersOnDesk.Add(player);
-
+                Debug.Log("Players: " + _playersOnDesk.Count);
                 player.transform.position = _posListOnDesk[_indexPos].position;
                 player.GetComponent<SpriteRenderer>().sortingOrder = 1;
                 player.GetComponent<PlayerController>().BlockPlayer(true);
                 player.GetComponent<PlayerController>().DisableMovementEnableInputs();
                 _task.GetComponent<Task>().OnPlayerJoinedTask(player);
                 _indexPos++;
+                if (_playersOnDesk.Count == 2)
+                {
+                    Debug.Log("Used");
+                    _isUsed = true;
+                }
             }
             
         }

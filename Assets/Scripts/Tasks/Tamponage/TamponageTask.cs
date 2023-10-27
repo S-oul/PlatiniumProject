@@ -50,27 +50,30 @@ public class TamponageTask : InputTask, ITimedTask
         {
             _textScore.text = "GG!";
             _textScore.color = Color.green;
+            IsDone = true;
+            
         }
         else
         {
             _textScore.text = "Too bad!";
             _textScore.color = Color.red;
+           
         }
         StopCoroutine(_timer);
-        _player1.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
-        _player2.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
-        _player1.GetComponent<PlayerController>().BlockPlayer(false);
-        _player2.GetComponent<SpriteRenderer>().sortingOrder = 8;
-        _player1.GetComponent<PlayerController>().BlockPlayer(false);
-        _player2.GetComponent<SpriteRenderer>().sortingOrder = 8;
-        _player1.EnableMovementDisableInputs();
-        _player2.EnableMovementDisableInputs();
+        foreach(GameObject player in PlayersDoingTask)
+        {
+            
+            player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
+            player.GetComponent<PlayerController>().BlockPlayer(false);
+            player.GetComponent<SpriteRenderer>().sortingOrder = 8;
+            player.GetComponent<PlayerController>().EnableMovementDisableInputs();
+        }
     }
 
 
     public override void StartTask()
     {
-        _textScore.text = "0/10";
+        _textScore.text = "0/" + _numOfClicksToDo;
         _angle = 360f;
         _player1 = PlayersDoingTask[0].GetComponent<PlayerController>();
         _player2 = PlayersDoingTask[1].GetComponent<PlayerController>();
@@ -81,7 +84,7 @@ public class TamponageTask : InputTask, ITimedTask
     
     void Update()
     {
-        if (IsStarted) 
+        if (IsStarted && !IsDone) 
         {
             if(_numOfClicksDone >= _numOfClicksToDo)
             {
@@ -106,7 +109,7 @@ public class TamponageTask : InputTask, ITimedTask
             {
                 _numOfClicksDone++;
                 _textScore.color = Color.black;
-                _textScore.text = _numOfClicksDone +  "/10";
+                _textScore.text = _numOfClicksDone +  "/" + _numOfClicksToDo;
                 _p1Value = 0;
                 _p2Value = 0;
             }
@@ -133,20 +136,23 @@ public class TamponageTask : InputTask, ITimedTask
             _clock.eulerAngles = new Vector3(0, 0, _angle * timePercent);
             yield return null;
         }
-        
-        
+        if(_remainingTime <= 0)
+        {
+            End(false );
+        }
+
+
     }
 
      IEnumerator Penality()
     {
-        Debug.Log("Caca Penality");
         _p1Value = 0;
         _p2Value = 0;
         _player1.GetComponent<PlayerController>().DisableAllInputs();
         _player2.GetComponent<PlayerController>().DisableAllInputs();
         yield return new WaitForSeconds(5);
         _textScore.color = Color.black;
-        _textScore.text = _numOfClicksDone + "/10";
+        _textScore.text = _numOfClicksDone + "/" + _numOfClicksToDo;
         _player1.GetComponent<PlayerController>().DisableMovementEnableInputs();
         _player2.GetComponent<PlayerController>().DisableMovementEnableInputs();
 
