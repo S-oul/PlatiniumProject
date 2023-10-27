@@ -19,16 +19,19 @@ public class PlayerController : MonoBehaviour
     bool _isGrounded = false;
     bool _isInteracting = false;
     bool _isPlayerDown = false;
+    bool _isBlocked = false;
 
     bool _canMove = true;
 
     CharacterController2D _controller;
     Collider2D _colliderPlayer;
+    Rigidbody2D _rb;
 
     string _codeContext;
     float _DecrytContext;
 
     public string currentContextName;
+
 
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool CanMove { get => _canMove; set => _canMove = value; }
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<CharacterController2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -54,7 +58,17 @@ public class PlayerController : MonoBehaviour
     }
     public void BlockPlayer(bool value)
     {
-        gameObject.GetComponent<Rigidbody2D>().isKinematic = value;
+        if (value)
+        {
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+        else
+        {
+            _rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+       
+        _isBlocked = value;
+        
     }
     public void DisableMovementEnableInputs()
     {
@@ -168,5 +182,13 @@ public class PlayerController : MonoBehaviour
         DownPlayer();
         yield return new WaitForSeconds(time);
         UpPlayer();
+    }
+
+    private void Update()
+    {
+        if (_isBlocked)
+        {
+            _rb.velocity = Vector2.zero;
+        }
     }
 }
