@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
         GameManager.Instance.PlayerCount++;
         PickRandomSprite(GameManager.Instance.Players[newPlayer.playerIndex]);                          // Randome sprite->animatior chosen here
         GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;    // Player spawns at the location of the PlayerManager Object
-        newPlayer.actions["InputTask"].Disable();                                                       // is "InputTask" the task of adding a player?
+        newPlayer.actions["InputTask"].Disable();                                                       // is "InputTask" the 'task' of adding a player?
         Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
     }
     void PickRandomSprite(GameObject player)                                                                         //Change to Pick randome Animation
