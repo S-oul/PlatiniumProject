@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Disable();
         _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
         _playerInput.actions["Jump"].Disable();
         _playerInput.actions["InputTask"].Enable();
         _canMove = false;
@@ -84,28 +85,19 @@ public class PlayerController : MonoBehaviour
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Disable();
         _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
         _playerInput.actions["Jump"].Disable();
         _playerInput.actions["InputTask"].Disable();
         _canMove = false;
     }
     private void DownPlayer()
     {
-        PlayerInput _playerInput = GetComponent<PlayerInput>();
-        _playerInput.actions["Interact"].Disable();
-        _playerInput.actions["Movement"].Disable();
-        _playerInput.actions["Jump"].Disable();
-        _playerInput.actions["InputTask"].Disable();
-        _canMove = false;
+        DisableAllInputs();
         _isPlayerDown = true;
     }
     private void UpPlayer()
     {
-        PlayerInput _playerInput = GetComponent<PlayerInput>();
-        _playerInput.actions["Interact"].Enable();
-        _playerInput.actions["Movement"].Enable();
-        _playerInput.actions["Jump"].Enable();
-        _playerInput.actions["InputTask"].Enable();
-        _canMove = true;
+        EnableMovementDisableInputs();
         _isPlayerDown = false;
     }
     public void EnableMovementDisableInputs()
@@ -115,9 +107,44 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Movement"].Enable();
         _playerInput.actions["Jump"].Enable();
         _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
+        _canMove = true;
+
+    }
+
+    public void DisableMovements()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Enable();
+        _playerInput.actions["Jump"].Enable();
+        _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
+        _canMove = true;
+
+    }
+
+    public void EnableDecryptageDisableMovements()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _playerInput.actions["InputTask"].Disable();
         _playerInput.actions["Decryptage"].Enable();
         _canMove = true;
-        _isPlayerDown = false;
+
+    }
+
+    public void DisableDecryptageEnableMovements()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Enable();
+        _playerInput.actions["Jump"].Enable();
+        _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
+        _canMove = true;
 
     }
     public void OnInputTask(InputAction.CallbackContext context)

@@ -9,25 +9,26 @@ public class DecryptageTask : Task
     
     [SerializeField] ObstacleManager _obstacles;
     [SerializeField] PlayerPointerMover _arrow;
-    [SerializeField] PlayerController _controller;
+    PlayerController _controller;
 
-    public PlayerController Controller { get => _controller; set => _controller = value; }
 
     public override void End(bool isSuccessful)
     {
         if (!isSuccessful)
         {
         }
-        _controller.EnableMovementDisableInputs();
+        _controller.DisableDecryptageEnableMovements();
         _obstacles.DoSpin = false;
         base.End(isSuccessful);
     }
     public override void Init()
     {
+        _controller = PlayerGameObject.GetComponent<PlayerController>();
         for(int i = 0; i < _obstacles.speedList.Count; i++ )
         {
             _obstacles.speedList[i] = _obstacles.speedList[i] * Difficulty;
         }
+        _controller.EnableDecryptageDisableMovements();
         StartTask();
     }
 

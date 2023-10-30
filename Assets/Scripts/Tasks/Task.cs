@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Task : MonoBehaviour
 {
     public Action<Task> OnTaskCompleted { get; set; }
-    public List<GameObject> _playersDoingTask = new List<GameObject>();
+    private List<GameObject> _playersDoingTask = new List<GameObject>();
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
     [Range(1, 5)][SerializeField] int _difficulty = 1;
