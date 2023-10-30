@@ -25,6 +25,7 @@ public class Room : MonoBehaviour
 
     [SerializeField] Transform _posItPos;
     [SerializeField] bool _hasPostIt = false;
+
     [SerializeField] WinStateScreen _winStateScreen;
 
     #endregion
@@ -77,7 +78,7 @@ public class Room : MonoBehaviour
         ///Lift
         if (_id.Contains("L"))
         {
-            _gameManager._liftList.Add(GetComponent<Lift>());
+            _gameManager.LiftList.Add(GetComponent<Lift>());
         }
 
         ///Spawn

@@ -5,7 +5,6 @@ using UnityEngine;
 public class LeCode : Task
 {
     
-    GameManager _gameManager;
     GameObject _playerDoingTask = null;
     PlayerController _controller;
 
