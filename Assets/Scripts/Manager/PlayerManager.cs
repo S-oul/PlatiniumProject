@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     {
         GameManager.Instance.Players[newPlayer.playerIndex] = newPlayer.gameObject;
         GameManager.Instance.PlayerCount++;
-        PickRandomSprite(GameManager.Instance.Players[newPlayer.playerIndex]);                          // Randome sprite->animatior chosen here
+        //PickRandomSprite(GameManager.Instance.Players[newPlayer.playerIndex]);                          // Randome sprite->animatior chosen here
         GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;    // Player spawns at the location of the PlayerManager Object
         newPlayer.actions["InputTask"].Disable();                                                       // is "InputTask" the 'task' of adding a player?
         Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
