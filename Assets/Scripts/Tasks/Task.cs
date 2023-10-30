@@ -33,7 +33,8 @@ public abstract class Task : MonoBehaviour
         _room = transform.parent.parent.GetComponent<Room>();
         if(_room == null) { _room = transform.parent.GetComponent<Room>();}
         if (_room == null) { _room = transform.GetComponent<Room>(); }
-
+        _gameManager = GameManager.Instance;
+        
         _room.TaskRoom = this;
     }
     public abstract void Init();
@@ -84,13 +85,15 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
+        print(_gameManager);
         _gameManager.RoomWin();
-        /*_room.WinStateScreen.ChangeColor(Color.green);*/
+        _room.WinStateScreen.ChangeColor(Color.green);
     }
     public void OnRoomFail()
     {
+        print(_gameManager);
         _gameManager.RoomLose();
-        /* _room.WinStateScreen.ChangeColor(Color.red);*/
+        _room.WinStateScreen.ChangeColor(Color.red);
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {
