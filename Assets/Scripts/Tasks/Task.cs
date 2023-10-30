@@ -51,29 +51,33 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerJoinedTask(GameObject player)
     {
-        if (_numberOfPlayers == 1)
+        if(!IsDone)
         {
-            if (!_isStarted)
-            {
-                _player = player;
-                _playersDoingTask.Add(player);
-                _isStarted = true;
-                Init();
-            }
-            
-        }
-        else
-        {
-            _playersDoingTask.Add(player);
-            if (_playersDoingTask.Count == _numberOfPlayers)
+            if (_numberOfPlayers == 1)
             {
                 if (!_isStarted)
                 {
+                    _player = player;
+                    _playersDoingTask.Add(player);
                     _isStarted = true;
                     Init();
                 }
+
+            }
+            else
+            {
+                _playersDoingTask.Add(player);
+                if (_playersDoingTask.Count == _numberOfPlayers)
+                {
+                    if (!_isStarted)
+                    {
+                        _isStarted = true;
+                        Init();
+                    }
+                }
             }
         }
+        
     }
 
     public void OnRoomSuccess()
