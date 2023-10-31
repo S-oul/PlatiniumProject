@@ -7,7 +7,6 @@ public class RHTask : Task
 {
 
     public List<GameObject> _playersAsked = new List<GameObject>();
-    GameManager _gameManager;
      GameObject _playerNeeded;
 
     [SerializeField] RH _npcRH;
@@ -21,7 +20,7 @@ public class RHTask : Task
     {
         StartCoroutine(FeedBack(isSuccessful));
         _npcRH.IsPlayerNeeded = false;
-        IsDone = true;
+        base.End(isSuccessful);
     }
 
     public override void Init()

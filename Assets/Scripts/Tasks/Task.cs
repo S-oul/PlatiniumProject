@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public abstract class Task : MonoBehaviour
@@ -14,6 +15,7 @@ public abstract class Task : MonoBehaviour
     bool _isDone = false;
     private bool _isStarted = false;
 
+    public GameManager _gameManager;
 
     public List<GameObject> PlayersDoingTask { get => _playersDoingTask; set => _playersDoingTask = value; }
     public GameObject PlayerGameObject { get => _player; set => _player = value; }
@@ -31,46 +33,67 @@ public abstract class Task : MonoBehaviour
         _room = transform.parent.parent.GetComponent<Room>();
         if(_room == null) { _room = transform.parent.GetComponent<Room>();}
         if (_room == null) { _room = transform.GetComponent<Room>(); }
-
+        _gameManager = GameManager.Instance;
+        
         _room.TaskRoom = this;
     }
     public abstract void Init();
 
-    public abstract void End(bool isSuccessful);
-    public void OnPlayerJoinedTask(GameObject player)
+    public virtual void End(bool isSuccessful)
     {
-        if (_numberOfPlayers == 1)
+        IsStarted = false;
+        IsDone = isSuccessful;
+        if (isSuccessful)
         {
-            if (!_isStarted)
-            {
-                _player = player;
-                _playersDoingTask.Add(player);
-                _isStarted = true;
-                Init();
-            }
-            
+            OnRoomSuccess();
         }
         else
         {
-            _playersDoingTask.Add(player);
-            if (_playersDoingTask.Count == _numberOfPlayers)
+            OnRoomFail();
+        }
+    }
+    public void OnPlayerJoinedTask(GameObject player)
+    {
+        if(!IsDone)
+        {
+            if (_numberOfPlayers == 1)
             {
                 if (!_isStarted)
                 {
+                    _player = player;
+                    _playersDoingTask.Add(player);
                     _isStarted = true;
                     Init();
                 }
+
+            }
+            else
+            {
+                _playersDoingTask.Add(player);
+                if (_playersDoingTask.Count == _numberOfPlayers)
+                {
+                    if (!_isStarted)
+                    {
+                        _isStarted = true;
+                        Init();
+                    }
+                }
             }
         }
+        
     }
 
     public void OnRoomSuccess()
     {
-
+        print(_gameManager);
+        _gameManager.RoomWin();
+        _room.WinStateScreen.ChangeColor(Color.green);
     }
     public void OnRoomFail()
     {
-
+        print(_gameManager);
+        _gameManager.RoomLose();
+        _room.WinStateScreen.ChangeColor(Color.red);
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {

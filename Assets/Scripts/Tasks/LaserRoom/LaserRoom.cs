@@ -24,9 +24,6 @@ public class LaserRoom : Task , ITimedTask
     public float _givenTime => 20;
     [SerializeField] float _recuperateTime => 2;
 
-
-    GameManager _gameManager;
-
     float _actualTime;
 
     public float GivenTime { get => _givenTime;}
@@ -56,6 +53,7 @@ public class LaserRoom : Task , ITimedTask
         {
             StartCoroutine(RecuperatePlayer());
         }
+        base.End(isSuccessful);
     }
     void KillAllLaser()
     {

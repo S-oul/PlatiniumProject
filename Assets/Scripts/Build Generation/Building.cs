@@ -31,6 +31,7 @@ public class Building : MonoBehaviour
     #region Generation value;
     private bool _hasSpawnRoom = false;
     private bool _hasBigRoom = false;
+    private bool _hasCodeRoom = false;
 
 
     #endregion
@@ -57,21 +58,12 @@ public class Building : MonoBehaviour
     void GenerateFloor(int floor,float height)
     {
         //Chance to spawn a Big3 Room
-        float treshold = ((float)floor +1) / (float)_maxFloors;
-        float chancetoSpawn = Random.Range(0, 101) / 100f;
+        //float treshold = ((float)floor +1) / (float)_maxFloors;
+        //float chancetoSpawn = Random.Range(0, 101) / 100f;
         // print(treshold + " / " + chancetoSpawn + " / hasBigRoom : " + _hasBigRoom);
         
         string data;
-        if (chancetoSpawn < treshold && !_hasBigRoom)
-        {
-            data = _floorsW3Max[Random.Range(0, _floorsW3Max.Count)]._roomstype;
-            _hasBigRoom = true;
-        }
-        else
-        {
-            data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
-
-        }
+        data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
 
         int randomReverse = Random.Range(0,2);
         if (randomReverse == 1)
@@ -82,21 +74,34 @@ public class Building : MonoBehaviour
         int i = 0;
         foreach (char c in data)
         {
-            if(c == 'S')
+            if (c == 'S')
             {
-                i += instantiateRoom(_spawnRoom, height,i).RoomSize;
+                i += instantiateRoom(_spawnRoom, height, i).RoomSize;
             }
             else
             {
                 int intC = CharToInt(c);
+                
+
                 int r = Random.Range(0, _allPool[intC].Count);
+                if(_allPool[intC][r].GetComponent<Room>().Id == "C" && !_hasCodeRoom && floor > 1)
+                {
+                    print("oui)");
+                    _hasCodeRoom = true;
+                }else
+                {
+                    while (_allPool[intC][r].GetComponent<Room>().Id == "C")
+                    {
+                        r = Random.Range(0, _allPool[intC].Count);
+                    }
+                }
                 i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
             
         }
 
     }
-    void GenerateFloor(FloorData f,int floor, float height)
+    void GenerateFloor(FloorData f, int floor, float height)
     {
         string data = f._roomstype;
         int i = 0;
@@ -109,11 +114,26 @@ public class Building : MonoBehaviour
             else
             {
                 int intC = CharToInt(c);
+
+
                 int r = Random.Range(0, _allPool[intC].Count);
+                if (_allPool[intC][r].GetComponent<Room>().Id == "C" && !_hasCodeRoom && floor > 1)
+                {
+                    print("oui)");
+                    _hasCodeRoom = true;
+                }
+                else
+                {
+                    while (_allPool[intC][r].GetComponent<Room>().Id == "C")
+                    {
+                        r = Random.Range(0, _allPool[intC].Count);
+                    }
+                }
                 i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
         }
     }
+
     Room instantiateRoom(GameObject room, float height, int roomStart)
     {
         GameObject go = Instantiate(room);  

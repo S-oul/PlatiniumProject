@@ -7,6 +7,9 @@ using static CowboyQTE;
 
 public class DuolingoTask : InputTask
 {
+    [Header("Duolingo")]
+    [SerializeField] ZeroBingoData _wordsData;
+
     NPC _npcDuolingo;
     [SerializeField] List<string> _words = new List<string>();
     [SerializeField] List<string> _wordsTranslated = new List<string>();

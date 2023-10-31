@@ -20,7 +20,7 @@ public class DecryptageTask : Task
         }
         _controller.EnableMovementDisableInputs();
         _obstacles.DoSpin = false;
-        IsStarted = false;
+        base.End(isSuccessful);
     }
     public override void Init()
     {
