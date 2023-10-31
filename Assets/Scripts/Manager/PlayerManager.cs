@@ -13,11 +13,11 @@ public class PlayerManager : MonoBehaviour
     {
         GameManager.Instance.Players[newPlayer.playerIndex] = newPlayer.gameObject;
         GameManager.Instance.PlayerCount++;
-        PickRandomSprite(GameManager.Instance.Players[playerInput.playerIndex]);
-        GameManager.Instance.Players[playerInput.playerIndex].transform.position = transform.position;
-        playerInput.actions["InputTask"].Disable();
-        Camera.main.gameObject.GetComponent<Cam>().Targets.Add(playerInput.gameObject);
-        Debug.Log(playerInput.devices[0]);
+        PickRandomSprite(GameManager.Instance.Players[newPlayer.playerIndex]);
+        GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;
+        newPlayer.actions["InputTask"].Disable();
+        Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
+        Debug.Log(newPlayer.devices[0]);
     }
     void PickRandomSprite(GameObject player)                                                                         //Change to Pick randome Animation
     {
