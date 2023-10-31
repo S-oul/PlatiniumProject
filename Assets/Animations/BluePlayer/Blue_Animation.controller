@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Green_Side
+  m_Name: Red_Side
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 41eae5ec86bc7524bbf1f1f907ee02de, type: 2}
+  m_Motion: {fileID: 7400000, guid: cfde5937d042eac4e9f745658a16bd0c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: mirror
@@ -59,7 +59,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Green_Idle
+  m_Name: Blue_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -72,7 +72,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8cb649f21f1faf24f8d4897ce5ecb4af, type: 2}
+  m_Motion: {fileID: 7400000, guid: 857bad1ee97fc144ea9fea98a506343f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -85,7 +85,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Green_walk
+  m_Name: Blue_walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -100,7 +100,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e8e437378f2eaf743be14109393cd2f2, type: 2}
+  m_Motion: {fileID: 7400000, guid: f369797afe588d746833b1d7a7eda2cb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: mirror
@@ -144,7 +144,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Green_Animation
+  m_Name: Blue_Animation
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isWalking
@@ -204,7 +204,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Green_Back
+  m_Name: Blue_Back
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -217,7 +217,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cdcb563262a40f748962f8f7f1d52dd6, type: 2}
+  m_Motion: {fileID: 7400000, guid: a043e8be322d6fa4a9aa5a3adf305834, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
