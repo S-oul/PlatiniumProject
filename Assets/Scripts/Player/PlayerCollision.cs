@@ -56,6 +56,9 @@ public class PlayerCollision : MonoBehaviour
                     
                     _controller.IsInteracting = false;
                     break;
+                case Goat:
+                    //((Goat)collidertype)
+                    break;
             }
         }
 /*
@@ -115,6 +118,11 @@ public class PlayerCollision : MonoBehaviour
                     lecode.Controller = _controller;
                 }
                 break;
+            case "Goat":
+
+                collidertype = collision.transform.parent.GetComponent<Goat>();
+                _playerUI.DisplayMashDownButton(true);
+                break;
         }
     }
 
@@ -141,6 +149,9 @@ public class PlayerCollision : MonoBehaviour
                     _inputs.actions["Jump"].Enable();
                     _inputs.actions["Code"].Disable();
                 }
+                break;
+            case "Goat":
+                _playerUI.DisplayMashDownButton(false);
                 break;
         }
     }

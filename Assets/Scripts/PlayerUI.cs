@@ -8,7 +8,7 @@ using UnityEngine.Windows;
 public class PlayerUI : MonoBehaviour
 {
 
-    
+
     [SerializeField] Canvas _canvas;
 
     [Header("InputsUI")]
@@ -23,6 +23,7 @@ public class PlayerUI : MonoBehaviour
     Vector3 _roundTimerOriginalSize;
    
 
+
     [Header("Duolingo")]
     Transform _duolingoUI;
     List<TextMeshProUGUI> _answersDuolingo = new List<TextMeshProUGUI>();
@@ -34,12 +35,16 @@ public class PlayerUI : MonoBehaviour
     Image _right;
     Image _left;
 
+
+    [Header("MashDownButton")]
+    Transform _mashDownTransform;
+
     public float SliderPercentValue { get => sliderPercentValue; set => sliderPercentValue = value; }
     public Image RoundInputTimer { get => _roundInputTimer; set => _roundInputTimer = value; }
 
     private void Start()
     {
-        
+
         StartUI();
         DisplayInputsUI(false);
     }
@@ -75,6 +80,9 @@ public class PlayerUI : MonoBehaviour
         _left = _leCodeUI.transform.GetChild(2).GetComponent<Image>();
         _down = _leCodeUI.transform.GetChild(3).GetComponent<Image>();
 
+        // MashDOwnButton
+        _mashDownTransform = _canvas.transform.Find("MashDownButton");
+
     }
 
     public void ChangeUIInputs(string text)
@@ -103,7 +111,7 @@ public class PlayerUI : MonoBehaviour
         ChangeUIInputs(Color.white);
         ChangeUIInputs("");
         _sliderInputsUI.value = 1;
-/*        ClearUIInputsValidation();*/
+        /*        ClearUIInputsValidation();*/
     }
 
     public void DisplayQTEUI(bool value)
@@ -149,7 +157,7 @@ public class PlayerUI : MonoBehaviour
 
     public void DisplayDuolingoUI(bool value)
     {
-       
+
         _duolingoUI.gameObject.SetActive(value);
     }
 
@@ -158,11 +166,18 @@ public class PlayerUI : MonoBehaviour
         _leCodeUI.gameObject.SetActive(value);
     }
 
+    public void DisplayMashDownButton(bool value)
+    {
+        _mashDownTransform.gameObject.SetActive(value);
+        _mashDownTransform.GetComponent<MashDownButton>().ChangeSwap(value);
+    }
+
     public void DisplayInputsUI(bool value)
     {
         DisplayDuolingoUI(value);
         DisplayQTEUI(value);
         DisplayLeCodeUI(value);
+        DisplayMashDownButton(value);
     }
 
     #endregion

@@ -13,17 +13,27 @@ public class PlayerManager : MonoBehaviour
     {
         GameManager.Instance.Players[newPlayer.playerIndex] = newPlayer.gameObject;
         GameManager.Instance.PlayerCount++;
-        PickRandomSprite(GameManager.Instance.Players[newPlayer.playerIndex]);
-        GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;
-        newPlayer.actions["InputTask"].Disable();
+        PickRandomAnimation(GameManager.Instance.Players[newPlayer.playerIndex]);                          // Randome sprite->animatior chosen here
+        GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;      // Player spawns at the location of the PlayerManager Object
+        newPlayer.actions["InputTask"].Disable();                                                         // is "InputTask" the 'task' of adding a player?
         Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
         Debug.Log(newPlayer.devices[0]);
     }
+    /*
     void PickRandomSprite(GameObject player)                                                                         //Change to Pick randome Animation
     {
         print(player);
-        Sprite temp = DataManager.Instance.SpritePlayers[Random.Range(0, DataManager.Instance.SpritePlayers.Count)]; // find sprite in list   - change to list of animations
-        DataManager.Instance.SpritePlayers.Remove(temp);                                                             // remove sprite->Animation from list (to avoid identical players)   
+        Sprite temp = DataManager.Instance.AnimationPlayers[Random.Range(0, DataManager.Instance.AnimationPlayers.Count)]; // find sprite in list   - change to list of animations
+        DataManager.Instance.AnimationPlayers.Remove(temp);                                                             // remove sprite->Animation from list (to avoid identical players)   
         player.GetComponent<SpriteRenderer>().sprite = temp;                                                         // assign sprite->Animation to player's SpriteRenderer-> Animator. 
+    }
+    */
+
+    void PickRandomAnimation(GameObject player)                                                                         //Change to Pick randome Animation
+    {
+        print(player);
+        RuntimeAnimatorController temp = DataManager.Instance.AnimationPlayers[Random.Range(0, DataManager.Instance.AnimationPlayers.Count)]; // find sprite in list   - change to list of animations
+        DataManager.Instance.AnimationPlayers.Remove(temp);                                                             // remove sprite->Animation from list (to avoid identical players)   
+        player.GetComponentInChildren<Animator>().runtimeAnimatorController = temp;                                                         // assign sprite->Animation to player's SpriteRenderer-> Animator. 
     }
 }
