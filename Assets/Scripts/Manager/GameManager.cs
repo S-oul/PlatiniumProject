@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,16 +11,41 @@ public class GameManager : MonoBehaviour
     
     List<Room> _roomList = new List<Room>();
 
+    private int _roomLose = 0;
+    private int _roomWin = 0;
+    [SerializeField] int _maxRoomFail = 3;
+    
 
-    public List<Lift> _liftList = new List<Lift>();
+    private List<Lift> _liftList = new List<Lift>();
     int _playerCount;
     
+
+
     [SerializeField] GameObject[] _players = new GameObject[4];
+
+    
 
     public int PlayerCount { get => _playerCount; set => _playerCount = value; }
 
     public GameObject[] Players { get => _players; }
     public List<Room> RoomList { get => _roomList; set => _roomList = value; }
+    public List<Lift> LiftList { get => _liftList; set => _liftList = value; }
+
+
+    public int RoomWin()
+    {
+        _roomWin++;
+        return _roomWin;
+    }
+    public int RoomLose()
+    {
+        _roomLose++;
+        if(_roomLose > _maxRoomFail)
+        {
+            print("T'AS PERDU TROUDUCUL");
+        }
+        return _roomLose;
+    }
 
     public void ResetAllList()
     {

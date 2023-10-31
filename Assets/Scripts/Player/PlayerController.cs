@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,16 +8,19 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController2D))]
 public class PlayerController : MonoBehaviour
 {
+    public Animator animator;
+    bool _isMirrored = false;
+
     [Header ("For Game Design")]   
-    [Range(1, 100)][SerializeField] float _moveSpeed = 40f;                 //Movement speed                 
-    [Range(0, .3f)] public float movementSmoothing = .05f;         // How much to smooth out the movement
-    [Range(0.1f, 20f)]public float normalFallGravityForce = 3;  // Fall Speed
-    [SerializeField] public bool AirControl = true;                      // Can contoll character while not Grounded
+    [Range(1, 100)][SerializeField] float _moveSpeed = 40f;                 // Movement speed                 
+    [Range(0, .3f)] public float movementSmoothing = .05f;                  // How much to smooth out the movement
+    [Range(0.1f, 20f)]public float normalFallGravityForce = 3;              // Fall Speed
+    [SerializeField] public bool AirControl = true;                         // Can contoll character while not Grounded
 
 
     float _horizontalMove = 0f;
     bool _isJumping = false;
-    bool _isGrounded = false;
+    bool _isGrounded = false;                // why did they replace _isGrounded with _isPlayerDown?
     bool _isInteracting = false;
     bool _isPlayerDown = false;
     bool _isBlocked = false;
@@ -195,20 +199,36 @@ public class PlayerController : MonoBehaviour
             _DecrytContext = 0;
         }
     }
-        // Comunicate contol inputs to CharacterContoller2D Script component
+    // Comunicate contol inputs to CharacterContoller2D Script component
     private void FixedUpdate()
     {
-        if(_isPlayerDown) { transform.localEulerAngles = new Vector3(0,0,90); }
+        if (_isPlayerDown) { transform.localEulerAngles = new Vector3(0, 0, 90); }
         else { transform.localEulerAngles = new Vector3(0, 0, 0); }
         _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumping);
         _isJumping = false;
+
+        if (_horizontalMove != 0) { animator.SetBool("isWalking", true); }
+        else { animator.SetBool("isWalking", false); }
+
+        if (_horizontalMove < 0 && _isMirrored == false) { flipAnimation(); _isMirrored = true; }
+        else if (_horizontalMove > 0 &&  _isMirrored == true) { flipAnimation(); _isMirrored = false; }
+    }
+
+    private void flipAnimation()
+    {
+        Debug.Log("flipped");
+        
+        
+        Transform animTrans = animator.GetComponent<Transform>();
+        animTrans.localScale = new Vector3(animTrans.localScale.x *-1, animTrans.localScale.y, animTrans.localScale.z);
+        //animTrans.rotation = new Quaternion.Euler(new Vector3(0f, 180f, 0f));
     }
 
     public IEnumerator PlayerDown(float time)
     {
         DownPlayer();
         yield return new WaitForSeconds(time);
-        UpPlayer();
+        UpPlayer();   
     }
 
     private void Update()

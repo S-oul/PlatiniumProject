@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public abstract class Task : MonoBehaviour
@@ -14,6 +15,7 @@ public abstract class Task : MonoBehaviour
     bool _isDone = false;
     private bool _isStarted = false;
 
+    public GameManager _gameManager;
 
     public List<GameObject> PlayersDoingTask { get => _playersDoingTask; set => _playersDoingTask = value; }
     public GameObject PlayerGameObject { get => _player; set => _player = value; }
@@ -31,7 +33,8 @@ public abstract class Task : MonoBehaviour
         _room = transform.parent.parent.GetComponent<Room>();
         if(_room == null) { _room = transform.parent.GetComponent<Room>();}
         if (_room == null) { _room = transform.GetComponent<Room>(); }
-
+        _gameManager = GameManager.Instance;
+        
         _room.TaskRoom = this;
     }
     public abstract void Init();
@@ -82,13 +85,15 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
-        
-        /*_room.WinStateScreen.ChangeColor(Color.green);*/
+        print(_gameManager);
+        _gameManager.RoomWin();
+        _room.WinStateScreen.ChangeColor(Color.green);
     }
     public void OnRoomFail()
     {
-      
-       /* _room.WinStateScreen.ChangeColor(Color.red);*/
+        print(_gameManager);
+        _gameManager.RoomLose();
+        _room.WinStateScreen.ChangeColor(Color.red);
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {
