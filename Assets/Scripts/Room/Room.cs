@@ -79,13 +79,18 @@ public class Room : MonoBehaviour
         if (_id.Contains("L"))
         {
             _gameManager.LiftList.Add(GetComponent<Lift>());
+            Debug.Log("L: " + this.gameObject);
         }
-
-        ///Spawn
         if (_id.Contains("S"))
         {
-
+            Debug.Log("S: " + this.gameObject);
         }
+        
+        ///Spawn
+        /*if (_id.Contains("S"))
+        {
+
+        }*/
     }
 
     public void OnRoomEnter()

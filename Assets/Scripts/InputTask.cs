@@ -50,6 +50,14 @@ public abstract class InputTask : Task
         {Inputs.L3, "L3" }
     };
 
+    protected enum QTEAccuracy
+    {
+        Missed,
+        Ok,
+        Great,
+        Perfect
+    }
+
     public Dictionary<Inputs, string> InputsToString { get => _inputsToString; set => _inputsToString = value; }
     public abstract void StartTask();
     
@@ -57,7 +65,7 @@ public abstract class InputTask : Task
     {
 
         IsStarted = true;
-        
+        base.Init();
         
         _data = DataManager.Instance;
         StartTask();

@@ -23,6 +23,7 @@ public class DecryptageTask : Task
     }
     public override void Init()
     {
+        base.Init();
         _controller = PlayerGameObject.GetComponent<PlayerController>();
         for(int i = 0; i < _obstacles.speedList.Count; i++ )
         {

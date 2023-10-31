@@ -53,7 +53,7 @@ public class LeCode : Task
 
     public override void Init()
     {
-        
+        base.Init();
     }
 
     public override void End(bool isSuccessful)

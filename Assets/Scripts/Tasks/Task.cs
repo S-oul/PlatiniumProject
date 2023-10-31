@@ -15,7 +15,7 @@ public abstract class Task : MonoBehaviour
     bool _isDone = false;
     private bool _isStarted = false;
 
-    public GameManager _gameManager;
+    protected GameManager _gameManager;
 
     public List<GameObject> PlayersDoingTask { get => _playersDoingTask; set => _playersDoingTask = value; }
     public GameObject PlayerGameObject { get => _player; set => _player = value; }
@@ -30,14 +30,19 @@ public abstract class Task : MonoBehaviour
 
     private void Start()
     {
+        
         _room = transform.parent.parent.GetComponent<Room>();
         if(_room == null) { _room = transform.parent.GetComponent<Room>();}
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
         
         _room.TaskRoom = this;
+        
     }
-    public abstract void Init();
+    public virtual void Init()
+    {
+        
+    }
 
     public virtual void End(bool isSuccessful)
     {
