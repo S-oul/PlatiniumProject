@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
     private void flipAnimation()
     {
-        Debug.Log("flipped");
+        //Debug.Log("flipped");
         
         
         Transform animTrans = animator.GetComponent<Transform>();

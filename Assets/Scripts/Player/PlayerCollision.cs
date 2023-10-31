@@ -58,8 +58,8 @@ public class PlayerCollision : MonoBehaviour
                     _inputs.actions["Decryptage"].Enable();
                     _controller.IsInteracting = false;
                     break;
-                case Goat:
-                    //((Goat)collidertype)
+                case GoatTask:
+                    ((GoatTask)collidertype).OnPlayerJoinedTask(this.gameObject);
                     break;
             }
         }
@@ -122,7 +122,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "Goat":
 
-                collidertype = collision.transform.parent.GetComponent<Goat>();
+                collidertype = collision.transform.GetComponent<GoatTask>();
                 _playerUI.DisplayMashDownButton(true);
                 break;
         }

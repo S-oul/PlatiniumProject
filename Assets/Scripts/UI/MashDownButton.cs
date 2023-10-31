@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MashDownButton : MonoBehaviour
 {
     [SerializeField] bool _doSwap = false;
-    [SerializeField] float _swapTime = .5f;
+    [SerializeField] float _swapTime = .25f;
     [SerializeField] Image _mashImage;
 
     public bool DoSwap { get => _doSwap;}

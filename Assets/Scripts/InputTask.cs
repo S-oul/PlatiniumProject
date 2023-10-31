@@ -58,7 +58,6 @@ public abstract class InputTask : Task
 
         IsStarted = true;
         
-        
         _data = DataManager.Instance;
         StartTask();
     }
