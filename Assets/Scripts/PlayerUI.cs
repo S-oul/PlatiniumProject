@@ -9,7 +9,7 @@ using UnityEngine.Windows;
 public class PlayerUI : MonoBehaviour
 {
 
-    
+
     [SerializeField] Canvas _canvas;
 
     [Header("InputsUI")]
@@ -20,7 +20,7 @@ public class PlayerUI : MonoBehaviour
     bool qteInputIsActive = false;
     [HideInInspector] public float _sliderPercentValue;
     Slider _validationBadInputSlider;
-   
+
 
     [Header("Duolingo")]
     Transform _duolingoUI;
@@ -33,9 +33,13 @@ public class PlayerUI : MonoBehaviour
     Image _right;
     Image _left;
 
+
+    [Header("MashDownButton")]
+    Transform _mashDownTransform;
+
     private void Start()
     {
-        
+
         StartUI();
         DisplayInputsUI(false);
     }
@@ -66,6 +70,9 @@ public class PlayerUI : MonoBehaviour
         _left = _leCodeUI.transform.GetChild(2).GetComponent<Image>();
         _down = _leCodeUI.transform.GetChild(3).GetComponent<Image>();
 
+        // MashDOwnButton
+        _mashDownTransform = _canvas.transform.Find("MashDownButton");
+
     }
 
     public void ChangeUIInputs(string text)
@@ -83,21 +90,21 @@ public class PlayerUI : MonoBehaviour
         _validationBadInputSlider.value = value;
     }
 
-/*    public void ClearUIInputsValidation()
-    {
-        foreach (Transform validationInput in _validationInputs)
+    /*    public void ClearUIInputsValidation()
         {
-            validationInput.GetComponent<Image>().color = Color.white;
-        }
+            foreach (Transform validationInput in _validationInputs)
+            {
+                validationInput.GetComponent<Image>().color = Color.white;
+            }
 
-    }*/
+        }*/
 
     public void ClearUIInputs()
     {
         ChangeUIInputs(Color.white);
         ChangeUIInputs("");
         _sliderInputsUI.value = 1;
-/*        ClearUIInputsValidation();*/
+        /*        ClearUIInputsValidation();*/
     }
 
 
@@ -123,12 +130,12 @@ public class PlayerUI : MonoBehaviour
     {
         qteInputIsActive = value;
         _qteUI.gameObject.SetActive(value);
-        
+
     }
 
     public void DisplayDuolingoUI(bool value)
     {
-       
+
         _duolingoUI.gameObject.SetActive(value);
     }
 
@@ -137,11 +144,18 @@ public class PlayerUI : MonoBehaviour
         _leCodeUI.gameObject.SetActive(value);
     }
 
+    public void DisplayMashDownButton(bool value)
+    {
+        _mashDownTransform.gameObject.SetActive(value);
+        _mashDownTransform.GetComponent<MashDownButton>().ChangeSwap(value);
+    }
+
     public void DisplayInputsUI(bool value)
     {
         DisplayDuolingoUI(value);
         DisplayQTEUI(value);
         DisplayLeCodeUI(value);
+        DisplayMashDownButton(value);
     }
 
     #endregion
