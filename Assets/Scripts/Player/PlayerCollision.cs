@@ -58,6 +58,9 @@ public class PlayerCollision : MonoBehaviour
                     _inputs.actions["Decryptage"].Enable();
                     _controller.IsInteracting = false;
                     break;
+                case Goat:
+                    //((Goat)collidertype)
+                    break;
             }
         }
 /*

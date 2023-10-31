@@ -17,10 +17,7 @@ public class Goat : Task
 
     private void Update()
     {
-        if(transform.position.x < _goatSpawn.position.x)
-        {
-            transform.position += Vector3.Lerp(transform.position, _goatSpawn.position, Time.deltaTime*_goatForce);
-        }
+        transform.position = Vector3.Lerp(transform.position, _goatSpawn.position, Time.deltaTime*_goatForce);
     }
 }
 
