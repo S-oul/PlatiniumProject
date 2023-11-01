@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     float _horizontalMove = 0f;
     bool _isJumping = false;
-    bool _isGrounded = false;                // why did they replace _isGrounded with _isPlayerDown?
+    bool _isGrounded = false;                                                // why did they replace _isGrounded with _isPlayerDown?
     bool _isInteracting = false;
     bool _isPlayerDown = false;
     bool _isBlocked = false;
