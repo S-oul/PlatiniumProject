@@ -55,7 +55,7 @@ public class GoatTask : InputTask, ITimedTask
         _dataManager = DataManager.Instance;
         _controller = PlayerGameObject.GetComponent<PlayerController>();
         _controller.DisableMovementEnableInputs();
-        _playersDoingTask[0].transform.position = _playerPos.position;
+        PlayersDoingTask[0].transform.position = _playerPos.position;
     }
 
     public override void End(bool IsSuccess)

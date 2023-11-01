@@ -123,10 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380b4b468c0ad1847806909a36862e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playersDoingTask: []
   _numberOfPlayers: 1
-  _difficulty: 1
-  _gameManager: {fileID: 0}
+  _difficulty: 5
+  _timeToDoTask: 15
   _goatForce: 0.025
   _playerForce: 1
   _goatPos: 0
