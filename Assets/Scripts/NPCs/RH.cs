@@ -28,7 +28,7 @@ public class RH : NPC, IChattyNPC
         }
         else
         {
-            NPCUI.ChangeBubbleImage(player.transform.GetComponent<SpriteRenderer>().sprite);
+            NPCUI.ChangeBubbleImage(player.transform.Find("Animation").GetComponent<SpriteRenderer>().sprite);
         }
         
     }
