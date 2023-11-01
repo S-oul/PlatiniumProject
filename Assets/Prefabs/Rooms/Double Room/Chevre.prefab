@@ -307,9 +307,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2465499368048737776}
     m_Modifications:
+    - target: {fileID: 885543552384496065, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 885543552384496065, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2353578007512903286, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_Name
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851192357123174733, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376708295621770097, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376708295621770097, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b68fc6395c714f844957c2bf2d5ceaf9, type: 3}
+    - target: {fileID: 8376708295621770097, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8606743795658603397, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_LocalScale.x
@@ -321,11 +345,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8606743795658603397, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.303
+      value: -0.273
       objectReference: {fileID: 0}
     - target: {fileID: 8606743795658603397, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.265
+      value: -0.272
       objectReference: {fileID: 0}
     - target: {fileID: 8606743795658603397, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -458,6 +482,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2465499368048737776}
     m_Modifications:
+    - target: {fileID: 5147070448652958479, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.227
+      objectReference: {fileID: 0}
     - target: {fileID: 7327684171467687184, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

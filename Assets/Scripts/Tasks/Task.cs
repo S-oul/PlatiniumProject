@@ -34,9 +34,19 @@ public abstract class Task : MonoBehaviour
         if(_room == null) { _room = transform.parent.GetComponent<Room>();}
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
-        
+
         _room.TaskRoom = this;
     }
+
+    private void Awake()
+    {
+/*        _room = transform.parent.parent.GetComponent<Room>();
+        if (_room == null) { _room = transform.parent.GetComponent<Room>(); }
+        if (_room == null) { _room = transform.GetComponent<Room>(); }
+        _gameManager = GameManager.Instance;*/
+        //print(_gameManager);
+    }
+
     public abstract void Init();
 
     public virtual void End(bool isSuccessful)
@@ -85,8 +95,8 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
-        print(_gameManager);
         _gameManager.RoomWin();
+        print(_room);
         _room.WinStateScreen.ChangeColor(Color.green);
     }
     public void OnRoomFail()

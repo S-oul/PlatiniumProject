@@ -29,8 +29,25 @@ public class GoatTask : InputTask, ITimedTask
 
     public override void StartTask()
     {
+
         _actualTime = _timeToDoTask - Difficulty * 1.5f;
-        _goatForce *= ((float)Difficulty/2); 
+        
+        if(Difficulty == 4) 
+        { 
+            _actualTime += 1;
+            _goatForce *= ((float)(Difficulty) / 2);
+        }
+        else if (Difficulty == 5) 
+        {
+            _actualTime += 2;
+            _goatForce *= ((float)(Difficulty - 1) / 2);
+        }
+        else
+        {
+            _goatForce *= ((float)(Difficulty) / 2);
+        }
+
+
 
 
         _playerUI = PlayerGameObject.GetComponent<PlayerUI>();
@@ -43,13 +60,14 @@ public class GoatTask : InputTask, ITimedTask
 
     public override void End(bool IsSuccess)
     {
-        print("Success : " + IsSuccess);
         if (IsSuccess)
         {
 
+            print("GG : Remaining " + _actualTime);    
         }
         else
         {
+            print("Noob : Was at " + _goatPos);
 
         }
         _playerUI.DisplayMashDownButton(false);
