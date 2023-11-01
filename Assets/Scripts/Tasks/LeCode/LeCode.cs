@@ -30,7 +30,7 @@ public class LeCode : Task
         _code += Random.Range(1, 5).ToString();
         _code += Random.Range(1, 5).ToString();
 
-        print(_code);
+        //print(_code);
         int r = Random.Range(0, _gameManager.RoomList.Count);
         while (_gameManager.RoomList[r].HasPostIt)
         {
@@ -38,7 +38,7 @@ public class LeCode : Task
         }
         if(_gameManager.RoomList[r].PosItPos == null)
         {
-            print(_gameManager.RoomList[r]);
+            //print(_gameManager.RoomList[r]);
             //_gameManager.RoomList[r].gameObject.SetActive(false);
         }
             GameObject go = Instantiate(_postIt);
