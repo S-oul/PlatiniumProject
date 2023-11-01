@@ -14,6 +14,7 @@ TagManager:
   - DecryptInteract
   - Laser
   - CodeZone
+  - Goat
   layers:
   - Default
   - TransparentFX

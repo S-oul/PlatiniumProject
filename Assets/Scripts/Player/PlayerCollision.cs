@@ -56,18 +56,11 @@ public class PlayerCollision : MonoBehaviour
                     
                     _controller.IsInteracting = false;
                     break;
-                case Goat:
-                    //((Goat)collidertype)
+                case GoatTask:
+                    ((GoatTask)collidertype).OnPlayerJoinedTask(this.gameObject);
                     break;
             }
-        }
-/*
-        Lift lift = collision.transform.parent.GetComponent<Lift>();
-        if (lift != null && _controller.IsInteracting)
-        {
-            lift.InteractLift(this.gameObject);
-            _controller.IsInteracting = false;
-        }*/       
+        }   
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -120,8 +113,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "Goat":
 
-                collidertype = collision.transform.parent.GetComponent<Goat>();
-                _playerUI.DisplayMashDownButton(true);
+                collidertype = collision.transform.GetComponent<GoatTask>();
                 break;
         }
     }
@@ -149,9 +141,6 @@ public class PlayerCollision : MonoBehaviour
                     _inputs.actions["Jump"].Enable();
                     _inputs.actions["Code"].Disable();
                 }
-                break;
-            case "Goat":
-                _playerUI.DisplayMashDownButton(false);
                 break;
         }
     }

@@ -35,14 +35,21 @@ public abstract class Task : MonoBehaviour
         if(_room == null) { _room = transform.parent.GetComponent<Room>();}
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
-        
+
         _room.TaskRoom = this;
         
     }
-    public virtual void Init()
+
+    private void Awake()
     {
-        
+/*        _room = transform.parent.parent.GetComponent<Room>();
+        if (_room == null) { _room = transform.parent.GetComponent<Room>(); }
+        if (_room == null) { _room = transform.GetComponent<Room>(); }
+        _gameManager = GameManager.Instance;*/
+        //print(_gameManager);
     }
+
+    public abstract void Init();
 
     public virtual void End(bool isSuccessful)
     {

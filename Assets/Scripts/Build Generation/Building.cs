@@ -17,18 +17,18 @@ public class Building : MonoBehaviour
     [SerializeField] private List<GameObject> _poolType3 = new List<GameObject>();
     [SerializeField] private List<GameObject> _poolType4 = new List<GameObject>();
 
-    [SerializeField] private List<List<GameObject>> _allPool = new List<List<GameObject>>();
 
-    //[MenuItem("Assets/Create Room")]
     [SerializeField] private List<FloorData> _spawnFloors = new List<FloorData>();
-    [SerializeField] private List<FloorData> _floorsW3Max = new List<FloorData>();
     [SerializeField] private List<FloorData> _floorsW2Max = new List<FloorData>();
 
+    private List<List<GameObject>> _allPool = new List<List<GameObject>>();
+    
     private GameManager _gameManager;
 
     #endregion
 
     #region Generation value;
+
     private bool _hasSpawnRoom = false;
     private bool _hasBigRoom = false;
     private bool _hasCodeRoom = false;
@@ -119,7 +119,6 @@ public class Building : MonoBehaviour
                 int r = Random.Range(0, _allPool[intC].Count);
                 if (_allPool[intC][r].GetComponent<Room>().Id == "C" && !_hasCodeRoom && floor > 1)
                 {
-                    print("oui)");
                     _hasCodeRoom = true;
                 }
                 else
