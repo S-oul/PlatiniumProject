@@ -49,7 +49,10 @@ public abstract class Task : MonoBehaviour
         //print(_gameManager);
     }
 
-    public abstract void Init();
+    public virtual void Init()
+    {
+
+    }
 
     public virtual void End(bool isSuccessful)
     {

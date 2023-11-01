@@ -350,16 +350,12 @@ MonoBehaviour:
   _poolType3:
   - {fileID: 491415545771377428, guid: 25708e7bd51284b4cb6dfdf9130d49c7, type: 3}
   - {fileID: 491415545771377428, guid: cd5548bc8872e344397b3cc1bb3bc8e0, type: 3}
+  - {fileID: 491415545771377428, guid: a9376ad197e30c64a9621a5b57eab3ab, type: 3}
   _poolType4: []
   _spawnFloors:
   - _roomstype: 02S11
   - _roomstype: 20S11
   - _roomstype: 11S02
-  _floorsW3Max:
-  - _roomstype: 3201
-  - _roomstype: 2031
-  - _roomstype: 1302
-  - _roomstype: 1032
   _floorsW2Max:
   - _roomstype: 11021
   - _roomstype: 10112
