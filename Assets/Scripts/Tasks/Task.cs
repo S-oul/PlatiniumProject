@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Task : MonoBehaviour
 {
     public Action<Task> OnTaskCompleted { get; set; }
-    public List<GameObject> _playersDoingTask = new List<GameObject>();
+    private List<GameObject> _playersDoingTask = new List<GameObject>();
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
     [Range(1, 5)][SerializeField] int _difficulty = 1;
@@ -15,7 +15,7 @@ public abstract class Task : MonoBehaviour
     bool _isDone = false;
     private bool _isStarted = false;
 
-    public GameManager _gameManager;
+    protected GameManager _gameManager;
 
     public List<GameObject> PlayersDoingTask { get => _playersDoingTask; set => _playersDoingTask = value; }
     public GameObject PlayerGameObject { get => _player; set => _player = value; }
@@ -30,12 +30,14 @@ public abstract class Task : MonoBehaviour
 
     private void Start()
     {
+        
         _room = transform.parent.parent.GetComponent<Room>();
         if(_room == null) { _room = transform.parent.GetComponent<Room>();}
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
 
         _room.TaskRoom = this;
+        
     }
 
     private void Awake()
@@ -51,6 +53,7 @@ public abstract class Task : MonoBehaviour
 
     public virtual void End(bool isSuccessful)
     {
+
         IsStarted = false;
         IsDone = isSuccessful;
         if (isSuccessful)
@@ -95,14 +98,13 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
-        _gameManager.RoomWin();
-        print(_room);
+        GameManager.Instance.NumberOfTasksMade++;
+        GameManager.Instance.RoomWin();
         _room.WinStateScreen.ChangeColor(Color.green);
     }
     public void OnRoomFail()
     {
-        print(_gameManager);
-        _gameManager.RoomLose();
+        GameManager.Instance.RoomLose();
         _room.WinStateScreen.ChangeColor(Color.red);
     }
     public void OnPlayerExitTaskRoom(GameObject player)

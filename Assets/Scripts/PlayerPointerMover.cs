@@ -206,8 +206,6 @@ else if (context.canceled)
                 _loseCoverSprite.enabled = true;
                 break;
         }
-        GetComponent<PlayerInput>().enabled = false;
-        this.enabled = false;
     }
 }
 

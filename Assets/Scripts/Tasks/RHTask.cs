@@ -25,7 +25,7 @@ public class RHTask : Task
 
     public override void Init()
     {
-        
+        base.Init();
         if (_gameManager.PlayerCount > 1)
         {
             _playerNeeded = null;

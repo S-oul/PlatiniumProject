@@ -64,7 +64,7 @@ public class LaserRoom : Task , ITimedTask
     }
     public override void Init()
     {
-        Debug.Log(ThisRoom);
+        base.Init();
         if(ThisRoom.ListPlayer.Count >= NumberOfPlayers)
         {
             foreach (GameObject p in ThisRoom.ListPlayer)

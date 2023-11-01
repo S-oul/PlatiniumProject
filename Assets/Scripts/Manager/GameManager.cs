@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     List<GameObject> _eventList = new List<GameObject> ();
     
     List<Room> _roomList = new List<Room>();
+    [SerializeField] List<Room> _roomTaskList = new List<Room>();
 
     private int _roomLose = 0;
     private int _roomWin = 0;
@@ -23,14 +24,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject[] _players = new GameObject[4];
 
-    
+    [SerializeField] int _numberOfTasksMade;
 
     public int PlayerCount { get => _playerCount; set => _playerCount = value; }
 
     public GameObject[] Players { get => _players; }
     public List<Room> RoomList { get => _roomList; set => _roomList = value; }
     public List<Lift> LiftList { get => _liftList; set => _liftList = value; }
-
+    public List<Room> RoomTaskList { get => _roomTaskList; set => _roomTaskList = value; }
+    public int NumberOfTasksMade { get => _numberOfTasksMade; set => _numberOfTasksMade = value; }
 
     public int RoomWin()
     {
@@ -97,4 +99,11 @@ public class GameManager : MonoBehaviour
         return list;
     }
 
+    public void CheckIfDayFinished()
+    {
+        if(_numberOfTasksMade == RoomTaskList.Count)
+        {
+            Debug.Log("BRAVO");
+        }
+    }
 }

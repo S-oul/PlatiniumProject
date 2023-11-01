@@ -80,12 +80,16 @@ public class Room : MonoBehaviour
         {
             _gameManager.LiftList.Add(GetComponent<Lift>());
         }
-
+        if (_id.Contains("T"))
+        {
+            _gameManager.RoomTaskList.Add(this);
+        }
+        
         ///Spawn
-        if (_id.Contains("S"))
+        /*if (_id.Contains("S"))
         {
 
-        }
+        }*/
     }
 
     public void OnRoomEnter()

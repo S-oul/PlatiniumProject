@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using JetBrains.Annotations;
 using UnityEngine.Windows;
 
 public class PlayerUI : MonoBehaviour
@@ -18,8 +17,11 @@ public class PlayerUI : MonoBehaviour
     Slider _sliderInputsUI;
     Image _input;
     bool qteInputIsActive = false;
-    [HideInInspector] public float _sliderPercentValue;
+    float sliderPercentValue;
     Slider _validationBadInputSlider;
+    Image _roundInputTimer;
+    Vector3 _roundTimerOriginalSize;
+   
 
 
     [Header("Duolingo")]
@@ -36,6 +38,9 @@ public class PlayerUI : MonoBehaviour
 
     [Header("MashDownButton")]
     Transform _mashDownTransform;
+
+    public float SliderPercentValue { get => sliderPercentValue; set => sliderPercentValue = value; }
+    public Image RoundInputTimer { get => _roundInputTimer; set => _roundInputTimer = value; }
 
     private void Start()
     {
@@ -54,6 +59,11 @@ public class PlayerUI : MonoBehaviour
         _sliderInputsUI = _qteUI.transform.Find("Slider").GetComponent<Slider>();
         _input = _sliderInputsUI.gameObject.transform.Find("SmallerCircle").Find("Image").GetComponent<Image>();
         _validationBadInputSlider = _qteUI.transform.Find("Validation").Find("BadInputs").GetComponent<Slider>();
+        RoundInputTimer = _sliderInputsUI.transform.GetChild(3).GetComponent<Image>();
+        _roundTimerOriginalSize = RoundInputTimer.transform.localScale;
+        DisplayCowboyQTEUI(false);
+        DisplayVolleyQTEUI(false);
+
 
         //Duolingo
         _duolingoUI = _canvas.transform.Find("DuolingoInputs");
@@ -90,14 +100,11 @@ public class PlayerUI : MonoBehaviour
         _validationBadInputSlider.value = value;
     }
 
-    /*    public void ClearUIInputsValidation()
-        {
-            foreach (Transform validationInput in _validationInputs)
-            {
-                validationInput.GetComponent<Image>().color = Color.white;
-            }
-
-        }*/
+    public void DisplayCowboyQTEUI(bool value)
+    {
+        _sliderInputsUI.transform.GetChild(0).gameObject.SetActive(value);
+        _sliderInputsUI.transform.GetChild(1).gameObject.SetActive(value);
+    }
 
     public void ClearUIInputs()
     {
@@ -107,7 +114,27 @@ public class PlayerUI : MonoBehaviour
         /*        ClearUIInputsValidation();*/
     }
 
+    public void DisplayQTEUI(bool value)
+    {
+        qteInputIsActive = value;
+        _qteUI.gameObject.SetActive(value);
 
+    }
+
+    public void DisplayVolleyQTEUI(bool value)
+    {
+        _sliderInputsUI.transform.GetChild(3).gameObject.SetActive(value);
+    }
+    
+    public void ChangeRoundTimerValue(float percent)
+    {
+        _roundInputTimer.transform.localScale = Vector3.Lerp(_roundTimerOriginalSize, _input.transform.localScale, percent);
+    }
+
+    public void ResetRoundTimerQTE()
+    {
+        RoundInputTimer.transform.localScale = _roundTimerOriginalSize;
+    }
 
     public void DisplayAnswersDuolingo(List<string> words, List<string> inputs)
     {
@@ -126,12 +153,7 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void DisplayQTEUI(bool value)
-    {
-        qteInputIsActive = value;
-        _qteUI.gameObject.SetActive(value);
-
-    }
+    
 
     public void DisplayDuolingoUI(bool value)
     {
@@ -165,7 +187,7 @@ public class PlayerUI : MonoBehaviour
     {
         if(qteInputIsActive) 
         {
-            _sliderInputsUI.value = _sliderPercentValue;
+            _sliderInputsUI.value = SliderPercentValue;
         }
         
     }

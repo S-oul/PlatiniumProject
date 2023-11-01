@@ -52,10 +52,8 @@ public class PlayerCollision : MonoBehaviour
                     break;
 
                 case DecryptageTask:
-                    ((DecryptageTask)collidertype).Init();
-                    ((DecryptageTask)collidertype).Controller = _controller;
-                    _controller.DisableAllInputs();
-                    _inputs.actions["Decryptage"].Enable();
+                    ((DecryptageTask)collidertype).OnPlayerJoinedTask(gameObject);
+                    
                     _controller.IsInteracting = false;
                     break;
                 case GoatTask:

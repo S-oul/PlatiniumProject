@@ -11,10 +11,6 @@ public class CowboyQTE : InputTask
 
     protected PlayerController _controller;
 
-    InputAction action = new InputAction();
-    
-
-
     [Header("QTE variables")]
     [SerializeField] List<Inputs> _inputsNeeded;
     [SerializeField] int _numberOfInputs = 1;
@@ -48,6 +44,7 @@ public class CowboyQTE : InputTask
         _controller = PlayerGameObject.GetComponent<PlayerController>();
         _controller.DisableMovementEnableInputs();
         _playerUI.DisplayQTEUI(true);
+        _playerUI.DisplayCowboyQTEUI(true);
         _playerUI.ChangeUIInputsValidation(1);
         _numberOfFails = 0;
         StartTaskQTE();
@@ -61,7 +58,7 @@ public class CowboyQTE : InputTask
         _currentInputID = 0;
         for (int i = 0; i < _numberOfInputs; i++)
         {
-            Inputs newInput = (Inputs)((int)(Random.Range(0, 9)));
+            Inputs newInput = (Inputs)((int)(Random.Range(0, 10)));
             _inputsNeeded.Add(newInput);
         }
         DisplayInput(_inputsNeeded[0]);
@@ -74,7 +71,7 @@ public class CowboyQTE : InputTask
         while (CheckInputValue(_controller.currentContextName, InputsToString[_currentInput], _controller) == PlayerInputValue.None && time > 0)
         {
             time -= Time.deltaTime;
-            _playerUI._sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
+            _playerUI.SliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
             yield return null; //=> Inportant => Inbecile
 
         }
@@ -105,7 +102,7 @@ public class CowboyQTE : InputTask
         {
             StopCoroutine(_inputCoroutine);
         }
-        _playerUI._sliderPercentValue = 1f;
+        _playerUI.SliderPercentValue = 1f;
         _playerUI.ChangeUIInputs(Color.white);
         _playerUI.ChangeUIInputs(InputsToString[input]);
         _currentInput = input;
@@ -179,6 +176,7 @@ public class CowboyQTE : InputTask
         _playerInput.actions["InputTask"].Disable();
         _playerUI.ClearUIInputs();
         _playerUI.DisplayInputsUI(false);
+        _playerUI.DisplayCowboyQTEUI(true);
         End(value);
     }
 }
