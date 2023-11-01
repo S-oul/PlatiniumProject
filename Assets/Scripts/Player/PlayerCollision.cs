@@ -59,6 +59,10 @@ public class PlayerCollision : MonoBehaviour
                 case GoatTask:
                     ((GoatTask)collidertype).OnPlayerJoinedTask(this.gameObject);
                     break;
+                case StoreTask:
+                    _controller.JoystickOnlyInputs();
+                    ((StoreTask)collidertype).OnPlayerJoinedTask(this.gameObject);   
+                    break;
             }
         }   
     }
@@ -112,8 +116,10 @@ public class PlayerCollision : MonoBehaviour
                 }
                 break;
             case "Goat":
-
                 collidertype = collision.transform.GetComponent<GoatTask>();
+                break;
+            case "StoreZone":
+                collidertype = collision.transform.parent.GetComponent<StoreTask>();
                 break;
         }
     }

@@ -225,6 +225,7 @@ MonoBehaviour:
   _eventList: []
   _posItPos: {fileID: 0}
   _hasPostIt: 1
+  _winStateScreen: {fileID: 0}
   _listPlayer: []
 --- !u!61 &-1723389438714349275
 BoxCollider2D:
@@ -821,6 +822,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 059304627fa885f478af7d2279c50e8c, type: 3}
+    - target: {fileID: 4511703152130446870, guid: 669d2b8835f8ff24ca8b65fc37e3979b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     string _codeContext;
     float _DecrytContext;
+    Vector2 _joystickContext;
 
     public string currentContextName;
 
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     public bool IsPlayerDown { get => _isPlayerDown; set => _isPlayerDown = value; }
     public string CodeContext { get => _codeContext; set => _codeContext = value; }
     public float DecrytContext { get => _DecrytContext; set => _DecrytContext = value; }
+    public Vector2 JoystickContext { get => _joystickContext; set => _joystickContext = value; }
 
     private void Awake()
     {
@@ -92,6 +94,19 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Decryptage"].Disable();
         _playerInput.actions["Jump"].Disable();
         _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Joystick left"].Disable();
+
+        _canMove = false;
+    }
+    public void JoystickOnlyInputs()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Joystick left"].Enable();
         _canMove = false;
     }
     private void DownPlayer()
@@ -197,6 +212,18 @@ public class PlayerController : MonoBehaviour
         else
         {
             _DecrytContext = 0;
+        }
+    }
+
+    public void OnJoystickLeft(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _joystickContext = context.ReadValue<Vector2>();
+        }
+        else
+        {
+            _joystickContext = Vector2.zero;
         }
     }
     // Comunicate contol inputs to CharacterContoller2D Script component

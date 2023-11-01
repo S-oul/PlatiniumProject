@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Joystick left",
+                    "type": "Value",
+                    "id": "ae7931e9-ac3d-416e-9ed7-5a2e0c2ed9ba",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -419,6 +428,17 @@
                     "action": "Decryptage",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "30fb314a-af6d-44e3-a1eb-fb62bae6e47e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Joystick left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
