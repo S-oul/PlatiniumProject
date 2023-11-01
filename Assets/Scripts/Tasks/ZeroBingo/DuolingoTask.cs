@@ -35,18 +35,18 @@ public class DuolingoTask : InputTask
     public NPC NPCDuolingo { get => _npcDuolingo; set => _npcDuolingo = value; }
     private void Start()
     {
-        foreach(var word in _words)
-        {
-            _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
-            int wordIndex = _words.LastIndexOf(word);
-            _rightAnswers.Add(word, _wordsTranslated[wordIndex]);
-        }
+        
     }
 
     
     public override void StartTask()
     {
-        
+        foreach (var word in _words)
+        {
+            _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
+            int wordIndex = _words.LastIndexOf(word);
+            _rightAnswers.Add(word, _wordsTranslated[wordIndex]);
+        }
         List<GameObject> players = PlayersDoingTask;
         _currentPlayer = players[0];
         _otherPlayer = players[1];

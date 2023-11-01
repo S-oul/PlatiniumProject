@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomSize: 3
-  _id: UNSET ==> go to room prefab
+  _id: 3T
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
   _objectList: []

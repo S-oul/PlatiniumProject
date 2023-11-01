@@ -209,11 +209,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomSize: 4
-  _id: 3B
-  _sprite: {fileID: 0}
+  _id: 4B
+  _spriteRoom: {fileID: 0}
+  _screenTexture: {fileID: 0}
   _objectList: []
   _npcList: []
   _eventList: []
+  _posItPos: {fileID: 0}
+  _hasPostIt: 0
+  _winStateScreen: {fileID: 0}
   _listPlayer: []
 --- !u!61 &-711696163162231772
 BoxCollider2D:

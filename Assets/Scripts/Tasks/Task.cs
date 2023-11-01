@@ -46,6 +46,7 @@ public abstract class Task : MonoBehaviour
 
     public virtual void End(bool isSuccessful)
     {
+
         IsStarted = false;
         IsDone = isSuccessful;
         if (isSuccessful)
@@ -90,14 +91,13 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
-        print(_gameManager);
-        _gameManager.RoomWin();
+        GameManager.Instance.NumberOfTasksMade++;
+        GameManager.Instance.RoomWin();
         _room.WinStateScreen.ChangeColor(Color.green);
     }
     public void OnRoomFail()
     {
-        print(_gameManager);
-        _gameManager.RoomLose();
+        GameManager.Instance.RoomLose();
         _room.WinStateScreen.ChangeColor(Color.red);
     }
     public void OnPlayerExitTaskRoom(GameObject player)

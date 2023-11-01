@@ -51,8 +51,8 @@ MonoBehaviour:
   - {fileID: 1887970405050895401, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
   - {fileID: 6164837858597373043, guid: 3b1579053d438fa4ab1ffdf8822f3c9b, type: 3}
   - {fileID: 6919338248750479993, guid: 21fdab9860ed05542aeb3b806c0afe02, type: 3}
-  _spritePlayers:
-  - {fileID: 21300000, guid: 6e94937d2bd925049b0c7b5e58d66dca, type: 3}
-  - {fileID: 21300000, guid: 360d208337a555746a7d242968af3d19, type: 3}
-  - {fileID: 21300000, guid: 024cf47300c9ba24e9a6a13c1fe5dab5, type: 3}
-  - {fileID: 21300000, guid: ba0f68c46e6c6fa4280cac408fdc7b20, type: 3}
+  _animationPlayers:
+  - {fileID: 9100000, guid: 88088766235b82e44b02cbbf15772650, type: 2}
+  - {fileID: 9100000, guid: 67d8881aba04d63448a56acea0851f4a, type: 2}
+  - {fileID: 9100000, guid: 5ed11e2544fd36249b0bf8bf4b603d1c, type: 2}
+  - {fileID: 9100000, guid: a6f60e36e858f5043a3deb302c257da5, type: 2}
