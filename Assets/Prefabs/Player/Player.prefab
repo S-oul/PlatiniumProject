@@ -2210,7 +2210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406af197029b9cf41b4550a7511f65ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 750
+  m_JumpForce: 550
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1846
@@ -2363,6 +2363,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d762bb72-5fda-4d29-82f7-e3cc01dbcd3a
     m_ActionName: Player/Tamponage[/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ae7931e9-ac3d-416e-9ed7-5a2e0c2ed9ba
+    m_ActionName: Player/Joystick left[/DualShock4GamepadHID/leftStick]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
