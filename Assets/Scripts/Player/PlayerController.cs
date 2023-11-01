@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     float _horizontalMove = 0f;
     bool _isJumping = false;
-    bool _isGrounded = false;                // why did they replace _isGrounded with _isPlayerDown?
+    bool _isGrounded = false;                                                // why did they replace _isGrounded with _isPlayerDown?
     bool _isInteracting = false;
     bool _isPlayerDown = false;
     bool _isBlocked = false;
@@ -243,9 +243,6 @@ public class PlayerController : MonoBehaviour
 
     private void flipAnimation()
     {
-        //Debug.Log("flipped");
-        
-        
         Transform animTrans = animator.GetComponent<Transform>();
         animTrans.localScale = new Vector3(animTrans.localScale.x *-1, animTrans.localScale.y, animTrans.localScale.z);
         //animTrans.rotation = new Quaternion.Euler(new Vector3(0f, 180f, 0f));

@@ -659,15 +659,15 @@ PrefabInstance:
     - target: {fileID: 8363959002101346493, guid: ba2a037bd99b1e047b3d49167fa352d0, type: 3}
       propertyPath: _animationPlayers.Array.data[1]
       value: 
-      objectReference: {fileID: 9100000, guid: 67d8881aba04d63448a56acea0851f4a, type: 2}
+      objectReference: {fileID: 9100000, guid: 4b4e7ac24568a5a4e807b08229fd70f0, type: 2}
     - target: {fileID: 8363959002101346493, guid: ba2a037bd99b1e047b3d49167fa352d0, type: 3}
       propertyPath: _animationPlayers.Array.data[2]
       value: 
-      objectReference: {fileID: 9100000, guid: 5ed11e2544fd36249b0bf8bf4b603d1c, type: 2}
+      objectReference: {fileID: 9100000, guid: c5230f858de09d94787f6bf43c940485, type: 2}
     - target: {fileID: 8363959002101346493, guid: ba2a037bd99b1e047b3d49167fa352d0, type: 3}
       propertyPath: _animationPlayers.Array.data[3]
       value: 
-      objectReference: {fileID: 9100000, guid: a6f60e36e858f5043a3deb302c257da5, type: 2}
+      objectReference: {fileID: 9100000, guid: cd743ca84889a9540bf6dbf956294c4f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

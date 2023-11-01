@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Task : MonoBehaviour
@@ -31,12 +32,7 @@ public abstract class Task : MonoBehaviour
     private void Start()
     {
         
-        _room = transform.parent.parent.GetComponent<Room>();
-        if(_room == null) { _room = transform.parent.GetComponent<Room>();}
-        if (_room == null) { _room = transform.GetComponent<Room>(); }
-        _gameManager = GameManager.Instance;
-
-        _room.TaskRoom = this;
+        
         
     }
 
@@ -51,7 +47,12 @@ public abstract class Task : MonoBehaviour
 
     public virtual void Init()
     {
-
+        _room = transform.parent.parent.GetComponent<Room>();
+        if (_room == null) { _room = transform.parent.GetComponent<Room>(); }
+        if (_room == null) { _room = transform.GetComponent<Room>(); }
+        _gameManager = GameManager.Instance;
+        Debug.Log(gameObject.name + " = " + _room);
+        _room.TaskRoom = this;
     }
 
     public virtual void End(bool isSuccessful)
@@ -101,13 +102,18 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
+        Debug.Log(gameObject.name);
         GameManager.Instance.NumberOfTasksMade++;
         GameManager.Instance.RoomWin();
+        GameManager.Instance.CheckIfDayFinished();
         _room.WinStateScreen.ChangeColor(Color.green);
     }
     public void OnRoomFail()
     {
+        Debug.Log(gameObject.name);
+        GameManager.Instance.NumberOfTasksMade++;
         GameManager.Instance.RoomLose();
+        GameManager.Instance.CheckIfDayFinished();
         _room.WinStateScreen.ChangeColor(Color.red);
     }
     public void OnPlayerExitTaskRoom(GameObject player)
