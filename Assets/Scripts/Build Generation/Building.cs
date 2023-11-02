@@ -319,7 +319,7 @@ public class Building : MonoBehaviour
             case '8': return 8;
             case '9': return 9;
             default:
-                //print("ERROR ERROR");
+                print("ERROR ERROR : " + c);
                 return -1;
         }
     }

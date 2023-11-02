@@ -17,10 +17,6 @@ public class Room : MonoBehaviour
 
     [SerializeField] SpriteRenderer _screenTexture;
 
-    [SerializeField] List<GameObject> _objectList;
-    [SerializeField] List<GameObject> _npcList;
-    [SerializeField] List<GameObject> _eventList;
-
     Task _task;
 
     [SerializeField] Transform _posItPos;
@@ -104,11 +100,11 @@ public class Room : MonoBehaviour
 
     #region UNITY EDITOR
 #if UNITY_EDITOR
-
+/*
     private void OnValidate()
     {
         transform.localScale = new Vector3(RoomSize * 5, transform.localScale.y, 1);
-    }
+    }*/
 #endif
     #endregion
 }

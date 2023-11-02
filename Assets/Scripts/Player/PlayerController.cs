@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Jump"].Disable();
         _playerInput.actions["InputTask"].Disable();
         _playerInput.actions["Decryptage"].Enable();
-        _canMove = true;
+        _canMove = false;
 
     }
 
@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _joystickContext = Vector2.zero;
+            _joystickContext = Vector2.one;
         }
     }
     // Comunicate contol inputs to CharacterContoller2D Script component
