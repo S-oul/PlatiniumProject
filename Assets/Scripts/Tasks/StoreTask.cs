@@ -88,6 +88,7 @@ public class StoreTask : InputTask
             {
                 _storePosPercent -= _storeSpeed / ((float)Difficulty / 3f) * Time.deltaTime;
             }
+            if(_storePosPercent > 1) { End(true); }
             _storePosPercent = Mathf.Clamp01(_storePosPercent);
             _store.transform.position = Vector3.Lerp(_startPos.position, _endPos.position, _storePosPercent); 
         }
