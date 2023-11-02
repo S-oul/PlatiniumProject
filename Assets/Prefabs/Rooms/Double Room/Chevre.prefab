@@ -55,9 +55,6 @@ MonoBehaviour:
   _id: 3T
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
-  _objectList: []
-  _npcList: []
-  _eventList: []
   _posItPos: {fileID: 1965961651334219512}
   _hasPostIt: 0
   _winStateScreen: {fileID: 6768524013754440731}
@@ -482,10 +479,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2465499368048737776}
     m_Modifications:
-    - target: {fileID: 5147070448652958479, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.227
-      objectReference: {fileID: 0}
     - target: {fileID: 7327684171467687184, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

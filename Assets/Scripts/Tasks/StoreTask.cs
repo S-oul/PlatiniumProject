@@ -6,6 +6,10 @@ public class StoreTask : InputTask
 {
     PlayerController _controllerP1;
     PlayerController _controllerP2;
+
+    float angleP1 = 0;
+    float oldAngleP1 = 0;
+
     public override void StartTask()
     {
 
@@ -18,7 +22,21 @@ public class StoreTask : InputTask
     {
         if(IsStarted && !IsDone)
         {
-            if(_controllerP1.JoystickContext != Vector2.zero) print(_controllerP1.JoystickContext);
+            if (_controllerP1.DecrytContext != Vector2.zero)
+            {
+                angleP1 = Mathf.Atan2(_controllerP1.DecrytContext.y, _controllerP1.DecrytContext.x) * Mathf.Rad2Deg ;
+                float delta = oldAngleP1 - angleP1;
+                switch (delta)
+                {
+                    case > 0:
+                        print("Clockwise : " + delta);
+                    break;
+                    case < 0: 
+                        print("Counter-Clockwise : " + delta); 
+                    break;
+                }
+                oldAngleP1 = angleP1;
+            }
         }
     }
 }
