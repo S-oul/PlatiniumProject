@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
 
     private List<Lift> _liftList = new List<Lift>();
     int _playerCount;
-    
 
+    GameObject _finalDoor;
 
     [SerializeField] GameObject[] _players = new GameObject[4];
 
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public List<Lift> LiftList { get => _liftList; set => _liftList = value; }
     public List<Room> RoomTaskList { get => _roomTaskList; set => _roomTaskList = value; }
     public int NumberOfTasksMade { get => _numberOfTasksMade; set => _numberOfTasksMade = value; }
+    public GameObject FinalDoor { get => _finalDoor; set => _finalDoor = value; }
 
     public int RoomWin()
     {
@@ -103,7 +104,12 @@ public class GameManager : MonoBehaviour
     {
         if(_numberOfTasksMade == RoomTaskList.Count)
         {
-            Debug.Log("BRAVO");
+            OpenTheFinalDoor();
         }
+    }
+
+    void OpenTheFinalDoor()
+    {
+
     }
 }

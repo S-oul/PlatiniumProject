@@ -76,7 +76,9 @@ public class Building : MonoBehaviour
         {
             if (c == 'S')
             {
-                i += instantiateRoom(_spawnRoom, height, i).RoomSize;
+                Room spawnRoom = instantiateRoom(_spawnRoom, height, i);
+                i += spawnRoom.RoomSize;
+                _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
             }
             else
             {
