@@ -432,7 +432,7 @@
                 {
                     "name": "",
                     "id": "30fb314a-af6d-44e3-a1eb-fb62bae6e47e",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<DualShockGamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",

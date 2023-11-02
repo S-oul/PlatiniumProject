@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
 
     string _codeContext;
-    float _DecrytContext;
+    Vector2 _DecrytContext;
     Vector2 _joystickContext;
 
     public string currentContextName;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     public bool CanMove { get => _canMove; set => _canMove = value; }
     public bool IsPlayerDown { get => _isPlayerDown; set => _isPlayerDown = value; }
     public string CodeContext { get => _codeContext; set => _codeContext = value; }
-    public float DecrytContext { get => _DecrytContext; set => _DecrytContext = value; }
+    public Vector2 DecrytContext { get => _DecrytContext; set => _DecrytContext = value; }
     public Vector2 JoystickContext { get => _joystickContext; set => _joystickContext = value; }
 
     private void Awake()
@@ -207,11 +207,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            _DecrytContext = context.ReadValue<Vector2>().x;
+            _DecrytContext = context.ReadValue<Vector2>();
         }
         else
         {
-            _DecrytContext = 0;
+            _DecrytContext = Vector2.zero;
         }
     }
 

@@ -37,20 +37,20 @@ public class DecryptageTask : Task
     {
         if (IsStarted)
         {
-            switch (_controller.DecrytContext)
+            switch (_controller.DecrytContext.x)
             {
                 case > 0:
                     print(_controller.DecrytContext);
                     _arrow.MovePlayerForward();
-                    _controller.DecrytContext = 0;
+                    _controller.DecrytContext = Vector2.zero;
                     break;
                 case < 0:
                     print(_controller.DecrytContext);
                     _arrow.MovePlayerBack();
-                    _controller.DecrytContext = 0;
+                    _controller.DecrytContext = Vector2.zero;
                     break;
                 default:
-                    _controller.DecrytContext = 0;
+                    _controller.DecrytContext = Vector2.zero;
                     break;
             }
         }
