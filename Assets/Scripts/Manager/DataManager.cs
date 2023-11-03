@@ -49,7 +49,8 @@ public class DataManager : MonoBehaviour
         RHTask,
         Decryptage,
         Duolingo,
-        Tamponnage
+        Tamponnage,
+        Volley
     }
 
     
