@@ -178,7 +178,7 @@ public class LaserRoom : Task , ITimedTask
     {
         while (IsStarted)
         {
-            yield return new WaitForSeconds(6 - Difficulty);
+            yield return new WaitForSeconds(Random.Range(6 - Difficulty - 0.25f, 6 - Difficulty + 0.25f));
             SpawnLaser(_laser);
         }
     }

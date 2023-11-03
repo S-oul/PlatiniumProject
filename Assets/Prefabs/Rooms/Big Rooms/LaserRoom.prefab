@@ -273,7 +273,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 5, z: 1}
+  m_LocalScale: {x: 50, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9129037645563802226}
@@ -299,9 +299,6 @@ MonoBehaviour:
   _id: 4B
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
-  _objectList: []
-  _npcList: []
-  _eventList: []
   _posItPos: {fileID: 4753302601974979704}
   _hasPostIt: 0
   _winStateScreen: {fileID: 0}

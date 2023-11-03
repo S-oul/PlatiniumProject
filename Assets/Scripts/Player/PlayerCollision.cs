@@ -63,6 +63,9 @@ public class PlayerCollision : MonoBehaviour
                     _controller.EnableDecryptageDisableMovements();
                     ((StoreTask)collidertype).OnPlayerJoinedTask(this.gameObject);   
                     break;
+                case FinalDoor:
+                    ((FinalDoor)collidertype).EnterInTheDoor();
+                    break;
             }
         }   
     }
@@ -120,6 +123,9 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "StoreZone":
                 collidertype = collision.transform.parent.GetComponent<StoreTask>();
+                break;
+            case "FinalDoor":
+                collidertype = collision.transform.GetComponent<FinalDoor>();
                 break;
         }
     }

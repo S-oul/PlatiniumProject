@@ -15,10 +15,13 @@ public class GameManager : MonoBehaviour
     private int _roomLose = 0;
     private int _roomWin = 0;
     [SerializeField] int _maxRoomFail = 3;
-    
+
+    [SerializeField] int _dayIndex;
 
     private List<Lift> _liftList = new List<Lift>();
     int _playerCount;
+
+    GameObject _finalRoom;
 
     GameObject _finalDoor;
 
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour
     public List<Room> RoomTaskList { get => _roomTaskList; set => _roomTaskList = value; }
     public int NumberOfTasksMade { get => _numberOfTasksMade; set => _numberOfTasksMade = value; }
     public GameObject FinalDoor { get => _finalDoor; set => _finalDoor = value; }
+    public int DayIndex { get => _dayIndex; set => _dayIndex = value; }
+    public GameObject FinalRoom { get => _finalRoom; set => _finalRoom = value; }
 
     public int RoomWin()
     {
@@ -108,8 +113,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void OpenTheFinalDoor()
+    public void OpenTheFinalDoor()
     {
+        
+        StartCoroutine(_finalDoor.GetComponent<FinalDoor>().OpenDoor());
+    }
 
+    public void GoToFinalRoom()
+    {
+        foreach(GameObject player in _players)
+        {
+            if (player != null)
+            {
+                player.transform.position = _finalRoom.transform.position;
+            }
+        }
+        
     }
 }

@@ -16,6 +16,7 @@ TagManager:
   - CodeZone
   - Goat
   - StoreZone
+  - FinalDoor
   layers:
   - Default
   - TransparentFX
