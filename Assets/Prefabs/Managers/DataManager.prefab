@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 1887970405050895401, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
   - {fileID: 6164837858597373043, guid: 3b1579053d438fa4ab1ffdf8822f3c9b, type: 3}
   - {fileID: 6919338248750479993, guid: 21fdab9860ed05542aeb3b806c0afe02, type: 3}
+  - {fileID: 2203151728919521307, guid: 7d9a24e1917772d4995291937fc95b3a, type: 3}
   _animationPlayers:
   - {fileID: 9100000, guid: 88088766235b82e44b02cbbf15772650, type: 2}
   - {fileID: 9100000, guid: 67d8881aba04d63448a56acea0851f4a, type: 2}
