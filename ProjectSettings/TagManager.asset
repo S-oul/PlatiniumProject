@@ -56,16 +56,16 @@ TagManager:
     locked: 1
   - name: Board
     uniqueID: 2446425409
+    locked: 0
+  - name: Deco
+    uniqueID: 2057632499
+    locked: 0
     locked: 1
   - name: Default
     uniqueID: 0
     locked: 1
   - name: MiniGame
     uniqueID: 3731426517
-    locked: 1
-  - name: Deco
-    uniqueID: 2057632499
-    locked: 1
   - name: Player
     uniqueID: 940664647
     locked: 0
