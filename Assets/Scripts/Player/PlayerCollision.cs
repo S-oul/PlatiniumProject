@@ -60,6 +60,7 @@ public class PlayerCollision : MonoBehaviour
                     ((GoatTask)collidertype).OnPlayerJoinedTask(this.gameObject);
                     break;
                 case StoreTask:
+
                     _controller.EnableDecryptageDisableMovements();
                     ((StoreTask)collidertype).OnPlayerJoinedTask(this.gameObject);   
                     break;

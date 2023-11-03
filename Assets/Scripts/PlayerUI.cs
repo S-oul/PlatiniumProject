@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Windows;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -41,6 +39,7 @@ public class PlayerUI : MonoBehaviour
 
     public float SliderPercentValue { get => sliderPercentValue; set => sliderPercentValue = value; }
     public Image RoundInputTimer { get => _roundInputTimer; set => _roundInputTimer = value; }
+    
 
     private void Start()
     {
