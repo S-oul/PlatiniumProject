@@ -48,6 +48,8 @@ public class CowboyQTE : InputTask
         _playerUI.ChangeUIInputsValidation(1);
         _numberOfFails = 0;
         StartTaskQTE();
+
+        _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameStart");
     }
 
     void StartTaskQTE()
@@ -61,6 +63,7 @@ public class CowboyQTE : InputTask
             Inputs newInput = (Inputs)((int)(Random.Range(0, 10)));
             _inputsNeeded.Add(newInput);
         }
+        
         DisplayInput(_inputsNeeded[0]);
     }
 
@@ -178,5 +181,6 @@ public class CowboyQTE : InputTask
         _playerUI.DisplayInputsUI(false);
         _playerUI.DisplayCowboyQTEUI(true);
         End(value);
+        _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameEnd");
     }
 }

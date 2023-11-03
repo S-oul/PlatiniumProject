@@ -30,5 +30,6 @@ public class CowboyNPC : NPC, IChattyNPC
     public void Fire()
     {
         /*Debug.Log("Pan");*/
+        GetComponentInChildren<Animator>().SetTrigger("Fire");
     }
 }
