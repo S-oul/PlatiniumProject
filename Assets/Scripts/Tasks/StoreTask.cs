@@ -55,7 +55,7 @@ public class StoreTask : InputTask
             }
 
             #endregion
-           /* #region P2
+            #region P2
             if (_controllerP2.DecrytContext != Vector2.zero)
             {
                 _angleP2 = Mathf.Atan2(_controllerP2.DecrytContext.y, _controllerP2.DecrytContext.x) * Mathf.Rad2Deg;
@@ -77,9 +77,9 @@ public class StoreTask : InputTask
             {
                 print(_P2RotateCount + " ISROTATIN");
             }
-            #endregion*/
+            #endregion
 
-            if(P1Spinning() /*&& P2Spinning()*/)
+            if(P1Spinning() && P2Spinning())
             {
                 _storePosPercent += _storeSpeed/((float)Difficulty/3f) * Time.deltaTime;
                 print(_storePosPercent);
