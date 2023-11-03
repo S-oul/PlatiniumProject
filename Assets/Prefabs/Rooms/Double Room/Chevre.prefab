@@ -479,6 +479,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2465499368048737776}
     m_Modifications:
+    - target: {fileID: 650219279870940886, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a08bfd587afa7a4eacb4a342d9ac396, type: 3}
+    - target: {fileID: 3537418361064581244, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
+      propertyPath: m_Name
+      value: Sprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 6647001913666526361, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6647001913666526361, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.42
+      objectReference: {fileID: 0}
     - target: {fileID: 7327684171467687184, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
