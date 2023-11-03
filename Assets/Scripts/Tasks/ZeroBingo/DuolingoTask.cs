@@ -41,6 +41,9 @@ public class DuolingoTask : InputTask
     
     public override void StartTask()
     {
+        _rightAnswers.Clear();
+        _wordToKey.Clear();
+        
         foreach (var word in _words)
         {
             _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);

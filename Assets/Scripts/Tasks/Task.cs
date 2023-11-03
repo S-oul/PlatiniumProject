@@ -47,6 +47,7 @@ public abstract class Task : MonoBehaviour
 
     public virtual void Init()
     {
+
         _room = transform.parent.parent.GetComponent<Room>();
         if (_room == null) { _room = transform.parent.GetComponent<Room>(); }
         if (_room == null) { _room = transform.GetComponent<Room>(); }
@@ -57,7 +58,7 @@ public abstract class Task : MonoBehaviour
 
     public virtual void End(bool isSuccessful)
     {
-
+        PlayersDoingTask.Clear();
         IsStarted = false;
         IsDone = isSuccessful;
         if (isSuccessful)
@@ -71,7 +72,8 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerJoinedTask(GameObject player)
     {
-        if(!IsDone)
+        
+        if (!IsDone)
         {
             if (_numberOfPlayers == 1)
             {
