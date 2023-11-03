@@ -223,12 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomSize: 2
-  _id: UNSET ==> go to room prefab
+  _id: 2T
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
-  _objectList: []
-  _npcList: []
-  _eventList: []
   _posItPos: {fileID: 5060972705860511363}
   _hasPostIt: 0
   _winStateScreen: {fileID: 8240593683946159561}

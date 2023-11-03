@@ -15,7 +15,7 @@ public class CowboyQTE : InputTask
     [SerializeField] List<Inputs> _inputsNeeded;
     [SerializeField] int _numberOfInputs = 1;
 
-    
+
 
     Inputs _currentInput;
 
@@ -33,7 +33,7 @@ public class CowboyQTE : InputTask
 
     private void Start()
     {
-        
+
         _npcCowboy = transform.parent.parent.GetComponentInChildren<CowboyNPC>();
     }
 
@@ -48,7 +48,8 @@ public class CowboyQTE : InputTask
         _playerUI.ChangeUIInputsValidation(1);
         _numberOfFails = 0;
         StartTaskQTE();
-
+        _npcCowboy.Player = PlayerGameObject;
+        _npcCowboy.FlipNPC();
         _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameStart");
     }
 
@@ -63,7 +64,7 @@ public class CowboyQTE : InputTask
             Inputs newInput = (Inputs)((int)(Random.Range(0, 10)));
             _inputsNeeded.Add(newInput);
         }
-        
+
         DisplayInput(_inputsNeeded[0]);
     }
 
@@ -101,7 +102,7 @@ public class CowboyQTE : InputTask
     //Display a new input
     void DisplayInput(Inputs input)
     {
-        if(_inputCoroutine != null)
+        if (_inputCoroutine != null)
         {
             StopCoroutine(_inputCoroutine);
         }
@@ -121,7 +122,7 @@ public class CowboyQTE : InputTask
         if (isInputRight)
         {
             _currentInputID++;
-            if (_currentInputID ==_numberOfInputs)
+            if (_currentInputID == _numberOfInputs)
             {
                 //_playerUI.ChangeUIInputsValidation(_index, Color.green);
                 EndQTE(true);
@@ -132,7 +133,7 @@ public class CowboyQTE : InputTask
             {
                 //Display Input fait une overflow
                 // _playerUI.ChangeUIInputsValidation(_index, Color.green);
-                
+
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
             }
@@ -156,7 +157,7 @@ public class CowboyQTE : InputTask
                 StartTaskQTE();
                 return;
             }
-            
+
         }
 
     }
@@ -183,4 +184,5 @@ public class CowboyQTE : InputTask
         End(value);
         _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameEnd");
     }
+
 }
