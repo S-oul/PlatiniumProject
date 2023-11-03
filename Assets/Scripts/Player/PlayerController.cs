@@ -261,5 +261,10 @@ public class PlayerController : MonoBehaviour
         {
             _rb.velocity = Vector2.zero;
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameManager.Instance.OpenTheFinalDoor();
+        }
     }
 }

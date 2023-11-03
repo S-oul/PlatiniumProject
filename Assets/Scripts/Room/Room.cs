@@ -90,7 +90,7 @@ public class Room : MonoBehaviour
 
     public void OnRoomEnter()
     {
-        _spriteRoom.color = Color.HSVToRGB(h, s, v);
+        _spriteRoom.color = Color.HSVToRGB(h, s, v);    
     }
     public void OnRoomExit()
     {

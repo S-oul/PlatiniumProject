@@ -21,6 +21,8 @@ public class Building : MonoBehaviour
     [SerializeField] private List<FloorData> _spawnFloors = new List<FloorData>();
     [SerializeField] private List<FloorData> _floorsW2Max = new List<FloorData>();
 
+    [SerializeField] private Transform _finalRoomPosition;
+
     private List<List<GameObject>> _allPool = new List<List<GameObject>>();
     
     private GameManager _gameManager;
@@ -111,7 +113,9 @@ public class Building : MonoBehaviour
         {
             if (c == 'S')
             {
-                i += instantiateRoom(_spawnRoom, height, i).RoomSize;
+                Room spawnRoom = instantiateRoom(_spawnRoom, height, i);
+                i += spawnRoom.RoomSize;
+                _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
             }
             else
             {
@@ -252,7 +256,8 @@ public class Building : MonoBehaviour
         _hasSpawnRoom = false;
         _hasBigRoom = false;
         System.Console.Clear();
-
+        GameObject finalRoom = Instantiate(_poolType4[_gameManager.DayIndex], _finalRoomPosition.position, Quaternion.identity);
+        _gameManager.FinalRoom = finalRoom;
         for (float i = 0; i < _maxFloors; i++)
         {
             if (i == 2)
