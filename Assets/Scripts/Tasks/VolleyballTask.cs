@@ -12,9 +12,10 @@ public class VolleyballTask : Task
 
     [SerializeField] float _timeBeforeStart;
 
-    [SerializeField] GameObject _ball;
+    [SerializeField] GameObject _ballPrefab;
     public override void Init()
     {
+
         base.Init();
         foreach (Transform pos in RoomTask.transform.Find("PlayerPositions"))
         {
@@ -25,7 +26,9 @@ public class VolleyballTask : Task
             Transform newPos = _posPlayerList[Random.Range(0, _posPlayerList.Count)];
             _posPlayerList.Remove(newPos);
             player.transform.position = newPos.position;
+            player.GetComponent<PlayerController>().ChangeMobiltyFactor(1.5f, 2);
         }
+
         _spawnBallPos = RoomTask.transform.Find("BallStartPos");
         StartCoroutine(TimerBeforeStart(_timeBeforeStart));
     }
@@ -43,6 +46,6 @@ public class VolleyballTask : Task
 
     void SpawnVolleyBall()
     {
-        Instantiate(_ball, _spawnBallPos.position, Quaternion.identity, RoomTask.transform);
+        Instantiate(_ballPrefab, _spawnBallPos.position, Quaternion.identity, RoomTask.transform);
     }
 }

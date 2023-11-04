@@ -2197,6 +2197,7 @@ MonoBehaviour:
   movementSmoothing: 0.05
   normalFallGravityForce: 3
   AirControl: 1
+  _jumpForce: 400
   currentContextName: 
 --- !u!114 &8814755984296022983
 MonoBehaviour:
@@ -2210,7 +2211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406af197029b9cf41b4550a7511f65ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 550
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1846
