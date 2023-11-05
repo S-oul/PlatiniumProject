@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5076237693307841192}
-  - component: {fileID: 4805848437515399323}
+  - component: {fileID: 6323210516461827493}
   m_Layer: 6
   m_Name: Net
   m_TagString: Untagged
@@ -103,15 +103,15 @@ Transform:
   m_GameObject: {fileID: 320212527457799361}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.032, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3831339236060950871}
   m_Father: {fileID: 4780585793026012674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4805848437515399323
-BoxCollider2D:
+--- !u!60 &6323210516461827493
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -142,7 +142,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00023047999, y: -0.23143762}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -152,9 +152,21 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.02197747, y: 0.44025755}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.002015413, y: -0.33294156}
+      - {x: 0.0070817387, y: -0.33194938}
+      - {x: 0.0066879145, y: 0.046528116}
+      - {x: 0.0034884708, y: 0.053177685}
+      - {x: 0.0016646944, y: 0.04350771}
+      - {x: 0.0010887183, y: -0.023906276}
+      - {x: -0.0032193155, y: -0.0715505}
+      - {x: -0.0061944183, y: -0.076128684}
+      - {x: -0.0072952127, y: -0.45288503}
+      - {x: -0.00059921684, y: -0.452835}
+      - {x: -0.0005691068, y: -0.24959671}
+      - {x: 0.0020760484, y: -0.21338221}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1357677589611036659
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,8 +240,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e01ed32157d09bc46b51bbeb2e85e50c, type: 3}
-  m_Color: {r: 1, g: 0.28405207, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d129953c5a1146947a3106dad82d80bd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -438,8 +450,8 @@ Transform:
   m_GameObject: {fileID: 2779352097148095059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.98, y: -0.59, z: 0.0682}
-  m_LocalScale: {x: 20.206545, y: 9.5689335, z: 0.1016}
+  m_LocalPosition: {x: -7.2787, y: -1.8742, z: 0.0682}
+  m_LocalScale: {x: 13.609108, y: 7.000632, z: 0.1016}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4347341165799602656}
@@ -531,8 +543,8 @@ Transform:
   - {fileID: 122975109257374597}
   - {fileID: 854503423439646469}
   - {fileID: 2163947509379772775}
-  - {fileID: 5076237693307841192}
   - {fileID: 6798980709672158312}
+  - {fileID: 5076237693307841192}
   - {fileID: 4347341165799602656}
   - {fileID: 6157072026775264121}
   m_Father: {fileID: 0}
@@ -911,8 +923,8 @@ Transform:
   m_GameObject: {fileID: 8974918832406897410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.228, z: 0}
-  m_LocalScale: {x: 0.018080099, y: 0.43143833, z: 1}
+  m_LocalPosition: {x: 0, y: -0.20225, z: 0}
+  m_LocalScale: {x: 0.037096176, y: 0.18143685, z: 0.027154349}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5076237693307841192}
@@ -957,13 +969,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 058c672bfdc431d42a4bdef37f16a437, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.39, y: 2.81}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
