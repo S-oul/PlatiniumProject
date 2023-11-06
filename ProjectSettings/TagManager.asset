@@ -17,6 +17,7 @@ TagManager:
   - Goat
   - StoreZone
   - FinalDoor
+  - DeadZoneStore
   layers:
   - Default
   - TransparentFX
@@ -60,12 +61,12 @@ TagManager:
   - name: Deco
     uniqueID: 2057632499
     locked: 0
-    locked: 1
   - name: Default
     uniqueID: 0
     locked: 1
   - name: MiniGame
     uniqueID: 3731426517
+    locked: 0
   - name: Player
     uniqueID: 940664647
     locked: 0
