@@ -15,7 +15,7 @@ public class VolleyballTask : Task
 
     [SerializeField] GameObject _ballPrefab;
 
-    int _faultCount = 0;
+    [SerializeField] [Range(0, 100)] int _squidChanceToHit = 100;
 
     GameObject _net;
 
@@ -23,8 +23,14 @@ public class VolleyballTask : Task
 
     Cam _cam;
 
+
+
+    int _playersPoints = 0;
+    int _squidPoints = 0;
+
     public GameObject Net { get => _net; set => _net = value; }
     public GameObject Squid { get => _squid; set => _squid = value; }
+    public int SquidChanceToHit { get => _squidChanceToHit; set => _squidChanceToHit = value; }
 
     public override void Init()
     {
@@ -41,7 +47,6 @@ public class VolleyballTask : Task
             player.transform.position = newPos.position;
             player.GetComponent<PlayerController>().ChangeMobiltyFactor(1.5f, 2);
         }
-        _faultCount = 0;
         _spawnBallPos = RoomTask.transform.Find("BallStartPos");
         StartCoroutine(TimerBeforeBall(_timeBeforeStart));
         Squid = RoomTask.transform.Find("Squid").gameObject;
@@ -64,22 +69,34 @@ public class VolleyballTask : Task
 
     void SpawnVolleyBall()
     {
-        Debug.Log("Katramounié");
         GameObject ball = Instantiate(_ballPrefab, _spawnBallPos.position, Quaternion.identity, RoomTask.transform);
         ball.GetComponent<BallVolley>().Task = this;
     }
 
-    public void Fault(GameObject ball)
+    public void Point(GameObject ball, bool isForPlayer)
     {
-        _faultCount++;
-        Debug.Log("Fault");
+
         Destroy(ball);
-        
-        if(_faultCount < 3)
+        if (isForPlayer)
         {
-            
+            _playersPoints++;
+        }
+        else
+        {
+            _squidPoints++;
+        }
+        if (_squidPoints < 3 && _playersPoints < 3)
+        {
+
             StartCoroutine(TimerBeforeBall(2f));
         }
-        
+        else if (_squidPoints == 3)
+        {
+            Debug.Log("Defeat");
+        }
+        else if (_playersPoints == 3)
+        {
+            Debug.Log("Win");
+        }
     }
 }
