@@ -348,7 +348,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -563540779
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0.64705884, b: 1, a: 1}
   m_FlipX: 0
@@ -856,6 +856,30 @@ MonoBehaviour:
   _deadZoneP1: {fileID: 1810240447455316641}
   _deadZoneP2: {fileID: 7657157900545309932}
   _deadzone: {fileID: 7123644736675626325}
+  pingpong:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.0027777778
+      outSlope: 0.0027777778
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 360
+      value: 1
+      inSlope: 0.0027777778
+      outSlope: 0.0027777778
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
 --- !u!1 &6097371491186553242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,14 +1204,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7383485834523861682}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.16754308, w: 0.98586476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6791763119902782957}
   m_Father: {fileID: 5834007154552682049}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -19.29}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7503154462965320467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,7 +1403,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -563540779
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 0.6480446, b: 1, a: 1}
   m_FlipX: 0
@@ -1639,14 +1663,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9154328695267726197}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4333007722805668159}
   m_Father: {fileID: 5834007154552682049}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2927693525754402584
 PrefabInstance:
   m_ObjectHideFlags: 0

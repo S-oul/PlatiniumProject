@@ -31,7 +31,8 @@ public class StoreTask : InputTask
     [SerializeField] Transform _deadZoneP1;
     [SerializeField] Transform _deadZoneP2;
     [SerializeField] StoreDeadZones _deadzone;
-    
+
+    [SerializeField] AnimationCurve pingpong;
     public override void StartTask()
     {
         _P1UI = PlayersDoingTask[0].GetComponent<PlayerUI>();
@@ -63,6 +64,7 @@ public class StoreTask : InputTask
                 _angleP1 = Mathf.Atan2(_controllerP1.DecrytContext.y, _controllerP1.DecrytContext.x) * Mathf.Rad2Deg ;
                 deltaP1 = _oldAngleP1 - _angleP1;
                 _360angleP1 = _angleP1 - 90 - 180;
+                _360angleP1 = pingpong.Evaluate(_360angleP1);
                 _deadZoneP1.eulerAngles = new Vector3(0, 0, _360angleP1);
 
                 _oldAngleP1 = _angleP1;
@@ -78,8 +80,8 @@ public class StoreTask : InputTask
                 _angleP2 = Mathf.Atan2(_controllerP2.DecrytContext.y, _controllerP2.DecrytContext.x) * Mathf.Rad2Deg;
                 deltaP2 = _oldAngleP2 - _angleP2;
                 _360angleP2 = _angleP2 - 90 - 180;
+                _360angleP2 = pingpong.Evaluate(_360angleP2);
                 _deadZoneP2.eulerAngles = new Vector3(0, 0, _360angleP2);
-
                 _oldAngleP2 = _angleP2;
             }
             else
@@ -88,8 +90,10 @@ public class StoreTask : InputTask
 
             #endregion
 
-            _storePosPercent = ((_angleP2 + _angleP1)/2f) / 360f;
-            print(_storePosPercent);
+
+
+            _storePosPercent = (_360angleP2 + _360angleP1) /2f / 360f;
+            print(_storePosPercent+ " / " + _360angleP1 + " : " + _360angleP2);
 
             if (!_deadzone.IsInOtherCollider)
             {

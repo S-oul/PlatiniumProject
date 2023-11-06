@@ -12,6 +12,7 @@ public class StoreDeadZones : MonoBehaviour
     {
         if (collision.CompareTag("DeadZoneStore"))
         {
+            print("eeeee");
             _isInOtherCollider = true;
         }
     }
@@ -19,6 +20,7 @@ public class StoreDeadZones : MonoBehaviour
     {
         if (collision.CompareTag("DeadZoneStore"))
         {
+            print("fffffffffffffffffffffff");
             _isInOtherCollider = false;
         }
     }
