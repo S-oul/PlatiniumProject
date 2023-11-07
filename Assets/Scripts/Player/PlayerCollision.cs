@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +15,8 @@ public class PlayerCollision : MonoBehaviour
     #region In Game Var
     bool _IsInLift = false;
     bool _isInNPC = false;
-    bool _ = false;
+    bool _canAutoLift = true;
+
     #endregion
 
     #region Accesseur
@@ -30,6 +32,10 @@ public class PlayerCollision : MonoBehaviour
         _playerUI = gameObject.GetComponent<PlayerUI>();
     }
     private void Update()
+    {
+        MakeInteraction();
+    }
+    void MakeInteraction()
     {
         if (collidertype == null) { return; }
         if (_controller.IsInteracting)
@@ -53,7 +59,7 @@ public class PlayerCollision : MonoBehaviour
 
                 case DecryptageTask:
                     ((DecryptageTask)collidertype).OnPlayerJoinedTask(gameObject);
-                    
+
                     _controller.IsInteracting = false;
                     break;
                 case GoatTask:
@@ -62,13 +68,13 @@ public class PlayerCollision : MonoBehaviour
                 case StoreTask:
 
                     _controller.EnableDecryptageDisableMovements();
-                    ((StoreTask)collidertype).OnPlayerJoinedTask(this.gameObject);   
+                    ((StoreTask)collidertype).OnPlayerJoinedTask(this.gameObject);
                     break;
                 case FinalDoor:
                     ((FinalDoor)collidertype).EnterInTheDoor();
                     break;
             }
-        }   
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -128,6 +134,14 @@ public class PlayerCollision : MonoBehaviour
             case "FinalDoor":
                 collidertype = collision.transform.GetComponent<FinalDoor>();
                 break;
+            case "AutoLift":
+                if (_canAutoLift)
+                {
+                    StartCoroutine(AutoLiftWait());
+                    collidertype = collision.transform.GetComponent<Lift>();
+                    ((Lift)collidertype).InteractLift(gameObject);
+                }
+                break;
         }
     }
 
@@ -158,4 +172,10 @@ public class PlayerCollision : MonoBehaviour
         }
     }
    
+    IEnumerator AutoLiftWait()
+    {
+        _canAutoLift = false;
+        yield return new WaitForSeconds(3);
+        _canAutoLift = true;
+    }
 }
