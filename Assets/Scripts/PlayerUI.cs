@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class PlayerUI : MonoBehaviour
 {
 
@@ -140,19 +141,42 @@ public class PlayerUI : MonoBehaviour
         if (words == null) { return; }
         for (int i = 0; i < 3; i++)
         {
-            _answersDuolingo[i].text = inputs[i] + ": " + words[i];
+            _answersDuolingo[i].text = /*inputs[i] + ": " +*/ words[i];
         }
     }
 
     public void ClearAnswersDuolingo()
     {
+        ClearColorAnswerBubble();
         for (int i = 0; i < 3; i++)
         {
             _answersDuolingo[i].text = "";
         }
     }
 
-    
+    public void ChangeColorAnswerBubble(WordConfig word, Color color)
+    {
+
+        string text = word.baseWord;
+        foreach (TextMeshProUGUI answer in _answersDuolingo)
+        {
+
+
+            if (answer.text == text)
+            {
+                answer.transform.parent.Find("Background").GetComponent<Image>().color = color;
+            }
+
+        }
+    }
+
+    public void ClearColorAnswerBubble()
+    {
+        foreach (TextMeshProUGUI answer in _answersDuolingo)
+        {
+            answer.transform.parent.Find("Background").GetComponent<Image>().color = Color.white;
+        }
+    }
 
     public void DisplayDuolingoUI(bool value)
     {
