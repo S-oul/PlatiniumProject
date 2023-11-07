@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public class StoreTask : InputTask
@@ -18,6 +19,9 @@ public class StoreTask : InputTask
     float _angleP2 = 0;
     float _oldAngleP2 = 0;
 
+    bool _isOnFail = false;
+    int _timeHaveFail = 0;
+    int _timeCanFail = 5;
 
     [SerializeField] float _JoystickForce = 1;
     [SerializeField] float _storePosPercent = 0;
@@ -53,55 +57,78 @@ public class StoreTask : InputTask
     {
         if(IsStarted && !IsDone)
         {
-            float deltaP1;
-            float deltaP2;
+            if (!_isOnFail)
+            {
+                #region P1
+                if (_controllerP1.DecrytContext != Vector2.zero)
+                {
+                    _angleP1 = Mathf.Atan2(_controllerP1.DecrytContext.y, _controllerP1.DecrytContext.x) * Mathf.Rad2Deg;
 
-            float _360angleP1 = 0;
-            float _360angleP2 = 0;
-            #region P1
-            if (_controllerP1.DecrytContext != Vector2.zero)
-            {
-                _angleP1 = Mathf.Atan2(_controllerP1.DecrytContext.y, _controllerP1.DecrytContext.x) * Mathf.Rad2Deg ;
-                deltaP1 = _oldAngleP1 - _angleP1;
-                _360angleP1 = _angleP1 - 90 - 180;
-                _360angleP1 = pingpong.Evaluate(_360angleP1);
-                _deadZoneP1.eulerAngles = new Vector3(0, 0, _360angleP1);
+                
+                    _deadZoneP1.localEulerAngles = new Vector3(0, 0, _angleP1-270f);
+                    _angleP1 = Mathf.Abs(_angleP1 - 180f);
+                }
+                #endregion
 
-                _oldAngleP1 = _angleP1;
-            }
-            else
-            {
-            }
-
-            #endregion
-            #region P2
-            if (_controllerP2.DecrytContext != Vector2.zero)
-            {
-                _angleP2 = Mathf.Atan2(_controllerP2.DecrytContext.y, _controllerP2.DecrytContext.x) * Mathf.Rad2Deg;
-                deltaP2 = _oldAngleP2 - _angleP2;
-                _360angleP2 = _angleP2 - 90 - 180;
-                _360angleP2 = pingpong.Evaluate(_360angleP2);
-                _deadZoneP2.eulerAngles = new Vector3(0, 0, _360angleP2);
-                _oldAngleP2 = _angleP2;
-            }
-            else
-            {
+                #region P2
+                if (_controllerP2.DecrytContext != Vector2.zero)
+                {
+                    _angleP2 = Mathf.Atan2(_controllerP2.DecrytContext.y, _controllerP2.DecrytContext.x) * Mathf.Rad2Deg;
+                    _deadZoneP2.localEulerAngles = new Vector3(0, 0, _angleP2 - 270f);
+                    _angleP2 = Mathf.Abs(_angleP2 - 180f);
+                }
+                #endregion
             }
 
-            #endregion
 
-
-
-            _storePosPercent = (_360angleP2 + _360angleP1) /2f / 360f;
-            print(_storePosPercent+ " / " + _360angleP1 + " : " + _360angleP2);
+            _storePosPercent = pingpong.Evaluate((_angleP1+_angleP2)/2);
+            print(_storePosPercent + " // " + _angleP1 + " // " + _angleP2);
+            if(_storePosPercent > .85f)
+            {
+                End(true);
+            }
 
             if (!_deadzone.IsInOtherCollider)
             {
+                _isOnFail = true;
                 print("FAIIIIIIIIIIIIIIL");
+                _timeHaveFail++;
+                _deadZoneP1.localEulerAngles = new Vector3(0, 0, 270f);
+                _deadZoneP2.localEulerAngles = new Vector3(0, 0, 270f);
+
+                if (_timeHaveFail == _timeCanFail)
+                {
+                    End(false);
+                }
+                else
+                {
+                    StartCoroutine(FailCoroutine());
+                }
             }
 
-            _storePosPercent = Mathf.Clamp01(_storePosPercent);
             _store.transform.position = Vector3.Lerp(_startPos.position, _endPos.position, _storePosPercent); 
         }
+    }
+
+    IEnumerator FailCoroutine()
+    {
+        float time = .75f;
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            float percent = time / .75f;
+            _storePosPercent = percent;
+            yield return null;
+        }
+        _storePosPercent = 0;
+        time = .75f * Difficulty;
+        while (time > 0)
+        {
+            print("_isOnFail");
+            time -= Time.deltaTime;
+            yield return null;
+
+        }
+        _isOnFail = false;
     }
 }
