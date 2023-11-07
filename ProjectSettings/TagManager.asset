@@ -18,6 +18,7 @@ TagManager:
   - StoreZone
   - FinalDoor
   - DeadZoneStore
+  - SquidVolley
   layers:
   - Default
   - TransparentFX

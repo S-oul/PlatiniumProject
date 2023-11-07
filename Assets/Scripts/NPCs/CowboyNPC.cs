@@ -10,15 +10,19 @@ public class CowboyNPC : NPC, IChattyNPC
 
     [SerializeField] GameObject _bulletPrefab;
 
+    SpriteRenderer _sprite;
+
     Transform _firePoint;
 
-    GameObject _player;
+    [SerializeField] GameObject _player;
 
-    public GameObject Player { get => _player; }
+    public GameObject Player { get => _player; set => _player = value; }
+    public SpriteRenderer SpriteNPC { get => _sprite; set => _sprite = value; }
 
     private void Start()
     {
         _firePoint = transform.GetChild(0).transform;
+        _sprite = transform.Find("Animation").GetComponent<SpriteRenderer>();
     }
     public void Talk(string text)
     {
@@ -30,5 +34,23 @@ public class CowboyNPC : NPC, IChattyNPC
     public void Fire()
     {
         /*Debug.Log("Pan");*/
+        GetComponentInChildren<Animator>().SetTrigger("Fire");
+    }
+
+    public void FlipNPC()
+    {
+        Vector2 _vectorFromPlayer = Player.transform.position - transform.position;
+        float xValue = _vectorFromPlayer.x;
+        if (xValue > 0)
+        {
+            _sprite.flipX = true;
+        }
+        else
+        {
+            _sprite.flipX = false;
+        }
+
+
     }
 }
+

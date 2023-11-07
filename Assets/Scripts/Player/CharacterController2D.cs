@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
+	private float m_JumpForce;							// Amount of force added when the player jumps.
 	//[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	//[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	//[SerializeField] private bool m_AirControl = true;							// Whether or not a player can steer while jumping;
@@ -49,7 +49,7 @@ public class CharacterController2D : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
 		_playerController = GetComponent<PlayerController>();
-
+		
 
         if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -58,9 +58,9 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		// retreive variables from PlayerController 
-
-		m_MovementSmoothing = _playerController.movementSmoothing;
+        // retreive variables from PlayerController 
+        m_JumpForce = _playerController.JumpForce;
+        m_MovementSmoothing = _playerController.movementSmoothing;
 		m_AirControl = _playerController.AirControl;
 		m_normalFallGravityForce = _playerController.normalFallGravityForce;
 
@@ -111,6 +111,7 @@ public class CharacterController2D : MonoBehaviour
         if (m_Grounded && jump)
 		{
 			// Add a vertical force to the player.
+			UnityEngine.Debug.Log(m_JumpForce);
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
