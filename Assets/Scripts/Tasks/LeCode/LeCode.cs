@@ -80,7 +80,7 @@ public class LeCode : Task
     }
     private void Update()
     {
-        if (HaveOnePlayer())
+        if (HaveOnePlayer() && !IsDone)
         {
             if(_controller.CodeContext != null)
             {

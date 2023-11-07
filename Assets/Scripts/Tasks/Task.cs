@@ -102,8 +102,9 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
-        Debug.Log(gameObject.name);
+        Debug.Log(gameObject.name + " = Success");
         GameManager.Instance.NumberOfTasksMade++;
+        
         GameManager.Instance.RoomWin();
         GameManager.Instance.CheckIfDayFinished();
         _room.WinStateScreen.ChangeColor(Color.green);
