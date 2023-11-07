@@ -23,6 +23,7 @@ public class DuolingoTask : InputTask
     [SerializeField] int _numberOfWordsAsked;
 
     Dictionary<WordConfig, string> _wordToKey = new Dictionary<WordConfig, string>();
+    Dictionary<string, WordConfig> _keyToWord = new Dictionary<string, WordConfig>();
 
     List<string> _inputsName = new List<string>() {  "Y", "X", "B" };
 
@@ -30,6 +31,7 @@ public class DuolingoTask : InputTask
     GameObject _otherPlayer;
 
     string _rightInputName;
+    WordConfig _currentGuessWord;
     bool _canPressInput = false;
 
     int _rightAnswerIndex = 0;
@@ -44,13 +46,9 @@ public class DuolingoTask : InputTask
     
     public override void StartTask()
     {
-        //_allWords.Clear();
-        foreach(WordConfig word in _wordsData.words)
-        {
-            _allWords.Add(word);
-        }
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
         _wordToKey.Clear();
+        _keyToWord.Clear();
         List<GameObject> players = PlayersDoingTask;
         _currentPlayer = players[0];
         _otherPlayer = players[1];
@@ -81,8 +79,12 @@ public class DuolingoTask : InputTask
 
     void DisplayWordToFind()
     {
-
-        
+        _allWords.Clear();
+        _keyToWord.Clear();
+        foreach (WordConfig word in _wordsData.words)
+        {
+            _allWords.Add(word);
+        }
         _rightWord = _allWords[Random.Range(0, _allWords.Count)];
         _allWords.Remove(_rightWord);
         string rightWordTrad = TraductionOfWord(_rightWord, SystemLanguage.Spanish);
@@ -185,26 +187,28 @@ public class DuolingoTask : InputTask
         for (int i = 0; i < words.Count; i++)
         {
             _wordToKey.Add(words[i], _inputsName[i]);
-            
+            _keyToWord.Add(_inputsName[i], words[i]);
         }
         _rightInputName = _wordToKey[_rightWord];
     }
 
     void PressInputCheck()
     {
+        
         if (_inputValue == PlayerInputValue.WrongValue)
         {
+            //_currentGuessWord = _keyToWord[_contextName];
+            StartCoroutine(DisplayRightAnswer(false));
             _canPressInput = false;
             _contextName = "";
-            Debug.Log("Wrong");
-            EndDuolingo(false); 
         }
         else if (_inputValue == PlayerInputValue.RightValue)
         {
+            //_currentGuessWord = _keyToWord[_contextName];
+            StartCoroutine(DisplayRightAnswer(true));
             _canPressInput = false;
-            Debug.Log("Right");
             _rightAnswerIndex++;
-            CheckIfReplay();
+            
         }
     }
 
@@ -229,9 +233,29 @@ public class DuolingoTask : InputTask
         if (_canPressInput)
         {
             _inputValue = CheckInputValue(_contextName, _wordToKey[_rightWord], _controller);
+           
             PressInputCheck();
         }
        
+    }
+
+    IEnumerator DisplayRightAnswer(bool isRight)
+    {
+        if (isRight)
+        {
+            _currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_rightWord, Color.green);
+            yield return new WaitForSeconds(1.5f);
+            CheckIfReplay();
+        }
+        else
+        {
+            _currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_rightWord, Color.green);
+            _currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_currentGuessWord, Color.red);
+            yield return new WaitForSeconds(1.5f);
+            EndDuolingo(false);
+        }
+
+        _currentPlayer.GetComponent<PlayerUI>().ClearColorAnswerBubble();
     }
 
     void SwitchPlayer()
