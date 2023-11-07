@@ -83,16 +83,17 @@ public class StoreTask : InputTask
 
             _storePosPercent = pingpong.Evaluate((_angleP1+_angleP2)/2);
             print(_storePosPercent + " // " + _angleP1 + " // " + _angleP2);
-            if(_storePosPercent > .85f)
+            if(_storePosPercent > .9f)
             {
                 End(true);
             }
 
             if (!_deadzone.IsInOtherCollider)
             {
+                _deadzone.IsInOtherCollider = true;
                 _isOnFail = true;
-                print("FAIIIIIIIIIIIIIIL");
                 _timeHaveFail++;
+                print("FAIIIIIIIIIIIIIIL  " + _timeHaveFail);
                 _deadZoneP1.localEulerAngles = new Vector3(0, 0, 270f);
                 _deadZoneP2.localEulerAngles = new Vector3(0, 0, 270f);
 

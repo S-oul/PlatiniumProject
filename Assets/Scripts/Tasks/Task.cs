@@ -50,7 +50,6 @@ public abstract class Task : MonoBehaviour
         if (_room == null) { _room = transform.parent.GetComponent<Room>(); }
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
-        Debug.Log(gameObject.name + " = " + _room);
         _room.TaskRoom = this;
     }
 
