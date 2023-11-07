@@ -88,13 +88,12 @@ public class Building : MonoBehaviour
                 
 
                 int r = Random.Range(0, _allPool[intC].Count);
-                if(_allPool[intC][r].GetComponent<Room>().Id == "C" && !_hasCodeRoom && floor > 1)
+                if(_allPool[intC][r].GetComponent<Room>().Id.Contains("C") && !_hasCodeRoom && floor > 1)
                 {
-                    print("oui)");
                     _hasCodeRoom = true;
                 }else
                 {
-                    while (_allPool[intC][r].GetComponent<Room>().Id == "C")
+                    while (_allPool[intC][r].GetComponent<Room>().Id.Contains("C"))
                     {
                         r = Random.Range(0, _allPool[intC].Count);
                     }
@@ -123,13 +122,13 @@ public class Building : MonoBehaviour
 
 
                 int r = Random.Range(0, _allPool[intC].Count);
-                if (_allPool[intC][r].GetComponent<Room>().Id == "C" && !_hasCodeRoom && floor > 1)
+                if (_allPool[intC][r].GetComponent<Room>().Id.Contains("C") && !_hasCodeRoom && floor > 1)
                 {
                     _hasCodeRoom = true;
                 }
                 else
                 {
-                    while (_allPool[intC][r].GetComponent<Room>().Id == "C")
+                    while (_allPool[intC][r].GetComponent<Room>().Id.Contains("C"))
                     {
                         r = Random.Range(0, _allPool[intC].Count);
                     }
