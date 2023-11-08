@@ -388,6 +388,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8665029958405812661}
     m_Modifications:
+    - target: {fileID: 522175611434058135, guid: e4ba05b3482329b4ab1b178cbe120b13, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 522175611434058135, guid: e4ba05b3482329b4ab1b178cbe120b13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122618285145461010, guid: e4ba05b3482329b4ab1b178cbe120b13, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122618285145461010, guid: e4ba05b3482329b4ab1b178cbe120b13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.74
+      objectReference: {fileID: 0}
     - target: {fileID: 6484501961438856828, guid: e4ba05b3482329b4ab1b178cbe120b13, type: 3}
       propertyPath: m_Name
       value: GraffitiTask

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.XR;
 
 public class GraffitiGameManager : Task
 {
+    #region Declarations
     [SerializeField] List<GameObject> level1;
     [SerializeField] List<GameObject> level2;
     [SerializeField] List<GameObject> level3;
@@ -27,6 +28,10 @@ public class GraffitiGameManager : Task
     float _timer = 0;
     int _timerResetInterval = 1; //at what intervals (in seconds) will the animation speed be updated
     float _swipeSpeed = 0;
+
+    List<PlayerController> _playersDoingTask;
+
+    #endregion
 
     void Start()
     {
@@ -54,8 +59,11 @@ public class GraffitiGameManager : Task
     }
     public override void End(bool isSuccessful)
     {
-        if (!isSuccessful) { }
-        _controller.DisableDecryptageEnableMovements();
+        //if (!isSuccessful) { }
+        foreach (PlayerController player in _playersDoingTask)
+        {
+            _controller.DisableDecryptageEnableMovements();
+        }
         base.End(isSuccessful);
     }
 
@@ -90,7 +98,6 @@ public class GraffitiGameManager : Task
                 _totalSwipes = 0;
 
                 _currentGraffitiWashAnimator.GetComponent<Animator>().speed = _swipeSpeed;
-                print("SWWWIIIIIIIIIIIIPPPPPES : " + _swipeSpeed);
             }
 
             // adjusting graffiti Opacity
@@ -149,15 +156,4 @@ public class GraffitiGameManager : Task
     }
 }
 
-/* choose a graffiti to spawn. 
- * when player interacts, teleport them to player spot and start game. 
- * The game:
- * how many times the player had gone back and forth. 
- * the num of 'wipes' per second determines the whipe animation speed. 
- * also determind the rate of graffiti disapearance. 
- * if new player is added, 
- *   TP them to spot
- *   added spunge to animate
- *   add their wipe count to the wipe per second counter. 
- * When graffiti visibility is zero, game win
- */
+

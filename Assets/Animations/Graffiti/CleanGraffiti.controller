@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-9066421276176718705
+--- !u!1102 &-8728341310808502354
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FullCowboyAnimation
+  m_Name: TempWashAnime
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: 7e36813ba79844746969751615f468e6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -36,7 +36,7 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -9066421276176718705}
+    m_State: {fileID: -8728341310808502354}
     m_Position: {x: 30, y: 160, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
@@ -47,7 +47,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: -180, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -9066421276176718705}
+  m_DefaultState: {fileID: -8728341310808502354}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
