@@ -79,7 +79,7 @@ public class VolleyballTask : Task
 
     public void Point(GameObject ball, bool isForPlayer)
     {
-
+        ball.GetComponent<BallVolley>().TimerBeforeDestroy();
         Destroy(ball);
         if (isForPlayer)
         {

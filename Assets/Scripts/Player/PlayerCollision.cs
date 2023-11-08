@@ -169,6 +169,7 @@ public class PlayerCollision : MonoBehaviour
                     _inputs.actions["Code"].Disable();
                 }
                 break;
+            
         }
     }
    

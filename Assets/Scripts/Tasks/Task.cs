@@ -29,9 +29,9 @@ public abstract class Task : MonoBehaviour
 
     private void Start()
     {
+
         
-        
-        
+
     }
 
     private void Awake()
@@ -51,6 +51,7 @@ public abstract class Task : MonoBehaviour
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
         _room.TaskRoom = this;
+        
     }
 
     public virtual void End(bool isSuccessful)
