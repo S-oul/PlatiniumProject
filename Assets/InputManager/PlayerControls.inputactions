@@ -60,6 +60,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Graffiti",
+                    "type": "Value",
+                    "id": "4ab03da3-9552-4ff0-a4cc-ec558ab61adf",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Tamponage",
                     "type": "Button",
                     "id": "d762bb72-5fda-4d29-82f7-e3cc01dbcd3a",
@@ -439,6 +448,50 @@
                     "action": "Joystick left",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bddca8c-fd82-4026-8035-24e3ac82165b",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Graffiti",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "17874845-41a7-4b89-ac07-3647dc5625f7",
+                    "path": "2DVector",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Graffiti",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "b99eebb0-b7fd-4d96-a462-ce949f6da990",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Graffiti",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "8b72d49d-f035-4bd4-8405-f3b8dca3f9a5",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Graffiti",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

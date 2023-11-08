@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     string _codeContext;
     Vector2 _DecrytContext;
     Vector2 _joystickContext;
+    Vector2 _graffitiContext;
 
     public string currentContextName;
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public string CodeContext { get => _codeContext; set => _codeContext = value; }
     public Vector2 DecrytContext { get => _DecrytContext; set => _DecrytContext = value; }
     public Vector2 JoystickContext { get => _joystickContext; set => _joystickContext = value; }
+    public Vector2 GraffitiContext { get => _graffitiContext; set => _graffitiContext = value; }
 
     private void Awake()
     {
@@ -154,6 +156,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void EnableGraffitiDisableMovements()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Graffiti"].Enable();
+        _canMove = false;
+
+    }
+
     public void DisableDecryptageEnableMovements()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
@@ -165,6 +179,18 @@ public class PlayerController : MonoBehaviour
         _canMove = true;
 
     }
+    public void DisableGraffitiEnableMovements()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Enable();
+        _playerInput.actions["Jump"].Enable();
+        _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Graffiti"].Disable();
+        _canMove = true;
+
+    }
+
     public void OnInputTask(InputAction.CallbackContext context)
     {
         
@@ -225,6 +251,20 @@ public class PlayerController : MonoBehaviour
             _joystickContext = Vector2.one;
         }
     }
+
+    public void OnGraffiti(InputAction.CallbackContext context)
+    { 
+        if (context.performed)
+        {
+            _graffitiContext = context.ReadValue<Vector2>();
+        }
+        else
+        {
+            _graffitiContext = Vector2.zero;
+        }
+            
+    }
+
     // Comunicate contol inputs to CharacterContoller2D Script component
     private void FixedUpdate()
     {
