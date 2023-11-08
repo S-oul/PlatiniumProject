@@ -54,6 +54,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 2838161045
+    locked: 0
   - name: roomWall
     uniqueID: 3130462515
     locked: 1
@@ -74,4 +77,7 @@ TagManager:
     locked: 0
   - name: 'LightBG '
     uniqueID: 245853705
+    locked: 0
+  - name: UIPlayer
+    uniqueID: 2510225839
     locked: 0
