@@ -17,6 +17,8 @@ public class VolleyballTask : Task
 
     [SerializeField] [Range(0, 100)] int _squidChanceToHit = 100;
 
+    [SerializeField] int _pointsToWin;
+
     GameObject _net;
 
     GameObject _squid;
@@ -71,6 +73,8 @@ public class VolleyballTask : Task
     {
         GameObject ball = Instantiate(_ballPrefab, _spawnBallPos.position, Quaternion.identity, RoomTask.transform);
         ball.GetComponent<BallVolley>().Task = this;
+
+
     }
 
     public void Point(GameObject ball, bool isForPlayer)
@@ -85,7 +89,7 @@ public class VolleyballTask : Task
         {
             _squidPoints++;
         }
-        if (_squidPoints < 3 && _playersPoints < 3)
+        if (_squidPoints < _pointsToWin && _playersPoints < _pointsToWin)
         {
 
             StartCoroutine(TimerBeforeBall(2f));

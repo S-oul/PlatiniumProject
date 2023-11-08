@@ -13,6 +13,7 @@ public class BallVolley : MonoBehaviour
     VolleyballTask _task;
 
     GameObject _lastCollisionObject;
+    bool ;
 
     
     public VolleyballTask Task { get => _task; set => _task = value; }
@@ -34,8 +35,8 @@ public class BallVolley : MonoBehaviour
             Vector3 _dir = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
             _rb.velocity = Vector3.zero;
             //Vector3 _dir = collision.gameObject.transform.position - gameObject.transform.position;
-            _rb.AddForce(_dir.normalized * _numberOfTouches);
-            _rb.AddForce(Vector2.up * 30);
+            _rb.AddForce(_dir.normalized * _numberOfTouches * 2f);
+            _rb.AddForce(Vector2.up * 40f);
         }
         if(collision.gameObject == _task.Net)
         {
@@ -92,5 +93,10 @@ public class BallVolley : MonoBehaviour
             return false;
         }
         else { return true; }
+    }
+
+    IEnumerator TimerBeforeDestroy()
+    {
+        
     }
 }
