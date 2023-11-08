@@ -469,6 +469,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8665029958405812661}
     m_Modifications:
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[1].time
+      value: 330
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[2].time
+      value: 331
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[3].time
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[2].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[1].inSlope
+      value: 0.003030303
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[2].inSlope
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[3].inSlope
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[0].outSlope
+      value: 0.003030303
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[1].outSlope
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[2].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[2].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 45379398675652075, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: pingpong.m_Curve.Array.data[3].outWeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3257417081314367301, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
       propertyPath: m_Name
       value: StoreTask
