@@ -26,7 +26,7 @@ public class GraffitiGameManager : Task
     int _totalSwipes = 0;
     float _timer = 0;
     int _timerResetInterval = 1; //at what intervals (in seconds) will the animation speed be updated
-    int _swipeSpeed = 0;
+    float _swipeSpeed = 0;
 
     void Start()
     {
@@ -67,13 +67,11 @@ public class GraffitiGameManager : Task
             switch (_controller.DecrytContext.x)
             {
                 case > 0:
-                    print(_controller.DecrytContext);
                     _controller.DecrytContext = Vector2.zero;
                     if (_previouseSwipeDirection == -1) { _totalSwipes++; }
                     _previouseSwipeDirection = 1;
                     break;
                 case < 0:
-                    print(_controller.DecrytContext);
                     _controller.DecrytContext = Vector2.zero;
                     if (_previouseSwipeDirection == 1) { _totalSwipes++; }
                     _previouseSwipeDirection = 0;
@@ -82,7 +80,7 @@ public class GraffitiGameManager : Task
                     _controller.DecrytContext = Vector2.zero;
                     break;
             }
-            print("SWWWIIIIIIIIIIIIPPPPPES : " + _totalSwipes);
+            
             // manage animation speed
             _timer += Time.deltaTime;
             if (_timer > _timerResetInterval) 
@@ -92,10 +90,12 @@ public class GraffitiGameManager : Task
                 _totalSwipes = 0;
 
                 _currentGraffitiWashAnimator.GetComponent<Animator>().speed = _swipeSpeed;
+                print("SWWWIIIIIIIIIIIIPPPPPES : " + _swipeSpeed);
             }
 
             // adjusting graffiti Opacity
-            _currentOpacity -= _swipeSpeed / 100 * _spriteDisapearanceSpeed;
+            _currentOpacity -= _swipeSpeed / 1000 * _spriteDisapearanceSpeed;
+            Debug.Log(_currentOpacity);
             _currentGraffitiSprite.color = new Color(1f, 1f, 1f, _currentOpacity);
 
             // check for win OR select next graffiti.
