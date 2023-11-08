@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Lift : Room
 {
-    private Transform _myPos;
-    private Transform _teleportPos;
+    [SerializeField] private Transform _myPos;
+    [SerializeField] private Transform _teleportPos;
 
     public Transform MyPos { get => _myPos; }
     public Transform TeleportPos { get => _teleportPos; set => _teleportPos = value; }
