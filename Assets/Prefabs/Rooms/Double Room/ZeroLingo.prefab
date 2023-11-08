@@ -90,9 +90,6 @@ MonoBehaviour:
   _id: 3T
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
-  _objectList: []
-  _npcList: []
-  _eventList: []
   _posItPos: {fileID: 2506492973566426286}
   _hasPostIt: 0
   _winStateScreen: {fileID: 1665533225711162436}
@@ -1174,7 +1171,8 @@ PrefabInstance:
       value: DeskDuolingo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 831938355442066093, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
@@ -1697,7 +1695,8 @@ PrefabInstance:
       value: DeskDuolingo (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 831938355442066093, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
