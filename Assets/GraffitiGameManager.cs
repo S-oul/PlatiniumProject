@@ -35,7 +35,7 @@ public class GraffitiGameManager : Task
     void Start()
     {
         _tempGraffitiList = createOrderedDifficultyDict()[Difficulty];
-        Update_graffitiList(_tempGraffitiList);
+        UpdateGraffitiList(_tempGraffitiList);
         foreach (Graffiti graffiti in _graffitiList)
         {
             graffiti.Activate();
@@ -152,11 +152,11 @@ public class GraffitiGameManager : Task
         _currentOpacity = 1; 
     }
 
-    void Update_graffitiList(List<GameObject> oldList)
+    void UpdateGraffitiList(List<GameObject> oldList)
     {
         foreach (GameObject obj in oldList)
         {
-            _graffitiList.Add(new Graffiti(obj));
+            _graffitiList.Add(new Graffiti(obj));   
         }
     }
     bool ThereIsMoreGraffitiOnWall() { return (_graffitiList.Count != 0); }
