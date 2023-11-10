@@ -60,7 +60,7 @@ public class Graffiti
 {
     public GameObject graffitiObject;
     public float currentOpacity = 1;
-    public int opasityChangeRate = 0;
+    public float opasityChangeRate = 0;
 
     Dictionary<GraffitiCleanAnimation, bool> animationAciveStatusDict = new Dictionary<GraffitiCleanAnimation, bool>();
 
@@ -71,12 +71,12 @@ public class Graffiti
 
     public void Activate() 
     {
+        Debug.Log("Activate graffiti func started");
         graffitiObject.SetActive(true);
         foreach (Transform child in graffitiObject.transform.Find("Animations"))
         {
             Debug.Log(child);
             animationAciveStatusDict.Add(new GraffitiCleanAnimation(child.gameObject), false);
-            //Debug.Log();
         }
     }
 
@@ -87,14 +87,24 @@ public class Graffiti
         opasityChangeRate += playerSpeed;
     }
 
-    public void ResetOpasityChangeRate() { opasityChangeRate = 0; }
+    public void ResetOpasityChangeRate() {
+        Debug.Log("OPASITY RATE SET TO 0");
+        opasityChangeRate = 0; }
 
     public void UpdateOpacity(float speedAdjustment)
     {
+        //Debug.Log("Changerate is " + opasityChangeRate);
+
+
         currentOpacity -= opasityChangeRate / 1000 * speedAdjustment;
+
+        //Debug.Log("1 - " + opasityChangeRate + "/1000 * " + speedAdjustment + " = " + currentOpacity);
+        Debug.Log(opasityChangeRate / 1000 * speedAdjustment);
+        
         currentOpacity = currentOpacity < 0 ? 0 : currentOpacity;
         graffitiObject.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f,currentOpacity );
-        Debug.Log("Opasity is " +  currentOpacity);
+        //Debug.Log("Opasity is " +  currentOpacity);
+
     }
 
     public GraffitiCleanAnimation GetAvailableAnimationObject()

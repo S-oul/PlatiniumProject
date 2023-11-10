@@ -151,7 +151,7 @@ public class GraffitiGameManager : Task
 
                     if (ThereIsMoreGraffitiOnWall())
                     {
-                        player.currentGraffiti = ChooseGraffitiToStartCleaning();
+                        player.AssignGraffiti(ChooseGraffitiToStartCleaning());
                     }
                     else End(true);
                 }
