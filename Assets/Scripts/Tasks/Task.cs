@@ -84,11 +84,11 @@ public abstract class Task : MonoBehaviour
                         _playersDoingTask.Add(player);
                         return;
                     }
-                        _player = player;
-                     _playersDoingTask.Add(player);
-                      _isStarted = true;
-                      Init();
-                      return;
+                    _player = player;
+                    _playersDoingTask.Add(player);
+                    _isStarted = true;
+                    Init();
+                    return;
                 }
                 else
                 {

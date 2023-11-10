@@ -15,7 +15,8 @@ public class GraffitiGameManager : Task
 
     [SerializeField] float _spriteDisapearanceSpeed = 1;
 
-    List<GameObject> _graffitiList;
+    List<GameObject> _tempGraffitiList;
+    List<Graffiti> _graffitiList;
     GameObject _currentGraffitiBeingCleaned;
     Animator _currentGraffitiWashAnimator;
     SpriteRenderer _currentGraffitiSprite;
@@ -29,16 +30,15 @@ public class GraffitiGameManager : Task
     int _timerResetInterval = 1; //at what intervals (in seconds) will the animation speed be updated
     float _swipeSpeed = 0;
 
-    List<PlayerController> _playersDoingTask;
-
     #endregion
 
     void Start()
     {
-        _graffitiList = createOrderedDifficultyDict()[Difficulty];
-        foreach (GameObject graffiti in _graffitiList)
+        _tempGraffitiList = createOrderedDifficultyDict()[Difficulty];
+        Update_graffitiList(_tempGraffitiList);
+        foreach (Graffiti graffiti in _graffitiList)
         {
-            graffiti.SetActive(true);
+            graffiti.Activate();
         }
     }
 
@@ -48,6 +48,13 @@ public class GraffitiGameManager : Task
 
         _controller = PlayerGameObject.GetComponent<PlayerController>();
         _controller.EnableDecryptageDisableMovements();
+        //PlayerInGraffiti Player1 = new PlayerInGraffiti() { }
+
+        /*
+        PlayersDoingTask[0].GetComponent<PlayerController>().EnableDecryptageDisableMovements();
+        _playersDoingTasksStList.Add(new graffitiPlayerStruct());
+        _playersDoingTasksStList[0].playerObject = PlayersDoingTask[0];
+        */
 
         ChooseGraffitiToStartCleaning(); // Defines: _currentGraffitiBeingCleaned, _currentGraffitiWashAnimator, _currentGraffitiSprite, _currentOpacity
 
@@ -60,9 +67,10 @@ public class GraffitiGameManager : Task
     public override void End(bool isSuccessful)
     {
         //if (!isSuccessful) { }
-        foreach (PlayerController player in _playersDoingTask)
+        foreach (GameObject player in PlayersDoingTask)
         {
-            _controller.DisableDecryptageEnableMovements();
+            //_controller.DisableDecryptageEnableMovements();
+            player.GetComponent<PlayerController>().DisableDecryptageEnableMovements();
         }
         base.End(isSuccessful);
     }
@@ -132,6 +140,14 @@ public class GraffitiGameManager : Task
         _currentGraffitiSprite = _currentGraffitiBeingCleaned.GetComponentInChildren<SpriteRenderer>();
 
         _currentOpacity = 1; 
+    }
+
+    void Update_graffitiList(List<GameObject> oldList)
+    {
+        foreach (GameObject obj in oldList)
+        {
+            _graffitiList.Add(new Graffiti(obj));
+        }
     }
     bool ThereIsMoreGraffitiOnWall() { return (_graffitiList.Count != 0); }
     void DeactivateCurrentGraffiti() { _currentGraffitiBeingCleaned.SetActive(false); }
