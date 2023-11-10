@@ -147,7 +147,6 @@ public class PlayerCollision : MonoBehaviour
                 collidertype = collision.transform.parent.GetComponent<GraffitiGameManager>();
                 break;
         }
-        Debug.Log("Enter");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -188,7 +187,6 @@ public class PlayerCollision : MonoBehaviour
                 break;
             
         }
-        Debug.Log("Exit");
     }
    
     IEnumerator AutoLiftWait()

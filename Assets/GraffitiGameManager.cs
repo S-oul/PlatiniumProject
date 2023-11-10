@@ -22,7 +22,7 @@ public class GraffitiGameManager : Task
     SpriteRenderer _currentGraffitiSprite;
     float _currentOpacity;
 
-    PlayerController _controller;
+    List<PlayerController> _controllers;
 
     int _previouseSwipeDirection = 0;
     int _totalSwipes = 0;
@@ -35,7 +35,7 @@ public class GraffitiGameManager : Task
     void Start()
     {
         _tempGraffitiList = createOrderedDifficultyDict()[Difficulty];
-        Update_graffitiList(_tempGraffitiList);
+        UpdateGraffitiList(_tempGraffitiList);
         foreach (Graffiti graffiti in _graffitiList)
         {
             graffiti.Activate();
@@ -45,9 +45,14 @@ public class GraffitiGameManager : Task
     public override void Init()
     {
         base.Init();
-
-        _controller = PlayerGameObject.GetComponent<PlayerController>();
-        _controller.EnableDecryptageDisableMovements();
+        _controllers.Clear();
+        foreach(GameObject player in PlayersDoingTask)
+        {
+            _controllers.Add(player.GetComponent<PlayerController>());
+            _controllers[0].EnableDecryptageDisableMovements();
+        }
+        
+        
         //PlayerInGraffiti Player1 = new PlayerInGraffiti() { }
 
         /*
@@ -55,13 +60,17 @@ public class GraffitiGameManager : Task
         _playersDoingTasksStList.Add(new graffitiPlayerStruct());
         _playersDoingTasksStList[0].playerObject = PlayersDoingTask[0];
         */
+        if(PlayersDoingTask.Count == 1)
+        {
+            StartTask();
+        }
+         // Defines: _currentGraffitiBeingCleaned, _currentGraffitiWashAnimator, _currentGraffitiSprite, _currentOpacity
 
-        ChooseGraffitiToStartCleaning(); // Defines: _currentGraffitiBeingCleaned, _currentGraffitiWashAnimator, _currentGraffitiSprite, _currentOpacity
-
-        StartTask();
+        
     }
     public void StartTask()
     {
+        ChooseGraffitiToStartCleaning();
         IsStarted = true;
     }
     public override void End(bool isSuccessful)
@@ -79,21 +88,22 @@ public class GraffitiGameManager : Task
     {
         if (IsStarted && !IsDone)
         {
+            foreach(PlayerController controller in _controllers)
             // record player actions
-            switch (_controller.DecrytContext.x)
+            switch (controller.DecrytContext.x)
             {
                 case > 0:
-                    _controller.DecrytContext = Vector2.zero;
+                    controller.DecrytContext = Vector2.zero;
                     if (_previouseSwipeDirection == -1) { _totalSwipes++; }
                     _previouseSwipeDirection = 1;
                     break;
                 case < 0:
-                    _controller.DecrytContext = Vector2.zero;
+                    controller.DecrytContext = Vector2.zero;
                     if (_previouseSwipeDirection == 1) { _totalSwipes++; }
                     _previouseSwipeDirection = 0;
                     break;
                 default:
-                    _controller.DecrytContext = Vector2.zero;
+                    controller.DecrytContext = Vector2.zero;
                     break;
             }
             
@@ -130,7 +140,7 @@ public class GraffitiGameManager : Task
     //Helper functions 
     void ChooseGraffitiToStartCleaning() 
     {
-        _currentGraffitiBeingCleaned = _graffitiList[0];
+        _currentGraffitiBeingCleaned = _graffitiList[0].graffitiObject;
         _graffitiList.RemoveAt(0);
 
         GameObject _graffAnimObject = _currentGraffitiBeingCleaned.transform.GetChild(1).gameObject;
@@ -142,11 +152,11 @@ public class GraffitiGameManager : Task
         _currentOpacity = 1; 
     }
 
-    void Update_graffitiList(List<GameObject> oldList)
+    void UpdateGraffitiList(List<GameObject> oldList)
     {
         foreach (GameObject obj in oldList)
         {
-            _graffitiList.Add(new Graffiti(obj));
+            _graffitiList.Add(new Graffiti(obj));   
         }
     }
     bool ThereIsMoreGraffitiOnWall() { return (_graffitiList.Count != 0); }
