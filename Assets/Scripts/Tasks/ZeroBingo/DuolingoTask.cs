@@ -11,9 +11,6 @@ public class DuolingoTask : InputTask
     [SerializeField] ZeroBingoData _wordsData;
 
     NPC _npcDuolingo;
-    [SerializeField] List<string> _words = new List<string>();
-    [SerializeField] List<string> _wordsTranslated = new List<string>();
-    Dictionary<string, string> _rightAnswers = new Dictionary<string, string>();
 
     string _contextName;
     PlayerController _controller;
@@ -108,44 +105,10 @@ public class DuolingoTask : InputTask
         _currentPlayer.GetComponent<PlayerUI>().DisplayAnswersDuolingo(AnswerToDisplay(answers), _inputsName);
         InputAssignement(answers);
         _canPressInput = true;
-        /*if (word == null) { return; }
-        List<string> allWords = new List<string>();
-        foreach (string _word in _wordsTranslated)
-        {
-            allWords.Add(_word);
-        }
-        List<string> answers = new List<string>();
-        string rightAnswer = _rightAnswers[word];
-        allWords.Remove(rightAnswer);
-        Debug.Log(rightAnswer);
-        for (int i = 0; i < 3; i++)
-        {
-            string tempWord = allWords[Random.Range(0, allWords.Count)];
-            allWords.Remove(tempWord);
-            Debug.Log(tempWord);
-            answers.Add(tempWord);
-        }
-
-        answers[Random.Range(0, answers.Count)] = _rightAnswers[word];
-        _currentPlayer.GetComponent<PlayerUI>().DisplayDuolingoUI(true);
-        _currentPlayer.GetComponent<PlayerUI>().DisplayAnswersDuolingo(answers, _inputsName);
-        *//*ShuffleAnswers(answers);*//*
-        InputAssignement(answers);
-        _canPressInput = true;*/
+        
     }
     
-    /*void ShuffleAnswers(List<string> words)
-    {
-        for (int i = 0; i < words.Count; i++)
-        {
-            string temp = words[i];
-            int randomIndex = (int)Random.Range(0, words.Count);
-            words[i] = words[randomIndex];
-            words[randomIndex] = temp;
-            
-        }
-        
-    }*/
+    
 
     List<string> AnswerToDisplay(List<WordConfig> words)
     {

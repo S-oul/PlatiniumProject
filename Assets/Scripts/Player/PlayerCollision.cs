@@ -94,10 +94,7 @@ public class PlayerCollision : MonoBehaviour
                 //_isInNPC = true;
                 collidertype = collision.transform.GetComponent<NPC>();
                 break;
-            case "Lift":
-                //_IsInLift = true;
-                collidertype = collision.transform.parent.GetComponent<Lift>();
-                break;
+            
             case "ZoneEvent":
                 collidertype = collision.transform.GetComponent<ZoneEvent>();
                 ((ZoneEvent)collidertype).PlayerEnter(gameObject);
@@ -142,12 +139,26 @@ public class PlayerCollision : MonoBehaviour
                     ((Lift)collidertype).InteractLift(gameObject);
                 }
                 break;
+
+        }
+        Debug.Log("Enter");
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Lift":
+                //_IsInLift = true;
+                collidertype = collision.transform.parent.GetComponent<Lift>();
+                break;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         collidertype = null;
+        
         Room room = collision.transform.GetComponent<Room>();
         if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
         {
@@ -171,6 +182,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             
         }
+        Debug.Log("Exit");
     }
    
     IEnumerator AutoLiftWait()
