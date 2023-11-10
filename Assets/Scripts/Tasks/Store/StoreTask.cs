@@ -21,6 +21,10 @@ public class StoreTask : InputTask
     float temp2 = 0;
     float _oldAngleP2 = 0;
 
+    bool _hasPassed90 = false;
+    bool _hasPassed180 = false;
+
+
     bool _isOnFail = false;
     int _timeHaveFail = 0;
     int _timeCanFail = 5;
@@ -83,7 +87,16 @@ public class StoreTask : InputTask
                 }
                 #endregion
 
-                if(_angleP1 < -331 || _angleP2 < -331)
+                if(_angleP1 < -90 && _angleP2 > -180)
+                {
+                    _hasPassed90 = true;
+                }
+                if (_angleP1 < -180 && _angleP2 > -270 && _hasPassed90)
+                {
+                    _hasPassed180 = true;
+                }
+
+                if (_angleP1 < -270 || _angleP2 < -270 && !_hasPassed180)
                 {
                     _deadZoneP2.localEulerAngles = new Vector3(0, 0, _oldAngleP2 - 90f);
                     _deadZoneP1.localEulerAngles = new Vector3(0, 0, _oldAngleP1 - 90f);
@@ -93,11 +106,11 @@ public class StoreTask : InputTask
                 {
                     _oldAngleP2 = _angleP2;
                     _oldAngleP1 = _angleP1;
-                    _storePosPercent = Mathf.Abs(_angleP1 - _angleP2) / 2 / 360;
+                    _storePosPercent = Mathf.Abs(_angleP1 + _angleP2) / 2 / 360;
                     _store.transform.position = Vector3.Lerp(_startPos.position, _endPos.position, _storePosPercent);
                 }
 
-                print(_storePosPercent + " // " + _angleP1 + " // " + _angleP2);
+                print(_storePosPercent + " // " + _angleP1 + " // " + _angleP2 + "//" + _hasPassed180 + "//" + _hasPassed90);
 
             }
 
@@ -107,8 +120,22 @@ public class StoreTask : InputTask
                 _isOnFail = true;
                 _timeHaveFail++;
                 print("FAIIIIIIIIIIIIIIL  " + _timeHaveFail);
-                _deadZoneP1.localEulerAngles = new Vector3(0, 0, 270f);
-                _deadZoneP2.localEulerAngles = new Vector3(0, 0, 270f);
+                if (_hasPassed180)
+                {
+                    _deadZoneP1.localEulerAngles = new Vector3(0, 0, 90f);
+                    _deadZoneP2.localEulerAngles = new Vector3(0, 0, 90f);
+                }
+                else if (_hasPassed90)
+                {
+                    _deadZoneP1.localEulerAngles = new Vector3(0, 0, 180f);
+                    _deadZoneP2.localEulerAngles = new Vector3(0, 0, 180f);
+                }
+                else
+                {
+                    _deadZoneP1.localEulerAngles = new Vector3(0, 0, 266f);
+                    _deadZoneP2.localEulerAngles = new Vector3(0, 0, 266f);
+                    
+                }
 
                 if (_timeHaveFail == _timeCanFail)
                 {
@@ -122,7 +149,7 @@ public class StoreTask : InputTask
 
             }
 
-            if (_storePosPercent > .9f)
+            if (_storePosPercent > .9f && _hasPassed180)
             {
                 End(true);
             }

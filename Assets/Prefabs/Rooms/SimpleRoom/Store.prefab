@@ -525,6 +525,54 @@ PrefabInstance:
       propertyPath: pingpong.m_Curve.Array.data[3].outWeight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1564081704346592142, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564081704346592142, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564081704346592142, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564081704346592142, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575665417630182896, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575665417630182896, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575665417630182896, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.g
+      value: 0.10369301
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575665417630182896, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808882250165224421, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808882250165224421, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808882250165224421, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.g
+      value: 0.10369301
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808882250165224421, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3257417081314367301, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
       propertyPath: m_Name
       value: StoreTask
@@ -568,6 +616,38 @@ PrefabInstance:
     - target: {fileID: 5134182536537992707, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864829172059178543, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864829172059178543, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864829172059178543, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864829172059178543, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165133063508901226, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165133063508901226, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165133063508901226, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165133063508901226, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 270
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
