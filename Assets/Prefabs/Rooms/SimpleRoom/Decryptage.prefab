@@ -216,9 +216,6 @@ MonoBehaviour:
   _id: 2T
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
-  _objectList: []
-  _npcList: []
-  _eventList: []
   _posItPos: {fileID: 5100623570030613723}
   _hasPostIt: 0
   _winStateScreen: {fileID: 3656543406444305113}
@@ -284,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3120630362212743532
 Transform:
   m_ObjectHideFlags: 0

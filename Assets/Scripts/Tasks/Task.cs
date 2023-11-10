@@ -9,6 +9,7 @@ public abstract class Task : MonoBehaviour
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
     [Range(1, 5)][SerializeField] int _difficulty = 1;
+    [SerializeField] bool _addPlayerAtRunTime = false;
     GameObject _player;
     Room _room;
     bool _isDone = false;
@@ -26,6 +27,7 @@ public abstract class Task : MonoBehaviour
     public Room RoomTask { get => _room; set => _room = value; }
     public Room ThisRoom { get => _room; set => _room = value; }
     public int Difficulty { get => _difficulty; set => _difficulty = value; }
+    public bool AddPlayerAtRunTime { get => _addPlayerAtRunTime; set => _addPlayerAtRunTime = value; }
 
     private void Start()
     {
@@ -73,6 +75,32 @@ public abstract class Task : MonoBehaviour
         
         if (!IsDone)
         {
+            if (AddPlayerAtRunTime)
+            {
+                if (_numberOfPlayers == 1)
+                {
+                    if (_isStarted)
+                    {
+                        _playersDoingTask.Add(player);
+                        return;
+                    }
+                    _player = player;
+                    _playersDoingTask.Add(player);
+                    _isStarted = true;
+                    Init();
+                    return;
+                }
+                else
+                {
+                    _playersDoingTask.Add(player);
+                    if (!_isStarted && _playersDoingTask.Count == _numberOfPlayers)
+                    {
+                      _isStarted = true;
+                      Init();
+                      return;
+                    }
+                }
+            }
             if (_numberOfPlayers == 1)
             {
                 if (!_isStarted)

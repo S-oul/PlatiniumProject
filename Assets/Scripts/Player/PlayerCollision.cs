@@ -73,6 +73,9 @@ public class PlayerCollision : MonoBehaviour
                 case FinalDoor:
                     ((FinalDoor)collidertype).EnterInTheDoor();
                     break;
+                case GraffitiGameManager:
+                    ((GraffitiGameManager)collidertype).OnPlayerJoinedTask(this.gameObject);
+                    break;
             }
         }
     }
@@ -140,6 +143,9 @@ public class PlayerCollision : MonoBehaviour
                 }
                 break;
 
+            case "GraffitiTask":
+                collidertype = collision.transform.parent.GetComponent<GraffitiGameManager>();
+                break;
         }
         Debug.Log("Enter");
     }

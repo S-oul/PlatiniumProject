@@ -20,6 +20,7 @@ TagManager:
   - DeadZoneStore
   - SquidVolley
   - AutoLift
+  - GraffitiTask
   layers:
   - Default
   - TransparentFX

@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e390422e1d2ffeb4d96701ccec1494e7, type: 3}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a223f1c9a9afb324d9a9e94bdede2870, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -141,9 +141,6 @@ MonoBehaviour:
   _id: 2T
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
-  _objectList: []
-  _npcList: []
-  _eventList: []
   _posItPos: {fileID: 5060972705860511363}
   _hasPostIt: 0
   _winStateScreen: {fileID: 8240593683946159561}
@@ -1004,6 +1001,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 241410718911385411, guid: 3c322e66424ca7e4b89eed5ce59684de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229208786083926750, guid: 3c322e66424ca7e4b89eed5ce59684de, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7057794631856306106, guid: 3c322e66424ca7e4b89eed5ce59684de, type: 3}
