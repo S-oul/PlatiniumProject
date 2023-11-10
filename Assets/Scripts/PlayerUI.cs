@@ -46,7 +46,7 @@ public class PlayerUI : MonoBehaviour
     {
 
         StartUI();
-        DisplayInputsUI(false);
+        DisplayInputsTaskUI(false);
     }
 
 
@@ -85,7 +85,7 @@ public class PlayerUI : MonoBehaviour
 
     }
 
-    public void ChangeUIInputs(string text)
+    public void ChangeInputValueUI(string text)
     {
         _textInputsUI.text = text;
     }
@@ -104,12 +104,13 @@ public class PlayerUI : MonoBehaviour
     {
         _sliderInputsUI.transform.GetChild(0).gameObject.SetActive(value);
         _sliderInputsUI.transform.GetChild(1).gameObject.SetActive(value);
+        _validationBadInputSlider.gameObject.SetActive(value);
     }
 
     public void ClearUIInputs()
     {
         ChangeUIInputs(Color.white);
-        ChangeUIInputs("");
+        ChangeInputValueUI("");
         _sliderInputsUI.value = 1;
         /*        ClearUIInputsValidation();*/
     }
@@ -195,7 +196,7 @@ public class PlayerUI : MonoBehaviour
         _mashDownTransform.GetComponent<MashDownButton>().ChangeSwap(value);
     }
 
-    public void DisplayInputsUI(bool value)
+    public void DisplayInputsTaskUI(bool value)
     {
         DisplayDuolingoUI(value);
         DisplayQTEUI(value);
@@ -203,6 +204,14 @@ public class PlayerUI : MonoBehaviour
         DisplayMashDownButton(value);
     }
 
+    public void DisplayInputUI(bool value)
+    {
+        DisplayQTEUI(value);
+        DisplayCowboyQTEUI(!value);
+
+    }
+
+    
     #endregion
 
 

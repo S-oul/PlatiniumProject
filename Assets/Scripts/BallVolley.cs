@@ -34,8 +34,8 @@ public class BallVolley : MonoBehaviour
             Vector3 _dir = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
             _rb.velocity = Vector3.zero;
             //Vector3 _dir = collision.gameObject.transform.position - gameObject.transform.position;
-            _rb.AddForce(_dir.normalized * _numberOfTouches);
-            _rb.AddForce(Vector2.up * 30);
+            _rb.AddForce(_dir.normalized * _numberOfTouches * 2f);
+            _rb.AddForce(Vector2.up * 40f);
         }
         if(collision.gameObject == _task.Net)
         {
@@ -56,7 +56,7 @@ public class BallVolley : MonoBehaviour
             if (CheckChanceToHit())
             {
                 _lastCollisionObject = collision.gameObject;
-                Vector3 dir = new Vector3(Random.Range(-0.5f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
+                Vector3 dir = new Vector3(Random.Range(-0.8f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
                 _rb.velocity = Vector2.zero;
                 _rb.AddForce(dir);
             }
@@ -67,7 +67,7 @@ public class BallVolley : MonoBehaviour
     {
         if(_numberOfTouches == 3)
         {
-            _task.Point(this.gameObject, false);
+            _task.Point(gameObject, false);
         }
     }
     
@@ -75,11 +75,11 @@ public class BallVolley : MonoBehaviour
     {
         if (gameObject.transform.localPosition.x < 0)
         {
-            _task.Point(this.gameObject, false);
+            _task.Point(gameObject, false);
         }
         else if (gameObject.transform.localPosition.x > 0)
         {
-            _task.Point(this.gameObject, true);
+            _task.Point(gameObject, true);
         }
         
     }
@@ -92,5 +92,20 @@ public class BallVolley : MonoBehaviour
             return false;
         }
         else { return true; }
+    }
+
+    public IEnumerator TimerBeforeDestroy()
+    {
+        foreach(GameObject player in _task.PlayersDoingTask)
+        {
+            Collider2D playerCollider = player.GetComponent<Collider2D>();
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, true);
+        }
+        yield return new WaitForSeconds(2f);
+        foreach (GameObject player in _task.PlayersDoingTask)
+        {
+            Collider2D playerCollider = player.GetComponent<Collider2D>();
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, false);
+        }
     }
 }
