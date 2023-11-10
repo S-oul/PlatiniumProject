@@ -21,6 +21,9 @@ public class StoreTask : InputTask
     float temp2 = 0;
     float _oldAngleP2 = 0;
 
+    float _angleValueP1 = 0;
+    float _angleValueP2 = 0;
+
     bool _hasPassed90 = false;
     bool _hasPassed180 = false;
 
@@ -68,7 +71,7 @@ public class StoreTask : InputTask
   
             if (!_isOnFail)
             {
-                #region P1
+                /*#region P1
                 if (_controllerP1.DecrytContext != Vector2.zero)
                 {
                     _angleP1 = Mathf.Atan2(_controllerP1.DecrytContext.y, _controllerP1.DecrytContext.x) * Mathf.Rad2Deg;
@@ -85,18 +88,37 @@ public class StoreTask : InputTask
                     _deadZoneP2.localEulerAngles = new Vector3(0, 0, _angleP2 - 270f);
                     _angleP2 = _angleP2 - 180f;
                 }
+                #endregion*/
+                #region P1
+                if (_controllerP1.DecrytContext != Vector2.zero)
+                {
+                    _angleP1 = Mathf.Atan2(_controllerP1.DecrytContext.y, _controllerP1.DecrytContext.x) * Mathf.Rad2Deg;
+                    _angleValueP1 = Mathf.Abs(_angleP1);
+                    Debug.Log("P1 angle = " + _angleValueP1);
+                    _deadZoneP1.localEulerAngles = new Vector3(0, 0, _angleP1 - 270f);
+                    _angleP1 = _angleP1 - 180f;
+
+                }
                 #endregion
 
-                if(_angleP1 < -90 && _angleP2 > -180)
+                #region P2
+                if (_controllerP2.DecrytContext != Vector2.zero)
+                {
+                    _angleP2 = Mathf.Atan2(_controllerP2.DecrytContext.y, _controllerP2.DecrytContext.x) * Mathf.Rad2Deg;                    
+                    _deadZoneP2.localEulerAngles = new Vector3(0, 0, _angleP2 - 270f);
+                    _angleP2 = _angleP2 - 180f;
+                }
+                #endregion
+                /*if (_angleP1 < -90 && _angleP2 > -180)
                 {
                     _hasPassed90 = true;
                 }
                 if (_angleP1 < -180 && _angleP2 > -270 && _hasPassed90)
                 {
                     _hasPassed180 = true;
-                }
+                }*/
 
-                if (_angleP1 < -270 || _angleP2 < -270 && !_hasPassed180)
+                /*if (_angleP1 < -270 || _angleP2 < -270 && !_hasPassed180)
                 {
                     _deadZoneP2.localEulerAngles = new Vector3(0, 0, _oldAngleP2 - 90f);
                     _deadZoneP1.localEulerAngles = new Vector3(0, 0, _oldAngleP1 - 90f);
@@ -104,17 +126,26 @@ public class StoreTask : InputTask
                 }
                 else
                 {
+
                     _oldAngleP2 = _angleP2;
                     _oldAngleP1 = _angleP1;
+
                     _storePosPercent = Mathf.Abs(_angleP1 + _angleP2) / 2 / 360;
                     _store.transform.position = Vector3.Lerp(_startPos.position, _endPos.position, _storePosPercent);
-                }
+                }*/
+                _deadZoneP2.localEulerAngles = new Vector3(0, 0, _oldAngleP2 - 90f);
+                _deadZoneP1.localEulerAngles = new Vector3(0, 0, _oldAngleP1 - 90f);
+                _oldAngleP2 = _angleP2;
+                _oldAngleP1 = _angleP1;
+
+                _storePosPercent = Mathf.Abs(_angleP1 + _angleP2) / 2 / 360;
+                _store.transform.position = Vector3.Lerp(_startPos.position, _endPos.position, _storePosPercent);
 
                 print(_storePosPercent + " // " + _angleP1 + " // " + _angleP2 + "//" + _hasPassed180 + "//" + _hasPassed90);
 
             }
 
-            if (!_deadzone.IsInOtherCollider)
+            /*if (!_deadzone.IsInOtherCollider)
             {
                 _deadzone.IsInOtherCollider = true;
                 _isOnFail = true;
@@ -152,7 +183,7 @@ public class StoreTask : InputTask
             if (_storePosPercent > .9f && _hasPassed180)
             {
                 End(true);
-            }
+            }*/
 
         }
     }

@@ -107,5 +107,6 @@ public class BallVolley : MonoBehaviour
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, false);
         }
+        Destroy(gameObject);
     }
 }
