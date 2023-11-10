@@ -77,29 +77,18 @@ public abstract class Task : MonoBehaviour
         {
             if (AddPlayerAtRunTime)
             {
-                if (_numberOfPlayers == 1)
+                if (_isStarted)
                 {
-                    if (_isStarted)
+                    if (_playersDoingTask.Count < 4)
                     {
                         _playersDoingTask.Add(player);
                         return;
                     }
-                    _player = player;
-                    _playersDoingTask.Add(player);
-                    _isStarted = true;
-                    Init();
-                    return;
                 }
-                else
-                {
-                    _playersDoingTask.Add(player);
-                    if (!_isStarted && _playersDoingTask.Count == _numberOfPlayers)
-                    {
-                      _isStarted = true;
-                      Init();
-                      return;
-                    }
-                }
+                _playersDoingTask.Add(player);
+                _isStarted = true;
+                Init();
+
             }
             if (_numberOfPlayers == 1)
             {
