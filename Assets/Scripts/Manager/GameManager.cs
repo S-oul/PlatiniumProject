@@ -45,13 +45,13 @@ public class GameManager : MonoBehaviour
     public int RoomWin()
     {
         _roomWin++;
-        _daySlider.AddValue(_daySlider.OnRoomLoose);
+        _daySlider.AddValue(_daySlider.OnRoomWin);
         return _roomWin;
     }
     public int RoomLose()
     {
         _roomLose++;
-        _daySlider.RemoveValue(_daySlider.OnRoomWin);
+        _daySlider.RemoveValue(_daySlider.OnRoomLoose);
         if (_roomLose > _maxRoomFail)
         {
             print("T'AS PERDU TROUDUCUL");
