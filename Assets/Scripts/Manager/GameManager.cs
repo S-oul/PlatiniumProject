@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     List<Room> _roomList = new List<Room>();
     [SerializeField] List<Room> _roomTaskList = new List<Room>();
 
+    [SerializeField] DaySlider _daySlider;
+
     private int _roomLose = 0;
     private int _roomWin = 0;
     [SerializeField] int _maxRoomFail = 3;
@@ -43,12 +45,14 @@ public class GameManager : MonoBehaviour
     public int RoomWin()
     {
         _roomWin++;
+        _daySlider.AddValue(_daySlider.OnRoomLoose);
         return _roomWin;
     }
     public int RoomLose()
     {
         _roomLose++;
-        if(_roomLose > _maxRoomFail)
+        _daySlider.RemoveValue(_daySlider.OnRoomWin);
+        if (_roomLose > _maxRoomFail)
         {
             print("T'AS PERDU TROUDUCUL");
         }
