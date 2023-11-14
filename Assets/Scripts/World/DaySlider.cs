@@ -12,8 +12,11 @@ public class DaySlider : MonoBehaviour
     [SerializeField] float _OnRoomLoose = .20f;
     [SerializeField] float _OnRoomWin = .10f;
 
+    private bool _isOnCrunch = false;
+
     public float OnRoomLoose { get => _OnRoomLoose; set => _OnRoomLoose = value; }
     public float OnRoomWin { get => _OnRoomWin; set => _OnRoomWin = value; }
+    public bool IsOnCrunch { get => _isOnCrunch; set => _isOnCrunch = value; }
 
     private void Start()
     {
@@ -28,17 +31,27 @@ public class DaySlider : MonoBehaviour
     }
     public float SetValue(float val)
     {
-        _unClampedValue = val;
+        if (!_isOnCrunch)
+        {
+            _unClampedValue = val;
+        }
         return _unClampedValue;
+
     }
     public float AddValue(float val)
     {
-        _unClampedValue += val;
+        if (!_isOnCrunch)
+        {
+            _unClampedValue += val;
+        }
         return _unClampedValue;
     }
     public float RemoveValue(float val)
     {
-        _unClampedValue -= val;
+        if (!_isOnCrunch)
+        {
+            _unClampedValue -= val;
+        }
         return _unClampedValue;
     }
 
