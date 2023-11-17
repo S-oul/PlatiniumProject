@@ -296,9 +296,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomSize: 2
-  _id: 2TC
+  _id: C
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
+  _objectList: []
+  _npcList: []
+  _eventList: []
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 249682814795789557}

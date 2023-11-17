@@ -1309,7 +1309,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1784741457
+  m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &7502877630567438196
@@ -1858,8 +1858,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.8392498, y: 0}
-  m_SizeDelta: {x: -1.6785, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8248522018019265049
 CanvasRenderer:
@@ -2197,7 +2197,6 @@ MonoBehaviour:
   movementSmoothing: 0.05
   normalFallGravityForce: 3
   AirControl: 1
-  _jumpForce: 400
   currentContextName: 
 --- !u!114 &8814755984296022983
 MonoBehaviour:
@@ -2211,6 +2210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406af197029b9cf41b4550a7511f65ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_JumpForce: 550
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1846
@@ -3069,8 +3069,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.83925, y: 0}
-  m_SizeDelta: {x: -1.6785, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &602952434099524936
 CanvasRenderer:
@@ -3557,8 +3557,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.8392496, y: 0}
-  m_SizeDelta: {x: -1.6785, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5220640144156570751
 CanvasRenderer:

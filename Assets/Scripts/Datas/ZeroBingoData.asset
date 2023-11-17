@@ -12,44 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158d77f6d6d9d0e4fa612ba6b9d7f6f2, type: 3}
   m_Name: ZeroBingoData
   m_EditorClassIdentifier: 
-  words:
-  - baseWord: Car
-    traductions:
-    - language: 14
-      word: Voiture
-    - language: 34
-      word: Coche
-    - language: 15
-      word: Auto
-    - language: 28
-      word: Carro
-  - baseWord: Cat
-    traductions:
-    - language: 14
-      word: Chat
-    - language: 34
-      word: Gato
-    - language: 15
-      word: Katze
-    - language: 28
-      word: Gato
-  - baseWord: Dog
-    traductions:
-    - language: 14
-      word: Chien
-    - language: 34
-      word: Perro
-    - language: 15
-      word: 'Hund '
-    - language: 28
-      word: Cachorro
-  - baseWord: Cliff
-    traductions:
-    - language: 14
-      word: Falaise
-    - language: 34
-      word: Acantilado
-    - language: 15
-      word: Cliff
-    - language: 28
-      word: Penhasco
+  words: []

@@ -108,7 +108,7 @@ public class CowboyQTE : InputTask
         }
         _playerUI.SliderPercentValue = 1f;
         _playerUI.ChangeUIInputs(Color.white);
-        _playerUI.ChangeInputValueUI(InputsToString[input]);
+        _playerUI.ChangeUIInputs(InputsToString[input]);
         _currentInput = input;
         _inputCoroutine = StartCoroutine(TimerToPressInput(_timeToDoQTE));
         _npcCowboy.Fire();
@@ -179,7 +179,7 @@ public class CowboyQTE : InputTask
         _controller.EnableMovementDisableInputs();
         _playerInput.actions["InputTask"].Disable();
         _playerUI.ClearUIInputs();
-        _playerUI.DisplayInputsTaskUI(false);
+        _playerUI.DisplayInputsUI(false);
         _playerUI.DisplayCowboyQTEUI(true);
         End(value);
         _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameEnd");

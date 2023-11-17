@@ -65,7 +65,7 @@ public class Cam : MonoBehaviour
     private void ZoomOnRoom(Room room)
     {
         Bounds bounds = room.transform.GetComponent<BoxCollider2D>().bounds;
-        float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x/25 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
+        float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x/50 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
         //print(MaxDist / _zoomLimiter + " ::::::::: " + _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
         _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, newZoom, Time.deltaTime);
     }

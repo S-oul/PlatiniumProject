@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4c57142490ae947891599d08540940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playersDoingTask: []
   _numberOfPlayers: 1
   _difficulty: 1
   _postIt: {fileID: 3637963249798596177, guid: 00a76fd96106a5c4ca3c960d9e76f0a7, type: 3}

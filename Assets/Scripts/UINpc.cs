@@ -33,6 +33,4 @@ public class UINpc : MonoBehaviour
         _talkingBubble.gameObject.SetActive(isActive);
     }
 
-    
-
 }

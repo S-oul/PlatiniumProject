@@ -31,9 +31,9 @@ public abstract class Task : MonoBehaviour
 
     private void Start()
     {
-
         
-
+        
+        
     }
 
     private void Awake()
@@ -52,8 +52,8 @@ public abstract class Task : MonoBehaviour
         if (_room == null) { _room = transform.parent.GetComponent<Room>(); }
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
+        Debug.Log(gameObject.name + " = " + _room);
         _room.TaskRoom = this;
-        
     }
 
     public virtual void End(bool isSuccessful)
@@ -77,18 +77,29 @@ public abstract class Task : MonoBehaviour
         {
             if (AddPlayerAtRunTime)
             {
-                if (_isStarted)
+                if (_numberOfPlayers == 1)
                 {
-                    if (_playersDoingTask.Count < 4)
+                    if (_isStarted)
                     {
                         _playersDoingTask.Add(player);
                         return;
                     }
+                    _player = player;
+                    _playersDoingTask.Add(player);
+                    _isStarted = true;
+                    Init();
+                    return;
                 }
-                _playersDoingTask.Add(player);
-                _isStarted = true;
-                Init();
-
+                else
+                {
+                    _playersDoingTask.Add(player);
+                    if (!_isStarted && _playersDoingTask.Count == _numberOfPlayers)
+                    {
+                      _isStarted = true;
+                      Init();
+                      return;
+                    }
+                }
             }
             if (_numberOfPlayers == 1)
             {
@@ -119,9 +130,8 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
-        Debug.Log(gameObject.name + " = Success");
+        Debug.Log(gameObject.name);
         GameManager.Instance.NumberOfTasksMade++;
-        
         GameManager.Instance.RoomWin();
         GameManager.Instance.CheckIfDayFinished();
         _room.WinStateScreen.ChangeColor(Color.green);

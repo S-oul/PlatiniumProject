@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class PlayerUI : MonoBehaviour
 {
 
@@ -46,7 +45,7 @@ public class PlayerUI : MonoBehaviour
     {
 
         StartUI();
-        DisplayInputsTaskUI(false);
+        DisplayInputsUI(false);
     }
 
 
@@ -85,7 +84,7 @@ public class PlayerUI : MonoBehaviour
 
     }
 
-    public void ChangeInputValueUI(string text)
+    public void ChangeUIInputs(string text)
     {
         _textInputsUI.text = text;
     }
@@ -104,13 +103,12 @@ public class PlayerUI : MonoBehaviour
     {
         _sliderInputsUI.transform.GetChild(0).gameObject.SetActive(value);
         _sliderInputsUI.transform.GetChild(1).gameObject.SetActive(value);
-        _validationBadInputSlider.gameObject.SetActive(value);
     }
 
     public void ClearUIInputs()
     {
         ChangeUIInputs(Color.white);
-        ChangeInputValueUI("");
+        ChangeUIInputs("");
         _sliderInputsUI.value = 1;
         /*        ClearUIInputsValidation();*/
     }
@@ -142,42 +140,19 @@ public class PlayerUI : MonoBehaviour
         if (words == null) { return; }
         for (int i = 0; i < 3; i++)
         {
-            _answersDuolingo[i].text = /*inputs[i] + ": " +*/ words[i];
+            _answersDuolingo[i].text = inputs[i] + ": " + words[i];
         }
     }
 
     public void ClearAnswersDuolingo()
     {
-        ClearColorAnswerBubble();
         for (int i = 0; i < 3; i++)
         {
             _answersDuolingo[i].text = "";
         }
     }
 
-    public void ChangeColorAnswerBubble(WordConfig word, Color color)
-    {
-
-        string text = word.baseWord;
-        foreach (TextMeshProUGUI answer in _answersDuolingo)
-        {
-
-
-            if (answer.text == text)
-            {
-                answer.transform.parent.Find("Background").GetComponent<Image>().color = color;
-            }
-
-        }
-    }
-
-    public void ClearColorAnswerBubble()
-    {
-        foreach (TextMeshProUGUI answer in _answersDuolingo)
-        {
-            answer.transform.parent.Find("Background").GetComponent<Image>().color = Color.white;
-        }
-    }
+    
 
     public void DisplayDuolingoUI(bool value)
     {
@@ -196,7 +171,7 @@ public class PlayerUI : MonoBehaviour
         _mashDownTransform.GetComponent<MashDownButton>().ChangeSwap(value);
     }
 
-    public void DisplayInputsTaskUI(bool value)
+    public void DisplayInputsUI(bool value)
     {
         DisplayDuolingoUI(value);
         DisplayQTEUI(value);
@@ -204,14 +179,6 @@ public class PlayerUI : MonoBehaviour
         DisplayMashDownButton(value);
     }
 
-    public void DisplayInputUI(bool value)
-    {
-        DisplayQTEUI(value);
-        DisplayCowboyQTEUI(!value);
-
-    }
-
-    
     #endregion
 
 

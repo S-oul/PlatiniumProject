@@ -1,4 +1,4 @@
-using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,8 +15,7 @@ public class PlayerCollision : MonoBehaviour
     #region In Game Var
     bool _IsInLift = false;
     bool _isInNPC = false;
-    bool _canAutoLift = true;
-
+    bool _ = false;
     #endregion
 
     #region Accesseur
@@ -32,10 +31,6 @@ public class PlayerCollision : MonoBehaviour
         _playerUI = gameObject.GetComponent<PlayerUI>();
     }
     private void Update()
-    {
-        MakeInteraction();
-    }
-    void MakeInteraction()
     {
         if (collidertype == null) { return; }
         if (_controller.IsInteracting)
@@ -59,7 +54,7 @@ public class PlayerCollision : MonoBehaviour
 
                 case DecryptageTask:
                     ((DecryptageTask)collidertype).OnPlayerJoinedTask(gameObject);
-
+                    
                     _controller.IsInteracting = false;
                     break;
                 case GoatTask:
@@ -68,7 +63,7 @@ public class PlayerCollision : MonoBehaviour
                 case StoreTask:
 
                     _controller.EnableDecryptageDisableMovements();
-                    ((StoreTask)collidertype).OnPlayerJoinedTask(this.gameObject);
+                    ((StoreTask)collidertype).OnPlayerJoinedTask(this.gameObject);   
                     break;
                 case FinalDoor:
                     ((FinalDoor)collidertype).EnterInTheDoor();
@@ -77,7 +72,7 @@ public class PlayerCollision : MonoBehaviour
                     ((GraffitiGameManager)collidertype).OnPlayerJoinedTask(this.gameObject);
                     break;
             }
-        }
+        }   
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -97,7 +92,10 @@ public class PlayerCollision : MonoBehaviour
                 //_isInNPC = true;
                 collidertype = collision.transform.GetComponent<NPC>();
                 break;
-            
+            case "Lift":
+                //_IsInLift = true;
+                collidertype = collision.transform.parent.GetComponent<Lift>();
+                break;
             case "ZoneEvent":
                 collidertype = collision.transform.GetComponent<ZoneEvent>();
                 ((ZoneEvent)collidertype).PlayerEnter(gameObject);
@@ -134,28 +132,8 @@ public class PlayerCollision : MonoBehaviour
             case "FinalDoor":
                 collidertype = collision.transform.GetComponent<FinalDoor>();
                 break;
-            case "AutoLift":
-                if (_canAutoLift)
-                {
-                    StartCoroutine(AutoLiftWait());
-                    collidertype = collision.transform.GetComponent<Lift>();
-                    ((Lift)collidertype).InteractLift(gameObject);
-                }
-                break;
-
             case "GraffitiTask":
                 collidertype = collision.transform.parent.GetComponent<GraffitiGameManager>();
-                break;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        switch (collision.tag)
-        {
-            case "Lift":
-                //_IsInLift = true;
-                collidertype = collision.transform.parent.GetComponent<Lift>();
                 break;
         }
     }
@@ -163,7 +141,6 @@ public class PlayerCollision : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         collidertype = null;
-        
         Room room = collision.transform.GetComponent<Room>();
         if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
         {
@@ -185,14 +162,7 @@ public class PlayerCollision : MonoBehaviour
                     _inputs.actions["Code"].Disable();
                 }
                 break;
-            
         }
     }
    
-    IEnumerator AutoLiftWait()
-    {
-        _canAutoLift = false;
-        yield return new WaitForSeconds(3);
-        _canAutoLift = true;
-    }
 }

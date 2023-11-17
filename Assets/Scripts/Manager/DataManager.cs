@@ -50,8 +50,7 @@ public class DataManager : MonoBehaviour
         Decryptage,
         Duolingo,
         Tamponnage,
-        Volley,
-        Matrix
+        Volley
     }
 
     

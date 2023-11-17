@@ -19,8 +19,7 @@ public class PlayerManager : MonoBehaviour
         AssignSortingOrder(GameManager.Instance.Players[newPlayer.playerIndex]);
         newPlayer.actions["InputTask"].Disable();                                                         // is "InputTask" the 'task' of adding a player?
         Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
-        Debug.Log(newPlayer.devices[0].displayName);
-        
+        Debug.Log(newPlayer.devices[0]);
     }
     /*
     void PickRandomSprite(GameObject player)                                                                         //Change to Pick randome Animation
