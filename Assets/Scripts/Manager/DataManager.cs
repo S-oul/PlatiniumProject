@@ -51,6 +51,7 @@ public class DataManager : MonoBehaviour
         Duolingo,
         Tamponnage,
         Volley,
+        Store,
         Matrix
     }
 
