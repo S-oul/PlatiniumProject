@@ -9,7 +9,7 @@ public class PlayerInGraffiti
     public GameObject playerObject;
     public PlayerController playerController;
 
-    public Graffiti currentGraffiti;
+    public GraffitiDrawing currentGraffiti;
     public GraffitiCleanAnimation currentGraffitiAnimation;
 
     int _previouseSwipeDirection = 0;
@@ -21,7 +21,7 @@ public class PlayerInGraffiti
         playerController = playerObject.GetComponent<PlayerController>();
     }
 
-    public void AssignGraffiti(Graffiti graffiti)
+    public void AssignGraffiti(GraffitiDrawing graffiti)
     {
         currentGraffiti = graffiti;
         currentGraffitiAnimation = currentGraffiti.GetAvailableAnimationObject();
@@ -56,7 +56,7 @@ public class PlayerInGraffiti
 
 
 
-public class Graffiti
+public class GraffitiDrawing
 {
     public GameObject graffitiObject;
     public float currentOpacity = 1;
@@ -64,7 +64,7 @@ public class Graffiti
 
     Dictionary<GraffitiCleanAnimation, bool> animationAciveStatusDict = new Dictionary<GraffitiCleanAnimation, bool>();
 
-    public Graffiti(GameObject _graffitiObject)
+    public GraffitiDrawing(GameObject _graffitiObject)
     {
         graffitiObject = _graffitiObject;
     }
