@@ -34,6 +34,16 @@ public class VolleyballTask : Task
     public GameObject Squid { get => _squid; set => _squid = value; }
     public int SquidChanceToHit { get => _squidChanceToHit; set => _squidChanceToHit = value; }
 
+
+    public override void End(bool isSuccessful)
+    {
+
+        base.End(isSuccessful);
+        foreach (GameObject player in PlayersDoingTask)
+        {
+            player.GetComponent<PlayerController>().ChangeMobiltyFactor(1, 1);
+        }
+    }
     public override void Init()
     {
 
