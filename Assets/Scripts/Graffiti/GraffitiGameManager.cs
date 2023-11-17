@@ -1,8 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class GraffitiGameManager : Task
 {
@@ -38,19 +36,15 @@ public class GraffitiGameManager : Task
 
     void Awake()
     {
-        _tempGraffitiList = createOrderedDifficultyDict()[Difficulty];
-        Update_graffitiList(_tempGraffitiList);
-        foreach (GraffitiDrawing graffiti in _graffitiList)
-        {
-            graffiti.Activate();
-        }
+        CreateGraffitiList();
+        ActivateGraffitiInList();
     }
 
     public override void Init()
     {
         base.Init();
-
         AddNewPlayer(PlayerGameObject);
+        StartTask();
 
         /* Less Old Code
          * PlayerInGraffiti newPlayer = new PlayerInGraffiti(PlayerGameObject);
@@ -58,20 +52,19 @@ public class GraffitiGameManager : Task
         newPlayer.AssignGraffiti(ChooseGraffitiToStartCleaning());
 
         _listOfPlayersInGraffiti.Add(newPlayer);*/
-
         /*
         PlayersDoingTask[0].GetComponent<PlayerController>().EnableDecryptageDisableMovements();
         _playersDoingTasksStList.Add(new graffitiPlayerStruct());
         _playersDoingTasksStList[0].playerObject = PlayersDoingTask[0];
-        */ 
-
-        StartTask();
+        */
     }
+
     public void StartTask()
     {
         ChooseGraffitiToStartCleaning();
         IsStarted = true;
     }
+
     public override void End(bool isSuccessful)
     {
         //if (!isSuccessful) { }
@@ -82,6 +75,7 @@ public class GraffitiGameManager : Task
         }
         base.End(isSuccessful);
     }
+
 
     private void FixedUpdate()
     {
@@ -114,7 +108,7 @@ public class GraffitiGameManager : Task
                         player.playerController.DecrytContext = Vector2.zero;
                         break;
                 }*/
-                player.ManagerInput();
+                player.ManageInput();
             }
             
             // manager player speed
@@ -122,13 +116,7 @@ public class GraffitiGameManager : Task
             if (_timer > _timerResetInterval) 
             {   
                 foreach (GraffitiDrawing graffiti in _graffitiList) { graffiti.ResetOpasityChangeRate(); }
-
-                foreach (PlayerInGraffiti player in _listOfPlayersInGraffiti)
-                {   
-                    player.currentGraffitiAnimation.SetSpeed(player.GetPlayerSpeed());
-                    player.currentGraffiti.AddToOpasityChangeRate(player.GetPlayerSpeed());
-                    player.ResetSpeed();
-                }
+                foreach (PlayerInGraffiti player in _listOfPlayersInGraffiti) { player.UpdateWashingSpeed(); }
                 _timer = 0;
             }
 
@@ -143,11 +131,10 @@ public class GraffitiGameManager : Task
             Debug.Log(_currentOpacity);
             _currentGraffitiSprite.color = new Color(1f, 1f, 1f, _currentOpacity);*/
 
-            // check for win OR select next graffiti.
-
+            // check for win OR assign next graffiti.
             foreach (PlayerInGraffiti player in _listOfPlayersInGraffiti)
             {
-                if (player.currentGraffiti.currentOpacity == 0)
+                if (player.CurrentGraffitiIsClean())
                 {
                     player.currentGraffiti.Deactivate();
                     RemoveCleanedGraffiti(player.currentGraffiti);
@@ -192,28 +179,19 @@ public class GraffitiGameManager : Task
     }
     */
 
-    GraffitiDrawing ChooseGraffitiToStartCleaning()
+    void CreateGraffitiList() // defines _graffitiList
     {
-        return _graffitiList[0];        
-    }
-
-    void Update_graffitiList(List<GameObject> oldList)
-    {
-        foreach (GameObject obj in oldList)
+        foreach (GameObject obj in createOrderedDifficultyDict()[Difficulty])
         {
             GraffitiDrawing newGraff = new GraffitiDrawing(obj);
             _graffitiList.Add(newGraff);
         }
     }
 
-    void RemoveCleanedGraffiti(GraffitiDrawing graffiti)
+    void ActivateGraffitiInList()
     {
-        _graffitiList.Remove(graffiti);
+        foreach (GraffitiDrawing graffiti in _graffitiList) { graffiti.Activate(); }
     }
-
-    bool ThereIsMoreGraffitiOnWall() { return (_graffitiList.Count != 0); }
-    /* Old Code 
-     * //void DeactivateCurrentGraffiti() { _currentGraffitiBeingCleaned.SetActive(false); }*/
 
     Dictionary<int, List<GameObject>> createOrderedDifficultyDict()
     {
@@ -235,19 +213,47 @@ public class GraffitiGameManager : Task
         return dict;
     }
 
-    bool NewPlayerHasJoined()
-    {
-        return (PlayersDoingTask.Count != _listOfPlayersInGraffiti.Count);
-    }
-
     void AddNewPlayer(GameObject newPlayerObject)
     {
         PlayerInGraffiti newPlayer = new PlayerInGraffiti(newPlayerObject);
         newPlayer.playerController.EnableDecryptageDisableMovements();
-        newPlayer.AssignGraffiti(ChooseGraffitiToStartCleaning());
+        newPlayer.AssignGraffiti(ChooseGraffitiToStartCleaning()); // new player MUST NOT be added if there are no remaining graffiti
 
         _listOfPlayersInGraffiti.Add(newPlayer);
     }
+
+    bool NewPlayerHasJoined() //Dont know if this works yet.
+    {
+        return (PlayersDoingTask.Count != _listOfPlayersInGraffiti.Count);
+    }
+
+    GraffitiDrawing ChooseGraffitiToStartCleaning()
+    {
+        if (_graffitiList.Count == 0) { throw new ArgumentException("Cannot call ChooseGraffitiToStartCleaning() if _graffitiList is empty."); }
+        return _graffitiList[0];        
+    }
+
+    bool ThereIsMoreGraffitiOnWall() { return (_graffitiList.Count != 0); }
+
+    /* Old Code
+     * void Update_graffitiList(List<GameObject> oldList)
+    {
+        foreach (GameObject obj in oldList)
+        {
+            GraffitiDrawing newGraff = new GraffitiDrawing(obj);
+            _graffitiList.Add(newGraff);
+        }
+    }*/
+
+    void RemoveCleanedGraffiti(GraffitiDrawing graffiti)
+    {
+        _graffitiList.Remove(graffiti);
+    }
+
+    /* Old Code 
+     * //void DeactivateCurrentGraffiti() { _currentGraffitiBeingCleaned.SetActive(false); }*/
+
+
 }
 
 
