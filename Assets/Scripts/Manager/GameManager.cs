@@ -5,14 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    List<GameObject> _npcList = new List<GameObject>();
-    List<GameObject> _objectList = new List<GameObject>();
-    List<GameObject> _eventList = new List<GameObject> ();
     
     List<Room> _roomList = new List<Room>();
     [SerializeField] List<Room> _roomTaskList = new List<Room>();
 
     [SerializeField] DaySlider _daySlider;
+    [SerializeField] DayTimer _dayTimer;
+    [SerializeField] Animator _animator;
 
     private int _roomLose = 0;
     private int _roomWin = 0;
@@ -41,6 +40,7 @@ public class GameManager : MonoBehaviour
     public GameObject FinalDoor { get => _finalDoor; set => _finalDoor = value; }
     public int DayIndex { get => _dayIndex; set => _dayIndex = value; }
     public GameObject FinalRoom { get => _finalRoom; set => _finalRoom = value; }
+    public Animator Animator { get => _animator; set => _animator = value; }
 
     public int RoomWin()
     {
@@ -61,9 +61,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetAllList()
     {
-        _npcList.Clear();
-        _objectList.Clear();
-        _eventList.Clear();
         _liftList.Clear();
 
     }

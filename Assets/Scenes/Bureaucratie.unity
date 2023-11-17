@@ -837,7 +837,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 125}
+  m_SizeDelta: {x: 466.7505, y: 125}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &445611533
 MonoBehaviour:
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2891303753b1147ae22b39e48f6f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DayTime: 300
+  DayTime: 5
   doTimer: 1
 --- !u!222 &445611535
 CanvasRenderer:
@@ -1193,6 +1193,7 @@ GameObject:
   - component: {fileID: 973819172}
   - component: {fileID: 973819174}
   - component: {fileID: 973819173}
+  - component: {fileID: 973819175}
   m_Layer: 5
   m_Name: CrunchText
   m_TagString: Untagged
@@ -1216,7 +1217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -300}
+  m_AnchoredPosition: {x: 0, y: -357}
   m_SizeDelta: {x: 1200, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &973819173
@@ -1316,6 +1317,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973819171}
   m_CullTransparentMesh: 1
+--- !u!95 &973819175
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973819171}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97d629a99269f5a4bafc05ab97ffa65c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &979305922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,6 +3147,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 973819175}
+    - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
+      propertyPath: _dayTimer
+      value: 
+      objectReference: {fileID: 445611534}
     - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: _daySlider
       value: 
