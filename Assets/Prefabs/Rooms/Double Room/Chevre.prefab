@@ -491,6 +491,10 @@ PrefabInstance:
       propertyPath: _difficulty
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3608586176934494035, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
+      propertyPath: _addPlayerAtRunTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6647001913666526361, guid: f176c7a5b9c06b14fbfd523547221f35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

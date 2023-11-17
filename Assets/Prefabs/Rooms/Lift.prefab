@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a250eb29ae988c648b29f043f8305f67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce4938ada8dbb604181148c5f64b860a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -137,12 +137,12 @@ MonoBehaviour:
   _id: 1L
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
-  _objectList: []
-  _npcList: []
-  _eventList: []
   _posItPos: {fileID: 1949259895857564618}
   _hasPostIt: 1
+  _winStateScreen: {fileID: 0}
   _listPlayer: []
+  _myPos: {fileID: 0}
+  _teleportPos: {fileID: 0}
 --- !u!61 &-573729857295420596
 BoxCollider2D:
   m_ObjectHideFlags: 0
