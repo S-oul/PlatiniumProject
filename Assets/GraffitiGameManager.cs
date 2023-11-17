@@ -69,6 +69,7 @@ public class GraffitiGameManager : Task
     }
     public void StartTask()
     {
+        ChooseGraffitiToStartCleaning();
         IsStarted = true;
     }
     public override void End(bool isSuccessful)
@@ -178,7 +179,7 @@ public class GraffitiGameManager : Task
     /* Old Code
      *void ChooseGraffitiToStartCleaning() 
     {
-        _currentGraffitiBeingCleaned = _graffitiList[0];
+        _currentGraffitiBeingCleaned = _graffitiList[0].graffitiObject;
         _graffitiList.RemoveAt(0);
 
         GameObject _graffAnimObject = _currentGraffitiBeingCleaned.transform.GetChild(1).gameObject;

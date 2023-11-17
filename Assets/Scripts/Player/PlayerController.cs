@@ -15,15 +15,17 @@ public class PlayerController : MonoBehaviour
     [Range(0, .3f)] public float movementSmoothing = .05f;                  // How much to smooth out the movement
     [Range(0.1f, 20f)]public float normalFallGravityForce = 3;              // Fall Speed
     [SerializeField] public bool AirControl = true;                         // Can contoll character while not Grounded
+    [SerializeField] private float _jumpForce = 400f;
 
-
+    float _baseMoveSpeed;
+    float _baseJumpForce;
     float _horizontalMove = 0f;
     bool _isJumping = false;
     bool _isGrounded = false;                                                // why did they replace _isGrounded with _isPlayerDown?
     bool _isInteracting = false;
     bool _isPlayerDown = false;
     bool _isBlocked = false;
-
+    
     bool _canMove = true;
 
     CharacterController2D _controller;
@@ -45,11 +47,14 @@ public class PlayerController : MonoBehaviour
     public Vector2 DecrytContext { get => _DecrytContext; set => _DecrytContext = value; }
     public Vector2 JoystickContext { get => _joystickContext; set => _joystickContext = value; }
     public Vector2 GraffitiContext { get => _graffitiContext; set => _graffitiContext = value; }
+    public float JumpForce { get => _jumpForce; set => _jumpForce = value; }
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController2D>();
         _rb = GetComponent<Rigidbody2D>();
+        _baseJumpForce = _jumpForce;
+        _baseMoveSpeed = _moveSpeed;
     }
 
 
@@ -305,5 +310,11 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.OpenTheFinalDoor();
         }
+    }
+
+    public void ChangeMobiltyFactor(float moveSpeedFactor, float jumpForceFactor)
+    {
+        _moveSpeed = _baseMoveSpeed * moveSpeedFactor;
+        _jumpForce = _baseJumpForce * jumpForceFactor;
     }
 }

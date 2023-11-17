@@ -63,12 +63,7 @@ public class LeCode : Task
             _screenText.color = Color.green;
             Debug.Log("Good code");
         }
-        else
-        {
-            _screenText.color = Color.red;
-            Debug.Log("Wrong code");
-
-        }
+        
         base.End(isSuccessful);
     }
 
@@ -80,12 +75,18 @@ public class LeCode : Task
     }
     private void Update()
     {
-        if (HaveOnePlayer())
+        if (HaveOnePlayer() && !IsDone)
         {
             if(_controller.CodeContext != null)
             {
+                if (_screenText.text.Length > 4)
+                {
+                    _screenText.text = "";
+                }
+                _screenText.color = Color.white;
                 switch (_controller.CodeContext)
                 {
+
                     //HAUT
                     case "Triangle":
                     case "Y":
@@ -122,10 +123,12 @@ public class LeCode : Task
                 {
                     End(true);
                 }
-                if(_screenText.text.Length > 4)
+                else if(_screenText.text.Length == 4 && _code != _screenText.text)
                 {
-                    _screenText.text = "";
+                    _screenText.color = Color.red;
+                    Debug.Log("Wrong code");
                 }
+                
             }
         }
     }
