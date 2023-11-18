@@ -9,7 +9,7 @@ public class MatrixTask : Task
     SpriteRenderer _spriteRendererRoom;
     bool _timeIsUp;
     bool _allPlayerAreDead;
-
+    List<GameObject> playersAlive = new List<GameObject>();
     float _timeRemaining;
     [SerializeField] GameObject _projectilePrefab;
 
@@ -23,6 +23,11 @@ public class MatrixTask : Task
     {
         
         base.Init();
+        playersAlive.Clear();
+        foreach (GameObject player in PlayersDoingTask) 
+        {
+            playersAlive.Add(player);
+        }
         _cam = Camera.main.GetComponent<Cam>();
         _cam.FixOnRoomVoid(ThisRoom);
         _timeRemaining = _timeTask;
@@ -56,17 +61,19 @@ public class MatrixTask : Task
 
     void SpawnProjectile()
     {
-        Vector3 randomPos = FindPosOnRoom();
-        GameObject proj = Instantiate(_projectilePrefab, randomPos, Quaternion.identity);
-        GameObject randomPlayer = PlayersDoingTask[Random.Range(0, PlayersDoingTask.Count)];
-        Vector3 dir = (randomPlayer.transform.position - randomPos).normalized;
-        proj.GetComponent<ProjectileMatrix>().Dir = dir;
-        proj.GetComponent<ProjectileMatrix>().SpeedProj = _projectileSpeed;
-        proj.GetComponent<ProjectileMatrix>().Task = this;
-        if (!_timeIsUp)
+        if(!_timeIsUp)
         {
+            Vector3 randomPos = FindPosOnRoom();
+            GameObject proj = Instantiate(_projectilePrefab, randomPos, Quaternion.identity);
+            GameObject randomPlayer = PlayersDoingTask[Random.Range(0, PlayersDoingTask.Count)];
+            Vector3 dir = (randomPlayer.transform.position - randomPos).normalized;
+            proj.GetComponent<ProjectileMatrix>().Dir = dir;
+            proj.GetComponent<ProjectileMatrix>().SpeedProj = _projectileSpeed;
+            proj.GetComponent<ProjectileMatrix>().Task = this;
             StartCoroutine(ProjectileTimer());
+            
         }
+        
         
     }
 
@@ -110,13 +117,16 @@ public class MatrixTask : Task
 
     public void PlayerTouched(GameObject playerTouched)
     {
-        foreach(GameObject player in PlayersDoingTask)
+        if (playersAlive.Contains(playerTouched))
         {
-            if(player == playerTouched)
-            {
-                player.GetComponent<PlayerController>().PlayerDown(_timeRemaining);
-            }
+            playersAlive.Remove(playerTouched);
+            StartCoroutine(playerTouched.GetComponent<PlayerController>().PlayerDown(_timeRemaining));
         }
+        if(playersAlive.Count == 0)
+        {
+            _allPlayerAreDead = true;
+        }
+        
     }
 
 }
