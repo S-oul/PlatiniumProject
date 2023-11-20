@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void LinkLifts()
     {
-        Shuffle(_liftList);
+        ShuffleLift(_liftList);
         for(int i = 0; i < _liftList.Count; i++)
         {
             if (i + 1 >= _liftList.Count)
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private List<Lift> Shuffle(List<Lift> list)
+    public List<Lift> ShuffleLift(List<Lift> list)
     {
         int r = 0;
         int n = list.Count;
@@ -106,6 +106,8 @@ public class GameManager : MonoBehaviour
         }
         return list;
     }
+
+    
 
     public void CheckIfDayFinished()
     {

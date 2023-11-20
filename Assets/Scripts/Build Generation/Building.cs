@@ -56,6 +56,7 @@ public class Building : MonoBehaviour
         _gameManager.ResetAllList();
         DestroyALL();
         Generate();
+        
     }
     void GenerateFloor(int floor,float height)
     {
@@ -78,7 +79,7 @@ public class Building : MonoBehaviour
         {
             if (c == 'S')
             {
-                Room spawnRoom = instantiateRoom(_spawnRoom, height, i);
+                Room spawnRoom = InstantiateRoom(_spawnRoom, height, i);
                 i += spawnRoom.RoomSize;
                 _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
             }
@@ -98,7 +99,7 @@ public class Building : MonoBehaviour
                         r = Random.Range(0, _allPool[intC].Count);
                     }
                 }
-                i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
+                i += InstantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
             
         }
@@ -112,7 +113,7 @@ public class Building : MonoBehaviour
         {
             if (c == 'S')
             {
-                Room spawnRoom = instantiateRoom(_spawnRoom, height, i);
+                Room spawnRoom = InstantiateRoom(_spawnRoom, height, i);
                 i += spawnRoom.RoomSize;
                 _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
             }
@@ -133,12 +134,12 @@ public class Building : MonoBehaviour
                         r = Random.Range(0, _allPool[intC].Count);
                     }
                 }
-                i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
+                i += InstantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
         }
     }
 
-    Room instantiateRoom(GameObject room, float height, int roomStart)
+    Room InstantiateRoom(GameObject room, float height, int roomStart)
     {
         GameObject go = Instantiate(room);  
         go.transform.parent = transform;
