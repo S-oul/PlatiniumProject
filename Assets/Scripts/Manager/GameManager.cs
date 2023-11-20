@@ -73,7 +73,6 @@ public class GameManager : MonoBehaviour
             if (i + 1 >= _liftList.Count)
             {
                 _liftList[i].TeleportPos = _liftList[0].MyPos;
-
             }
             else
             {
