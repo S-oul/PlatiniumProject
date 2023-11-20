@@ -2236,7 +2236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 18481f5ba17cf8644855f40254e5302a, type: 3}
   m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
+  m_UIInputModule: {fileID: 5589359071441406035, guid: 5c4d0d717dfb4714085e4ace665a49a5, type: 3}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2367,6 +2367,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ae7931e9-ac3d-416e-9ed7-5a2e0c2ed9ba
     m_ActionName: Player/Joystick left[/DualShock4GamepadHID/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4ab03da3-9552-4ff0-a4cc-ec558ab61adf
+    m_ActionName: Player/Graffiti
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

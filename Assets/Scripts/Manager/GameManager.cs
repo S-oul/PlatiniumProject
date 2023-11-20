@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int _dayIndex;
 
-    private List<Lift> _liftList = new List<Lift>();
+    [SerializeField] private List<Lift> _liftList = new List<Lift>();
     int _playerCount;
 
     GameObject _finalRoom;
@@ -94,10 +94,11 @@ public class GameManager : MonoBehaviour
 
     private List<Lift> Shuffle(List<Lift> list)
     {
-        int r = Random.Range(0, list.Count - 2);
+        int r = 0;
         int n = list.Count;
         while (n> 1)
         {
+            r = Random.Range(0, list.Count - 2);
             Lift l = list[r];
             list.RemoveAt(r);
             list.Add(l);

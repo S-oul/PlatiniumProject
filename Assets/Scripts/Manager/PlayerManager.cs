@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         _inputManager = gameObject.GetComponent<PlayerInputManager>();
+        DontDestroyOnLoad(gameObject);
     }
     void OnPlayerJoined(PlayerInput newPlayer)
     {

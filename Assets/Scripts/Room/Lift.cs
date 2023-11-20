@@ -33,7 +33,10 @@ public class Lift : Room
     IEnumerator TimeToTeleport(float time)
     {
         yield return new WaitForSeconds(time);
-        _player.transform.position = TeleportPos.position;
+        if(_player != null)
+        {
+            _player.transform.position = TeleportPos.position;
+        }
         _player = null;
         StartCoroutine(TeleportCooldown(_teleporterCooldown));
     }
