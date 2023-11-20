@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEngine;
 
 public class MatrixTask : Task
@@ -9,7 +8,7 @@ public class MatrixTask : Task
     SpriteRenderer _spriteRendererRoom;
     bool _timeIsUp;
     bool _allPlayerAreDead;
-    List<GameObject> playersAlive = new List<GameObject>();
+    [SerializeField] List<GameObject> playersAlive = new List<GameObject>();
     float _timeRemaining;
     [SerializeField] GameObject _projectilePrefab;
 
@@ -17,6 +16,7 @@ public class MatrixTask : Task
     [SerializeField] float _timeTask;
     [SerializeField] float _timeBetweenProjectiles;
     [SerializeField] float _projectileSpeed;
+    [SerializeField] float _timeBeforeTask;
 
     Cam _cam;
     public override void Init()
@@ -44,7 +44,7 @@ public class MatrixTask : Task
             player.transform.position = newPos.position;
             player.GetComponent<PlayerController>().ChangeMobiltyFactor(1.5f, 2);
         }
-        StartCoroutine(GameTimer());
+        StartCoroutine(TimerBeforeStart());
         SpawnProjectile();
     }
 
@@ -52,7 +52,6 @@ public class MatrixTask : Task
 
     public override void End(bool isSuccessful)
     {
-        base.End(isSuccessful);
         foreach(GameObject player in PlayersDoingTask)
         {
             player.GetComponent<PlayerController>().IsPlayerDown = false;
@@ -108,6 +107,12 @@ public class MatrixTask : Task
             End(false);
         }
     }
+
+    IEnumerator TimerBeforeStart()
+    {
+        yield return new WaitForSeconds(_timeBeforeTask);
+        StartCoroutine(GameTimer());
+    }
     IEnumerator ProjectileTimer()
     {
         yield return new WaitForSeconds(_timeBetweenProjectiles);
@@ -126,7 +131,5 @@ public class MatrixTask : Task
         {
             _allPlayerAreDead = true;
         }
-        
     }
-
 }

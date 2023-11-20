@@ -302,10 +302,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b57bb827d288db4a9780213801c44db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ToFar: {fileID: 0}
+  _toFar: {fileID: 0}
   _goLeft: 1
   _speed: 3
   _timeToSwap: 1
+  _timePlayerIsDown: 2
   _sprite: {fileID: 7090907684527917484}
 --- !u!212 &1102693193607564829
 SpriteRenderer:

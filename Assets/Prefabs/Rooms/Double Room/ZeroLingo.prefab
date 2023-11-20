@@ -95,7 +95,6 @@ Transform:
   m_LocalScale: {x: 15, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4376594283069948184}
   - {fileID: 1112567779909780598}
   - {fileID: 5408876842995974066}
   - {fileID: 1497229567417621059}
@@ -106,6 +105,7 @@ Transform:
   - {fileID: 136455421325318270}
   - {fileID: 2506492973566426286}
   - {fileID: 3097710503653461297}
+  - {fileID: 4376594283069948184}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3617605336626875981
@@ -423,7 +423,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3179405042728166650}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c877b02b4e5486543af269c78228edaa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -531,7 +531,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7385549132262104570}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c877b02b4e5486543af269c78228edaa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
