@@ -781,6 +781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 2353578007512903286, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
     - target: {fileID: 8376708295621770097, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1410,9 +1414,25 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2229208786083926750, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229208786083926750, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2057632499
+      objectReference: {fileID: 0}
+    - target: {fileID: 2907200441034483646, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7057794631856306106, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
       propertyPath: m_Name
       value: DeskDuolingo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057794631856306106, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1954,9 +1974,25 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2229208786083926750, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229208786083926750, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2057632499
+      objectReference: {fileID: 0}
+    - target: {fileID: 2907200441034483646, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7057794631856306106, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
       propertyPath: m_Name
       value: DeskDuolingo (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057794631856306106, guid: 8673ee49e9e387b4c87759be6949df49, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

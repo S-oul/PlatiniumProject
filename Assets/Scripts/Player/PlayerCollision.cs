@@ -51,15 +51,12 @@ public class PlayerCollision : MonoBehaviour
                     ((Lift)collidertype).InteractLift(gameObject);
                     _controller.IsInteracting = false;
                     break;
-
                 case Object:
                     ((Object)collidertype).Interact(gameObject);
                     _controller.IsInteracting = false;
                     break;
-
                 case DecryptageTask:
                     ((DecryptageTask)collidertype).OnPlayerJoinedTask(gameObject);
-
                     _controller.IsInteracting = false;
                     break;
                 case GoatTask:
@@ -103,6 +100,7 @@ public class PlayerCollision : MonoBehaviour
                 ((ZoneEvent)collidertype).PlayerEnter(gameObject);
                 break;
             case "Object":
+                _playerUI.DisplayInputToPress(true, "Y");
                 collidertype = collision.transform.GetComponent<Object>();
                 break;
             case "Laser":
@@ -111,6 +109,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "DecryptInteract":
                 collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
+                _playerUI.DisplayInputToPress(true, "Y");
                 break;
             case "CodeZone":
                 LeCode lecode = collision.transform.parent.GetComponent<LeCode>();
@@ -127,12 +126,18 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "Goat":
                 collidertype = collision.transform.GetComponent<GoatTask>();
+                _playerUI.DisplayInputToPress(true, "Y");
                 break;
             case "StoreZone":
                 collidertype = collision.transform.parent.GetComponent<StoreTask>();
+                _playerUI.DisplayInputToPress(true, "Y");
                 break;
             case "FinalDoor":
                 collidertype = collision.transform.GetComponent<FinalDoor>();
+                if (collision.transform.gameObject.GetComponent<FinalDoor>().IsOpened)
+                {
+                    _playerUI.DisplayInputToPress(true, "Y");
+                }
                 break;
             case "AutoLift":
                 if (_canAutoLift)
@@ -155,6 +160,7 @@ public class PlayerCollision : MonoBehaviour
         {
             case "Lift":
                 //_IsInLift = true;
+                _playerUI.DisplayInputToPress(true, "Y");
                 collidertype = collision.transform.parent.GetComponent<Lift>();
                 break;
         }
@@ -185,7 +191,36 @@ public class PlayerCollision : MonoBehaviour
                     _inputs.actions["Code"].Disable();
                 }
                 break;
-            
+            case "NPC":
+                //_isInNPC = true;
+                collidertype = collision.transform.GetComponent<NPC>();
+                break;
+            case "Object":
+                _playerUI.DisplayInputToPress(false, "");
+                collidertype = collision.transform.GetComponent<Object>();
+                break;
+            case "DecryptInteract":
+                collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
+                _playerUI.DisplayInputToPress(false, "");
+                break;
+            case "Goat":
+                collidertype = collision.transform.GetComponent<GoatTask>();
+                _playerUI.DisplayInputToPress(false, "");
+                break;
+            case "StoreZone":
+                collidertype = collision.transform.parent.GetComponent<StoreTask>();
+                _playerUI.DisplayInputToPress(false, "");
+                break;
+            case "FinalDoor":
+                collidertype = collision.transform.GetComponent<FinalDoor>();
+                if (collision.transform.gameObject.GetComponent<FinalDoor>().IsOpened)
+                {
+                    _playerUI.DisplayInputToPress(false, "");
+                }
+                break;
+            case "Lift":
+                _playerUI.DisplayInputToPress(false, "");
+                break;
         }
     }
    

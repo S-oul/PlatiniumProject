@@ -23,6 +23,8 @@ public class VolleyballTask : Task
 
     GameObject _squid;
 
+    GameObject _playerTouch;
+
     Cam _cam;
 
 
@@ -33,7 +35,7 @@ public class VolleyballTask : Task
     public GameObject Net { get => _net; set => _net = value; }
     public GameObject Squid { get => _squid; set => _squid = value; }
     public int SquidChanceToHit { get => _squidChanceToHit; set => _squidChanceToHit = value; }
-
+    public GameObject PlayerTouch { get => _playerTouch; set => _playerTouch = value; }
 
     public override void End(bool isSuccessful)
     {
@@ -48,6 +50,7 @@ public class VolleyballTask : Task
     {
 
         base.Init();
+        PlayerTouch = null;
         foreach (Transform pos in RoomTask.transform.Find("PlayerPositions"))
         {
             _posPlayerList.Add(pos);
@@ -87,10 +90,9 @@ public class VolleyballTask : Task
 
     }
 
-    public void Point(GameObject ball, bool isForPlayer)
+    public void Point(bool isForPlayer)
     {
-        ball.GetComponent<BallVolley>().TimerBeforeDestroy();
-        
+      
         if (isForPlayer)
         {
             _playersPoints++;
@@ -101,16 +103,38 @@ public class VolleyballTask : Task
         }
         if (_squidPoints < _pointsToWin && _playersPoints < _pointsToWin)
         {
-
             StartCoroutine(TimerBeforeBall(2f));
         }
-        else if (_squidPoints == 3)
+        else if (_squidPoints == _pointsToWin)
         {
             Debug.Log("Defeat");
         }
-        else if (_playersPoints == 3)
+        else if (_playersPoints == _pointsToWin)
         {
             Debug.Log("Win");
+        }
+    }
+
+    public void ChangeColorPlayers()
+    {
+        
+        foreach (GameObject player in PlayersDoingTask)
+        {
+            print(player.name + " // " + PlayerTouch.name);
+            if (player != null)
+            {
+                return;
+            }
+            if(player == PlayerTouch)
+            {
+                
+                player.transform.Find("Animation").GetComponent<SpriteRenderer>().color = new Color(127, 127, 127);
+            }
+            else
+            {
+                player.transform.Find("Animation").GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
         }
     }
 }

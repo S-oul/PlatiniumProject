@@ -23,13 +23,15 @@ public class TamponageTask : InputTask, ITimedTask
 
     PlayerController _player1;
     PlayerController _player2;
+    PlayerUI _player1UI;
+    PlayerUI _player2UI;
 
     //int _remainingClicks;
     float _remainingTime;
 
 
     [SerializeField] float _angle = 360;
-
+    GameObject _activePlayer;
     public float _givenTime { get => _timeLimit; set => _timeLimit = value; }
 
     Transform _clock;
@@ -78,6 +80,8 @@ public class TamponageTask : InputTask, ITimedTask
         _angle = 360f;
         _player1 = PlayersDoingTask[0].GetComponent<PlayerController>();
         _player2 = PlayersDoingTask[1].GetComponent<PlayerController>();
+        _player1UI = _player1.gameObject.GetComponent<PlayerUI>();
+        _player2UI = _player2.gameObject.GetComponent<PlayerUI>();
         _remainingTime = _timeLimit;
         _timer = StartCoroutine(TimerTask());
         IsStarted = true;
@@ -105,9 +109,10 @@ public class TamponageTask : InputTask, ITimedTask
                 _textScore.color = Color.red;
                 StartCoroutine(Penality());
             }
-
-            if(_p1Value == 1 && _p2Value == 1)
+            if (_p1Value == 1 && _p2Value == 1)
             {
+                _player1UI.DisplayInputToPress(false, "");
+                _player2UI.DisplayInputToPress(false, "");
                 _numOfClicksDone++;
                 _textScore.color = Color.black;
                 _textScore.text = _numOfClicksDone +  "/" + _numOfClicksToDo;
@@ -123,6 +128,16 @@ public class TamponageTask : InputTask, ITimedTask
             {
                 _p2Value++;
                 _player2.currentContextName = "";
+            }
+
+            if (_p1Value == 0 && _p2Value == 0)
+            {
+                _player1UI.DisplayInputToPress(true, _inputName);
+            }
+            else if(_p1Value == 1 && _p2Value == 0)
+            {
+                _player2UI.DisplayInputToPress(true, _inputName);
+                _player1UI.DisplayInputToPress(false, "");
             }
         }
     }

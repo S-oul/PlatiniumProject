@@ -14,11 +14,18 @@ public class BallVolley : MonoBehaviour
 
     GameObject _lastCollisionObject;
 
-    
+    bool _canCheckCollision;
+
+    bool _isFirstShot;
+
+    bool _canCheckTouchAgain;
     public VolleyballTask Task { get => _task; set => _task = value; }
 
     private void Start()
     {
+        _canCheckCollision = true;
+        _canCheckTouchAgain = true;
+        _isFirstShot = true;
         _numberOfTouches = 0;
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -27,17 +34,26 @@ public class BallVolley : MonoBehaviour
         
         if (collision.gameObject.tag == "Player")
         {
-            _lastCollisionObject = collision.gameObject;
             
-            _numberOfTouches++;
+            _lastCollisionObject = collision.gameObject;
+            _task.PlayerTouch = collision.gameObject;
+            if (_canCheckTouchAgain)
+            {
+                StartCoroutine(TimerBeforeCheckAgain());
+                _numberOfTouches++;
+
+            }
+            Debug.Log(_numberOfTouches);
+            _task.ChangeColorPlayers();
             CheckTouches();
             Vector3 _dir = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
-            _rb.velocity = Vector3.zero;
+            _rb.velocity = Vector2.zero;
             //Vector3 _dir = collision.gameObject.transform.position - gameObject.transform.position;
+            /*_rb.AddForce(Vector2.up * 40f);*/
             _rb.AddForce(_dir.normalized * _numberOfTouches * 2f);
-            _rb.AddForce(Vector2.up * 40f);
+            
         }
-        if(collision.gameObject == _task.Net)
+        if (collision.gameObject == _task.Net)
         {
             CheckBallPosition();
 
@@ -53,34 +69,52 @@ public class BallVolley : MonoBehaviour
     {
         if (collision.gameObject == _task.Squid)
         {
-            if (CheckChanceToHit())
+            if (_isFirstShot)
             {
-                _lastCollisionObject = collision.gameObject;
                 Vector3 dir = new Vector3(Random.Range(-0.8f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
                 _rb.velocity = Vector2.zero;
                 _rb.AddForce(dir);
             }
+            else
+            {
+                if (CheckChanceToHit())
+                {
+                    _lastCollisionObject = collision.gameObject;
+                    Vector3 dir = new Vector3(Random.Range(-0.8f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
+                    _rb.velocity = Vector2.zero;
+                    _rb.AddForce(dir);
+                }
+            }
+                
             
         }
     }
     void CheckTouches()
     {
-        if(_numberOfTouches == 3)
+        
+        if (_numberOfTouches == 3)
         {
-            _task.Point(gameObject, false);
+            _task.Point(false);
+            StartCoroutine(TimerBeforeDestroy());
         }
     }
     
     void CheckBallPosition()
     {
-        if (gameObject.transform.localPosition.x < 0)
+        if (_canCheckCollision)
         {
-            _task.Point(gameObject, false);
+            _canCheckCollision = false;
+            StartCoroutine(TimerBeforeDestroy());
+            if (gameObject.transform.localPosition.x < 0)
+            {
+                _task.Point(false);
+            }
+            else if (gameObject.transform.localPosition.x > 0)
+            {
+                _task.Point(true);
+            }
         }
-        else if (gameObject.transform.localPosition.x > 0)
-        {
-            _task.Point(gameObject, true);
-        }
+        
         
     }
 
@@ -96,7 +130,8 @@ public class BallVolley : MonoBehaviour
 
     public IEnumerator TimerBeforeDestroy()
     {
-        foreach(GameObject player in _task.PlayersDoingTask)
+        
+        foreach (GameObject player in _task.PlayersDoingTask)
         {
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, true);
@@ -107,6 +142,14 @@ public class BallVolley : MonoBehaviour
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, false);
         }
+        
         Destroy(gameObject);
+    }
+
+    public IEnumerator TimerBeforeCheckAgain()
+    {
+        _canCheckTouchAgain = false;
+        yield return new WaitForSeconds(0.1f);
+        _canCheckTouchAgain = true;
     }
 }

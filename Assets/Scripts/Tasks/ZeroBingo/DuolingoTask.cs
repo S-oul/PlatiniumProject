@@ -234,7 +234,7 @@ public class DuolingoTask : InputTask
         {
             player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
             player.GetComponent<PlayerController>().BlockPlayer(false);
-            player.GetComponent<SpriteRenderer>().sortingOrder = 8;
+            player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
             player.GetComponent<PlayerController>().EnableMovementDisableInputs();
             if(value == false)
             {
