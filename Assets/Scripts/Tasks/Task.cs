@@ -53,7 +53,6 @@ public abstract class Task : MonoBehaviour
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
         _room.TaskRoom = this;
-        Debug.Log("Init ran A OK :) ");
         
     }
 
@@ -73,6 +72,7 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerJoinedTask(GameObject player)
     {
+        //Debug.Log("OnPlayerJoinedTask called");  //This func is called 1-3 times at randome. Safegards have been put in place.
         if (!IsDone)
         {
             if (AddPlayerAtRunTime)
@@ -80,17 +80,21 @@ public abstract class Task : MonoBehaviour
                 if (_isStarted)
                 {
                     if (_playersDoingTask.Count < 4)
-                    {
-                        _playersDoingTask.Add(player);
+                    {   
+                        //the safegard in question:
+                        if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) { _playersDoingTask.Add(player); } 
                         return;
                     }
                 }
-                _playersDoingTask.Add(player);
-                _isStarted = true;
-                Init();
+                else
+                {
+                    _playersDoingTask.Add(player);
+                    _isStarted = true;
+                    Init();
+                }
 
             }
-            if (_numberOfPlayers == 1)
+            else if (_numberOfPlayers == 1)
             {
                 if (!_isStarted)
                 {

@@ -82,11 +82,11 @@ public class GraffitiGameManager : Task
     {
         if (IsStarted && !IsDone)
         {
+            //Debug.Log("len of PlayersDorinTask is " + PlayersDoingTask.Count + ". len of PlayersInGraffiti is " + _listOfPlayersInGraffiti.Count);
 
             //check if new player has joined
             if (NewPlayerHasJoined())
             {
-                Debug.Log("NewPlayerHasJoined returned True");
                 AddNewPlayer(PlayersDoingTask[PlayersDoingTask.Count-1]);
             }
 
@@ -226,7 +226,6 @@ public class GraffitiGameManager : Task
 
     bool NewPlayerHasJoined()
     {
-        Debug.Log("len of PlayersDorinTask is " + PlayersDoingTask.Count + ". len of PlayersInGraffiti is " + _listOfPlayersInGraffiti.Count);
         return (PlayersDoingTask.Count != _listOfPlayersInGraffiti.Count);
     }
 
