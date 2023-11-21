@@ -59,7 +59,7 @@ public class PlayerInGraffiti
     public bool CurrentGraffitiIsClean() => currentGraffiti.IsClean();
 }
 
-
+// ----------------------------------------------------------------------------------------------------
 
 public class GraffitiDrawing
 {
@@ -101,7 +101,7 @@ public class GraffitiDrawing
 
     public void ResetOpasityChangeRate()
     {
-        Debug.Log("OPASITY CHANGE RATE SET TO 0");
+        //Debug.Log("OPASITY CHANGE RATE SET TO 0");
         _opasityChangeRate = 0;
     }
 
@@ -109,10 +109,12 @@ public class GraffitiDrawing
 
     public GraffitiCleanAnimation GetAvailableAnimationObject()
     {
+        Debug.Log("Animation ACTIVATED");
         foreach (GraffitiCleanAnimation animator in _animationAciveStatusDict.Keys)
         {
             if (_animationAciveStatusDict[animator] != true) 
-            { 
+            {
+                _animationAciveStatusDict[animator] = true;
                 animator.Activate();
                 return animator; 
             }
@@ -122,7 +124,7 @@ public class GraffitiDrawing
     }
 }
 
-
+// ----------------------------------------------------------------------------------------------------
 
 public class GraffitiCleanAnimation
 {
@@ -136,6 +138,7 @@ public class GraffitiCleanAnimation
     public void Activate()
     {
         _cleanAnimationObject.SetActive(true);
+
     }
 
     public void Deactivate()
@@ -147,6 +150,8 @@ public class GraffitiCleanAnimation
     {
         _cleanAnimationObject.GetComponent<Animator>().speed = speed;
     }
+
+    public bool ParentIsActive() => _cleanAnimationObject.GetComponentInParent<Transform>().gameObject.activeSelf;
 
     public GraffitiCleanAnimation(){} //This must never run
 }

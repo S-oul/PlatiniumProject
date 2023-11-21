@@ -53,6 +53,7 @@ public abstract class Task : MonoBehaviour
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
         _room.TaskRoom = this;
+        Debug.Log("Init ran A OK :) ");
         
     }
 
@@ -72,7 +73,6 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerJoinedTask(GameObject player)
     {
-        
         if (!IsDone)
         {
             if (AddPlayerAtRunTime)
@@ -141,18 +141,12 @@ public abstract class Task : MonoBehaviour
         {
             _playersDoingTask.Remove(player);
         }
-        
     }
-
-
-
-
 }
 
 public interface ITimedTask
 {
     float _givenTime { get; }
-
 }
 
 

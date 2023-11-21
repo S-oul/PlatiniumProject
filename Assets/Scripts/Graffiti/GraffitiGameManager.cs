@@ -43,7 +43,8 @@ public class GraffitiGameManager : Task
     public override void Init()
     {
         base.Init();
-        AddNewPlayer(PlayerGameObject);
+        //AddNewPlayer(PlayerGameObject);
+        AddNewPlayer(PlayersDoingTask[0]) ;
         StartTask();
 
         /* Less Old Code
@@ -85,7 +86,8 @@ public class GraffitiGameManager : Task
             //check if new player has joined
             if (NewPlayerHasJoined())
             {
-                AddNewPlayer(PlayersDoingTask[-1]);
+                Debug.Log("NewPlayerHasJoined returned True");
+                AddNewPlayer(PlayersDoingTask[PlayersDoingTask.Count-1]);
             }
 
             // record player actions
@@ -222,7 +224,7 @@ public class GraffitiGameManager : Task
         _listOfPlayersInGraffiti.Add(newPlayer);
     }
 
-    bool NewPlayerHasJoined() //Dont know if this works yet.
+    bool NewPlayerHasJoined() 
     {
         return (PlayersDoingTask.Count != _listOfPlayersInGraffiti.Count);
     }
