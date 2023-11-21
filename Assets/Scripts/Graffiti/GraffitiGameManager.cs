@@ -224,8 +224,9 @@ public class GraffitiGameManager : Task
         _listOfPlayersInGraffiti.Add(newPlayer);
     }
 
-    bool NewPlayerHasJoined() 
+    bool NewPlayerHasJoined()
     {
+        Debug.Log("len of PlayersDorinTask is " + PlayersDoingTask.Count + ". len of PlayersInGraffiti is " + _listOfPlayersInGraffiti.Count);
         return (PlayersDoingTask.Count != _listOfPlayersInGraffiti.Count);
     }
 
