@@ -50,8 +50,12 @@ MonoBehaviour:
   - {fileID: 2203151728919521307, guid: 0909399754d945448a3453519aacdcd9, type: 3}
   - {fileID: 1887970405050895401, guid: a0a5ba0750d647847aa19ed6d4207381, type: 3}
   - {fileID: 6164837858597373043, guid: 3b1579053d438fa4ab1ffdf8822f3c9b, type: 3}
-  _spritePlayers:
-  - {fileID: 21300000, guid: 46e79dbbc9ffc5a47a64507327b93d33, type: 3}
-  - {fileID: 21300000, guid: a0b3b8c1f4502104ebe3441666c7e87e, type: 3}
-  - {fileID: 21300000, guid: 0fc030d7feb57a949aa35b5690dbc6d8, type: 3}
-  - {fileID: 21300000, guid: 35aee11be95ccc247b0ce032f388820f, type: 3}
+  - {fileID: 6919338248750479993, guid: 21fdab9860ed05542aeb3b806c0afe02, type: 3}
+  - {fileID: 2203151728919521307, guid: 7d9a24e1917772d4995291937fc95b3a, type: 3}
+  - {fileID: 3257417081314367301, guid: 1f19e7e661f7b02478d373658aaf4283, type: 3}
+  - {fileID: 6164837858597373043, guid: 62dbbd2e023e70a4dbe77449c08f985e, type: 3}
+  _animationPlayers:
+  - {fileID: 9100000, guid: 88088766235b82e44b02cbbf15772650, type: 2}
+  - {fileID: 9100000, guid: 4b4e7ac24568a5a4e807b08229fd70f0, type: 2}
+  - {fileID: 9100000, guid: c5230f858de09d94787f6bf43c940485, type: 2}
+  - {fileID: 9100000, guid: cd743ca84889a9540bf6dbf956294c4f, type: 2}

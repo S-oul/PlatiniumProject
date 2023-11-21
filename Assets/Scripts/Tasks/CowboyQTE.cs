@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,41 +11,13 @@ public class CowboyQTE : InputTask
 
     protected PlayerController _controller;
 
-    InputAction action = new InputAction();
-    public enum QTEInputs
-    {
-        X,
-        Y,
-        A,
-        B,
-        L1,
-        L2,
-        L3,
-        R1,
-        R2,
-        R3
-    }
-
-
     [Header("QTE variables")]
-    [SerializeField] List<QTEInputs> _inputsNeeded;
+    [SerializeField] List<Inputs> _inputsNeeded;
     [SerializeField] int _numberOfInputs = 1;
 
-    Dictionary<QTEInputs, string> _dicInputs = new Dictionary<QTEInputs, string>()
-    {
-        {QTEInputs.X, "X" },
-        {QTEInputs.Y, "Y" },
-        {QTEInputs.A, "A"},
-        {QTEInputs.B, "B"},
-        {QTEInputs.R1, "R1" },
-        {QTEInputs.R2, "R2" },
-        {QTEInputs.R3, "R3" },
-        {QTEInputs.L1, "L1"},
-        {QTEInputs.L2, "L2"},
-        {QTEInputs.L3, "L3" }
-    };
 
-    QTEInputs _currentInput;
+
+    Inputs _currentInput;
 
     string _contextName;
     int _currentInputID = 0;
@@ -63,7 +33,7 @@ public class CowboyQTE : InputTask
 
     private void Start()
     {
-        
+
         _npcCowboy = transform.parent.parent.GetComponentInChildren<CowboyNPC>();
     }
 
@@ -72,11 +42,15 @@ public class CowboyQTE : InputTask
         _playerInput = PlayerGameObject.GetComponent<PlayerInput>();
         _playerUI = PlayerGameObject.GetComponent<PlayerUI>();
         _controller = PlayerGameObject.GetComponent<PlayerController>();
-        _controller.DisableMovementExceptInput();
+        _controller.DisableMovementEnableInputs();
         _playerUI.DisplayQTEUI(true);
+        _playerUI.DisplayCowboyQTEUI(true);
         _playerUI.ChangeUIInputsValidation(1);
         _numberOfFails = 0;
         StartTaskQTE();
+        _npcCowboy.Player = PlayerGameObject;
+        _npcCowboy.FlipNPC();
+        _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameStart");
     }
 
     void StartTaskQTE()
@@ -87,9 +61,10 @@ public class CowboyQTE : InputTask
         _currentInputID = 0;
         for (int i = 0; i < _numberOfInputs; i++)
         {
-            QTEInputs newInput = (QTEInputs)((int)(Random.Range(0, 9)));
+            Inputs newInput = (Inputs)((int)(Random.Range(0, 10)));
             _inputsNeeded.Add(newInput);
         }
+
         DisplayInput(_inputsNeeded[0]);
     }
 
@@ -97,10 +72,10 @@ public class CowboyQTE : InputTask
     IEnumerator TimerToPressInput(float time)
     {
         float _tempTime = time;
-        while (CheckInputValue(_controller.currentContextName, _dicInputs[_currentInput], _controller) == PlayerInputValue.None && time > 0)
+        while (CheckInputValue(_controller.currentContextName, InputsToString[_currentInput], _controller) == PlayerInputValue.None && time > 0)
         {
             time -= Time.deltaTime;
-            _playerUI._sliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
+            _playerUI.SliderPercentValue = Mathf.InverseLerp(0, _tempTime, time);
             yield return null; //=> Inportant => Inbecile
 
         }
@@ -125,15 +100,15 @@ public class CowboyQTE : InputTask
 
 
     //Display a new input
-    void DisplayInput(QTEInputs input)
+    void DisplayInput(Inputs input)
     {
-        if(_inputCoroutine != null)
+        if (_inputCoroutine != null)
         {
             StopCoroutine(_inputCoroutine);
         }
-        _playerUI._sliderPercentValue = 1f;
+        _playerUI.SliderPercentValue = 1f;
         _playerUI.ChangeUIInputs(Color.white);
-        _playerUI.ChangeUIInputs(_dicInputs[input]);
+        _playerUI.ChangeInputValueUI(InputsToString[input]);
         _currentInput = input;
         _inputCoroutine = StartCoroutine(TimerToPressInput(_timeToDoQTE));
         _npcCowboy.Fire();
@@ -147,7 +122,7 @@ public class CowboyQTE : InputTask
         if (isInputRight)
         {
             _currentInputID++;
-            if (_currentInputID ==_numberOfInputs)
+            if (_currentInputID == _numberOfInputs)
             {
                 //_playerUI.ChangeUIInputsValidation(_index, Color.green);
                 EndQTE(true);
@@ -158,7 +133,7 @@ public class CowboyQTE : InputTask
             {
                 //Display Input fait une overflow
                 // _playerUI.ChangeUIInputsValidation(_index, Color.green);
-                
+
                 DisplayInput(_inputsNeeded[_currentInputID]);
                 return;
             }
@@ -182,7 +157,7 @@ public class CowboyQTE : InputTask
                 StartTaskQTE();
                 return;
             }
-            
+
         }
 
     }
@@ -201,10 +176,13 @@ public class CowboyQTE : InputTask
 
     void EndQTE(bool value)
     {
-        _controller.EnableMovement();
+        _controller.EnableMovementDisableInputs();
         _playerInput.actions["InputTask"].Disable();
         _playerUI.ClearUIInputs();
-        _playerUI.DisplayInputsUI(false);
+        _playerUI.DisplayInputsTaskUI(false);
+        _playerUI.DisplayCowboyQTEUI(true);
         End(value);
+        _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameEnd");
     }
+
 }

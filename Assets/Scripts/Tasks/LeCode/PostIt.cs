@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +12,9 @@ public class PostIt : MonoBehaviour
     private void Awake()
     {
         text = GetComponentInChildren<TextMeshPro>();
+    }
+    public void Initialize()
+    {
         text.text = SetCode(_code);
     }
 }

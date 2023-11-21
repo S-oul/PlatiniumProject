@@ -34,10 +34,13 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] List<GameObject> _allTasks = new List<GameObject>();
 
-    [SerializeField] List<Sprite> _spritePlayers = new List<Sprite>();
+    //[SerializeField] List<Sprite> _spritePlayers = new List<Sprite>();
+    [SerializeField] List<RuntimeAnimatorController> _animationPlayers = new List<RuntimeAnimatorController>();
 
     public List<GameObject> AllTasks { get => _allTasks; }
-    public List<Sprite> SpritePlayers { get => _spritePlayers; }
+
+    //public List<Sprite> SpritePlayers { get => _spritePlayers; }
+    public List<RuntimeAnimatorController> AnimationPlayers { get => _animationPlayers; }
 
     public enum TaskEnum
     {
@@ -45,7 +48,11 @@ public class DataManager : MonoBehaviour
         LaserRoom,
         RHTask,
         Decryptage,
-        Duolingo
+        Duolingo,
+        Tamponnage,
+        Volley,
+        Store,
+        Matrix
     }
 
     

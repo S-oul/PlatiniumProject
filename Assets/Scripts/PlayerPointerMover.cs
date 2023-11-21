@@ -11,6 +11,8 @@ public class PlayerPointerMover : MonoBehaviour
     Vector3 _playerStartPosition;
     [SerializeField] Vector3 _targetPosition;
 
+    DecryptageTask _tasker;
+
     float _playerStepDistanceX;
     Vector3 _playerStepDistance;
     [SerializeField] [Range(0.01f, 0.5f)] float _playerSpeed = 0.1f; 
@@ -63,6 +65,8 @@ public class PlayerPointerMover : MonoBehaviour
         _playerPointerTrans = GetComponent<Transform>();
         _playerStartPosition = _playerPointerTrans.localPosition;
 
+        _tasker = transform.parent.GetComponent<DecryptageTask>();
+
         SetState(_starterState);
 
         _playerStepDistanceX = CalculatePlayerStepDistance();
@@ -76,15 +80,15 @@ public class PlayerPointerMover : MonoBehaviour
         _loseCoverSprite = _loseCover.GetComponent<SpriteRenderer>();
     }
 
-    public void InputManager(InputAction.CallbackContext context)
+/*    public void InputManager(InputAction.CallbackContext context)
     {
         print(context);
         if (context.ReadValue<float>() > 0) { MovePlayerForward(); }
         if (context.ReadValue<float>() < 0) { MovePlayerBack(); }
         return;
-    } //called by PlayerInput System
+    } //called by PlayerInput System*/
 
-    private void MovePlayerForward() 
+    public void MovePlayerForward() 
     {
         if (_currentState is not PlayerPointerState.IDLE) { return; }
         SetState(PlayerPointerState.MOVING_RIGHT);
@@ -97,7 +101,7 @@ else if (context.canceled)
     Debug.Log("Action was cancelled");
 */
     }   
-    private void MovePlayerBack()
+    public void MovePlayerBack()
     {
         if (_currentState is not PlayerPointerState.IDLE) { return; }
         SetState(PlayerPointerState.MOVING_LEFT);
@@ -193,15 +197,15 @@ else if (context.canceled)
         switch (endState)
         {
             case END_STATE.WIN:
+                _tasker.End(true);
                 _winCoverSprite.enabled = true;
                 break;
 
             case END_STATE.LOSE:
+                _tasker.End(false);
                 _loseCoverSprite.enabled = true;
                 break;
         }
-        GetComponent<PlayerInput>().enabled = false;
-        this.enabled = false;
     }
 }
 

@@ -1,15 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using JetBrains.Annotations;
-using UnityEngine.Windows;
+
 
 public class PlayerUI : MonoBehaviour
 {
 
-    
+
     [SerializeField] Canvas _canvas;
 
     [Header("InputsUI")]
@@ -18,9 +16,12 @@ public class PlayerUI : MonoBehaviour
     Slider _sliderInputsUI;
     Image _input;
     bool qteInputIsActive = false;
-    [HideInInspector] public float _sliderPercentValue;
+    float sliderPercentValue;
     Slider _validationBadInputSlider;
+    Image _roundInputTimer;
+    Vector3 _roundTimerOriginalSize;
    
+
 
     [Header("Duolingo")]
     Transform _duolingoUI;
@@ -33,11 +34,19 @@ public class PlayerUI : MonoBehaviour
     Image _right;
     Image _left;
 
+
+    [Header("MashDownButton")]
+    Transform _mashDownTransform;
+
+    public float SliderPercentValue { get => sliderPercentValue; set => sliderPercentValue = value; }
+    public Image RoundInputTimer { get => _roundInputTimer; set => _roundInputTimer = value; }
+    
+
     private void Start()
     {
-        
+
         StartUI();
-        DisplayInputsUI(false);
+        DisplayInputsTaskUI(false);
     }
 
 
@@ -50,6 +59,11 @@ public class PlayerUI : MonoBehaviour
         _sliderInputsUI = _qteUI.transform.Find("Slider").GetComponent<Slider>();
         _input = _sliderInputsUI.gameObject.transform.Find("SmallerCircle").Find("Image").GetComponent<Image>();
         _validationBadInputSlider = _qteUI.transform.Find("Validation").Find("BadInputs").GetComponent<Slider>();
+        RoundInputTimer = _sliderInputsUI.transform.GetChild(3).GetComponent<Image>();
+        _roundTimerOriginalSize = RoundInputTimer.transform.localScale;
+        DisplayCowboyQTEUI(false);
+        DisplayVolleyQTEUI(false);
+
 
         //Duolingo
         _duolingoUI = _canvas.transform.Find("DuolingoInputs");
@@ -66,9 +80,12 @@ public class PlayerUI : MonoBehaviour
         _left = _leCodeUI.transform.GetChild(2).GetComponent<Image>();
         _down = _leCodeUI.transform.GetChild(3).GetComponent<Image>();
 
+        // MashDOwnButton
+        _mashDownTransform = _canvas.transform.Find("MashDownButton");
+
     }
 
-    public void ChangeUIInputs(string text)
+    public void ChangeInputValueUI(string text)
     {
         _textInputsUI.text = text;
     }
@@ -83,52 +100,88 @@ public class PlayerUI : MonoBehaviour
         _validationBadInputSlider.value = value;
     }
 
-/*    public void ClearUIInputsValidation()
+    public void DisplayCowboyQTEUI(bool value)
     {
-        foreach (Transform validationInput in _validationInputs)
-        {
-            validationInput.GetComponent<Image>().color = Color.white;
-        }
-
-    }*/
+        _sliderInputsUI.transform.GetChild(0).gameObject.SetActive(value);
+        _sliderInputsUI.transform.GetChild(1).gameObject.SetActive(value);
+        _validationBadInputSlider.gameObject.SetActive(value);
+    }
 
     public void ClearUIInputs()
     {
         ChangeUIInputs(Color.white);
-        ChangeUIInputs("");
+        ChangeInputValueUI("");
         _sliderInputsUI.value = 1;
-/*        ClearUIInputsValidation();*/
-    }
-
-
-
-    public void DisplayAnswersDuolingo(List<string> words, List<string> inputs)
-    {
-        if (words == null) { return; }
-        for (int i = 0; i < 3; i++)
-        {
-            _answersDuolingo[i].text = inputs[i] + ": " + words[i];
-        }
-    }
-
-    public void ClearAnswersDuolingo()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            _answersDuolingo[i].text = "";
-        }
+        /*        ClearUIInputsValidation();*/
     }
 
     public void DisplayQTEUI(bool value)
     {
         qteInputIsActive = value;
         _qteUI.gameObject.SetActive(value);
-        
+
+    }
+
+    public void DisplayVolleyQTEUI(bool value)
+    {
+        _sliderInputsUI.transform.GetChild(3).gameObject.SetActive(value);
+    }
+    
+    public void ChangeRoundTimerValue(float percent)
+    {
+        _roundInputTimer.transform.localScale = Vector3.Lerp(_roundTimerOriginalSize, _input.transform.localScale, percent);
+    }
+
+    public void ResetRoundTimerQTE()
+    {
+        RoundInputTimer.transform.localScale = _roundTimerOriginalSize;
+    }
+
+    public void DisplayAnswersDuolingo(List<string> words, List<string> inputs)
+    {
+        if (words == null) { return; }
+        for (int i = 0; i < 3; i++)
+        {
+            _answersDuolingo[i].text = /*inputs[i] + ": " +*/ words[i];
+        }
+    }
+
+    public void ClearAnswersDuolingo()
+    {
+        ClearColorAnswerBubble();
+        for (int i = 0; i < 3; i++)
+        {
+            _answersDuolingo[i].text = "";
+        }
+    }
+
+    public void ChangeColorAnswerBubble(WordConfig word, Color color)
+    {
+
+        string text = word.baseWord;
+        foreach (TextMeshProUGUI answer in _answersDuolingo)
+        {
+
+
+            if (answer.text == text)
+            {
+                answer.transform.parent.Find("Background").GetComponent<Image>().color = color;
+            }
+
+        }
+    }
+
+    public void ClearColorAnswerBubble()
+    {
+        foreach (TextMeshProUGUI answer in _answersDuolingo)
+        {
+            answer.transform.parent.Find("Background").GetComponent<Image>().color = Color.white;
+        }
     }
 
     public void DisplayDuolingoUI(bool value)
     {
-       
+
         _duolingoUI.gameObject.SetActive(value);
     }
 
@@ -137,13 +190,28 @@ public class PlayerUI : MonoBehaviour
         _leCodeUI.gameObject.SetActive(value);
     }
 
-    public void DisplayInputsUI(bool value)
+    public void DisplayMashDownButton(bool value)
+    {
+        _mashDownTransform.gameObject.SetActive(value);
+        _mashDownTransform.GetComponent<MashDownButton>().ChangeSwap(value);
+    }
+
+    public void DisplayInputsTaskUI(bool value)
     {
         DisplayDuolingoUI(value);
         DisplayQTEUI(value);
         DisplayLeCodeUI(value);
+        DisplayMashDownButton(value);
     }
 
+    public void DisplayInputUI(bool value)
+    {
+        DisplayQTEUI(value);
+        DisplayCowboyQTEUI(!value);
+
+    }
+
+    
     #endregion
 
 
@@ -151,7 +219,7 @@ public class PlayerUI : MonoBehaviour
     {
         if(qteInputIsActive) 
         {
-            _sliderInputsUI.value = _sliderPercentValue;
+            _sliderInputsUI.value = SliderPercentValue;
         }
         
     }

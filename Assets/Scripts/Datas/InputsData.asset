@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b6b8181bed6c1409204d17f2a0e4dd, type: 3}
+  m_Name: InputsData
+  m_EditorClassIdentifier: 
+  inputs:
+  - baseName: X
+    nameXbox: X
+    spriteXbox: {fileID: 0}
+    namePlaystation: Square
+    spritePlaystation: {fileID: 0}
+  - baseName: Y
+    nameXbox: Y
+    spriteXbox: {fileID: 0}
+    namePlaystation: Triangle
+    spritePlaystation: {fileID: 0}
+  - baseName: A
+    nameXbox: A
+    spriteXbox: {fileID: 0}
+    namePlaystation: Cross
+    spritePlaystation: {fileID: 0}
+  - baseName: B
+    nameXbox: B
+    spriteXbox: {fileID: 0}
+    namePlaystation: Circle
+    spritePlaystation: {fileID: 0}
+  - baseName: R1
+    nameXbox: Right Bumper
+    spriteXbox: {fileID: 0}
+    namePlaystation: R1
+    spritePlaystation: {fileID: 0}
+  - baseName: R2
+    nameXbox: Right Trigger
+    spriteXbox: {fileID: 0}
+    namePlaystation: R2
+    spritePlaystation: {fileID: 0}
+  - baseName: R3
+    nameXbox: Right Stick Press
+    spriteXbox: {fileID: 0}
+    namePlaystation: R3
+    spritePlaystation: {fileID: 0}
+  - baseName: L1
+    nameXbox: Left Bumper
+    spriteXbox: {fileID: 0}
+    namePlaystation: L1
+    spritePlaystation: {fileID: 0}
+  - baseName: L2
+    nameXbox: Left Trigger
+    spriteXbox: {fileID: 0}
+    namePlaystation: L2
+    spritePlaystation: {fileID: 0}
+  - baseName: L3
+    nameXbox: Left Stick Press
+    spriteXbox: {fileID: 0}
+    namePlaystation: L3
+    spritePlaystation: {fileID: 0}

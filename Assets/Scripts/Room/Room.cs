@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -20,14 +17,12 @@ public class Room : MonoBehaviour
 
     [SerializeField] SpriteRenderer _screenTexture;
 
-    [SerializeField] List<GameObject> _objectList;
-    [SerializeField] List<GameObject> _npcList;
-    [SerializeField] List<GameObject> _eventList;
-
     Task _task;
 
     [SerializeField] Transform _posItPos;
-    bool _hasPostIt = false;
+    [SerializeField] bool _hasPostIt = false;
+
+    [SerializeField] WinStateScreen _winStateScreen;
 
     #endregion
 
@@ -49,6 +44,8 @@ public class Room : MonoBehaviour
     public Task TaskRoom { get => _task; set => _task = value; }
     public SpriteRenderer ScreenTexture { get => _screenTexture; set => _screenTexture = value; }
     public bool HasPostIt { get => _hasPostIt; set => _hasPostIt = value; }
+    public Transform PosItPos { get => _posItPos; set => _posItPos = value; }
+    public WinStateScreen WinStateScreen { get => _winStateScreen; set => _winStateScreen = value; }
     #endregion
 
     public virtual void InitRoom()
@@ -56,7 +53,7 @@ public class Room : MonoBehaviour
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
         if(_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
 
-
+        //WinStateScreen.ChangeColor(Color.white);
         Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
         //print(gameObject.name + " : " + h + " " + s + " " + v);
         _spriteRoom.color = Color.HSVToRGB(h, s, .2f);
@@ -77,19 +74,27 @@ public class Room : MonoBehaviour
         ///Lift
         if (_id.Contains("L"))
         {
-            _gameManager._liftList.Add(GetComponent<Lift>());
+            _gameManager.LiftList.Add(GetComponent<Lift>());
         }
-
+        if (_id.Contains("T"))
+        {
+            _gameManager.RoomTaskList.Add(this);
+        }
+        
         ///Spawn
-        if (_id.Contains("S"))
+        /*if (_id.Contains("S"))
         {
 
-        }
+        }*/
     }
 
     public void OnRoomEnter()
     {
-        _spriteRoom.color = Color.HSVToRGB(h, s, v);
+        if(_spriteRoom != null)
+        {
+            _spriteRoom.color = Color.HSVToRGB(h, s, v);
+        }
+        
     }
     public void OnRoomExit()
     {
@@ -99,11 +104,11 @@ public class Room : MonoBehaviour
 
     #region UNITY EDITOR
 #if UNITY_EDITOR
-
+/*
     private void OnValidate()
     {
         transform.localScale = new Vector3(RoomSize * 5, transform.localScale.y, 1);
-    }
+    }*/
 #endif
     #endregion
 }

@@ -4,29 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DecryptageTask : InputTask
+public class DecryptageTask : Task
 {
     
     [SerializeField] ObstacleManager _obstacles;
     [SerializeField] PlayerPointerMover _arrow;
-    [SerializeField] PlayerInput _plyrInput;
+    PlayerController _controller;
 
-    public PlayerInput PlyrInput { get => _plyrInput; set => _plyrInput = value; }
 
     public override void End(bool isSuccessful)
     {
         if (!isSuccessful)
         {
         }
-        _plyrInput.transform.GetComponent<PlayerController>().EnableMovement();
+        _controller.DisableDecryptageEnableMovements();
         _obstacles.DoSpin = false;
+        base.End(isSuccessful);
     }
     public override void Init()
     {
+        base.Init();
+        _controller = PlayerGameObject.GetComponent<PlayerController>();
         for(int i = 0; i < _obstacles.speedList.Count; i++ )
         {
-            _obstacles.speedList[i] = _obstacles.speedList[i] * _difficulty;
+            _obstacles.speedList[i] = _obstacles.speedList[i] * Difficulty;
         }
+        _controller.EnableDecryptageDisableMovements();
         StartTask();
     }
 
@@ -34,13 +37,27 @@ public class DecryptageTask : InputTask
     {
         if (IsStarted)
         {
-            _arrow.transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, 0) * Time.deltaTime;
+            switch (_controller.DecrytContext.x)
+            {
+                case > 0:
+                    print(_controller.DecrytContext);
+                    _arrow.MovePlayerForward();
+                    _controller.DecrytContext = Vector2.zero;
+                    break;
+                case < 0:
+                    print(_controller.DecrytContext);
+                    _arrow.MovePlayerBack();
+                    _controller.DecrytContext = Vector2.zero;
+                    break;
+                default:
+                    _controller.DecrytContext = Vector2.zero;
+                    break;
+            }
         }
     }
 
-    public override void StartTask()
+    public void StartTask()
     {
-        //print(_playerInput);
         IsStarted = true;
         _obstacles.DoSpin = true;
     }

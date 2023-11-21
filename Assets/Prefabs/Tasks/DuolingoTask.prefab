@@ -46,38 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPlayers: 2
   _difficulty: 1
-  _words:
-  - Gato
-  - Casa
-  - Fresa
-  - Perro
-  - Montag
-  - Uralt
-  - Auto
-  - Flasche
-  - Feuille
-  - Bateau
-  - Chaise
-  - Monnaie
-  - Colher
-  - Desenho
-  - Cavalo
-  - Cama
-  _wordsTranslated:
-  - Cat
-  - Home
-  - Strawberry
-  - Dog
-  - Monday
-  - Ancient
-  - Car
-  - Bottle
-  - Leaf
-  - Boat
-  - Chair
-  - Money
-  - Spoon
-  - Drawing
-  - Horse
-  - Bed
+  _wordsData: {fileID: 11400000, guid: 554d350d80a261747b643bd12e539fe2, type: 2}
   _numberOfWordsAsked: 5

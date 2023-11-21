@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6054632041960249162}
   - component: {fileID: 2300834784979676389}
+  - component: {fileID: 5465058750468538102}
   m_Layer: 11
   m_Name: PlayerPointer
   m_TagString: Untagged
@@ -52,76 +53,58 @@ MonoBehaviour:
   _winCover: {fileID: 2412693090738931858}
   _loseCover: {fileID: 1359300733173985765}
   _maxDeaths: 3
---- !u!114 &832548914065870767
-MonoBehaviour:
+--- !u!212 &5465058750468538102
+SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193356953725035974}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 18481f5ba17cf8644855f40254e5302a, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6c54ddc8-8fd2-459f-8126-d1c73ffc536b
-    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 88f16755-d11a-4470-80ba-9811145be39c
-    m_ActionName: Player/Jump[/Keyboard/upArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ffa3a006-c195-44f1-a68f-9212de96628a
-    m_ActionName: Player/Crouch[/Keyboard/ctrl]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a6ab1757-14da-4782-aa2e-942dd22dddea
-    m_ActionName: Player/InputTask
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d8120aec-740c-4ddb-8acd-fa682338fa60
-    m_ActionName: Player/Interact[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2300834784979676389}
-        m_TargetAssemblyTypeName: PlayerPointerMover, Assembly-CSharp
-        m_MethodName: InputManager
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0e361b32-cab0-4783-aac7-f51b56710d46
-    m_ActionName: Player/Decryptage[/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d762bb72-5fda-4d29-82f7-e3cc01dbcd3a
-    m_ActionName: Player/Tamponage[/Keyboard/leftArrow,/Keyboard/rightArrow]
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &565995619482132626
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,10 +441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7fe72a2a0a48544b5346cdacb38e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playersDoingTask: []
   _numberOfPlayers: 1
   _difficulty: 1
   _obstacles: {fileID: 5673804121946836985}
   _arrow: {fileID: 2300834784979676389}
+  _controller: {fileID: 0}
 --- !u!1 &2137026908256105429
 GameObject:
   m_ObjectHideFlags: 0

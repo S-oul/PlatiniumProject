@@ -20,11 +20,11 @@ public class UINpc : MonoBehaviour
     }
 
 
-    public void ChangeBubbleContent(Sprite image)
+    public void ChangeBubbleImage(Sprite image)
     {
         _talkingBubbleImage.sprite = image;
     }
-    public void ChangeBubbleContent(string text)
+    public void ChangeBubbleText(string text)
     {
         _talkingBubbleText.text = text;
     }
@@ -32,5 +32,7 @@ public class UINpc : MonoBehaviour
     {
         _talkingBubble.gameObject.SetActive(isActive);
     }
+
+    
 
 }

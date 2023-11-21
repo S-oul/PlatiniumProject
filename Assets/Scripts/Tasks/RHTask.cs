@@ -7,7 +7,6 @@ public class RHTask : Task
 {
 
     public List<GameObject> _playersAsked = new List<GameObject>();
-    GameManager _gameManager;
      GameObject _playerNeeded;
 
     [SerializeField] RH _npcRH;
@@ -19,14 +18,14 @@ public class RHTask : Task
     }
     public override void End(bool isSuccessful)
     {
-        _npcRH.NPCUI.DisplayTalkingBubble(false);
+        StartCoroutine(FeedBack(isSuccessful));
         _npcRH.IsPlayerNeeded = false;
-        IsDone = true;
+        base.End(isSuccessful);
     }
 
     public override void Init()
     {
-        
+        base.Init();
         if (_gameManager.PlayerCount > 1)
         {
             _playerNeeded = null;
@@ -52,5 +51,19 @@ public class RHTask : Task
         }
     }
         
-
+    IEnumerator FeedBack(bool value)
+    {
+        _npcRH.DisplayPlayer(null);
+        if (value == true)
+        {
+            
+            _npcRH.Talk("Thank you");
+        }
+        else
+        {
+            _npcRH.Talk(">:o");
+        }
+        yield return new WaitForSeconds(3f);
+        _npcRH.NPCUI.DisplayTalkingBubble(false);
+    }
 }

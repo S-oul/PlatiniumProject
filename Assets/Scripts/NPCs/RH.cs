@@ -22,23 +22,31 @@ public class RH : NPC, IChattyNPC
     public void DisplayPlayer(GameObject player)
     {
         NPCUI.DisplayTalkingBubble(true);
-        NPCUI.ChangeBubbleContent(player.transform.GetComponent<SpriteRenderer>().sprite);
+        if(player == null)
+        {
+            NPCUI.ChangeBubbleImage(null);
+        }
+        else
+        {
+            NPCUI.ChangeBubbleImage(player.transform.Find("Animation").GetComponent<SpriteRenderer>().sprite);
+        }
+        
     }
 
     public void Talk(string text)
     {
         
         NPCUI.DisplayTalkingBubble(true);
-        NPCUI.ChangeBubbleContent(text);
+        NPCUI.ChangeBubbleText(text);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(_isPlayerNeeded && collision.gameObject == _playerNeeded)
+        if(_isPlayerNeeded && collision.gameObject == _playerNeeded )
         {
             _task.End(true);
         }
-        else if(_isPlayerNeeded && collision.tag == "Player")
+        else if(_isPlayerNeeded && collision.tag == "Player" && collision.gameObject != _task.PlayerGameObject)
         {
             _task.End(false);
         }

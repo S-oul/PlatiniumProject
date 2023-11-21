@@ -14,6 +14,13 @@ TagManager:
   - DecryptInteract
   - Laser
   - CodeZone
+  - Goat
+  - StoreZone
+  - FinalDoor
+  - DeadZoneStore
+  - SquidVolley
+  - AutoLift
+  - GraffitiTask
   layers:
   - Default
   - TransparentFX
@@ -48,15 +55,33 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: SKYBOX
+    uniqueID: 841011529
+    locked: 0
+  - name: BackGround
+    uniqueID: 2838161045
+    locked: 0
   - name: roomWall
     uniqueID: 3130462515
-    locked: 0
+    locked: 1
   - name: Board
     uniqueID: 2446425409
     locked: 0
+  - name: Deco
+    uniqueID: 2057632499
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
+    locked: 1
   - name: MiniGame
     uniqueID: 3731426517
+    locked: 0
+  - name: Player
+    uniqueID: 940664647
+    locked: 0
+  - name: 'LightBG '
+    uniqueID: 245853705
+    locked: 0
+  - name: UIPlayer
+    uniqueID: 2510225839
     locked: 0

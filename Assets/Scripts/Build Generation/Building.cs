@@ -1,10 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-using System.Linq;
-using UnityEditor;
-using static Building;
-using UnityEngine.Rendering;
 
 public class Building : MonoBehaviour
 {
@@ -21,20 +17,23 @@ public class Building : MonoBehaviour
     [SerializeField] private List<GameObject> _poolType3 = new List<GameObject>();
     [SerializeField] private List<GameObject> _poolType4 = new List<GameObject>();
 
-    [SerializeField] private List<List<GameObject>> _allPool = new List<List<GameObject>>();
 
-    //[MenuItem("Assets/Create Room")]
     [SerializeField] private List<FloorData> _spawnFloors = new List<FloorData>();
-    [SerializeField] private List<FloorData> _floorsW3Max = new List<FloorData>();
     [SerializeField] private List<FloorData> _floorsW2Max = new List<FloorData>();
 
+    [SerializeField] private Transform _finalRoomPosition;
+
+    private List<List<GameObject>> _allPool = new List<List<GameObject>>();
+    
     private GameManager _gameManager;
 
     #endregion
 
     #region Generation value;
+
     private bool _hasSpawnRoom = false;
     private bool _hasBigRoom = false;
+    private bool _hasCodeRoom = false;
 
 
     #endregion
@@ -57,25 +56,17 @@ public class Building : MonoBehaviour
         _gameManager.ResetAllList();
         DestroyALL();
         Generate();
+        
     }
     void GenerateFloor(int floor,float height)
     {
         //Chance to spawn a Big3 Room
-        float treshold = ((float)floor +1) / (float)_maxFloors;
-        float chancetoSpawn = Random.Range(0, 101) / 100f;
+        //float treshold = ((float)floor +1) / (float)_maxFloors;
+        //float chancetoSpawn = Random.Range(0, 101) / 100f;
         // print(treshold + " / " + chancetoSpawn + " / hasBigRoom : " + _hasBigRoom);
         
         string data;
-        if (chancetoSpawn < treshold && !_hasBigRoom)
-        {
-            data = _floorsW3Max[Random.Range(0, _floorsW3Max.Count)]._roomstype;
-            _hasBigRoom = true;
-        }
-        else
-        {
-            data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
-
-        }
+        data = _floorsW2Max[Random.Range(0, _floorsW2Max.Count)]._roomstype;
 
         int randomReverse = Random.Range(0,2);
         if (randomReverse == 1)
@@ -86,21 +77,35 @@ public class Building : MonoBehaviour
         int i = 0;
         foreach (char c in data)
         {
-            if(c == 'S')
+            if (c == 'S')
             {
-                i += instantiateRoom(_spawnRoom, height,i).RoomSize;
+                Room spawnRoom = InstantiateRoom(_spawnRoom, height, i);
+                i += spawnRoom.RoomSize;
+                _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
             }
             else
             {
                 int intC = CharToInt(c);
+                
+
                 int r = Random.Range(0, _allPool[intC].Count);
-                i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
+                if(_allPool[intC][r].GetComponent<Room>().Id.Contains("C") && !_hasCodeRoom && floor > 1)
+                {
+                    _hasCodeRoom = true;
+                }else
+                {
+                    while (_allPool[intC][r].GetComponent<Room>().Id.Contains("C"))
+                    {
+                        r = Random.Range(0, _allPool[intC].Count);
+                    }
+                }
+                i += InstantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
             
         }
 
     }
-    void GenerateFloor(FloorData f,int floor, float height)
+    void GenerateFloor(FloorData f, int floor, float height)
     {
         string data = f._roomstype;
         int i = 0;
@@ -108,21 +113,35 @@ public class Building : MonoBehaviour
         {
             if (c == 'S')
             {
-                i += instantiateRoom(_spawnRoom, height, i).RoomSize;
+                Room spawnRoom = InstantiateRoom(_spawnRoom, height, i);
+                i += spawnRoom.RoomSize;
+                _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
             }
             else
             {
                 int intC = CharToInt(c);
+
+
                 int r = Random.Range(0, _allPool[intC].Count);
-                i += instantiateRoom(_allPool[intC][r], height, i).RoomSize;
+                if (_allPool[intC][r].GetComponent<Room>().Id.Contains("C") && !_hasCodeRoom && floor > 1)
+                {
+                    _hasCodeRoom = true;
+                }
+                else
+                {
+                    while (_allPool[intC][r].GetComponent<Room>().Id.Contains("C"))
+                    {
+                        r = Random.Range(0, _allPool[intC].Count);
+                    }
+                }
+                i += InstantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
-
         }
-
     }
-    Room instantiateRoom(GameObject room, float height, int roomStart)
+
+    Room InstantiateRoom(GameObject room, float height, int roomStart)
     {
-        GameObject go = Instantiate(room);
+        GameObject go = Instantiate(room);  
         go.transform.parent = transform;
         Room ro = go.GetComponent<Room>();
         ro.InitRoom();
@@ -237,7 +256,8 @@ public class Building : MonoBehaviour
         _hasSpawnRoom = false;
         _hasBigRoom = false;
         System.Console.Clear();
-
+        GameObject finalRoom = Instantiate(_poolType4[_gameManager.DayIndex], _finalRoomPosition.position, Quaternion.identity);
+        _gameManager.FinalRoom = finalRoom;
         for (float i = 0; i < _maxFloors; i++)
         {
             if (i == 2)
@@ -306,7 +326,7 @@ public class Building : MonoBehaviour
             case '8': return 8;
             case '9': return 9;
             default:
-                //print("ERROR ERROR");
+                print("ERROR ERROR : " + c);
                 return -1;
         }
     }
