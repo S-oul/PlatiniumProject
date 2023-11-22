@@ -548,8 +548,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c623000070b00000
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c623000070b000005e750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -663,7 +663,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0eaafdffd0aafdff20abfdffb6c90000bac90000
+      m_ExpandedIDs: c69effffc89effffca9effffcc9effffce9effffd09effffd29effffe0c1ffffe2c1ffffe4c1ffffe6c1ffffe8c1ffffeac1ffffecc1fffffac2fffffcc2fffffec2ffff00c3ffff02c3ffff04c3ffff06c3fffff6d4ffffd4d7fffffadaffff8cddffff84e0ffff56e5ffff60f2ffff8af3ffffa6f3ffff04770000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -751,8 +751,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 24.8}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
       index: 0
@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.055179328, y: 2.150387, z: 0.036242455}
+    m_Target: {x: 0.36362037, y: 1.770182, z: 0.007109287}
     speed: 2
     m_Value: {x: -2.8532605, y: -4.361418, z: 0.116219275}
   m_RenderMode: 0
@@ -1101,7 +1101,7 @@ MonoBehaviour:
       m_Fade:
         m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
