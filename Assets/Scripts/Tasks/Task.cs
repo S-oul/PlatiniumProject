@@ -140,6 +140,7 @@ public abstract class Task : MonoBehaviour
         GameManager.Instance.RoomWin();
         GameManager.Instance.CheckIfDayFinished();
         _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Success);
+        _room.AudioSource.PlayOneShot(_room.OnRoomSuccessClip);
     }
     public void OnRoomFail()
     {
@@ -155,7 +156,10 @@ public abstract class Task : MonoBehaviour
         Debug.Log(gameObject.name);
         GameManager.Instance.RoomLose();
         GameManager.Instance.CheckIfDayFinished();
-        
+
+        _room.AudioSource.PlayOneShot(_room.OnRoomFailClip);
+
+
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {
