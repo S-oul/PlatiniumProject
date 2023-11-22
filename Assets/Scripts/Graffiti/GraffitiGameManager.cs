@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GraffitiGameManager : Task
@@ -11,7 +12,13 @@ public class GraffitiGameManager : Task
     [SerializeField] List<GameObject> level4;
     [SerializeField] List<GameObject> level5;
 
-    [SerializeField] float _adjustableSpriteDisapearanceSpeed = 1;
+    // Adjust wash speed of specific graffiti
+    [SerializeField] float SmalGraffitiWashSpeed = 1;
+    [SerializeField] float MediumGraffitiWashSpeed = 1;
+    [SerializeField] float LargeGraffitiWashSpeed = 1;
+
+    // Adjust overall wash speed
+    [SerializeField] float _adjustableSpriteDisapearanceSpeed = 1; 
 
     List<GameObject> _tempGraffitiList;
     List<GraffitiDrawing> _graffitiList = new List<GraffitiDrawing>();
@@ -69,10 +76,10 @@ public class GraffitiGameManager : Task
     public override void End(bool isSuccessful)
     {
         //if (!isSuccessful) { }
-        foreach (GameObject player in PlayersDoingTask)
+        foreach (PlayerInGraffiti player in _listOfPlayersInGraffiti)
         {
-            //_controller.DisableDecryptageEnableMovements();
-            player.GetComponent<PlayerController>().DisableDecryptageEnableMovements();
+            player.setCraftingAnimation(false);
+            player.playerController.DisableDecryptageEnableMovements();
         }
         base.End(isSuccessful);
     }
@@ -148,7 +155,6 @@ public class GraffitiGameManager : Task
                     else End(true);
                 }
             }
-
             /* Old Code
              * if (_currentOpacity <= 0) 
             {
@@ -185,8 +191,23 @@ public class GraffitiGameManager : Task
     {
         foreach (GameObject obj in createOrderedDifficultyDict()[Difficulty])
         {
-            GraffitiDrawing newGraff = new GraffitiDrawing(obj);
+            GraffitiDrawing newGraff = new GraffitiDrawing(obj, GetObjectWashSpeed(obj));
             _graffitiList.Add(newGraff);
+        }
+    }
+
+    float GetObjectWashSpeed(GameObject obj)
+    {
+        switch (obj.name)
+        {
+            case "graffiti_petit":
+                return SmalGraffitiWashSpeed;
+            case "graffiti_moyen":
+                return MediumGraffitiWashSpeed;
+            case "graffiti_grand":
+                return LargeGraffitiWashSpeed;
+            default:
+                throw new ArgumentException(obj.GetType().Name + " is not the name of an existing graffiti GameObject");
         }
     }
 
@@ -220,6 +241,7 @@ public class GraffitiGameManager : Task
         PlayerInGraffiti newPlayer = new PlayerInGraffiti(newPlayerObject);
         newPlayer.playerController.EnableDecryptageDisableMovements();
         newPlayer.AssignGraffiti(ChooseGraffitiToStartCleaning()); // new player MUST NOT be added if there are no remaining graffiti
+        newPlayer.setCraftingAnimation(true);
 
         _listOfPlayersInGraffiti.Add(newPlayer);
     }

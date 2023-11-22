@@ -92,7 +92,6 @@ public abstract class Task : MonoBehaviour
                     _isStarted = true;
                     Init();
                 }
-
             }
             else if (_numberOfPlayers == 1)
             {
@@ -103,7 +102,6 @@ public abstract class Task : MonoBehaviour
                     _isStarted = true;
                     Init();
                 }
-
             }
             else
             {
@@ -117,10 +115,8 @@ public abstract class Task : MonoBehaviour
                     }
                 }
             }
-        }
-        
+        } 
     }
-
     public void OnRoomSuccess()
     {
         Debug.Log(gameObject.name + " = Success");
@@ -140,7 +136,6 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {
-
         if (_playersDoingTask.Contains(player) && !IsStarted)
         {
             _playersDoingTask.Remove(player);
