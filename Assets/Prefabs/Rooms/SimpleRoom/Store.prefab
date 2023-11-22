@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 2
   _id: 2T
-  _spriteRoom: {fileID: 0}
+  _spriteRoom: {fileID: 5527422363951748958}
   _screenTexture: {fileID: 0}
   _posItPos: {fileID: 7141521803795672407}
   _hasPostIt: 0

@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 3
   _id: 3T
-  _spriteRoom: {fileID: 0}
+  _spriteRoom: {fileID: 1893912041493478563}
   _screenTexture: {fileID: 0}
   _posItPos: {fileID: 1965961651334219512}
   _hasPostIt: 0

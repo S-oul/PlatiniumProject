@@ -627,6 +627,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 1801621178}
@@ -953,6 +956,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 1382611767}
@@ -1149,7 +1155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2891303753b1147ae22b39e48f6f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayTime: 65
+  _dayTime: 180
   doTimer: 1
 --- !u!222 &445611535
 CanvasRenderer:
@@ -1334,6 +1340,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 979305923}
@@ -1876,6 +1885,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 796650065}
@@ -2096,7 +2108,7 @@ Transform:
   m_GameObject: {fileID: 1094115823}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.102, y: -0.087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2179,7 +2191,7 @@ GameObject:
   - component: {fileID: 1152499415}
   - component: {fileID: 1152499414}
   m_Layer: 0
-  m_Name: placeHolder_Background (1)
+  m_Name: placeHolder_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2246,8 +2258,8 @@ Transform:
   m_GameObject: {fileID: 1152499413}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.8, y: 19.1, z: 0}
-  m_LocalScale: {x: 4.245757, y: 4.245757, z: 4.245757}
+  m_LocalPosition: {x: 25, y: 13.56, z: 0}
+  m_LocalScale: {x: 9.729999, y: 9.729999, z: 9.729999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -2396,6 +2408,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 1689437617}
@@ -2597,6 +2612,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 235177743}
@@ -3184,6 +3202,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 1161253751}
@@ -3455,6 +3476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unclampedValue: 1
   _speedTimer: 0.01
+  _speedUnclamped: 0.1
   _OnRoomLoose: 0.2
   _OnRoomWin: 0.1
 --- !u!1 &1801621177
@@ -3601,6 +3623,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 91042053}

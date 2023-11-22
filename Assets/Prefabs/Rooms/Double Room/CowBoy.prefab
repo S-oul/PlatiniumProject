@@ -141,14 +141,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 3
   _id: 3T
-  _spriteRoom: {fileID: 0}
+  _spriteRoom: {fileID: 1893912041493478563}
   _screenTexture: {fileID: 0}
   _posItPos: {fileID: 1965961651334219512}
   _hasPostIt: 0
   _winStateScreen: {fileID: 7702395339222405410}
-  _onRoomFailClip: {fileID: 8300000, guid: 79e3bc2a96911374fb4dff7be51a2253, type: 3}
-  _onRoomSuccessClip: {fileID: 8300000, guid: 8e3a7e2d808eebe48ae117d2a6e12faf, type: 3}
   _audioSource: {fileID: -412784412391616817}
+  _onRoomSuccessClip: {fileID: 8300000, guid: 8e3a7e2d808eebe48ae117d2a6e12faf, type: 3}
+  _onRoomFailClip: {fileID: 8300000, guid: 79e3bc2a96911374fb4dff7be51a2253, type: 3}
   _listPlayer: []
 --- !u!61 &-1268150158152592730
 BoxCollider2D:
@@ -847,11 +847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223462735310169286, guid: e356d8ca284b3864081516112122c52d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.4073
+      value: -0.3898
       objectReference: {fileID: 0}
     - target: {fileID: 6223462735310169286, guid: e356d8ca284b3864081516112122c52d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.299
+      value: 0.235
       objectReference: {fileID: 0}
     - target: {fileID: 6223462735310169286, guid: e356d8ca284b3864081516112122c52d, type: 3}
       propertyPath: m_LocalPosition.z

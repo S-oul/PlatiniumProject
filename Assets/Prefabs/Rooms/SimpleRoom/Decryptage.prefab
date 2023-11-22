@@ -1347,14 +1347,6 @@ PrefabInstance:
       value: WinStateScreen
       objectReference: {fileID: 0}
     - target: {fileID: 6411242289831360592, guid: fbf50f0233436764ca09b78d32a1357d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6411242289831360592, guid: fbf50f0233436764ca09b78d32a1357d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.120000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 6411242289831360592, guid: fbf50f0233436764ca09b78d32a1357d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.3409647
       objectReference: {fileID: 0}

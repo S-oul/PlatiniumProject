@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class LeCode : Task
 {
-    
-    GameObject _playerDoingTask = null;
     PlayerController _controller;
-
 
     [SerializeField] GameObject _postIt;
     string _code = "";
     TextMeshPro _screenText;
 
 
-    public bool HaveOnePlayer() { if (_playerDoingTask != null) return true; else return false; }
+    public bool HaveOnePlayer() { if (PlayersDoingTask[0] != null) return true; else return false; }
     public PlayerController Controller { get => _controller; set => _controller = value; }
-    public GameObject Player { get => _playerDoingTask; set => _playerDoingTask = value; }
+    public GameObject Player { get => PlayersDoingTask[0]; }
     public string Code { get => _code; set => _code = value; }
 
     private void Awake()
@@ -75,7 +72,7 @@ public class LeCode : Task
     }
     private void Update()
     {
-        if (HaveOnePlayer() && !IsDone)
+        if (IsStarted && !IsDone)
         {
             if(_controller.CodeContext != null)
             {

@@ -1,16 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
+using UnityEngine.Rendering;
 
 public class DaySlider : MonoBehaviour
 {
     Slider _slider;
     [SerializeField] float _unclampedValue = 1;
     [SerializeField] float _speedTimer = .3f;
+    [SerializeField] float _speedUnclamped = .1f;
     [Tooltip("In Percent")]
     [SerializeField] float _OnRoomLoose = .20f;
     [SerializeField] float _OnRoomWin = .10f;
+
 
     private bool _isOnCrunch = false;
 
@@ -24,9 +26,10 @@ public class DaySlider : MonoBehaviour
     }
     private void Update()
     {
+        _unclampedValue = Mathf.Clamp01(_unclampedValue);
         RemoveValue(_speedTimer * Time.deltaTime);
 
-        _slider.value = Mathf.Lerp( _slider.value, _unclampedValue, .1f);
+        _slider.value = Mathf.Lerp( _slider.value, _unclampedValue, _speedUnclamped);
 
     }
     public float SetValue(float val)
@@ -58,5 +61,17 @@ public class DaySlider : MonoBehaviour
     public float GetValue()
     {
         return _unclampedValue;
+    }
+
+
+    [Button]
+    public void Add20()
+    {
+        AddValue(.2f);
+    }
+    [Button]
+    public void Remove20()
+    {
+        RemoveValue(.2f);
     }
 }
