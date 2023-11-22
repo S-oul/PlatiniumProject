@@ -34,7 +34,7 @@ public class DuolingoTask : InputTask
     int _rightAnswerIndex = 0;
     public NPC NPCDuolingo { get => _npcDuolingo; set => _npcDuolingo = value; }
 
-
+    Animator animator;
 
     List<WordConfig> _allWords = new List<WordConfig>();
 
@@ -69,6 +69,7 @@ public class DuolingoTask : InputTask
 
     void TaskLoop()
     {
+        animator = _npcDuolingo.GetComponentInChildren<Animator>();
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
         _controller = _currentPlayer.GetComponent<PlayerController>();
         DisplayWordToFind();
@@ -88,6 +89,7 @@ public class DuolingoTask : InputTask
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
         _npcDuolingo.GetComponent<UINpc>().ChangeBubbleText(rightWordTrad + "?");
         DisplayAnswers(_rightWord);
+        animator.SetTrigger("Talk");
     }
 
     void DisplayAnswers(WordConfig word)
