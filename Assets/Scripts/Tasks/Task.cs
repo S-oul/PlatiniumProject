@@ -72,7 +72,7 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerJoinedTask(GameObject player)
     {
-        
+        //Debug.Log("OnPlayerJoinedTask called");  //This func is called 1-3 times at randome. Safegards have been put in place.
         if (!IsDone)
         {
             if (AddPlayerAtRunTime)
@@ -80,17 +80,20 @@ public abstract class Task : MonoBehaviour
                 if (_isStarted)
                 {
                     if (_playersDoingTask.Count < 4)
-                    {
-                        _playersDoingTask.Add(player);
+                    {   
+                        //the safegard in question:
+                        if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) { _playersDoingTask.Add(player); } 
                         return;
                     }
                 }
-                _playersDoingTask.Add(player);
-                _isStarted = true;
-                Init();
-
+                else
+                {
+                    _playersDoingTask.Add(player);
+                    _isStarted = true;
+                    Init();
+                }
             }
-            if (_numberOfPlayers == 1)
+            else if (_numberOfPlayers == 1)
             {
                 if (!_isStarted)
                 {
@@ -99,7 +102,6 @@ public abstract class Task : MonoBehaviour
                     _isStarted = true;
                     Init();
                 }
-
             }
             else
             {
@@ -113,10 +115,8 @@ public abstract class Task : MonoBehaviour
                     }
                 }
             }
-        }
-        
+        } 
     }
-
     public void OnRoomSuccess()
     {
         Debug.Log(gameObject.name + " = Success");
@@ -136,19 +136,16 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {
-
         if (_playersDoingTask.Contains(player) && !IsStarted)
         {
             _playersDoingTask.Remove(player);
         }
-        
     }
 }
 
 public interface ITimedTask
 {
     float _givenTime { get; }
-
 }
 
 
