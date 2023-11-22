@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class BallVolley : MonoBehaviour
 {
@@ -103,9 +104,8 @@ public class BallVolley : MonoBehaviour
         if (_numberOfTouches == 4)
         {
             _canCheckCollision = false;
-            print("+ de 3 touches");
-            _task.Point(false);
-            StartCoroutine(TimerBeforeDestroy());
+            
+            StartCoroutine(TimerBeforeDestroy(false));
         }
         
         
@@ -115,14 +115,14 @@ public class BallVolley : MonoBehaviour
     {
         
         _canCheckCollision = false;
-        StartCoroutine(TimerBeforeDestroy());
+        
         if (gameObject.transform.localPosition.x < 0)
         {
-            _task.Point(false);
+            StartCoroutine(TimerBeforeDestroy(false));
         }
         else if (gameObject.transform.localPosition.x > 0)
         {
-            _task.Point(true);
+            StartCoroutine(TimerBeforeDestroy(true));
         }
         
         
@@ -139,9 +139,20 @@ public class BallVolley : MonoBehaviour
         else { return true; }
     }
 
-    public IEnumerator TimerBeforeDestroy()
+    public IEnumerator TimerBeforeDestroy(bool isForPlayer)
     {
-        
+        if (isForPlayer)
+        {
+            _task.TextVolleyUI.gameObject.SetActive(true);
+            _task.TextVolleyUI.text = "Point for players!";
+        }
+        else
+        {
+            _task.TextVolleyUI.gameObject.SetActive(true);
+            _task.TextVolleyUI.text = "Point for squid!";
+
+        }
+        StartCoroutine(_task.TextAnimation());
         foreach (GameObject player in _task.PlayersDoingTask)
         {
             Collider2D playerCollider = player.GetComponent<Collider2D>();
@@ -153,7 +164,7 @@ public class BallVolley : MonoBehaviour
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, false);
         }
-        
+        _task.Point(isForPlayer);
         Destroy(gameObject);
     }
 
@@ -164,8 +175,4 @@ public class BallVolley : MonoBehaviour
         _canCheckTouchAgain = true;
     }
 
-    private void OnDrawGizmos()
-    {
-        Handles.DrawLine(_task.Squid.transform.position, _task.PointVolley.position);
-    }
 }

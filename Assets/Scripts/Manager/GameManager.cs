@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         
+        
     }
 
     public List<Lift> ShuffleLift(List<Lift> list)
