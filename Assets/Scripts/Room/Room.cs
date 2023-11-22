@@ -24,6 +24,12 @@ public class Room : MonoBehaviour
 
     [SerializeField] WinStateScreen _winStateScreen;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _onRoomSuccessClip;
+    [SerializeField] AudioClip _onRoomFailClip;
+
+
+
     #endregion
 
     GameManager _gameManager;

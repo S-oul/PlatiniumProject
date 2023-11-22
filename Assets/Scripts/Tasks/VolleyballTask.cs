@@ -83,7 +83,7 @@ public class VolleyballTask : Task
         Squid = RoomTask.transform.Find("Squid").gameObject;
         Net = RoomTask.transform.Find("Net").gameObject;
         _cam = Camera.main.GetComponent<Cam>();
-        _cam.FixOnRoomVoid(ThisRoom);
+        _cam.FixOnRoomVoid(RoomTask);
         StartCoroutine(TimerBeforeBall(_timeBeforeStart));
     }
 

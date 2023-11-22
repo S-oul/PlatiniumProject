@@ -25,7 +25,6 @@ public abstract class Task : MonoBehaviour
     public bool IsStarted { get => _isStarted; set => _isStarted = value; }
 
     public Room RoomTask { get => _room; set => _room = value; }
-    public Room ThisRoom { get => _room; set => _room = value; }
     public int Difficulty { get => _difficulty; set => _difficulty = value; }
     public bool AddPlayerAtRunTime { get => _addPlayerAtRunTime; set => _addPlayerAtRunTime = value; }
 

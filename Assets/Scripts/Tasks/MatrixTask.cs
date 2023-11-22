@@ -29,7 +29,7 @@ public class MatrixTask : Task
             playersAlive.Add(player);
         }
         _cam = Camera.main.GetComponent<Cam>();
-        _cam.FixOnRoomVoid(ThisRoom);
+        _cam.FixOnRoomVoid(RoomTask);
         _timeRemaining = _timeTask;
         _spriteRendererRoom = RoomTask.transform.Find("Texture").GetComponent<SpriteRenderer>();
         Debug.Log(RoomTask);
