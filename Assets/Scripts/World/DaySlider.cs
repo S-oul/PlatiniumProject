@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DaySlider : MonoBehaviour
 {
     Slider _slider;
-    float _unClampedValue = 1;
+    [SerializeField] float _unclampedValue = 1;
     [SerializeField] float _speedTimer = .3f;
     [Tooltip("In Percent")]
     [SerializeField] float _OnRoomLoose = .20f;
@@ -26,37 +26,37 @@ public class DaySlider : MonoBehaviour
     {
         RemoveValue(_speedTimer * Time.deltaTime);
 
-        _slider.value = Mathf.Lerp(_unClampedValue, _slider.value, Time.deltaTime);
+        _slider.value = Mathf.Lerp( _slider.value, _unclampedValue, .1f);
 
     }
     public float SetValue(float val)
     {
         if (!_isOnCrunch)
         {
-            _unClampedValue = val;
+            _unclampedValue = val;
         }
-        return _unClampedValue;
+        return _unclampedValue;
 
     }
     public float AddValue(float val)
     {
         if (!_isOnCrunch)
         {
-            _unClampedValue += val;
+            _unclampedValue += val;
         }
-        return _unClampedValue;
+        return _unclampedValue;
     }
     public float RemoveValue(float val)
     {
         if (!_isOnCrunch)
         {
-            _unClampedValue -= val;
+            _unclampedValue -= val;
         }
-        return _unClampedValue;
+        return _unclampedValue;
     }
 
     public float GetValue()
     {
-        return _unClampedValue;
+        return _unclampedValue;
     }
 }
