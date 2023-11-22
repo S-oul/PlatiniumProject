@@ -48,6 +48,7 @@ public class Building : MonoBehaviour
         _allPool.Add(_poolType4);
     }
 
+
     #region GENERATE FLOOR 
 
     private void Start()
