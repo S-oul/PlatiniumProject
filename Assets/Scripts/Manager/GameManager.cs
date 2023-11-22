@@ -64,10 +64,11 @@ public class GameManager : MonoBehaviour
     {
         _roomLose++;
         _daySlider.RemoveValue(_daySlider.OnRoomLoose);
-        if (_roomLose > _maxRoomFail)
+
+        /*if (_roomLose > _maxRoomFail)
         {
             print("T'AS PERDU TROUDUCUL");
-        }
+        }*/
         return _roomLose;
     }
 
