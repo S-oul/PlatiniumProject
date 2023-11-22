@@ -441,12 +441,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7fe72a2a0a48544b5346cdacb38e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playersDoingTask: []
   _numberOfPlayers: 1
   _difficulty: 1
+  _addPlayerAtRunTime: 0
   _obstacles: {fileID: 5673804121946836985}
   _arrow: {fileID: 2300834784979676389}
-  _controller: {fileID: 0}
 --- !u!1 &2137026908256105429
 GameObject:
   m_ObjectHideFlags: 0
