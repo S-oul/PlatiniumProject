@@ -27,6 +27,7 @@ public class RH : NPC, IChattyNPC
         NPCUI.DisplayTalkingBubble(true);
         if(player == null)
         {
+            print("oui");
             NPCUI.ChangeBubbleImage(null);
         }
         else

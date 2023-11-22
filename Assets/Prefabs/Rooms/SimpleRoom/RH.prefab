@@ -445,6 +445,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8609117186618880199, guid: beabe63601a0df742933b388b0054e08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8609117186618880199, guid: beabe63601a0df742933b388b0054e08, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -471,7 +479,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3861530744616529058}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -496,7 +504,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0026228726, y: 0.029747754}
+  m_Offset: {x: -0.0755924, y: -0.40043664}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -507,7 +515,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16773948, y: 0.5533437}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &730294880288908025
 MonoBehaviour:
@@ -609,6 +617,22 @@ PrefabInstance:
     - target: {fileID: 241410718911385411, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 701608106418324031, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
+      propertyPath: m_Size.x
+      value: 3.0070486
+      objectReference: {fileID: 0}
+    - target: {fileID: 701608106418324031, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1678421
+      objectReference: {fileID: 0}
+    - target: {fileID: 701608106418324031, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.087239265
+      objectReference: {fileID: 0}
+    - target: {fileID: 701608106418324031, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.11562407
       objectReference: {fileID: 0}
     - target: {fileID: 701608106418324031, guid: 9756477a4a0bec74c9a184c4e1fbc294, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
