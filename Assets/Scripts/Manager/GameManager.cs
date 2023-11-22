@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     List<Room> _roomList = new List<Room>();
     [SerializeField] List<Room> _roomTaskList = new List<Room>();
 
+    [SerializeField] float _timeForTheDay;
     [SerializeField] DaySlider _daySlider;
     [SerializeField] DayTimer _dayTimer;
     [SerializeField] Animator _animator;
@@ -41,6 +42,17 @@ public class GameManager : MonoBehaviour
     public int DayIndex { get => _dayIndex; set => _dayIndex = value; }
     public GameObject FinalRoom { get => _finalRoom; set => _finalRoom = value; }
     public Animator Animator { get => _animator; set => _animator = value; }
+    public float TimeForTheDay { get => _timeForTheDay; set => _timeForTheDay = value; }
+
+    private void Start()
+    {
+        StartDay();
+    }
+
+    void StartDay()
+    {
+        _daySlider.SetValue(1);
+    }
 
     public int RoomWin()
     {
@@ -73,7 +85,6 @@ public class GameManager : MonoBehaviour
             if (i + 1 >= _liftList.Count)
             {
                 _liftList[i].TeleportPos = _liftList[0].MyPos;
-
             }
             else
             {

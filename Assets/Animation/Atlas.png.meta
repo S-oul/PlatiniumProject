@@ -1,0 +1,1167 @@
+fileFormatVersion: 2
+guid: 1e10d02fe7fde474c817eaa9a6e1dde2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cowboy_head
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 1825
+        width: 196
+        height: 171
+      alignment: 9
+      pivot: {x: 0.70509166, y: 0.18412058}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b0a227d8a8a55546b2b870b311ab316
+      internalID: 1511655236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cowboy_top
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 1772
+        width: 203
+        height: 228
+      alignment: 9
+      pivot: {x: 0.44121352, y: 0.06474438}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a23b5ddd0a9c33f40a172084ee1fd08a
+      internalID: -342837988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cowboy_bot
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 1712
+        width: 217
+        height: 279
+      alignment: 9
+      pivot: {x: 0.47684518, y: 0.9569989}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5785cc237ac698489724b7fa3d67f5d
+      internalID: -1659796818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assistant_head
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 1728
+        width: 114
+        height: 285
+      alignment: 9
+      pivot: {x: 0.5574212, y: 0.051229697}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56fb756c29d61ab4ab82e8355ad524b4
+      internalID: 449570028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cowboy_hat
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 1866
+        width: 200
+        height: 115
+      alignment: 9
+      pivot: {x: 0.33041558, y: 0.28699687}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bbe921d8257ff7419f799bacdd0fb4c
+      internalID: 1343297180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assistant_arms
+      rect:
+        serializedVersion: 2
+        x: 1656
+        y: 1808
+        width: 102
+        height: 95
+      alignment: 9
+      pivot: {x: 0.62049776, y: 0.58030427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81bb23141c371b4199a9dcd5b142aab
+      internalID: 1658886262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assistant_top
+      rect:
+        serializedVersion: 2
+        x: 1841
+        y: 1724
+        width: 111
+        height: 156
+      alignment: 9
+      pivot: {x: 0.46563557, y: 0.17670226}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a58c2bbce57bb47b8b27e390898c43
+      internalID: -1659657380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robot_sad_head
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 1423
+        width: 173
+        height: 184
+      alignment: 9
+      pivot: {x: 0.9159419, y: 0.44923535}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d04c2355a755d44392481981c1d9648
+      internalID: -1225776285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robot_happy_head
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 1321
+        width: 170
+        height: 155
+      alignment: 9
+      pivot: {x: 0.78048205, y: 0.20974043}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecdcdfc1ef50ce54385d660952d970c5
+      internalID: 1179780810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_eye1
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 1432
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 220efd9973045e0478907f770c70bf1d
+      internalID: 863401366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_eye2
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 1439
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8407d14659184b345a11865f0d4e6b7d
+      internalID: 945760988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_head
+      rect:
+        serializedVersion: 2
+        x: 1378
+        y: 1369
+        width: 88
+        height: 136
+      alignment: 9
+      pivot: {x: 0.1854137, y: 0.45521724}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa47262b2d00a2459ae590c6bffb795
+      internalID: -1319028823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_body
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 1390
+        width: 125
+        height: 91
+      alignment: 9
+      pivot: {x: 0.46013573, y: 0.34789234}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23a5672be4c946845a2cbcc9ad5b59bc
+      internalID: -1170475961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assistant_bot
+      rect:
+        serializedVersion: 2
+        x: 1673
+        y: 1447
+        width: 167
+        height: 227
+      alignment: 9
+      pivot: {x: 0.39927226, y: 0.9116905}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d0f555f22218f4895f13b56910098c
+      internalID: -286035097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_front2
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 1328
+        width: 39
+        height: 58
+      alignment: 9
+      pivot: {x: 0.24506398, y: 0.8514131}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75628020ef2a12042b4bed47addbbdd9
+      internalID: -366328419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robot_body
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 1215
+        width: 168
+        height: 139
+      alignment: 9
+      pivot: {x: 0.6197862, y: 0.43233177}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd564b6cfa8b0f48936eb5a54cfd903
+      internalID: -804427403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_behind2
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 1294
+        width: 29
+        height: 46
+      alignment: 9
+      pivot: {x: 0.22572485, y: 0.82421076}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0271c1c609ea3b242a03672f3ee8033c
+      internalID: -1808230583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_front1
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 1279
+        width: 36
+        height: 59
+      alignment: 9
+      pivot: {x: 0.2100118, y: 0.8454569}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20258ff47072bdd47aa889563b2bffe0
+      internalID: 1945163637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_behind1
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 1261
+        width: 38
+        height: 74
+      alignment: 9
+      pivot: {x: 0.44767037, y: 0.835893}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d21aec5d427d4ba469d813aa6d7bbf2d
+      internalID: 849600197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RH_body
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1113
+        width: 149
+        height: 118
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.20673746}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eadf5351282fcfa4dba608f2e0a499bd
+      internalID: 748008491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robot_arm
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 1231
+        width: 38
+        height: 43
+      alignment: 9
+      pivot: {x: 0.10609677, y: 0.7701672}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7d965ee7b929846892db6a36e08578
+      internalID: -1607915226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zerobingo_right_arm
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 944
+        width: 73
+        height: 166
+      alignment: 9
+      pivot: {x: 0.08649016, y: 0.69465065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbae5cdd45b1412438bc551bea5b4490
+      internalID: -12269748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zerobingo_head
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 810
+        width: 332
+        height: 393
+      alignment: 9
+      pivot: {x: 0.5, y: 0.044509538}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 864c40522d1044642aeec0a98690493c
+      internalID: 56660184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zerobingo_talk
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 795
+        width: 332
+        height: 395
+      alignment: 9
+      pivot: {x: 0.5025433, y: 0.08879611}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeae5fdb8a46c914bae2cfc9e3d11b86
+      internalID: 1404894187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zerobingo_arm_top
+      rect:
+        serializedVersion: 2
+        x: 1803
+        y: 954
+        width: 101
+        height: 161
+      alignment: 9
+      pivot: {x: 0.073630154, y: 0.37413034}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21363e5f437a5b049b49c9da117772d2
+      internalID: -1223867550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RH_left_arm
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 1031
+        width: 53
+        height: 54
+      alignment: 9
+      pivot: {x: 0.18350853, y: 0.8557265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879e72118cd665b4fab18fd8f40caae3
+      internalID: -489808644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RH_right_arm
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 999
+        width: 53
+        height: 56
+      alignment: 9
+      pivot: {x: 0.78586566, y: 0.8478524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d23165fd1b745340ac2257e48987057
+      internalID: -1914265719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zerobingo_left_arm
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 917
+        width: 73
+        height: 165
+      alignment: 9
+      pivot: {x: 0.9309826, y: 0.70871437}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74cf1dee45f4ace48aa63ce85471c204
+      internalID: -1650698006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RH_bell
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 937
+        width: 65
+        height: 58
+      alignment: 9
+      pivot: {x: 0.38424447, y: 0.05316583}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32eb6261cf31ceb41b84bca4f06ceda5
+      internalID: -975555847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RH_hands
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 934
+        width: 68
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3550d14c3a8e9e9499f2732d597cfefa
+      internalID: -744483348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RH_head
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 858
+        width: 115
+        height: 119
+      alignment: 9
+      pivot: {x: 0.49036825, y: 0.09044179}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a0091acaa010964db521bae73ce994f
+      internalID: 630377220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RH_tail
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 827
+        width: 38
+        height: 85
+      alignment: 9
+      pivot: {x: 0.49547938, y: 0.10363051}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08cb27fc81b3c6b4ba0693df66267cb6
+      internalID: -1393860847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zerobingo_left_foot
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 766
+        width: 105
+        height: 67
+      alignment: 9
+      pivot: {x: 0.72539294, y: 0.76744515}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 679c30f34437f7d41a169b8a6fac3a83
+      internalID: 1617913537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zerobingo_right_foot
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 766
+        width: 105
+        height: 69
+      alignment: 9
+      pivot: {x: 0.29392788, y: 0.77929157}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5d55ad6c19b38641958060fa10f408d
+      internalID: -1380255939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poulpe_maillot2
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 529
+        width: 109
+        height: 134
+      alignment: 9
+      pivot: {x: 0.3296324, y: 0.15956776}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e73ce148724ca4b9ca9c36dc8f80e4
+      internalID: -2040343148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poulpe_maillot4
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 543
+        width: 86
+        height: 143
+      alignment: 9
+      pivot: {x: 0.6104658, y: 0.1330323}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61a98f555ff4c3b4598eb04ea3471b3f
+      internalID: -60563832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poulpe_maillot1
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 382
+        width: 116
+        height: 128
+      alignment: 9
+      pivot: {x: 0.34694278, y: 0.1665659}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7482e0a1ddf5b547b4275992460f182
+      internalID: -1266979217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poulpe_maillot3
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 328
+        width: 111
+        height: 142
+      alignment: 9
+      pivot: {x: 0.49208468, y: 0.08172127}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fa42ace46cee0541b0a408deeb20592
+      internalID: -899242441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster_mouth
+      rect:
+        serializedVersion: 2
+        x: 1319
+        y: 264
+        width: 39
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5b5c8a9d6582a4983eaafd2fc4bdfb
+      internalID: -1153633169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster_body
+      rect:
+        serializedVersion: 2
+        x: 1508
+        y: 111
+        width: 422
+        height: 367
+      alignment: 9
+      pivot: {x: 0.44498304, y: 0.35435063}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59653440476993b41932b3181b5580e4
+      internalID: 2070687681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poulpe_head
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 75
+        width: 290
+        height: 285
+      alignment: 9
+      pivot: {x: 0.42965645, y: 0.14824696}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0893666ebd3680d4199314c78851b089
+      internalID: -1009357378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poulpe_tentatule
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 218
+        width: 108
+        height: 47
+      alignment: 9
+      pivot: {x: 0.9560779, y: 0.39589155}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c5ab01cd629aa94883caea74b6522da
+      internalID: -446865584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster_eye4
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 193
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0730dcadbf3c3b41a6a1a52cdd009ee
+      internalID: 1971513866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster_eye3
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 185
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f87449df4f7e59548a85fee2ef23dcad
+      internalID: 1823662841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster_eye2
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 152
+        width: 33
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5957268e98aeb7745b0ee8f4067ad5fd
+      internalID: 292815433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster_eye1
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 146
+        width: 60
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3101724001ce3346a8a0403d9ed7ee3
+      internalID: 1972477516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poulpe_round
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 130
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12fa498a7be18c5418cfce1aaf97983e
+      internalID: 1146018637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Atlas_16: -1327745606
+      Atlas_17: -571842225
+      Atlas_23: 1021027648
+      Atlas_25: 1282074190
+      Atlas_3: -278670473
+      Atlas_34: 162570920
+      RH_bell: -975555847
+      RH_body: 748008491
+      RH_hands: -744483348
+      RH_head: 630377220
+      RH_left_arm: -489808644
+      RH_right_arm: -1914265719
+      RH_tail: -1393860847
+      assistant_arms: 1658886262
+      assistant_bot: -286035097
+      assistant_head: 449570028
+      assistant_top: -1659657380
+      cowboy_bot: -1659796818
+      cowboy_hat: 1343297180
+      cowboy_head: 1511655236
+      cowboy_top: -342837988
+      goat_behind1: 849600197
+      goat_behind2: -1808230583
+      goat_body: -1170475961
+      goat_eye1: 863401366
+      goat_eye2: 945760988
+      goat_front1: 1945163637
+      goat_front2: -366328419
+      goat_head: -1319028823
+      monster_body: 2070687681
+      monster_eye1: 1972477516
+      monster_eye2: 292815433
+      monster_eye3: 1823662841
+      monster_eye4: 1971513866
+      monster_mouth: -1153633169
+      poulpe_head: -1009357378
+      poulpe_maillot1: -1266979217
+      poulpe_maillot2: -2040343148
+      poulpe_maillot3: -899242441
+      poulpe_maillot4: -60563832
+      poulpe_round: 1146018637
+      poulpe_tentatule: -446865584
+      robot_arm: -1607915226
+      robot_body: -804427403
+      robot_happy_head: 1179780810
+      robot_sad_head: -1225776285
+      zerobingo_arm_top: -1223867550
+      zerobingo_head: 56660184
+      zerobingo_left_arm: -1650698006
+      zerobingo_left_foot: 1617913537
+      zerobingo_right_arm: -12269748
+      zerobingo_right_foot: -1380255939
+      zerobingo_talk: 1404894187
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
