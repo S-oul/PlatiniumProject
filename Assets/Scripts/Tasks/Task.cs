@@ -9,6 +9,7 @@ public abstract class Task : MonoBehaviour
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
     [Range(1, 5)][SerializeField] int _difficulty = 1;
+    [SerializeField] bool _isReplayable = false;
     [SerializeField] bool _addPlayerAtRunTime = false;
     GameObject _player;
     Room _room;
@@ -47,20 +48,30 @@ public abstract class Task : MonoBehaviour
 
     public virtual void Init()
     {
-
+        
         _room = transform.parent.parent.GetComponent<Room>();
         if (_room == null) { _room = transform.parent.GetComponent<Room>(); }
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
         _room.TaskRoom = this;
-        
+        _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Idle);
+
+
     }
 
     public virtual void End(bool isSuccessful)
     {
         PlayersDoingTask.Clear();
         IsStarted = false;
-        IsDone = isSuccessful;
+        if (_isReplayable)
+        {
+            IsDone = isSuccessful;
+        }
+        else
+        {
+            IsDone = true;
+        }
+
         if (isSuccessful)
         {
             OnRoomSuccess();
@@ -73,6 +84,7 @@ public abstract class Task : MonoBehaviour
     public void OnPlayerJoinedTask(GameObject player)
     {
         //Debug.Log("OnPlayerJoinedTask called");  //This func is called 1-3 times at randome. Safegards have been put in place.
+        
         if (!IsDone)
         {
             if (AddPlayerAtRunTime)
@@ -116,6 +128,10 @@ public abstract class Task : MonoBehaviour
                 }
             }
         } 
+        else
+        {
+            print("isDone");
+        }
     }
     public void OnRoomSuccess()
     {
@@ -124,15 +140,23 @@ public abstract class Task : MonoBehaviour
         
         GameManager.Instance.RoomWin();
         GameManager.Instance.CheckIfDayFinished();
-        _room.WinStateScreen.ChangeColor(Color.green);
+        _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Success);
     }
     public void OnRoomFail()
     {
+        if(_isReplayable)
+        {
+            _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Retry);
+        }
+        else
+        {
+            _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Fail);
+            GameManager.Instance.NumberOfTasksMade++;
+        }
         Debug.Log(gameObject.name);
-        GameManager.Instance.NumberOfTasksMade++;
         GameManager.Instance.RoomLose();
         GameManager.Instance.CheckIfDayFinished();
-        _room.WinStateScreen.ChangeColor(Color.red);
+        
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {
