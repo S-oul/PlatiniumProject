@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,7 +28,9 @@ public class VolleyballTask : Task
 
     Cam _cam;
 
+    TextMeshProUGUI _textScore;
 
+    [SerializeField] Transform _pointVolley;
 
     int _playersPoints = 0;
     int _squidPoints = 0;
@@ -36,6 +39,7 @@ public class VolleyballTask : Task
     public GameObject Squid { get => _squid; set => _squid = value; }
     public int SquidChanceToHit { get => _squidChanceToHit; set => _squidChanceToHit = value; }
     public GameObject PlayerTouch { get => _playerTouch; set => _playerTouch = value; }
+    public Transform PointVolley { get => _pointVolley; set => _pointVolley = value; }
 
     public override void End(bool isSuccessful)
     {
@@ -50,6 +54,9 @@ public class VolleyballTask : Task
     {
 
         base.Init();
+        _textScore = RoomTask.transform.Find("Score").GetChild(0).Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        _textScore.text = "0 | 0";
+        _pointVolley = RoomTask.transform.Find("PointVolley");
         PlayerTouch = null;
         foreach (Transform pos in RoomTask.transform.Find("PlayerPositions"))
         {
@@ -101,6 +108,7 @@ public class VolleyballTask : Task
         {
             _squidPoints++;
         }
+        _textScore.text = _playersPoints + " | " + _squidPoints;
         if (_squidPoints < _pointsToWin && _playersPoints < _pointsToWin)
         {
             StartCoroutine(TimerBeforeBall(2f));
