@@ -172,7 +172,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -304,3 +304,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sfx: {fileID: 4501893612550109320}
   _music: {fileID: 6845538337165351616}
+  _gameMusic: {fileID: 0}
+  _gameMusicSubOneMinute: {fileID: 0}

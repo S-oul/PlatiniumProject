@@ -8,7 +8,7 @@ using UnityEngine;
 public class DayTimer : MonoBehaviour
 {
     GameManager gameManager;
-    public float DayTime = 500;
+    [SerializeField] float _dayTime = 500;
     TimeSpan _time;
 
     TextMeshProUGUI _text;
@@ -19,6 +19,7 @@ public class DayTimer : MonoBehaviour
     bool _wasSubMinute = false;
     bool _hasEnd = false;
 
+    public float DayTime { get => _dayTime; set => _dayTime = value; }
 
     void Start()
     {

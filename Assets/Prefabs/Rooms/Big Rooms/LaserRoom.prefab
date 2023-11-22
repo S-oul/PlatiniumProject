@@ -431,6 +431,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2807244619615674751, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
+      propertyPath: _task
+      value: 
+      objectReference: {fileID: 5358245097260875424, guid: 18a52dfdd52cf3648b1e2bb239cd64db, type: 3}
     - target: {fileID: 3513065608492074799, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Name
       value: ZoneEvent
