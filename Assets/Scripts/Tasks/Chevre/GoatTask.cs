@@ -130,5 +130,7 @@ public class GoatTask : InputTask, ITimedTask
             }
         }
     }
+
+    
 }
 
