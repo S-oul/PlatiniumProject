@@ -136,6 +136,11 @@ public abstract class Task : MonoBehaviour
             print("isDone");
         }
     }
+
+    public virtual void OnplayerExitTask() 
+    { 
+        
+    }
     public void OnRoomSuccess()
     {
         Debug.Log(gameObject.name + " = Success");

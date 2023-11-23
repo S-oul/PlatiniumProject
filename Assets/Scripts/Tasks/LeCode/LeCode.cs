@@ -1,10 +1,13 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LeCode : Task
 {
     PlayerController _controller;
+    PlayerUI _playerUI;
+    PlayerInput _playerInput;
 
     [SerializeField] GameObject _postIt;
     string _code = "";
@@ -51,6 +54,12 @@ public class LeCode : Task
     public override void Init()
     {
         base.Init();
+        _controller.DisableMovements();
+        _playerUI = _controller.GetComponent<PlayerUI>();
+        _playerInput = _controller.GetComponent<PlayerInput>();
+        _playerUI.DisplayInputToPress(false, "");
+        _playerInput.actions["Code"].Enable();
+        _playerUI.DisplayLeCodeUI(true);
     }
 
     public override void End(bool isSuccessful)
@@ -62,8 +71,14 @@ public class LeCode : Task
         }
         
         base.End(isSuccessful);
+        OnplayerExitTask();
     }
-
+    public override void OnplayerExitTask()
+    {
+        base.OnplayerExitTask();
+        _controller.EnableMovementDisableInputs();
+        _playerUI.DisplayLeCodeUI(false);
+    }
 
     IEnumerator TimeBeforeRestart()
     {
@@ -123,6 +138,7 @@ public class LeCode : Task
                 else if(_screenText.text.Length == 4 && _code != _screenText.text)
                 {
                     _screenText.color = Color.red;
+                    End(false);
                     Debug.Log("Wrong code");
                 }
                 

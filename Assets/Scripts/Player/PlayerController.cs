@@ -137,6 +137,8 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Jump"].Enable();
         _playerInput.actions["InputTask"].Disable();
         _playerInput.actions["Decryptage"].Disable();
+        _playerInput.actions["Code"].Disable();
+
         _canMove = true;
 
     }
@@ -144,12 +146,10 @@ public class PlayerController : MonoBehaviour
     public void DisableMovements()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
-        _playerInput.actions["Interact"].Enable();
-        _playerInput.actions["Movement"].Enable();
-        _playerInput.actions["Jump"].Enable();
-        _playerInput.actions["InputTask"].Disable();
-        _playerInput.actions["Decryptage"].Disable();
-        _canMove = true;
+        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _canMove = false;
 
     }
 
