@@ -18,7 +18,7 @@ public class GoatTask : InputTask, ITimedTask
     [SerializeField] Transform _goatSpawn;
     [SerializeField] Transform _goatGoal;
     [SerializeField] Transform _playerPos;
-
+    [SerializeField] NPC _monster; 
     DataManager _dataManager;
     PlayerUI _playerUI;
     PlayerController _controller;
@@ -71,7 +71,7 @@ public class GoatTask : InputTask, ITimedTask
         theAnimator.SetTrigger("GoatIdle");
         if (IsSuccess)
         {
-
+            AudioManager.instance.PlaySFXOS("UndergroundCreatureEat", _monster.gameObject.GetComponent<AudioSource>());
             print("GG : Remaining " + _actualTime);    
         }
         else
