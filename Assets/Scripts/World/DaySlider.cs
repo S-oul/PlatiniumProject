@@ -26,7 +26,7 @@ public class DaySlider : MonoBehaviour
     {
         RemoveValue(_speedTimer * Time.deltaTime);
 
-        _slider.value = Mathf.Lerp( _slider.value, _unclampedValue, .1f);
+        _slider.value = Mathf.Lerp( _slider.value, _unclampedValue, .25f);
 
     }
     public float SetValue(float val)
