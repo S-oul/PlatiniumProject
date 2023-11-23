@@ -12,8 +12,6 @@ public class Lift : Room
     [SerializeField] Animator _animator;
     private bool _canTeleport = true;
 
-
-
     public Transform MyPos { get => _myPos; }
     public Transform TeleportPos { get => _teleportPos; set => _teleportPos = value; }
 
@@ -34,6 +32,8 @@ public class Lift : Room
             _player = player;
             player.GetComponent<PlayerController>().DisableMovements();
             _animator.SetTrigger("Lift");
+            AudioSource.pitch = 6f;
+            AudioManager.instance.PlaySFXOS("ElevatorDoorClose", AudioSource);
             _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Default";
             _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 1;
             StartCoroutine(TimeToTeleport(_timeToTeleport));
@@ -45,7 +45,8 @@ public class Lift : Room
         yield return new WaitForSeconds(time);
         if(_player != null)
         {
-
+            AudioSource.pitch = 1f;
+            AudioManager.instance.PlaySFXOS("ElevatorDing", TeleportPos.gameObject.GetComponent<AudioSource>());
             _player.transform.position = TeleportPos.position;
             _player.GetComponent<PlayerController>().EnableMovementDisableInputs();
             _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
