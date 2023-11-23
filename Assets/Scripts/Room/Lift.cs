@@ -22,12 +22,15 @@ public class Lift : Room
     {
         _myPos = transform;
     }
-
+    public void AutoLiftInteract(GameObject player)
+    {
+        print(player + " " + TeleportPos);
+        player.transform.position = TeleportPos.position;
+    }
     public void InteractLift(GameObject player)
     {
         if (_canTeleport)
         {
-
             _player = player;
             player.GetComponent<PlayerController>().DisableMovements();
             _animator.SetTrigger("Lift");

@@ -146,7 +146,7 @@ public class PlayerCollision : MonoBehaviour
                 {
                     StartCoroutine(AutoLiftWait());
                     collidertype = collision.transform.GetComponent<Lift>();
-                    ((Lift)collidertype).InteractLift(gameObject);
+                    ((Lift)collidertype).AutoLiftInteract(gameObject);
                 }
                 break;
             case "GraffitiTask":
@@ -230,7 +230,7 @@ public class PlayerCollision : MonoBehaviour
     IEnumerator AutoLiftWait()
     {
         _canAutoLift = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         _canAutoLift = true;
     }
 }
