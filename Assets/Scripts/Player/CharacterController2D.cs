@@ -30,6 +30,8 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	private SpriteRenderer m_SpriteRenderer;
 
+	AudioSource m_AudioSource;
+
 	[Header("Events")]
 	[Space]
 
@@ -49,7 +51,7 @@ public class CharacterController2D : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
 		_playerController = GetComponent<PlayerController>();
-		
+        m_AudioSource = gameObject.transform.Find("AudioSource").GetComponent<AudioSource>();
 
         if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -116,6 +118,8 @@ public class CharacterController2D : MonoBehaviour
 
 			// Trigger Player Jump animation. 
 			GetComponentInChildren<Animator>().SetTrigger("JumpAnimationTrigger");
+
+			AudioManager.instance.PlaySFXOS("PlayerJump", m_AudioSource);
         }
 		
     }

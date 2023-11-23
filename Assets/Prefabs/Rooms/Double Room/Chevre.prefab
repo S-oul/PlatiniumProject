@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomSize: 3
   _id: 3T
-  _spriteRoom: {fileID: 0}
+  _spriteRoom: {fileID: 1893912041493478563}
   _screenTexture: {fileID: 0}
   _posItPos: {fileID: 1965961651334219512}
   _hasPostIt: 0
@@ -596,6 +596,14 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2973916485695637100, guid: 9d01f1abd76fc9f4b96b2bf89965ce3e, type: 3}
+      propertyPath: m_TagString
+      value: ChattyNPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207859265276798986, guid: 9d01f1abd76fc9f4b96b2bf89965ce3e, type: 3}
+      propertyPath: _name
+      value: Fabrice
+      objectReference: {fileID: 0}
     - target: {fileID: 3282667229092662381, guid: 9d01f1abd76fc9f4b96b2bf89965ce3e, type: 3}
       propertyPath: m_LocalScale.x
       value: -0.06018467
@@ -651,6 +659,10 @@ PrefabInstance:
     - target: {fileID: 3840865043837065433, guid: 9d01f1abd76fc9f4b96b2bf89965ce3e, type: 3}
       propertyPath: m_Name
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113558893099399272, guid: 9d01f1abd76fc9f4b96b2bf89965ce3e, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

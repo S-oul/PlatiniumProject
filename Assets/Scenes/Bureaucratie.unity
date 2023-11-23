@@ -215,8 +215,7 @@ Transform:
   m_LocalPosition: {x: 25, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1733458710}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &45750765
@@ -422,67 +421,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &47572491
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 45750764}
-    m_Modifications:
-    - target: {fileID: 5861934477357899012, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: _gameMusic
-      value: 
-      objectReference: {fileID: 8300000, guid: 8d2d894467c831a419d9be9935be95d0, type: 3}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097719908373432145, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-      propertyPath: m_Name
-      value: AudioManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
 --- !u!1 &91042052
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,11 +565,15 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 1801621178}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &91042057
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -953,11 +895,15 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 1382611767}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &235177747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1149,7 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2891303753b1147ae22b39e48f6f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayTime: 65
+  _dayTime: 180
   doTimer: 1
 --- !u!222 &445611535
 CanvasRenderer:
@@ -1190,6 +1136,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &701202890
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47.27084
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.90588
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.9516763
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097719908373432145, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
 --- !u!1 &796650064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,11 +1337,15 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 979305923}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &796650069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1876,11 +1883,15 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 796650065}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &979305927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2096,7 +2107,7 @@ Transform:
   m_GameObject: {fileID: 1094115823}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.102, y: -0.087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2179,7 +2190,7 @@ GameObject:
   - component: {fileID: 1152499415}
   - component: {fileID: 1152499414}
   m_Layer: 0
-  m_Name: placeHolder_Background (1)
+  m_Name: placeHolder_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2246,8 +2257,8 @@ Transform:
   m_GameObject: {fileID: 1152499413}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.8, y: 19.1, z: 0}
-  m_LocalScale: {x: 4.245757, y: 4.245757, z: 4.245757}
+  m_LocalPosition: {x: 25, y: 13.56, z: 0}
+  m_LocalScale: {x: 9.729999, y: 9.729999, z: 9.729999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -2396,11 +2407,15 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 1689437617}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &1161253755
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2597,11 +2612,15 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 235177743}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &1382611771
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3184,11 +3203,15 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 1161253751}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &1689437616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3346,11 +3369,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.9}
   m_EdgeRadius: 0
---- !u!4 &1733458710 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
-  m_PrefabInstance: {fileID: 47572491}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1796096267
 GameObject:
   m_ObjectHideFlags: 0
@@ -3455,6 +3473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unclampedValue: 1
   _speedTimer: 0.01
+  _speedUnclamped: 0.1
   _OnRoomLoose: 0.2
   _OnRoomWin: 0.1
 --- !u!1 &1801621177
@@ -3601,11 +3620,15 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
   _myPos: {fileID: 0}
   _teleportPos: {fileID: 91042053}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &1801621182
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4018,7 +4041,7 @@ PrefabInstance:
       objectReference: {fileID: 973819175}
     - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: _dayIndex
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: _dayTimer
@@ -4127,6 +4150,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 45750764}
+  - {fileID: 701202890}
   - {fileID: 1047833653}
   - {fileID: 1449944969}
   - {fileID: 1938148683}

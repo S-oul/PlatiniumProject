@@ -21,6 +21,7 @@ TagManager:
   - SquidVolley
   - AutoLift
   - GraffitiTask
+  - ChattyNPC
   layers:
   - Default
   - TransparentFX
