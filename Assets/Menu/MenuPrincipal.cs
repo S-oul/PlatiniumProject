@@ -131,7 +131,7 @@ public class MenuPrincipal : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        //Application.Quit();
-        print("ca quitte le jeu");
+        Application.Quit();
+        //print("ca quitte le jeu");
     }
 }
