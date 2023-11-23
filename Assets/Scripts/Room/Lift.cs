@@ -9,7 +9,9 @@ public class Lift : Room
 
     [SerializeField] float _timeToTeleport = .5f;
     [SerializeField] float _teleporterCooldown = 1f;
+    [SerializeField] Animator _animator;
     private bool _canTeleport = true;
+
 
 
     public Transform MyPos { get => _myPos; }
@@ -25,7 +27,12 @@ public class Lift : Room
     {
         if (_canTeleport)
         {
+
             _player = player;
+            player.GetComponent<PlayerController>().DisableMovements();
+            _animator.SetTrigger("Lift");
+            _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+            _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 1;
             StartCoroutine(TimeToTeleport(_timeToTeleport));
         }
     }
@@ -35,7 +42,13 @@ public class Lift : Room
         yield return new WaitForSeconds(time);
         if(_player != null)
         {
+
             _player.transform.position = TeleportPos.position;
+            _player.GetComponent<PlayerController>().EnableMovementDisableInputs();
+            _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+            _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 0;
+
+
         }
         _player = null;
         StartCoroutine(TeleportCooldown(_teleporterCooldown));

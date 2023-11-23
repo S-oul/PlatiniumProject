@@ -635,6 +635,7 @@ MonoBehaviour:
   _teleportPos: {fileID: 1801621178}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &91042057
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -964,6 +965,7 @@ MonoBehaviour:
   _teleportPos: {fileID: 1382611767}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &235177747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1348,6 +1350,7 @@ MonoBehaviour:
   _teleportPos: {fileID: 979305923}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &796650069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1893,6 +1896,7 @@ MonoBehaviour:
   _teleportPos: {fileID: 796650065}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &979305927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2416,6 +2420,7 @@ MonoBehaviour:
   _teleportPos: {fileID: 1689437617}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &1161253755
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2620,6 +2625,7 @@ MonoBehaviour:
   _teleportPos: {fileID: 235177743}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &1382611771
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3210,6 +3216,7 @@ MonoBehaviour:
   _teleportPos: {fileID: 1161253751}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &1689437616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3631,6 +3638,7 @@ MonoBehaviour:
   _teleportPos: {fileID: 91042053}
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
+  _animator: {fileID: 0}
 --- !u!212 &1801621182
 SpriteRenderer:
   m_ObjectHideFlags: 0
