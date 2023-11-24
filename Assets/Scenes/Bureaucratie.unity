@@ -455,8 +455,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.00016784668}
+  m_SizeDelta: {x: 0, y: 0.0004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59869628
 MonoBehaviour:
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 258b1a991ee6c384e9e4cff78037574c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68e9e0de683ba4d449f72aa73f634824, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -977,7 +977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -92}
+  m_AnchoredPosition: {x: 0, y: -111}
   m_SizeDelta: {x: 466.7505, y: 125}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &445611533
@@ -1153,10 +1153,10 @@ RectTransform:
   - {fileID: 1055773169}
   m_Father: {fileID: 1265508047}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 3.7769775, y: -0.9889984}
+  m_SizeDelta: {x: -50.739, y: -110.1711}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &701202890
 PrefabInstance:
@@ -2071,7 +2071,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1055773170
 MonoBehaviour:
@@ -2093,8 +2093,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8b0c575ad32301040a1a776536e89b1e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2508,14 +2508,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 59869627}
   - {fileID: 652250163}
+  - {fileID: 59869627}
   m_Father: {fileID: 1479345188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1600, y: 100}
+  m_AnchoredPosition: {x: 5.9277, y: 0}
+  m_SizeDelta: {x: 1611.8555, y: 164.0189}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1265508048
 MonoBehaviour:
@@ -2564,7 +2564,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.38
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4139,7 +4139,7 @@ PrefabInstance:
     - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: _daySlider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1265508049}
     - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: _timeForTheDay
       value: 1
