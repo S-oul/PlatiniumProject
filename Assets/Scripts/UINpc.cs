@@ -18,6 +18,7 @@ public class UINpc : MonoBehaviour
         _talkingBubbleImage = _talkingBubble.Find("Image").GetComponent<Image>();
         print(_talkingBubble.parent.parent.gameObject.name);
         _talkingBubbleText = _talkingBubble.Find("Text").GetComponent<TextMeshProUGUI>();
+        _talkingBubble.gameObject.SetActive(false);
         //print(_canvas + " " + _talkingBubble + " " + _talkingBubbleText + " "+ _talkingBubbleImage );
     }
 
