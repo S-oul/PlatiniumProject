@@ -315,7 +315,7 @@ public class PlayerController : MonoBehaviour
         _walkingSoundCanPlay = false;
         AudioClip clip = AudioManager.instance.FindClip("PlayerWalk");
         AudioManager.instance.PlaySFXOS(clip, _audioSource);
-        print("Audio");
+        //print("Audio");
         yield return new WaitForSeconds(clip.length + 0.4f);
         _walkingSoundCanPlay = true;
     }
