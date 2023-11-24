@@ -126,13 +126,16 @@ public class GameManager : MonoBehaviour
     {
         if(_numberOfTasksMade == RoomTaskList.Count)
         {
+            /*_dayTimer.DoTimer = false;
+            _daySlider.IsOnCrunch = true;*/
             OpenTheFinalDoor();
         }
     }
 
     public void OpenTheFinalDoor()
     {
-        
+        _dayTimer.DoTimer = false;
+        _daySlider.IsOnCrunch = true;
         StartCoroutine(_finalDoor.GetComponent<FinalDoor>().OpenDoor());
     }
 
