@@ -88,7 +88,7 @@ public class GraffitiDrawing
         foreach (Transform child in _graffitiObject.transform.Find("Animations"))
         {
             Debug.Log(child);
-            _animationAciveStatusDict.Add(new GraffitiCleanAnimation(child.gameObject), false);
+            _animationAciveStatusDict.Add(new GraffitiCleanAnimation(child.transform.GetChild(0).gameObject), false);
         }
     }
 
@@ -144,6 +144,7 @@ public class GraffitiCleanAnimation
     public void Activate()
     {
         _cleanAnimationObject.SetActive(true);
+        _cleanAnimationObject.GetComponent<Animator>().SetTrigger("Clean");
 
     }
 
@@ -154,7 +155,7 @@ public class GraffitiCleanAnimation
 
     public void SetSpeed(int speed)
     {
-        _cleanAnimationObject.GetComponent<Animator>().speed = speed;
+        _cleanAnimationObject.GetComponent<Animator>().speed = speed/2.5f;
     }
 
     public bool ParentIsActive() => _cleanAnimationObject.GetComponentInParent<Transform>().gameObject.activeSelf;
