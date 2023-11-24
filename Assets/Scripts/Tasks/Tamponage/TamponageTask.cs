@@ -85,6 +85,8 @@ public class TamponageTask : InputTask, ITimedTask
         _player2 = PlayersDoingTask[1].GetComponent<PlayerController>();
         _player1UI = _player1.gameObject.GetComponent<PlayerUI>();
         _player2UI = _player2.gameObject.GetComponent<PlayerUI>();
+        _player1UI.DisplayInputToPress(false, "");
+        _player2UI.DisplayInputToPress(false, "");
         _remainingTime = _timeLimit;
         _timer = StartCoroutine(TimerTask());
         IsStarted = true;
