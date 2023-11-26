@@ -279,7 +279,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isPlayerDown) { transform.localEulerAngles = new Vector3(0, 0, 90); }
         else { transform.localEulerAngles = new Vector3(0, 0, 0); }
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumping);
+        _controller.Movement(_horizontalMove * Time.fixedDeltaTime, _isJumping);
         _isJumping = false;
 
         if (_horizontalMove != 0) 
@@ -338,5 +338,20 @@ public class PlayerController : MonoBehaviour
     {
         _moveSpeed = _baseMoveSpeed * moveSpeedFactor;
         _jumpForce = _baseJumpForce * jumpForceFactor;
+    }
+
+    public void DisconnectPlayer()
+    {
+        foreach(GameObject player in GameManager.Instance.Players)
+        {
+            if(gameObject == player)
+            {
+                GameManager.Instance.Players.Remove(player);
+                GameManager.Instance.PlayerCount--;
+                PlayerManager.Instance.InputManager.EnableJoining();
+                //Delete from PlayerManager's Player Input list
+            }
+        }
+        
     }
 }

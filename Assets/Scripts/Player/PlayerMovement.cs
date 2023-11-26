@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        controller.Move(horisontalMove * Time.fixedDeltaTime, jump);
+        controller.Movement(horisontalMove * Time.fixedDeltaTime, jump);
         jump = false;
 
     }

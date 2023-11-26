@@ -49,7 +49,7 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
 	{
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		m_SpriteRenderer = GetComponent<SpriteRenderer>();
+		m_SpriteRenderer = transform.Find("Animation").GetComponent<SpriteRenderer>();
 		_playerController = GetComponent<PlayerController>();
         m_AudioSource = gameObject.transform.Find("AudioSource").GetComponent<AudioSource>();
 
@@ -83,7 +83,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool jump)
+	public void Movement(float move, bool jump)
 	{
 
 		//only control the player if grounded or airControl is turned on
@@ -128,7 +128,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
+		//m_FacingRight = !m_FacingRight;
 
 
 
@@ -142,7 +142,7 @@ public class CharacterController2D : MonoBehaviour
 
 
 
-        m_SpriteRenderer.flipX = !m_FacingRight;
+        //m_SpriteRenderer.flipX = !m_FacingRight;
 
 
 

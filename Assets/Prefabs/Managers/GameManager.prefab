@@ -39,17 +39,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262213775635476823}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e63d69d8184ae6d429c052f264224444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcList: []
-  _objectList: []
-  _eventList: []
+  _roomTaskList: []
+  _timeForTheDay: 0
+  _daySlider: {fileID: 0}
+  _dayTimer: {fileID: 0}
+  _animator: {fileID: 0}
+  _maxRoomFail: 3
+  _dayIndex: 0
   _liftList: []
   _players:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _numberOfTasksMade: 0

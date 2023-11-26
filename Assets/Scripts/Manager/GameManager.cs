@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour
 
     GameObject _finalDoor;
 
-    [SerializeField] GameObject[] _players = new GameObject[4];
+    [SerializeField] List<GameObject> _players = new List<GameObject>();
 
     [SerializeField] int _numberOfTasksMade;
 
     public int PlayerCount { get => _playerCount; set => _playerCount = value; }
 
-    public GameObject[] Players { get => _players; }
+    public List<GameObject> Players { get => _players; set => _players = value; }
     public List<Room> RoomList { get => _roomList; set => _roomList = value; }
     public List<Lift> LiftList { get => _liftList; set => _liftList = value; }
     public List<Room> RoomTaskList { get => _roomTaskList; set => _roomTaskList = value; }
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartDay();
+        /*StartDay();*/
     }
 
     void StartDay()
