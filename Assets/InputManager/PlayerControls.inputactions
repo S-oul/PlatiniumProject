@@ -451,6 +451,17 @@
                 },
                 {
                     "name": "",
+                    "id": "dbade477-0dd5-419d-bb61-8873c43c6a1f",
+                    "path": "<XInputController>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1bddca8c-fd82-4026-8035-24e3ac82165b",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
@@ -531,7 +542,7 @@
                 {
                     "name": "",
                     "id": "e5aa17aa-5488-4272-856c-63fde44f4dde",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<XInputController>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -543,6 +554,17 @@
                     "name": "",
                     "id": "dd8763a4-533a-4111-bd3a-cedf0ec46401",
                     "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50b55279-c880-408c-aee5-ac9d70c2df30",
+                    "path": "<DualShockGamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
