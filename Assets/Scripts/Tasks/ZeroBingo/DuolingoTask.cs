@@ -14,7 +14,7 @@ public class DuolingoTask : InputTask
     string _contextName;
     PlayerController _controller;
     /*string _rightWord = "";*/
-
+    
 
     [SerializeField] int _numberOfWordsAsked;
 
@@ -31,6 +31,9 @@ public class DuolingoTask : InputTask
     bool _canPressInput = false;
 
     int _rightAnswerIndex = 0;
+
+    [SerializeField] Sprite _fail;
+    [SerializeField] Sprite _success;
     public NPC NPCDuolingo { get => _npcDuolingo; set => _npcDuolingo = value; }
 
     Animator animator;
@@ -42,13 +45,14 @@ public class DuolingoTask : InputTask
     
     public override void StartTask()
     {
-        _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
+        
         _wordToKey.Clear();
         _keyToWord.Clear();
         List<GameObject> players = PlayersDoingTask;
         _currentPlayer = players[0];
         _otherPlayer = players[1];
         _rightAnswerIndex = 0;
+        _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
         TaskLoop();
         /*_rightAnswers.Clear();
         _wordToKey.Clear();
@@ -207,15 +211,21 @@ public class DuolingoTask : InputTask
     {
         if (isRight)
         {
-            _currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_rightWord, Color.green);
+            /*_currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_rightWord, Color.green);*/
+            _npcDuolingo.GetComponent<UINpc>().ChangeBubbleText("");
+            _npcDuolingo.GetComponent<UINpc>().ChangeBubbleImage(_success);
             yield return new WaitForSeconds(1.5f);
+            _npcDuolingo.GetComponent<UINpc>().ChangeBubbleImage(null);
             CheckIfReplay();
         }
         else
         {
-            _currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_rightWord, Color.green);
-            _currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_currentGuessWord, Color.red);
+            /*_currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_rightWord, Color.green);
+            _currentPlayer.GetComponent<PlayerUI>().ChangeColorAnswerBubble(_currentGuessWord, Color.red);*/
+            _npcDuolingo.GetComponent<UINpc>().ChangeBubbleText("");
+            _npcDuolingo.GetComponent<UINpc>().ChangeBubbleImage(_fail);
             yield return new WaitForSeconds(1.5f);
+            _npcDuolingo.GetComponent<UINpc>().ChangeBubbleImage(null);
             EndDuolingo(false);
         }
 

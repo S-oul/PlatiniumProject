@@ -15,11 +15,17 @@ public class DeskDuolingo : Object
 
     public override void Interact(GameObject player)
     {
-        player.transform.position = gameObject.transform.Find("PlayerPosition").position;
-        player.GetComponent<PlayerController>().BlockPlayer(true);
-        player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Deco";
-        player.GetComponent<PlayerController>().DisableMovementEnableInputs();
-        _task.GetComponent<Task>().OnPlayerJoinedTask(player);
+        if (!_task.GetComponent<Task>().IsDone)
+        {
+            player.transform.position = gameObject.transform.Find("PlayerPosition").position;
+            player.GetComponent<PlayerController>().BlockPlayer(true);
+            player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Deco";
+            player.GetComponent<PlayerController>().DisableMovementEnableInputs();
+            _task.GetComponent<Task>().OnPlayerJoinedTask(player);
+            player.GetComponent<PlayerUI>().DisplayInputToPress(false, "");
+        }
+        
+
     }
 
     

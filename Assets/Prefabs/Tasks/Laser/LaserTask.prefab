@@ -266,6 +266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPlayers: 2
   _difficulty: 2
+  _isReplayable: 0
+  _addPlayerAtRunTime: 0
   _laser: {fileID: 7741461767121130828, guid: 4bd164bb021a9c7448951302ef6ed145, type: 3}
   _doorL: {fileID: 4363406617373923662}
   _doorR: {fileID: 4113381672678326440}

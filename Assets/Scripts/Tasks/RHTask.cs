@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -57,11 +57,11 @@ public class RHTask : Task
         if (value == true)
         {
             
-            _npcRH.Talk("Thank you");
+            _npcRH.Talk("Thank you ♥! ");
         }
         else
         {
-            _npcRH.Talk(">:o");
+            _npcRH.Talk("Wrong person! >:(");
         }
         yield return new WaitForSeconds(3f);
         _npcRH.NPCUI.DisplayTalkingBubble(false);

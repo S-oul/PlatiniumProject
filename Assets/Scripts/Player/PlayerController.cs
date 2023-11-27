@@ -25,12 +25,13 @@ public class PlayerController : MonoBehaviour
     bool _isInteracting = false;
     bool _isPlayerDown = false;
     bool _isBlocked = false;
-    
+    bool _walkingSoundCanPlay = false;
     bool _canMove = true;
 
     CharacterController2D _controller;
     Collider2D _colliderPlayer;
     Rigidbody2D _rb;
+    AudioSource _audioSource;
 
     string _codeContext;
     Vector2 _DecrytContext;
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _baseJumpForce = _jumpForce;
         _baseMoveSpeed = _moveSpeed;
+        _audioSource = gameObject.transform.Find("AudioSource").GetComponent<AudioSource>();
+        _walkingSoundCanPlay = true;
     }
 
 
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _horizontalMove = context.ReadValue<Vector2>().x * _moveSpeed;
+
     }
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -133,6 +137,8 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["Jump"].Enable();
         _playerInput.actions["InputTask"].Disable();
         _playerInput.actions["Decryptage"].Disable();
+        _playerInput.actions["Code"].Disable();
+
         _canMove = true;
 
     }
@@ -140,12 +146,10 @@ public class PlayerController : MonoBehaviour
     public void DisableMovements()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
-        _playerInput.actions["Interact"].Enable();
-        _playerInput.actions["Movement"].Enable();
-        _playerInput.actions["Jump"].Enable();
-        _playerInput.actions["InputTask"].Disable();
-        _playerInput.actions["Decryptage"].Disable();
-        _canMove = true;
+        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _canMove = false;
 
     }
 
@@ -275,10 +279,17 @@ public class PlayerController : MonoBehaviour
     {
         if (_isPlayerDown) { transform.localEulerAngles = new Vector3(0, 0, 90); }
         else { transform.localEulerAngles = new Vector3(0, 0, 0); }
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumping);
+        _controller.Movement(_horizontalMove * Time.fixedDeltaTime, _isJumping);
         _isJumping = false;
 
-        if (_horizontalMove != 0) { animator.SetBool("isWalking", true); }
+        if (_horizontalMove != 0) 
+        { 
+            animator.SetBool("isWalking", true);
+            if (_walkingSoundCanPlay)
+            {
+                StartCoroutine(PlaySoundWalking());
+            }
+        }
         else { animator.SetBool("isWalking", false); }
 
         if (_horizontalMove < 0 && _isMirrored == false) { flipAnimation(); _isMirrored = true; }
@@ -299,6 +310,16 @@ public class PlayerController : MonoBehaviour
         UpPlayer();   
     }
 
+    IEnumerator PlaySoundWalking()
+    {
+        _walkingSoundCanPlay = false;
+        AudioClip clip = AudioManager.instance.FindClip("PlayerWalk");
+        AudioManager.instance.PlaySFXOS(clip, _audioSource);
+        //print("Audio");
+        yield return new WaitForSeconds(clip.length + 0.4f);
+        _walkingSoundCanPlay = true;
+    }
+
     private void Update()
     {
         if (_isBlocked)
@@ -310,11 +331,27 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.OpenTheFinalDoor();
         }
+
     }
 
     public void ChangeMobiltyFactor(float moveSpeedFactor, float jumpForceFactor)
     {
         _moveSpeed = _baseMoveSpeed * moveSpeedFactor;
         _jumpForce = _baseJumpForce * jumpForceFactor;
+    }
+
+    public void DisconnectPlayer()
+    {
+        foreach(GameObject player in GameManager.Instance.Players)
+        {
+            if(gameObject == player)
+            {
+                GameManager.Instance.Players.Remove(player);
+                GameManager.Instance.PlayerCount--;
+                PlayerManager.Instance.InputManager.EnableJoining();
+                //Delete from PlayerManager's Player Input list
+            }
+        }
+        
     }
 }

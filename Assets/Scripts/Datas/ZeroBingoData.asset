@@ -53,3 +53,23 @@ MonoBehaviour:
       word: Cliff
     - language: 28
       word: Penhasco
+  - baseWord: Apricot
+    traductions:
+    - language: 14
+      word: Abricot
+    - language: 34
+      word: Albaricoque
+    - language: 15
+      word: Aprikose
+    - language: 28
+      word: Damasco
+  - baseWord: Hospital
+    traductions:
+    - language: 14
+      word: Hopital
+    - language: 34
+      word: Hospital
+    - language: 15
+      word: Krankenhaus
+    - language: 28
+      word: Hospital

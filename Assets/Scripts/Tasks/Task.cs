@@ -53,7 +53,11 @@ public abstract class Task : MonoBehaviour
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
         _room.TaskRoom = this;
-        _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Idle);
+        if(_room.WinStateScreen != null)
+        {
+            _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Idle);
+        }
+        
 
 
     }
@@ -132,6 +136,11 @@ public abstract class Task : MonoBehaviour
             print("isDone");
         }
     }
+
+    public virtual void OnplayerExitTask() 
+    { 
+        
+    }
     public void OnRoomSuccess()
     {
         Debug.Log(gameObject.name + " = Success");
@@ -139,25 +148,34 @@ public abstract class Task : MonoBehaviour
         
         GameManager.Instance.RoomWin();
         GameManager.Instance.CheckIfDayFinished();
-        _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Success);
-        _room.AudioSource.PlayOneShot(_room.OnRoomSuccessClip);
+        if (_room.WinStateScreen != null)
+        {
+            _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Success);
+        }
+        AudioManager.instance.PlaySFXOS("TaskSucceed", _room.AudioSource);
     }
     public void OnRoomFail()
     {
         if(_isReplayable)
         {
-            _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Retry);
+            if (_room.WinStateScreen != null)
+            {
+                _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Retry);
+            }
         }
         else
         {
-            _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Fail);
+            if (_room.WinStateScreen != null)
+            {
+                _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Fail);
+            }
             GameManager.Instance.NumberOfTasksMade++;
         }
         Debug.Log(gameObject.name);
         GameManager.Instance.RoomLose();
         GameManager.Instance.CheckIfDayFinished();
 
-        _room.AudioSource.PlayOneShot(_room.OnRoomFailClip);
+        AudioManager.instance.PlaySFXOS("TaskFail", _room.AudioSource);
 
 
     }

@@ -8,7 +8,7 @@ public class PlayerCollision : MonoBehaviour
     PlayerController _controller;
     PlayerInput _inputs;
     PlayerUI _playerUI;
-
+    AudioSource _audioSource;
     MonoBehaviour collidertype;
 
 
@@ -30,6 +30,7 @@ public class PlayerCollision : MonoBehaviour
         _inputs = GetComponent<PlayerInput>();
         _controller = gameObject.GetComponent<PlayerController>();
         _playerUI = gameObject.GetComponent<PlayerUI>();
+        _audioSource = gameObject.transform.Find("AudioSource").GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -95,7 +96,10 @@ public class PlayerCollision : MonoBehaviour
                 //_isInNPC = true;
                 collidertype = collision.transform.GetComponent<NPC>();
                 break;
-            
+            case "ChattyNPC":
+                collidertype = collision.transform.GetComponent<NPC>();
+                ((InteractableNPC)collidertype).VocalTalk();
+                break;
             case "ZoneEvent":
                 collidertype = collision.transform.GetComponent<ZoneEvent>();
                 ((ZoneEvent)collidertype).PlayerEnter(gameObject);
@@ -105,6 +109,7 @@ public class PlayerCollision : MonoBehaviour
                 collidertype = collision.transform.GetComponent<Object>();
                 break;
             case "Laser":
+                AudioManager.instance.PlaySFXOS("LaserImpact", _audioSource);
                 StartCoroutine(_controller.PlayerDown(collision.GetComponent<Laser>().TimePlayerIsDown));
                 break;
             case "DecryptInteract":
@@ -146,7 +151,7 @@ public class PlayerCollision : MonoBehaviour
                 {
                     StartCoroutine(AutoLiftWait());
                     collidertype = collision.transform.GetComponent<Lift>();
-                    ((Lift)collidertype).InteractLift(gameObject);
+                    ((Lift)collidertype).AutoLiftInteract(gameObject);
                 }
                 break;
             case "GraffitiTask":
@@ -230,7 +235,7 @@ public class PlayerCollision : MonoBehaviour
     IEnumerator AutoLiftWait()
     {
         _canAutoLift = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         _canAutoLift = true;
     }
 }

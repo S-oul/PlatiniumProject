@@ -13,13 +13,14 @@ public class DayTimer : MonoBehaviour
 
     TextMeshProUGUI _text;
 
-    public bool doTimer = false;
+    [SerializeField]bool _doTimer = false;
 
     bool _subMinute() { return _time.Minutes <= 0; }
     bool _wasSubMinute = false;
     bool _hasEnd = false;
 
     public float DayTime { get => _dayTime; set => _dayTime = value; }
+    public bool DoTimer { get => _doTimer; set => _doTimer = value; }
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class DayTimer : MonoBehaviour
 
         _text.text =  m + " : " + s;
 
-        if (doTimer)
+        if (_doTimer)
         {
             DayTime -= Time.deltaTime;
             DayTime = Mathf.Clamp(DayTime, 0, 999);

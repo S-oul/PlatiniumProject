@@ -39,6 +39,9 @@ public class TamponageTask : InputTask, ITimedTask
     TextMeshProUGUI _textScore;
 
     Coroutine _timer;
+
+    bool _hasTamponnageSoundPlayedP1 = false;
+    bool _hasTamponnageSoundPlayedP2 = false;
     private void Start()
     {
         _numOfClicksToDo *= Difficulty;
@@ -82,6 +85,8 @@ public class TamponageTask : InputTask, ITimedTask
         _player2 = PlayersDoingTask[1].GetComponent<PlayerController>();
         _player1UI = _player1.gameObject.GetComponent<PlayerUI>();
         _player2UI = _player2.gameObject.GetComponent<PlayerUI>();
+        _player1UI.DisplayInputToPress(false, "");
+        _player2UI.DisplayInputToPress(false, "");
         _remainingTime = _timeLimit;
         _timer = StartCoroutine(TimerTask());
         IsStarted = true;
@@ -111,6 +116,12 @@ public class TamponageTask : InputTask, ITimedTask
             }
             if (_p1Value == 1 && _p2Value == 1)
             {
+                if (!_hasTamponnageSoundPlayedP2)
+                {
+                    AudioManager.instance.PlaySFXOS("Tampon", _player2.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
+                    _hasTamponnageSoundPlayedP2 = true;
+                }
+                
                 _player1UI.DisplayInputToPress(false, "");
                 _player2UI.DisplayInputToPress(false, "");
                 _numOfClicksDone++;
@@ -132,10 +143,19 @@ public class TamponageTask : InputTask, ITimedTask
 
             if (_p1Value == 0 && _p2Value == 0)
             {
+                _hasTamponnageSoundPlayedP1 = false;
+                _hasTamponnageSoundPlayedP2 = false;
                 _player1UI.DisplayInputToPress(true, _inputName);
             }
             else if(_p1Value == 1 && _p2Value == 0)
             {
+                if (!_hasTamponnageSoundPlayedP1)
+                {
+                    AudioManager.instance.PlaySFXOS("Tampon", _player1.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
+                    _hasTamponnageSoundPlayedP1 = true;
+
+                }
+                
                 _player2UI.DisplayInputToPress(true, _inputName);
                 _player1UI.DisplayInputToPress(false, "");
             }
@@ -166,6 +186,7 @@ public class TamponageTask : InputTask, ITimedTask
         _p2Value = 0;
         _player1.GetComponent<PlayerController>().DisableAllInputs();
         _player2.GetComponent<PlayerController>().DisableAllInputs();
+        AudioManager.instance.PlaySFXOS("QTEFail", RoomTask.AudioSource);
         yield return new WaitForSeconds(5);
         _textScore.color = Color.black;
         _textScore.text = _numOfClicksDone + "/" + _numOfClicksToDo;
