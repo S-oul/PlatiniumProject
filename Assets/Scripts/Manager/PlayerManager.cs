@@ -9,7 +9,11 @@ public class PlayerManager : MonoBehaviour
     int _sortingOrderTracker = 0;
 
     public PlayerInputManager InputManager { get => _inputManager; set => _inputManager = value; }
-
+    public enum ControllerType
+    {
+        Xbox,
+        Playstation
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -30,7 +34,7 @@ public class PlayerManager : MonoBehaviour
         {
             GameManager.Instance.Players[newPlayer.playerIndex] = newPlayer.gameObject;
             GameManager.Instance.PlayerCount++;
-            print(newPlayer);
+            GetControllerType(newPlayer);
             //PickRandomAnimation(GameManager.Instance.Players[newPlayer.playerIndex]);                         // Randome animatior chosen here
             AssignAnimationToPlayer(newPlayer);
             GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;      // Player spawns at the location of the PlayerManager Object
@@ -38,7 +42,7 @@ public class PlayerManager : MonoBehaviour
             newPlayer.actions["InputTask"].Disable();                                                         // is "InputTask" the 'task' of adding a player?
             Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
             AudioManager.instance.AllSoundSource.Add(newPlayer.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
-            Debug.Log(newPlayer.devices[0]);
+            
             if (GameManager.Instance.PlayerCount == 4)
             {
                 InputManager.DisableJoining();
@@ -47,7 +51,17 @@ public class PlayerManager : MonoBehaviour
         
     }
 
-    
+    void GetControllerType(PlayerInput player)
+    {
+        if (player.devices[0].displayName.Contains("Xbox"))
+        {
+            player.gameObject.GetComponent<PlayerController>().Type = ControllerType.Xbox;
+        }
+        else if (player.devices[0].displayName.Contains("PLAYSTATION"))
+        {
+            player.gameObject.GetComponent<PlayerController>().Type = ControllerType.Playstation;
+        }
+    }
     /*
     void PickRandomSprite(GameObject player)                                                                         //Change to Pick randome Animation
     {

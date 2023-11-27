@@ -34,6 +34,7 @@ public class DataManager : MonoBehaviour
     public Dictionary<string, string> InputNamesConverter { get => inputsNamesConverter; }
 
     [SerializeField] List<GameObject> _allTasks = new List<GameObject>();
+    [SerializeField] InputDataManager _inputsData;
 
     //[SerializeField] List<Sprite> _spritePlayers = new List<Sprite>();
     [SerializeField] List<RuntimeAnimatorController> _animationPlayers = new List<RuntimeAnimatorController>();
