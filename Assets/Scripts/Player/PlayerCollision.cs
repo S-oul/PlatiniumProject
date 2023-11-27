@@ -61,6 +61,7 @@ public class PlayerCollision : MonoBehaviour
                     break;
                 case GoatTask:
                     ((GoatTask)collidertype).OnPlayerJoinedTask(this.gameObject);
+                    _playerUI.DisplayInputToPress(false, "");
                     break;
                 case StoreTask:
 

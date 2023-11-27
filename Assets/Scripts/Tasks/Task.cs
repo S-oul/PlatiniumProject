@@ -97,7 +97,11 @@ public abstract class Task : MonoBehaviour
                     if (_playersDoingTask.Count < 4)
                     {   
                         //the safegard in question:
-                        if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) { _playersDoingTask.Add(player); } 
+                        if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) 
+                        {
+                            _playersDoingTask.Add(player);
+                            
+                        } 
                         return;
                     }
                 }
