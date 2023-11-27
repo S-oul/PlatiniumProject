@@ -125,13 +125,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPlayers: 1
   _difficulty: 3
+  _isReplayable: 0
+  _addPlayerAtRunTime: 0
   _timeToDoTask: 15
   _goatForce: 0.025
-  _playerForce: 1
+  _playerForce: 2
   _goatPos: 0
   _goatSpawn: {fileID: 6831756489501330995}
   _goatGoal: {fileID: 5147070448652958479}
   _playerPos: {fileID: 4336748101496771857}
+  _monster: {fileID: 0}
   _buttonToPress: 2
 --- !u!1 &2119164726764387379
 GameObject:

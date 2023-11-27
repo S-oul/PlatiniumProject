@@ -745,6 +745,10 @@ PrefabInstance:
       propertyPath: _goatSpawn
       value: 
       objectReference: {fileID: 4423564791760526677}
+    - target: {fileID: 5661583552097357876, guid: bc525e4c81e427e4ba84f9e14cefda7f, type: 3}
+      propertyPath: _playerForce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6415192658138232663, guid: bc525e4c81e427e4ba84f9e14cefda7f, type: 3}
       propertyPath: m_Name
       value: Goat
