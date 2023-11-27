@@ -75,5 +75,7 @@ public class CVChoice : MonoBehaviour
             print("Player Input = " + player.devices[0].description + " || PlayerAnimation = " + player.GetComponent<CursorPlayer>().CvChosen.AnimationPlayer.name);
         }
         SceneManager.LoadScene("Bureaucratie");
+        //print(SceneManager.GetActiveScene().name);
+        //GameManager.Instance.StartDay();
     }
 }

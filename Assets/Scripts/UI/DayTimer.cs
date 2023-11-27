@@ -15,6 +15,8 @@ public class DayTimer : MonoBehaviour
 
     [SerializeField]bool _doTimer = false;
 
+    [SerializeField] Animator _animator;
+
     bool _subMinute() { return _time.Minutes <= 0; }
     bool _wasSubMinute = false;
     bool _hasEnd = false;
@@ -50,7 +52,7 @@ public class DayTimer : MonoBehaviour
             if (!_hasEnd && _time.Minutes == 0 && _time.Seconds == 0) 
             { 
                 _hasEnd = true;
-                gameManager.Animator.SetTrigger("DoCrunchAnim");
+                _animator.SetTrigger("DoCrunchAnim");
                 print("DATIMER ISDONE"); 
             }
 
