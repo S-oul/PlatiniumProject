@@ -14,16 +14,23 @@ public class PlayerCursorManager : MonoBehaviour
 
     void OnPlayerJoined(PlayerInput player)
     {
-
-        players.Add(player);
-        player.gameObject.GetComponent<CursorPlayer>().IsInSpawnZone = true;
-        player.gameObject.GetComponent<CursorPlayer>().CvChoice = _cvChoice;
-        List<float> positionsCursor = new List<float>();
-        player.transform.SetParent(SpawnZone.transform);
-        UpdateBaseZone();
-        player.gameObject.GetComponent<CursorPlayer>().CanInteract = true;
-        CheckNameAndID();
-        player.gameObject.GetComponent<CursorPlayer>().CurrentZoneID = 1;
+        if(player.devices[0].name == "Keyboard")
+        {
+            Destroy(player.gameObject);
+        }
+        else
+        {
+            players.Add(player);
+            player.gameObject.GetComponent<CursorPlayer>().IsInSpawnZone = true;
+            player.gameObject.GetComponent<CursorPlayer>().CvChoice = _cvChoice;
+            List<float> positionsCursor = new List<float>();
+            player.transform.SetParent(SpawnZone.transform);
+            UpdateBaseZone();
+            player.gameObject.GetComponent<CursorPlayer>().CanInteract = true;
+            CheckNameAndID();
+            player.gameObject.GetComponent<CursorPlayer>().CurrentZoneID = 1;
+        }
+            
 
     }
 

@@ -1307,6 +1307,8 @@ MonoBehaviour:
   _dialogues: []
   _bulletPrefab: {fileID: 0}
   _player: {fileID: 0}
+  _animationIdle: {fileID: 0}
+  _animationOther: {fileID: 6593842561174068286}
 --- !u!4 &7027403776209885555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8606743795658603397, guid: ac45e33c69c4aef4ba1f2c348231b89c, type: 3}

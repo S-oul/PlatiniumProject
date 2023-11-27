@@ -16,6 +16,8 @@ public class CowboyNPC : NPC, IChattyNPC
 
     [SerializeField] GameObject _player;
 
+
+
     public GameObject Player { get => _player; set => _player = value; }
     public SpriteRenderer SpriteNPC { get => _sprite; set => _sprite = value; }
 
@@ -23,19 +25,21 @@ public class CowboyNPC : NPC, IChattyNPC
     {
         _firePoint = transform.GetChild(0).transform;
         _sprite = transform.Find("Animation").GetComponent<SpriteRenderer>();
+
     }
     public void Talk(string text)
     {
         string currentDialogue = dialogueTexts[Random.Range(0, dialogueTexts.Count)];
-        Debug.Log(currentDialogue);
     }
 
 
     public void Fire()
     {
-        /*Debug.Log("Pan");*/
         GetComponentInChildren<Animator>().SetTrigger("Fire");
+
     }
+
+
 
     public void FlipNPC()
     {

@@ -2349,8 +2349,8 @@ MonoBehaviour:
   - {fileID: 491415545771377428, guid: a9376ad197e30c64a9621a5b57eab3ab, type: 3}
   _poolType4:
   - {fileID: 3898858819580628589, guid: 838d03bf21717a64eb8fc5f892b0df03, type: 3}
-  - {fileID: 3898858819580628589, guid: 838d03bf21717a64eb8fc5f892b0df03, type: 3}
-  - {fileID: 3898858819580628589, guid: 838d03bf21717a64eb8fc5f892b0df03, type: 3}
+  - {fileID: 3898858819580628589, guid: d2c937afe1be0b048830c031f6142629, type: 3}
+  - {fileID: 3898858819580628589, guid: c5fcf8cd81e15644cbcb815a18e96199, type: 3}
   _spawnFloors:
   - _roomstype: 02S11
   - _roomstype: 20S11
