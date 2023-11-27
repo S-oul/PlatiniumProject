@@ -22,21 +22,29 @@ public class PlayerManager : MonoBehaviour
     }
     void OnPlayerJoined(PlayerInput newPlayer)
     {
-        GameManager.Instance.Players[newPlayer.playerIndex] = newPlayer.gameObject;
-        GameManager.Instance.PlayerCount++;
-        print(newPlayer);
-        //PickRandomAnimation(GameManager.Instance.Players[newPlayer.playerIndex]);                         // Randome animatior chosen here
-        AssignAnimationToPlayer(newPlayer);
-        GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;      // Player spawns at the location of the PlayerManager Object
-        AssignSortingOrder(GameManager.Instance.Players[newPlayer.playerIndex]);
-        newPlayer.actions["InputTask"].Disable();                                                         // is "InputTask" the 'task' of adding a player?
-        Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
-        AudioManager.instance.AllSoundSource.Add(newPlayer.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
-        Debug.Log(newPlayer.devices[0]);
-        if (GameManager.Instance.PlayerCount == 4)
+        if (newPlayer.devices[0].name == "Keyboard")
         {
-            InputManager.DisableJoining();
+            Destroy(newPlayer.gameObject);
         }
+        else
+        {
+            GameManager.Instance.Players[newPlayer.playerIndex] = newPlayer.gameObject;
+            GameManager.Instance.PlayerCount++;
+            print(newPlayer);
+            //PickRandomAnimation(GameManager.Instance.Players[newPlayer.playerIndex]);                         // Randome animatior chosen here
+            AssignAnimationToPlayer(newPlayer);
+            GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;      // Player spawns at the location of the PlayerManager Object
+            AssignSortingOrder(GameManager.Instance.Players[newPlayer.playerIndex]);
+            newPlayer.actions["InputTask"].Disable();                                                         // is "InputTask" the 'task' of adding a player?
+            Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
+            AudioManager.instance.AllSoundSource.Add(newPlayer.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
+            Debug.Log(newPlayer.devices[0]);
+            if (GameManager.Instance.PlayerCount == 4)
+            {
+                InputManager.DisableJoining();
+            }
+        }
+        
     }
 
     
