@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Layouts;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
@@ -36,11 +37,12 @@ public class DataManager : MonoBehaviour
 
     //[SerializeField] List<Sprite> _spritePlayers = new List<Sprite>();
     [SerializeField] List<RuntimeAnimatorController> _animationPlayers = new List<RuntimeAnimatorController>();
-
+    Dictionary<InputDeviceDescription, RuntimeAnimatorController> _dicSpritePlayer = new Dictionary<InputDeviceDescription, RuntimeAnimatorController>();
     public List<GameObject> AllTasks { get => _allTasks; }
 
     //public List<Sprite> SpritePlayers { get => _spritePlayers; }
     public List<RuntimeAnimatorController> AnimationPlayers { get => _animationPlayers; }
+    public Dictionary<InputDeviceDescription, RuntimeAnimatorController> DicSpritePlayer { get => _dicSpritePlayer; set => _dicSpritePlayer = value; }
 
     public enum TaskEnum
     {
@@ -51,8 +53,11 @@ public class DataManager : MonoBehaviour
         Duolingo,
         Tamponnage,
         Volley,
+        Store,
         Matrix
     }
+
+
 
     
     private void Awake()

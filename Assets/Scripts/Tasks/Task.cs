@@ -9,6 +9,7 @@ public abstract class Task : MonoBehaviour
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
     [Range(1, 5)][SerializeField] int _difficulty = 1;
+    [SerializeField] bool _isReplayable = false;
     [SerializeField] bool _addPlayerAtRunTime = false;
     GameObject _player;
     Room _room;
@@ -25,7 +26,6 @@ public abstract class Task : MonoBehaviour
     public bool IsStarted { get => _isStarted; set => _isStarted = value; }
 
     public Room RoomTask { get => _room; set => _room = value; }
-    public Room ThisRoom { get => _room; set => _room = value; }
     public int Difficulty { get => _difficulty; set => _difficulty = value; }
     public bool AddPlayerAtRunTime { get => _addPlayerAtRunTime; set => _addPlayerAtRunTime = value; }
 
@@ -47,20 +47,34 @@ public abstract class Task : MonoBehaviour
 
     public virtual void Init()
     {
-
+        
         _room = transform.parent.parent.GetComponent<Room>();
         if (_room == null) { _room = transform.parent.GetComponent<Room>(); }
         if (_room == null) { _room = transform.GetComponent<Room>(); }
         _gameManager = GameManager.Instance;
         _room.TaskRoom = this;
+        if(_room.WinStateScreen != null)
+        {
+            _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Idle);
+        }
         
+
+
     }
 
     public virtual void End(bool isSuccessful)
     {
         PlayersDoingTask.Clear();
         IsStarted = false;
-        IsDone = isSuccessful;
+        if (_isReplayable)
+        {
+            IsDone = isSuccessful;
+        }
+        else
+        {
+            IsDone = true;
+        }
+
         if (isSuccessful)
         {
             OnRoomSuccess();
@@ -72,6 +86,7 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerJoinedTask(GameObject player)
     {
+        //Debug.Log("OnPlayerJoinedTask called");  //This func is called 1-3 times at randome. Safegards have been put in place.
         
         if (!IsDone)
         {
@@ -80,17 +95,20 @@ public abstract class Task : MonoBehaviour
                 if (_isStarted)
                 {
                     if (_playersDoingTask.Count < 4)
-                    {
-                        _playersDoingTask.Add(player);
+                    {   
+                        //the safegard in question:
+                        if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) { _playersDoingTask.Add(player); } 
                         return;
                     }
                 }
-                _playersDoingTask.Add(player);
-                _isStarted = true;
-                Init();
-
+                else
+                {
+                    _playersDoingTask.Add(player);
+                    _isStarted = true;
+                    Init();
+                }
             }
-            if (_numberOfPlayers == 1)
+            else if (_numberOfPlayers == 1)
             {
                 if (!_isStarted)
                 {
@@ -99,7 +117,6 @@ public abstract class Task : MonoBehaviour
                     _isStarted = true;
                     Init();
                 }
-
             }
             else
             {
@@ -113,10 +130,17 @@ public abstract class Task : MonoBehaviour
                     }
                 }
             }
+        } 
+        else
+        {
+            print("isDone");
         }
-        
     }
 
+    public virtual void OnplayerExitTask() 
+    { 
+        
+    }
     public void OnRoomSuccess()
     {
         Debug.Log(gameObject.name + " = Success");
@@ -124,35 +148,49 @@ public abstract class Task : MonoBehaviour
         
         GameManager.Instance.RoomWin();
         GameManager.Instance.CheckIfDayFinished();
-        _room.WinStateScreen.ChangeColor(Color.green);
+        if (_room.WinStateScreen != null)
+        {
+            _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Success);
+        }
+        AudioManager.instance.PlaySFXOS("TaskSucceed", _room.AudioSource);
     }
     public void OnRoomFail()
     {
+        if(_isReplayable)
+        {
+            if (_room.WinStateScreen != null)
+            {
+                _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Retry);
+            }
+        }
+        else
+        {
+            if (_room.WinStateScreen != null)
+            {
+                _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Fail);
+            }
+            GameManager.Instance.NumberOfTasksMade++;
+        }
         Debug.Log(gameObject.name);
-        GameManager.Instance.NumberOfTasksMade++;
         GameManager.Instance.RoomLose();
         GameManager.Instance.CheckIfDayFinished();
-        _room.WinStateScreen.ChangeColor(Color.red);
+
+        AudioManager.instance.PlaySFXOS("TaskFail", _room.AudioSource);
+
+
     }
     public void OnPlayerExitTaskRoom(GameObject player)
     {
-
         if (_playersDoingTask.Contains(player) && !IsStarted)
         {
             _playersDoingTask.Remove(player);
         }
-        
     }
-
-
-
-
 }
 
 public interface ITimedTask
 {
     float _givenTime { get; }
-
 }
 
 

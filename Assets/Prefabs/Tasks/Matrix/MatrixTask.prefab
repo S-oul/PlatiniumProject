@@ -47,4 +47,9 @@ MonoBehaviour:
   _numberOfPlayers: 1
   _difficulty: 1
   _addPlayerAtRunTime: 0
+  playersAlive: []
   _projectilePrefab: {fileID: 3039079903670893262, guid: 23ec031d92ffb1844a9235034818f441, type: 3}
+  _timeTask: 20
+  _timeBetweenProjectiles: 0.5
+  _projectileSpeed: 10
+  _timeBeforeTask: 3

@@ -66,8 +66,6 @@ public class StoreTask : InputTask
     {
         if(IsStarted && !IsDone)
         {
-            float deltaP1 = 0;
-            float deltaP2 = 0;
   
             if (!_isOnFail)
             {

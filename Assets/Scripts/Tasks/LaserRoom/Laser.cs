@@ -12,15 +12,24 @@ public class Laser : MonoBehaviour
 
     [SerializeField] SpriteRenderer _sprite;
     BoxCollider2D _boxCollider;
+    AudioSource _audioSource;
+    bool _isActive = false;
 
     public float TimePlayerIsDown { get => _timePlayerIsDown; set => _timePlayerIsDown = value; }
     public Transform ToFar { get => _toFar; set => _toFar = value; }
     public bool GoLeft { get => _goLeft; set => _goLeft = value; }
 
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnEnable()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
+        _isActive = false;
         StartCoroutine(SwapperOn());
+        
     }
 
     void Update()
@@ -52,6 +61,7 @@ public class Laser : MonoBehaviour
     IEnumerator SwapperOn()
     {
         yield return new WaitForSeconds(_timeToSwap);
+        AudioManager.instance.PlaySFXLoop(AudioManager.instance.FindClip("LaserConstant"), _audioSource);
         _sprite.enabled = true;
         _boxCollider.enabled = true;
         StartCoroutine(SwapperOff());
@@ -59,6 +69,8 @@ public class Laser : MonoBehaviour
     IEnumerator SwapperOff()
     {
         yield return new WaitForSeconds(_timeToSwap/2);
+        AudioManager.instance.StopSource(_audioSource);
+        _isActive = false;
         _sprite.enabled = false;
         _boxCollider.enabled = false;
         StartCoroutine(SwapperOn());

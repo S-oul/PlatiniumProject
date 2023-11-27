@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPlayers: 1
   _difficulty: 1
+  _isReplayable: 1
+  _addPlayerAtRunTime: 0
   _inputsNeeded: 
   _numberOfInputs: 3
   _timeToDoQTE: 3

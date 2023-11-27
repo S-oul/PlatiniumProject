@@ -1,22 +1,22 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LeCode : Task
 {
-    
-    GameObject _playerDoingTask = null;
     PlayerController _controller;
-
+    PlayerUI _playerUI;
+    PlayerInput _playerInput;
 
     [SerializeField] GameObject _postIt;
     string _code = "";
     TextMeshPro _screenText;
 
 
-    public bool HaveOnePlayer() { if (_playerDoingTask != null) return true; else return false; }
+    public bool HaveOnePlayer() { if (PlayersDoingTask[0] != null) return true; else return false; }
     public PlayerController Controller { get => _controller; set => _controller = value; }
-    public GameObject Player { get => _playerDoingTask; set => _playerDoingTask = value; }
+    public GameObject Player { get => PlayersDoingTask[0]; }
     public string Code { get => _code; set => _code = value; }
 
     private void Awake()
@@ -54,6 +54,12 @@ public class LeCode : Task
     public override void Init()
     {
         base.Init();
+        _controller.DisableMovements();
+        _playerUI = _controller.GetComponent<PlayerUI>();
+        _playerInput = _controller.GetComponent<PlayerInput>();
+        _playerUI.DisplayInputToPress(false, "");
+        _playerInput.actions["Code"].Enable();
+        _playerUI.DisplayLeCodeUI(true);
     }
 
     public override void End(bool isSuccessful)
@@ -65,8 +71,14 @@ public class LeCode : Task
         }
         
         base.End(isSuccessful);
+        OnplayerExitTask();
     }
-
+    public override void OnplayerExitTask()
+    {
+        base.OnplayerExitTask();
+        _controller.EnableMovementDisableInputs();
+        _playerUI.DisplayLeCodeUI(false);
+    }
 
     IEnumerator TimeBeforeRestart()
     {
@@ -75,7 +87,7 @@ public class LeCode : Task
     }
     private void Update()
     {
-        if (HaveOnePlayer() && !IsDone)
+        if (IsStarted && !IsDone)
         {
             if(_controller.CodeContext != null)
             {
@@ -126,6 +138,7 @@ public class LeCode : Task
                 else if(_screenText.text.Length == 4 && _code != _screenText.text)
                 {
                     _screenText.color = Color.red;
+                    End(false);
                     Debug.Log("Wrong code");
                 }
                 
