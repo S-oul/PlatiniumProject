@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BallVolley : MonoBehaviour
@@ -14,73 +13,116 @@ public class BallVolley : MonoBehaviour
 
     GameObject _lastCollisionObject;
 
-    
+    bool _canCheckCollision;
+
+    bool _isFirstShot;
+
+    bool _canCheckTouchAgain;
+
     public VolleyballTask Task { get => _task; set => _task = value; }
 
     private void Start()
     {
+        _canCheckCollision = true;
+        _canCheckTouchAgain = true;
+        _isFirstShot = true;
         _numberOfTouches = 0;
         _rb = GetComponent<Rigidbody2D>();
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.tag == "Player")
+        if(_canCheckCollision)
         {
-            _lastCollisionObject = collision.gameObject;
+            if (collision.gameObject.tag == "Player")
+            {
+
+                _lastCollisionObject = collision.gameObject;
+                _task.PlayerTouch = collision.gameObject;
+                /*if (_canCheckTouchAgain)
+                {
+                    StartCoroutine(TimerBeforeCheckAgain());
+                    _numberOfTouches++;
+
+                }*/
+                Debug.Log(_numberOfTouches);
+                _task.ChangeColorPlayers();
+                CheckTouches();
+                //Vector3 _dir = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+                Vector3 _dir = _task.PointVolley.position;
+
+                //_rb.velocity = Vector2.zero;
+                //Vector3 _dir = collision.gameObject.transform.position - gameObject.transform.position;
+                /*_rb.AddForce(Vector2.up * 40f);*/
+                //_rb.AddForce(_dir.normalized * _numberOfTouches * 2f);
+                _rb.AddForce(_dir.normalized * 20f);
+
+            }
             
-            _numberOfTouches++;
-            CheckTouches();
-            Vector3 _dir = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
-            _rb.velocity = Vector3.zero;
-            //Vector3 _dir = collision.gameObject.transform.position - gameObject.transform.position;
-            _rb.AddForce(_dir.normalized * _numberOfTouches * 2f);
-            _rb.AddForce(Vector2.up * 40f);
-        }
-        if(collision.gameObject == _task.Net)
-        {
-            CheckBallPosition();
 
-
+            
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                CheckBallPosition();
+            }
         }
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            CheckBallPosition();
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == _task.Squid)
         {
-            if (CheckChanceToHit())
+            if (_isFirstShot)
             {
-                _lastCollisionObject = collision.gameObject;
+                _isFirstShot = false;
                 Vector3 dir = new Vector3(Random.Range(-0.8f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
+                
                 _rb.velocity = Vector2.zero;
+                print(dir);
                 _rb.AddForce(dir);
             }
+            else
+            {
+                if (CheckChanceToHit())
+                {
+                    _lastCollisionObject = collision.gameObject;
+                    Vector3 dir = new Vector3(Random.Range(-0.8f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
+                    _rb.velocity = Vector2.zero;
+                    _rb.AddForce(dir);
+                }
+            }
+                
             
         }
     }
     void CheckTouches()
     {
-        if(_numberOfTouches == 3)
+        if (_numberOfTouches == 4)
         {
-            _task.Point(gameObject, false);
+            _canCheckCollision = false;
+            
+            StartCoroutine(TimerBeforeDestroy(false));
         }
+        
+        
     }
     
     void CheckBallPosition()
     {
+        
+        _canCheckCollision = false;
+        
         if (gameObject.transform.localPosition.x < 0)
         {
-            _task.Point(gameObject, false);
+            StartCoroutine(TimerBeforeDestroy(false));
         }
         else if (gameObject.transform.localPosition.x > 0)
         {
-            _task.Point(gameObject, true);
+            StartCoroutine(TimerBeforeDestroy(true));
         }
+        
+        
         
     }
 
@@ -94,9 +136,21 @@ public class BallVolley : MonoBehaviour
         else { return true; }
     }
 
-    public IEnumerator TimerBeforeDestroy()
+    public IEnumerator TimerBeforeDestroy(bool isForPlayer)
     {
-        foreach(GameObject player in _task.PlayersDoingTask)
+        if (isForPlayer)
+        {
+            _task.TextVolleyUI.gameObject.SetActive(true);
+            _task.TextVolleyUI.text = "Point for players!";
+        }
+        else
+        {
+            _task.TextVolleyUI.gameObject.SetActive(true);
+            _task.TextVolleyUI.text = "Point for squid!";
+
+        }
+        StartCoroutine(_task.TextAnimation());
+        foreach (GameObject player in _task.PlayersDoingTask)
         {
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, true);
@@ -107,6 +161,15 @@ public class BallVolley : MonoBehaviour
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, false);
         }
+        _task.Point(isForPlayer);
         Destroy(gameObject);
     }
+
+    public IEnumerator TimerBeforeCheckAgain()
+    {
+        _canCheckTouchAgain = false;
+        yield return new WaitForSeconds(0.1f);
+        _canCheckTouchAgain = true;
+    }
+
 }

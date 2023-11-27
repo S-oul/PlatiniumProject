@@ -44,9 +44,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e92b963e2a17aa48bbc45b29774fd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfPlayers: 1
+  _numberOfPlayers: 4
   _difficulty: 1
+  _isReplayable: 0
+  _addPlayerAtRunTime: 0
   _timeBeforeStart: 3
   _ballPrefab: {fileID: 204925619320414526, guid: 1598ab04da6dfbc4aa0a01d590aa304d, type: 3}
-  _squidChanceToHit: 83
-  _pointsToWin: 12
+  _squidChanceToHit: 50
+  _pointsToWin: 6
+  _pointVolley: {fileID: 0}
+  _animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -3.3223395
+      outSlope: -3.3223395
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.033333335
+    - serializedVersion: 3
+      time: 1
+      value: 0.1
+      inSlope: 0.06710405
+      outSlope: 0.06710405
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.19166666
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

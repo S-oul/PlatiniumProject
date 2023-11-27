@@ -181,7 +181,7 @@ public class CowboyQTE : InputTask
         _playerUI.ClearUIInputs();
         _playerUI.DisplayInputsTaskUI(false);
         _playerUI.DisplayCowboyQTEUI(true);
-        End(value);
+        base.End(value);
         _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameEnd");
     }
 

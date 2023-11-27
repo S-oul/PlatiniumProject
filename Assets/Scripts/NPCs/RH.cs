@@ -10,6 +10,8 @@ public class RH : NPC, IChattyNPC
     bool _isPlayerNeeded = false;
     GameObject _playerNeeded;
 
+    [SerializeField] Animator _animator;
+
     public bool IsPlayerNeeded { get => _isPlayerNeeded; set => _isPlayerNeeded = value; } 
     public Task TaskRH { get => _task; set => _task = value; }
     public GameObject PlayerNeeded { get => _playerNeeded; set => _playerNeeded = value; }
@@ -21,9 +23,11 @@ public class RH : NPC, IChattyNPC
 
     public void DisplayPlayer(GameObject player)
     {
+        //_animator.SetTrigger("");
         NPCUI.DisplayTalkingBubble(true);
         if(player == null)
         {
+            print("oui");
             NPCUI.ChangeBubbleImage(null);
         }
         else

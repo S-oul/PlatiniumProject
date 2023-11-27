@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     List<Room> _roomList = new List<Room>();
     [SerializeField] List<Room> _roomTaskList = new List<Room>();
 
+    [SerializeField] float _timeForTheDay;
     [SerializeField] DaySlider _daySlider;
     [SerializeField] DayTimer _dayTimer;
     [SerializeField] Animator _animator;
@@ -26,13 +27,13 @@ public class GameManager : MonoBehaviour
 
     GameObject _finalDoor;
 
-    [SerializeField] GameObject[] _players = new GameObject[4];
+    [SerializeField] List<GameObject> _players = new List<GameObject>();
 
     [SerializeField] int _numberOfTasksMade;
 
     public int PlayerCount { get => _playerCount; set => _playerCount = value; }
 
-    public GameObject[] Players { get => _players; }
+    public List<GameObject> Players { get => _players; set => _players = value; }
     public List<Room> RoomList { get => _roomList; set => _roomList = value; }
     public List<Lift> LiftList { get => _liftList; set => _liftList = value; }
     public List<Room> RoomTaskList { get => _roomTaskList; set => _roomTaskList = value; }
@@ -41,6 +42,17 @@ public class GameManager : MonoBehaviour
     public int DayIndex { get => _dayIndex; set => _dayIndex = value; }
     public GameObject FinalRoom { get => _finalRoom; set => _finalRoom = value; }
     public Animator Animator { get => _animator; set => _animator = value; }
+    public float TimeForTheDay { get => _timeForTheDay; set => _timeForTheDay = value; }
+
+    private void Start()
+    {
+        /*StartDay();*/
+    }
+
+    void StartDay()
+    {
+        _daySlider.SetValue(1);
+    }
 
     public int RoomWin()
     {
@@ -52,10 +64,11 @@ public class GameManager : MonoBehaviour
     {
         _roomLose++;
         _daySlider.RemoveValue(_daySlider.OnRoomLoose);
-        if (_roomLose > _maxRoomFail)
+
+        /*if (_roomLose > _maxRoomFail)
         {
             print("T'AS PERDU TROUDUCUL");
-        }
+        }*/
         return _roomLose;
     }
 
@@ -73,7 +86,6 @@ public class GameManager : MonoBehaviour
             if (i + 1 >= _liftList.Count)
             {
                 _liftList[i].TeleportPos = _liftList[0].MyPos;
-
             }
             else
             {
@@ -89,6 +101,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
         
     }
 
@@ -113,13 +126,16 @@ public class GameManager : MonoBehaviour
     {
         if(_numberOfTasksMade == RoomTaskList.Count)
         {
+            /*_dayTimer.DoTimer = false;
+            _daySlider.IsOnCrunch = true;*/
             OpenTheFinalDoor();
         }
     }
 
     public void OpenTheFinalDoor()
     {
-        
+        _dayTimer.DoTimer = false;
+        _daySlider.IsOnCrunch = true;
         StartCoroutine(_finalDoor.GetComponent<FinalDoor>().OpenDoor());
     }
 

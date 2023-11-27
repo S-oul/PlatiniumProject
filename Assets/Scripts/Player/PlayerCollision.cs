@@ -8,7 +8,7 @@ public class PlayerCollision : MonoBehaviour
     PlayerController _controller;
     PlayerInput _inputs;
     PlayerUI _playerUI;
-
+    AudioSource _audioSource;
     MonoBehaviour collidertype;
 
 
@@ -30,6 +30,7 @@ public class PlayerCollision : MonoBehaviour
         _inputs = GetComponent<PlayerInput>();
         _controller = gameObject.GetComponent<PlayerController>();
         _playerUI = gameObject.GetComponent<PlayerUI>();
+        _audioSource = gameObject.transform.Find("AudioSource").GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -44,23 +45,19 @@ public class PlayerCollision : MonoBehaviour
             {
                 case InteractableNPC:
                     ((InteractableNPC)collidertype).Interact(gameObject);
-                    _controller.IsInteracting = false;
                     break;
-
                 case Lift:
                     ((Lift)collidertype).InteractLift(gameObject);
-                    _controller.IsInteracting = false;
                     break;
-
+                case LeCode:
+                    ((LeCode)collidertype).Controller = _controller;
+                    ((LeCode)collidertype).OnPlayerJoinedTask(gameObject);
+                    break;
                 case Object:
                     ((Object)collidertype).Interact(gameObject);
-                    _controller.IsInteracting = false;
                     break;
-
                 case DecryptageTask:
                     ((DecryptageTask)collidertype).OnPlayerJoinedTask(gameObject);
-
-                    _controller.IsInteracting = false;
                     break;
                 case GoatTask:
                     ((GoatTask)collidertype).OnPlayerJoinedTask(this.gameObject);
@@ -77,6 +74,8 @@ public class PlayerCollision : MonoBehaviour
                     ((GraffitiGameManager)collidertype).OnPlayerJoinedTask(this.gameObject);
                     break;
             }
+            _controller.IsInteracting = false;
+
         }
     }
 
@@ -97,52 +96,64 @@ public class PlayerCollision : MonoBehaviour
                 //_isInNPC = true;
                 collidertype = collision.transform.GetComponent<NPC>();
                 break;
-            
+            case "ChattyNPC":
+                collidertype = collision.transform.GetComponent<NPC>();
+                ((InteractableNPC)collidertype).VocalTalk();
+                break;
             case "ZoneEvent":
                 collidertype = collision.transform.GetComponent<ZoneEvent>();
                 ((ZoneEvent)collidertype).PlayerEnter(gameObject);
                 break;
             case "Object":
+                _playerUI.DisplayInputToPress(true, "Y");
                 collidertype = collision.transform.GetComponent<Object>();
                 break;
             case "Laser":
-                //print("haaaaaaaaaaaaaaaaaaaaaa");
+                AudioManager.instance.PlaySFXOS("LaserImpact", _audioSource);
                 StartCoroutine(_controller.PlayerDown(collision.GetComponent<Laser>().TimePlayerIsDown));
                 break;
             case "DecryptInteract":
                 collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
+                _playerUI.DisplayInputToPress(true, "Y");
                 break;
             case "CodeZone":
-                LeCode lecode = collision.transform.parent.GetComponent<LeCode>();
-                if (!lecode.HaveOnePlayer())
-                {
-                    lecode.Player = gameObject;
-                    lecode.Init();
-                    _playerUI.DisplayLeCodeUI(true);
-                    _inputs.actions["Interact"].Disable();
-                    _inputs.actions["Jump"].Disable();
-                    _inputs.actions["Code"].Enable();
-                    lecode.Controller = _controller;
-                }
+                collidertype = collision.transform.parent.GetComponent<LeCode>();
+                _playerUI.DisplayInputToPress(true, "Y");
+
+                /*                if (!lecode.HaveOnePlayer())
+                                {
+                                    lecode.Player = gameObject;
+                                    lecode.Init();
+                                    _playerUI.DisplayLeCodeUI(true);
+                                    _inputs.actions["Interact"].Disable();
+                                    _inputs.actions["Jump"].Disable();
+                                    _inputs.actions["Code"].Enable();
+                                    lecode.Controller = _controller;
+                                }*/
                 break;
             case "Goat":
                 collidertype = collision.transform.GetComponent<GoatTask>();
+                _playerUI.DisplayInputToPress(true, "Y");
                 break;
             case "StoreZone":
                 collidertype = collision.transform.parent.GetComponent<StoreTask>();
+                _playerUI.DisplayInputToPress(true, "Y");
                 break;
             case "FinalDoor":
                 collidertype = collision.transform.GetComponent<FinalDoor>();
+                if (collision.transform.gameObject.GetComponent<FinalDoor>().IsOpened)
+                {
+                    _playerUI.DisplayInputToPress(true, "Y");
+                }
                 break;
             case "AutoLift":
                 if (_canAutoLift)
                 {
                     StartCoroutine(AutoLiftWait());
                     collidertype = collision.transform.GetComponent<Lift>();
-                    ((Lift)collidertype).InteractLift(gameObject);
+                    ((Lift)collidertype).AutoLiftInteract(gameObject);
                 }
                 break;
-
             case "GraffitiTask":
                 collidertype = collision.transform.parent.GetComponent<GraffitiGameManager>();
                 break;
@@ -155,6 +166,7 @@ public class PlayerCollision : MonoBehaviour
         {
             case "Lift":
                 //_IsInLift = true;
+                _playerUI.DisplayInputToPress(true, "Y");
                 collidertype = collision.transform.parent.GetComponent<Lift>();
                 break;
         }
@@ -175,24 +187,55 @@ public class PlayerCollision : MonoBehaviour
         switch (collision.tag)
         {
             case "CodeZone":
-                LeCode lecode = collision.transform.parent.GetComponent<LeCode>();
-                if (lecode.Player == gameObject)
+                _playerUI.DisplayInputToPress(false, "");
+
+            /*                LeCode lecode = collision.transform.parent.GetComponent<LeCode>();
+                            if (lecode.Player == gameObject)
+                            {
+                                lecode.Player = null;
+                                _playerUI.DisplayLeCodeUI(false);
+                                _inputs.actions["Interact"].Enable();
+                                _inputs.actions["Jump"].Enable();
+                                _inputs.actions["Code"].Disable();
+                            }*/
+                break;
+            case "NPC":
+                //_isInNPC = true;
+                collidertype = collision.transform.GetComponent<NPC>();
+                break;
+            case "Object":
+                _playerUI.DisplayInputToPress(false, "");
+                collidertype = collision.transform.GetComponent<Object>();
+                break;
+            case "DecryptInteract":
+                collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
+                _playerUI.DisplayInputToPress(false, "");
+                break;
+            case "Goat":
+                collidertype = collision.transform.GetComponent<GoatTask>();
+                _playerUI.DisplayInputToPress(false, "");
+                break;
+            case "StoreZone":
+                collidertype = collision.transform.parent.GetComponent<StoreTask>();
+                _playerUI.DisplayInputToPress(false, "");
+                break;
+            case "FinalDoor":
+                collidertype = collision.transform.GetComponent<FinalDoor>();
+                if (collision.transform.gameObject.GetComponent<FinalDoor>().IsOpened)
                 {
-                    lecode.Player = null;
-                    _playerUI.DisplayLeCodeUI(false);
-                    _inputs.actions["Interact"].Enable();
-                    _inputs.actions["Jump"].Enable();
-                    _inputs.actions["Code"].Disable();
+                    _playerUI.DisplayInputToPress(false, "");
                 }
                 break;
-            
+            case "Lift":
+                _playerUI.DisplayInputToPress(false, "");
+                break;
         }
     }
    
     IEnumerator AutoLiftWait()
     {
         _canAutoLift = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         _canAutoLift = true;
     }
 }

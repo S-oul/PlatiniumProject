@@ -69,7 +69,7 @@ public class PlayerPointerMover : MonoBehaviour
 
         SetState(_starterState);
 
-        _playerStepDistanceX = CalculatePlayerStepDistance();
+        _playerStepDistanceX = 0.714f;//CalculatePlayerStepDistance();
         _playerStepDistance = new Vector3(_playerStepDistanceX, 0, 0);
         _positionDict = CreatePositionDictionary();
 

@@ -13,14 +13,17 @@ public class GoatTask : InputTask, ITimedTask
     
     [SerializeField] float _goatPos = 1;
 
+    bool _hasStarted = false;
 
     [SerializeField] Transform _goatSpawn;
     [SerializeField] Transform _goatGoal;
     [SerializeField] Transform _playerPos;
-
+    [SerializeField] NPC _monster; 
     DataManager _dataManager;
     PlayerUI _playerUI;
     PlayerController _controller;
+    List<PlayerController> _controllers = new List<PlayerController>();
+    Animator theAnimator;
 
 
     [SerializeField] Inputs _buttonToPress;
@@ -50,19 +53,25 @@ public class GoatTask : InputTask, ITimedTask
 
 
 
-        _playerUI = PlayerGameObject.GetComponent<PlayerUI>();
+        _playerUI = PlayersDoingTask[0].GetComponent<PlayerUI>();
         _playerUI.DisplayMashDownButton(true);
         _dataManager = DataManager.Instance;
-        _controller = PlayerGameObject.GetComponent<PlayerController>();
-        _controller.DisableMovementEnableInputs();
+        foreach (GameObject p in PlayersDoingTask)
+        {
+            _controller = p.GetComponent<PlayerController>();
+            _controllers.Add(_controller);
+            _controller.DisableMovementEnableInputs();
+        }
         PlayersDoingTask[0].transform.position = _playerPos.position;
+        theAnimator = GetComponentInChildren<Animator>();
     }
 
     public override void End(bool IsSuccess)
     {
+        theAnimator.SetTrigger("GoatIdle");
         if (IsSuccess)
         {
-
+            AudioManager.instance.PlaySFXOS("UndergroundCreatureEat", _monster.gameObject.GetComponent<AudioSource>());
             print("GG : Remaining " + _actualTime);    
         }
         else
@@ -71,14 +80,21 @@ public class GoatTask : InputTask, ITimedTask
 
         }
         _playerUI.DisplayMashDownButton(false);
-        _controller.EnableMovementDisableInputs();
+        foreach (PlayerController controller in _controllers)
+        {
+            controller.EnableMovementDisableInputs();
+        }
         base.End(IsSuccess);
     }
 
     private void Update()
     {
-
-
+        if(!_hasStarted && IsStarted)
+        {
+            _hasStarted = true;
+            theAnimator.SetTrigger("GoatHold");
+        }
+        
         if (IsStarted && !IsDone)
         {
             _actualTime -= Time.deltaTime;
@@ -86,23 +102,35 @@ public class GoatTask : InputTask, ITimedTask
             {
                 End(false);
             }
-            if (_controller.currentContextName != "" && _dataManager.InputNamesConverter[_controller.currentContextName] == InputsToString[_buttonToPress])
+            bool hasclickedOnce = false;
+            foreach(PlayerController controller in _controllers)
             {
-                _goatPos += _playerForce * Time.fixedDeltaTime;
-                _controller.currentContextName = "";
-                if(_goatPos >= 1)
+                if (controller.currentContextName != "" && _dataManager.InputNamesConverter[controller.currentContextName] == InputsToString[_buttonToPress])
                 {
-                    End(true);
+                    hasclickedOnce = true;
+                    _goatPos += _playerForce * Time.fixedDeltaTime;
+                    controller.currentContextName = "";
+                    if (_goatPos >= 1)
+                    {
+                        End(true);
+                    }
                 }
             }
-            else
+
+            if(!hasclickedOnce)
             {
                 _goatPos -= _goatForce * Time.fixedDeltaTime;
             }
             _goatPos = Mathf.Clamp01(_goatPos);
             transform.position = Vector3.Lerp(_goatSpawn.position, _goatGoal.position, _goatPos);
-            PlayerGameObject.transform.position = _playerPos.position;
+
+            foreach(GameObject p in PlayersDoingTask)
+            {
+                p.transform.position = _playerPos.position;
+            }
         }
     }
+
+    
 }
 

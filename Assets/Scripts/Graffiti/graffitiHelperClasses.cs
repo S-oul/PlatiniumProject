@@ -11,7 +11,7 @@ public class PlayerInGraffiti
 
     // for managing player input
     int _previouseSwipeDirection = 0;
-    int swipeCounter = 0;
+    int _swipeCounter = 0;
 
     public PlayerInGraffiti(GameObject _playerObject)
     {
@@ -31,12 +31,12 @@ public class PlayerInGraffiti
         {
             case > 0:
                 playerController.DecrytContext = Vector2.zero;
-                if (_previouseSwipeDirection == -1) { swipeCounter++; }
+                if (_previouseSwipeDirection == -1) { _swipeCounter++; }
                 _previouseSwipeDirection = 1;
                 break;
             case < 0:
                 playerController.DecrytContext = Vector2.zero;
-                if (_previouseSwipeDirection == 1) { swipeCounter++; }
+                if (_previouseSwipeDirection == 1) { _swipeCounter++; }
                 _previouseSwipeDirection = 0;
                 break;
             default:
@@ -52,14 +52,19 @@ public class PlayerInGraffiti
         ResetSpeed();
     }
 
-    public int GetPlayerSpeed() => swipeCounter;
+    public int GetPlayerSpeed() => _swipeCounter;
 
-    public void ResetSpeed() { swipeCounter = 0; }
+    public void ResetSpeed() { _swipeCounter = 0; }
 
     public bool CurrentGraffitiIsClean() => currentGraffiti.IsClean();
+
+    public void setCraftingAnimation(bool b)
+    {
+        _playerObject.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", b);
+    }
 }
 
-
+// ----------------------------------------------------------------------------------------------------
 
 public class GraffitiDrawing
 {
@@ -67,12 +72,14 @@ public class GraffitiDrawing
 
     float _currentOpacity = 1;
     float _opasityChangeRate = 0;
+    float _graffitiSpecificWashSpeed;
 
     Dictionary<GraffitiCleanAnimation, bool> _animationAciveStatusDict = new Dictionary<GraffitiCleanAnimation, bool>();
 
-    public GraffitiDrawing(GameObject _graffitiObject)
+    public GraffitiDrawing(GameObject graffitiObject, float washSpeed)
     {
-        this._graffitiObject = _graffitiObject;
+        _graffitiObject = graffitiObject;
+        _graffitiSpecificWashSpeed = washSpeed;
     }
 
     public void Activate() 
@@ -80,8 +87,7 @@ public class GraffitiDrawing
         _graffitiObject.SetActive(true);
         foreach (Transform child in _graffitiObject.transform.Find("Animations"))
         {
-            Debug.Log(child);
-            _animationAciveStatusDict.Add(new GraffitiCleanAnimation(child.gameObject), false);
+            _animationAciveStatusDict.Add(new GraffitiCleanAnimation(child.transform.GetChild(0).gameObject), false);
         }
     }
 
@@ -89,7 +95,7 @@ public class GraffitiDrawing
 
     public void UpdateOpacity(float speedAdjustment)
     {
-        _currentOpacity -= _opasityChangeRate / 1000 * speedAdjustment;        
+        _currentOpacity -= _opasityChangeRate / 1000 * _graffitiSpecificWashSpeed * speedAdjustment;        
         _currentOpacity = _currentOpacity < 0 ? 0 : _currentOpacity;
         _graffitiObject.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f,_currentOpacity );
     }
@@ -101,7 +107,7 @@ public class GraffitiDrawing
 
     public void ResetOpasityChangeRate()
     {
-        Debug.Log("OPASITY CHANGE RATE SET TO 0");
+        //Debug.Log("OPASITY CHANGE RATE SET TO 0");
         _opasityChangeRate = 0;
     }
 
@@ -112,7 +118,8 @@ public class GraffitiDrawing
         foreach (GraffitiCleanAnimation animator in _animationAciveStatusDict.Keys)
         {
             if (_animationAciveStatusDict[animator] != true) 
-            { 
+            {
+                _animationAciveStatusDict[animator] = true;
                 animator.Activate();
                 return animator; 
             }
@@ -122,7 +129,7 @@ public class GraffitiDrawing
     }
 }
 
-
+// ----------------------------------------------------------------------------------------------------
 
 public class GraffitiCleanAnimation
 {
@@ -136,6 +143,8 @@ public class GraffitiCleanAnimation
     public void Activate()
     {
         _cleanAnimationObject.SetActive(true);
+        _cleanAnimationObject.GetComponent<Animator>().SetTrigger("Clean");
+
     }
 
     public void Deactivate()
@@ -145,8 +154,10 @@ public class GraffitiCleanAnimation
 
     public void SetSpeed(int speed)
     {
-        _cleanAnimationObject.GetComponent<Animator>().speed = speed;
+        _cleanAnimationObject.GetComponent<Animator>().speed = speed/2.5f;
     }
+
+    public bool ParentIsActive() => _cleanAnimationObject.GetComponentInParent<Transform>().gameObject.activeSelf;
 
     public GraffitiCleanAnimation(){} //This must never run
 }

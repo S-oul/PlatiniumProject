@@ -24,6 +24,12 @@ public class Room : MonoBehaviour
 
     [SerializeField] WinStateScreen _winStateScreen;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _onRoomSuccessClip;
+    [SerializeField] AudioClip _onRoomFailClip;
+
+
+
     #endregion
 
     GameManager _gameManager;
@@ -46,6 +52,9 @@ public class Room : MonoBehaviour
     public bool HasPostIt { get => _hasPostIt; set => _hasPostIt = value; }
     public Transform PosItPos { get => _posItPos; set => _posItPos = value; }
     public WinStateScreen WinStateScreen { get => _winStateScreen; set => _winStateScreen = value; }
+    public AudioSource AudioSource { get => _audioSource; set => _audioSource = value; }
+    public AudioClip OnRoomSuccessClip { get => _onRoomSuccessClip; set => _onRoomSuccessClip = value; }
+    public AudioClip OnRoomFailClip { get => _onRoomFailClip; set => _onRoomFailClip = value; }
     #endregion
 
     public virtual void InitRoom()

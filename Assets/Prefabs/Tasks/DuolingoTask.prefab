@@ -46,5 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPlayers: 2
   _difficulty: 1
+  _isReplayable: 0
+  _addPlayerAtRunTime: 0
   _wordsData: {fileID: 11400000, guid: 554d350d80a261747b643bd12e539fe2, type: 2}
   _numberOfWordsAsked: 5
+  _fail: {fileID: 21300000, guid: 2a3bff924d578cd479e041b000eae46b, type: 3}
+  _success: {fileID: 21300000, guid: 9a5ff5695fff4a34989234ad2f8cce2c, type: 3}

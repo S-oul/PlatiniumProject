@@ -35,7 +35,7 @@ public class LaserRoom : Task , ITimedTask
         //NumberOfPlayers = _gameManager.PlayerCount;
         _actualTime = _givenTime * (Difficulty / 3f);
         //print(_actualTime);
-        ThisRoom = transform.parent.parent.GetComponent<Room>();
+        RoomTask = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
     }
     public override void End(bool isSuccessful)
@@ -65,9 +65,9 @@ public class LaserRoom : Task , ITimedTask
     public override void Init()
     {
         base.Init();
-        if(ThisRoom.ListPlayer.Count >= NumberOfPlayers)
+        if(RoomTask.ListPlayer.Count >= NumberOfPlayers)
         {
-            foreach (GameObject p in ThisRoom.ListPlayer)
+            foreach (GameObject p in RoomTask.ListPlayer)
             {
                 _players.Add(p.GetComponent<PlayerController>());
             }
@@ -99,7 +99,7 @@ public class LaserRoom : Task , ITimedTask
         StartCoroutine(SpawnLaserTimer());
         StartCoroutine(BlockDoors(true));
         StartCoroutine(timeTask());
-        _cam.FixOnRoomVoid(ThisRoom);
+        _cam.FixOnRoomVoid(RoomTask);
     }
 
     bool OnePlayerAlive()

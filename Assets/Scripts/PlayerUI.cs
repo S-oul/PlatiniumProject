@@ -14,7 +14,8 @@ public class PlayerUI : MonoBehaviour
     Transform _qteUI;
     TextMeshProUGUI _textInputsUI;
     Slider _sliderInputsUI;
-    Image _input;
+    Image _inputQTE;
+    Transform _inputToPress;
     bool qteInputIsActive = false;
     float sliderPercentValue;
     Slider _validationBadInputSlider;
@@ -57,12 +58,14 @@ public class PlayerUI : MonoBehaviour
         _qteUI = _canvas.transform.Find("QTEInputs");
         _textInputsUI = _qteUI.transform.Find("TextInputs").Find("Text").GetComponent<TextMeshProUGUI>();
         _sliderInputsUI = _qteUI.transform.Find("Slider").GetComponent<Slider>();
-        _input = _sliderInputsUI.gameObject.transform.Find("SmallerCircle").Find("Image").GetComponent<Image>();
+        _inputQTE = _qteUI.transform.Find("Slider").Find("SmallerCircle").Find("Image").GetComponent<Image>();
         _validationBadInputSlider = _qteUI.transform.Find("Validation").Find("BadInputs").GetComponent<Slider>();
+        _inputToPress = _canvas.transform.Find("InputToPress");
         RoundInputTimer = _sliderInputsUI.transform.GetChild(3).GetComponent<Image>();
         _roundTimerOriginalSize = RoundInputTimer.transform.localScale;
         DisplayCowboyQTEUI(false);
         DisplayVolleyQTEUI(false);
+        DisplayInputToPress(false, "");
 
 
         //Duolingo
@@ -92,7 +95,7 @@ public class PlayerUI : MonoBehaviour
 
     public void ChangeUIInputs(Color color)
     {
-        _input.color = color;
+        _inputQTE.color = color;
     }
 
     public void ChangeUIInputsValidation(float value)
@@ -129,12 +132,18 @@ public class PlayerUI : MonoBehaviour
     
     public void ChangeRoundTimerValue(float percent)
     {
-        _roundInputTimer.transform.localScale = Vector3.Lerp(_roundTimerOriginalSize, _input.transform.localScale, percent);
+        _roundInputTimer.transform.localScale = Vector3.Lerp(_roundTimerOriginalSize, _inputQTE.transform.localScale, percent);
     }
 
     public void ResetRoundTimerQTE()
     {
         RoundInputTimer.transform.localScale = _roundTimerOriginalSize;
+    }
+
+    public void DisplayInputToPress(bool value, string input)
+    {
+        _inputToPress.gameObject.SetActive(value);
+        _inputToPress.Find("InputText").GetComponent<TextMeshProUGUI>().text = input;
     }
 
     public void DisplayAnswersDuolingo(List<string> words, List<string> inputs)
