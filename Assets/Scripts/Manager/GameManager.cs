@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _timeForTheDay;
     [SerializeField] DaySlider _daySlider;
     [SerializeField] DayTimer _dayTimer;
-    [SerializeField] Animator _animator;
+    [SerializeField] DayManager _dayManager;
+
 
     private int _roomLose = 0;
     private int _roomWin = 0;
@@ -41,17 +42,18 @@ public class GameManager : MonoBehaviour
     public GameObject FinalDoor { get => _finalDoor; set => _finalDoor = value; }
     public int DayIndex { get => _dayIndex; set => _dayIndex = value; }
     public GameObject FinalRoom { get => _finalRoom; set => _finalRoom = value; }
-    public Animator Animator { get => _animator; set => _animator = value; }
     public float TimeForTheDay { get => _timeForTheDay; set => _timeForTheDay = value; }
+    public DayManager DayManager { get => _dayManager; set => _dayManager = value; }
 
     private void Start()
     {
         /*StartDay();*/
     }
 
-    void StartDay()
+    public void StartDay()
     {
-        _daySlider.SetValue(1);
+        _dayTimer = DayManager.DayTimer;
+        _daySlider = DayManager.DaySlider;
     }
 
     public int RoomWin()
