@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 445611534}
   - component: {fileID: 445611533}
   m_Layer: 5
-  m_Name: Timer
+  m_Name: DayTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1086,6 +1086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dayTime: 240
   _doTimer: 1
+  _animator: {fileID: 973819175}
 --- !u!222 &445611535
 CanvasRenderer:
   m_ObjectHideFlags: 0
