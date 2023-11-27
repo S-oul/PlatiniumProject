@@ -98,7 +98,7 @@ public class MenuPrincipal : MonoBehaviour
         CamPlay2.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         //Lancer la partie
-        SceneManager.LoadScene("Bureaucratie");
+        SceneManager.LoadScene("CharacterChoice");
     }
 
     // the image you want to fade, assign in inspector

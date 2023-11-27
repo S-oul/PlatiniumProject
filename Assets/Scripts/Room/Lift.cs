@@ -28,6 +28,7 @@ public class Lift : Room
     }
     public void InteractLift(GameObject player)
     {
+
         List<GameObject> players = new List<GameObject>();
         if (_canTeleport)
         {
