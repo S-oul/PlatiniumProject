@@ -7,7 +7,7 @@ using TMPro;
 public class PlayerUI : MonoBehaviour
 {
 
-
+    
     [SerializeField] Canvas _canvas;
 
     [Header("InputsUI")]
@@ -61,8 +61,8 @@ public class PlayerUI : MonoBehaviour
         _inputQTE = _qteUI.transform.Find("Slider").Find("SmallerCircle").Find("Image").GetComponent<Image>();
         _validationBadInputSlider = _qteUI.transform.Find("Validation").Find("BadInputs").GetComponent<Slider>();
         _inputToPress = _canvas.transform.Find("InputToPress");
-        RoundInputTimer = _sliderInputsUI.transform.GetChild(3).GetComponent<Image>();
-        _roundTimerOriginalSize = RoundInputTimer.transform.localScale;
+        /*RoundInputTimer = _sliderInputsUI.transform.GetChild(3).GetComponent<Image>();*/
+       /* _roundTimerOriginalSize = RoundInputTimer.transform.localScale;*/
         DisplayCowboyQTEUI(false);
         DisplayVolleyQTEUI(false);
         DisplayInputToPress(false, "");
@@ -91,6 +91,11 @@ public class PlayerUI : MonoBehaviour
     public void ChangeInputValueUI(string text)
     {
         _textInputsUI.text = text;
+    }
+
+    public void ChangeInputValueUI(Sprite image)
+    {
+        _inputQTE.sprite = image;
     }
 
     public void ChangeUIInputs(Color color)
@@ -127,7 +132,7 @@ public class PlayerUI : MonoBehaviour
 
     public void DisplayVolleyQTEUI(bool value)
     {
-        _sliderInputsUI.transform.GetChild(3).gameObject.SetActive(value);
+        //_sliderInputsUI.transform.GetChild(3).gameObject.SetActive(value);
     }
     
     public void ChangeRoundTimerValue(float percent)
@@ -135,15 +140,17 @@ public class PlayerUI : MonoBehaviour
         _roundInputTimer.transform.localScale = Vector3.Lerp(_roundTimerOriginalSize, _inputQTE.transform.localScale, percent);
     }
 
-    public void ResetRoundTimerQTE()
+    /*public void ResetRoundTimerQTE()
     {
         RoundInputTimer.transform.localScale = _roundTimerOriginalSize;
     }
-
+*/
     public void DisplayInputToPress(bool value, string input)
     {
         _inputToPress.gameObject.SetActive(value);
-        _inputToPress.Find("InputText").GetComponent<TextMeshProUGUI>().text = input;
+        Sprite inputSprite = DataManager.Instance.FindInputSprite(input, gameObject.GetComponent<PlayerController>().Type);
+        _inputToPress.Find("InputImage").GetComponent<Image>().sprite = inputSprite;
+
     }
 
     public void DisplayAnswersDuolingo(List<string> words, List<string> inputs)
@@ -199,9 +206,10 @@ public class PlayerUI : MonoBehaviour
         _leCodeUI.gameObject.SetActive(value);
     }
 
-    public void DisplayMashDownButton(bool value)
+    public void DisplayMashDownButton(bool value, string inputName)
     {
         _mashDownTransform.gameObject.SetActive(value);
+        _mashDownTransform.GetChild(0).GetComponent<Image>().sprite = DataManager.Instance.FindInputSprite(inputName, gameObject.GetComponent<PlayerController>().Type);
         _mashDownTransform.GetComponent<MashDownButton>().ChangeSwap(value);
     }
 
@@ -210,7 +218,7 @@ public class PlayerUI : MonoBehaviour
         DisplayDuolingoUI(value);
         DisplayQTEUI(value);
         DisplayLeCodeUI(value);
-        DisplayMashDownButton(value);
+        DisplayMashDownButton(value, "");
     }
 
     public void DisplayInputUI(bool value)

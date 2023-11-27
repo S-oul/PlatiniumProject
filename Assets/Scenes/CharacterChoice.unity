@@ -1390,6 +1390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DataManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8363959002101346493, guid: ba2a037bd99b1e047b3d49167fa352d0, type: 3}
+      propertyPath: _inputsData
+      value: 
+      objectReference: {fileID: 11400000, guid: d7c4bcfbadc04e843adafe65e427ba17, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

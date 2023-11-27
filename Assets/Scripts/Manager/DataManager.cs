@@ -69,4 +69,29 @@ public class DataManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    public Sprite FindInputSprite(string name, PlayerManager.ControllerType type)
+    {
+        Sprite inputSprite = null;
+        foreach (InputConfig input in _inputsData.inputs)
+        {
+            if(input.baseName == name)
+            {
+                switch (type)
+                {
+                    case PlayerManager.ControllerType.Xbox:
+                        inputSprite = input.spriteXbox;
+                        break;
+                    case PlayerManager.ControllerType.Playstation:
+                        inputSprite = input.spritePlaystation;
+                        break;
+                    case PlayerManager.ControllerType.None:
+                        inputSprite = input.spriteXbox;
+                        break;
+                }
+
+            }
+        }
+        return inputSprite;
+    }
 }
