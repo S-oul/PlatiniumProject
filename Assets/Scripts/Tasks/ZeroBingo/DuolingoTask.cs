@@ -43,6 +43,10 @@ public class DuolingoTask : InputTask
     WordConfig _rightWord;
 
     
+
+    
+
+
     public override void StartTask()
     {
         

@@ -45,6 +45,18 @@ public class DataManager : MonoBehaviour
     public List<RuntimeAnimatorController> AnimationPlayers { get => _animationPlayers; }
     public Dictionary<InputDeviceDescription, RuntimeAnimatorController> DicSpritePlayer { get => _dicSpritePlayer; set => _dicSpritePlayer = value; }
 
+    /* Dictionary<SystemLanguage, string> _languageSprite = new Dictionary<SystemLanguage, string>()
+    {
+        {SystemLanguage.English, "English"},
+        {SystemLanguage.French, "French"},
+        {SystemLanguage.Spanish, "Spanish"},
+        {SystemLanguage.Portuguese, "Portugese"},
+        {SystemLanguage.German, "German"}
+    };
+
+
+    List<Sprite> _flags = new List<Sprite>();
+ */
     public enum TaskEnum
     {
         CowboyQTE,
@@ -68,7 +80,21 @@ public class DataManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
     }
+
+    /* public Sprite FindFlagSprite(SystemLanguage language)
+    {
+        string name = _languageSprite[language];
+        Sprite _sprite = null;
+        foreach (Sprite flag in _flags)
+        {
+            if(flag.name == name)
+            {
+                _sprite = flag;            }
+        }
+        return _sprite;
+    } */
 
     public Sprite FindInputSprite(string name, PlayerManager.ControllerType type)
     {
