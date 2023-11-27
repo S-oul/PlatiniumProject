@@ -15,51 +15,51 @@ MonoBehaviour:
   inputs:
   - baseName: X
     nameXbox: X
-    spriteXbox: {fileID: 21300000, guid: b1b6159d1c547414ea17d65636d94646, type: 3}
+    spriteXbox: {fileID: 21300000, guid: a44d642fa443e2a4ea055b2db69060d2, type: 3}
     namePlaystation: Square
-    spritePlaystation: {fileID: 21300000, guid: e04699d9f6b99924f8fe7f753085b4cb, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 0bdd85e685ae4c1469c96d7d1e21da9b, type: 3}
   - baseName: Y
     nameXbox: Y
-    spriteXbox: {fileID: 21300000, guid: 66b3325df9746a7498c713eefcf2f625, type: 3}
+    spriteXbox: {fileID: 21300000, guid: 7254c8d095ae52c469b6f24cff2f9c17, type: 3}
     namePlaystation: Triangle
-    spritePlaystation: {fileID: 21300000, guid: a21b428515f5d7b47838b31ca8e35bbc, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 56d98b22e5bb93342b0a227226a4124c, type: 3}
   - baseName: A
     nameXbox: A
-    spriteXbox: {fileID: 21300000, guid: b17a6a3c81c247a4a934627eaf8e1f85, type: 3}
+    spriteXbox: {fileID: 21300000, guid: 2b6ac707e76cbc5499212adbfdddb7c2, type: 3}
     namePlaystation: Cross
-    spritePlaystation: {fileID: 21300000, guid: 9a0f91fb8257cb44c9a0320834bb41f6, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 59f8bf28f3671c74bb6469c5454b6058, type: 3}
   - baseName: B
     nameXbox: B
-    spriteXbox: {fileID: 21300000, guid: b26409acb655efa4a8907547ddb11f6c, type: 3}
+    spriteXbox: {fileID: 21300000, guid: b008655d43068ef4a8856a5ce5203035, type: 3}
     namePlaystation: Circle
-    spritePlaystation: {fileID: 21300000, guid: c5cd272ef16c5404ab5a884cab6d5861, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 97736d9ca92e2ac469eb9ed49ca22077, type: 3}
   - baseName: R1
     nameXbox: Right Bumper
-    spriteXbox: {fileID: 21300000, guid: b0a5cc8452f4e224683283a61ec64009, type: 3}
+    spriteXbox: {fileID: 21300000, guid: 6379a1b48a16c964d9981313070b0566, type: 3}
     namePlaystation: R1
-    spritePlaystation: {fileID: 21300000, guid: cf452bbf429e60a429eee21e2a0c0b1c, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 7c382a4bb478c00459fa383c517a6c68, type: 3}
   - baseName: R2
     nameXbox: Right Trigger
-    spriteXbox: {fileID: 21300000, guid: e9660a98aef67e44a85104515695f555, type: 3}
+    spriteXbox: {fileID: 21300000, guid: c1841f7c48638134f872f2d779e1651d, type: 3}
     namePlaystation: R2
-    spritePlaystation: {fileID: 21300000, guid: 83c446b21f52e324c926c40020b82d77, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 4a008f82e412b744ea0998ebfd20a87d, type: 3}
   - baseName: R3
     nameXbox: Right Stick Press
-    spriteXbox: {fileID: 21300000, guid: b52ed059e06c438469499346755fa86f, type: 3}
+    spriteXbox: {fileID: 21300000, guid: 6991517fe59a3df419a76e5878bbd1d8, type: 3}
     namePlaystation: R3
-    spritePlaystation: {fileID: 21300000, guid: 4649d983924e3c346b3f0bd53e53c76c, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 016ed0bc634cad94db88d8cbee2130fe, type: 3}
   - baseName: L1
     nameXbox: Left Bumper
-    spriteXbox: {fileID: 21300000, guid: 04c673b36553f0e4bb27d752d9c7d498, type: 3}
+    spriteXbox: {fileID: 21300000, guid: 127051a9fd3d2474884e4063dfd6859b, type: 3}
     namePlaystation: L1
-    spritePlaystation: {fileID: 21300000, guid: 6f7ba3e9393fed344ae43bb15ada2192, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 7a3291089894fbc4ea1f18829382f26e, type: 3}
   - baseName: L2
     nameXbox: Left Trigger
-    spriteXbox: {fileID: 21300000, guid: 261308d50dd17804d86c7a35bb91dd3e, type: 3}
+    spriteXbox: {fileID: 21300000, guid: 875d68730d0161245a1bc24bf19cde91, type: 3}
     namePlaystation: L2
-    spritePlaystation: {fileID: 21300000, guid: e224432f395ad034bb5c4f3edc9365a4, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 21779ae74b17fb44895daedb94b9ad6d, type: 3}
   - baseName: L3
     nameXbox: Left Stick Press
-    spriteXbox: {fileID: 21300000, guid: cb8ebca1fcd167840ab177cc4f1ddf0f, type: 3}
+    spriteXbox: {fileID: 21300000, guid: 3c5c7634102aa244f995471dc75b49b9, type: 3}
     namePlaystation: L3
-    spritePlaystation: {fileID: 21300000, guid: 6170d1bd04967b940910e2261452565c, type: 3}
+    spritePlaystation: {fileID: 21300000, guid: 3c9ad75c5df615743bfffd56046947d8, type: 3}
