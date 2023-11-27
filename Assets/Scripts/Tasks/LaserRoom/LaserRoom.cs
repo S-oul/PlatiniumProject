@@ -57,9 +57,10 @@ public class LaserRoom : Task , ITimedTask
     }
     void KillAllLaser()
     {
-        foreach(GameObject g in _laserGO)
+        for(int i = _laserGO.Count - 1; i > 0;i--)
         {
-            Destroy(g);
+            Destroy(_laserGO[i]);
+            print(i);
         }
     }
     public override void Init()
@@ -115,6 +116,18 @@ public class LaserRoom : Task , ITimedTask
     }
     bool AllPlayerAlive()
     {
+        string t = "";
+        foreach (PlayerController _controller in _players)
+        {
+            if (!_controller.IsPlayerDown)
+            {
+                t+= "t";
+            }
+        }
+        if(t == "tttt")
+        {
+            return true;
+        }
         return false;
     }
     

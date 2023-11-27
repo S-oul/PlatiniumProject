@@ -147,7 +147,7 @@ public abstract class Task : MonoBehaviour
     }
     public void OnRoomSuccess()
     {
-        Debug.Log(gameObject.name + " = Success");
+        Debug.Log(gameObject.name + " = Success " + _difficulty);
         GameManager.Instance.NumberOfTasksMade++;
         
         GameManager.Instance.RoomWin();
@@ -175,7 +175,7 @@ public abstract class Task : MonoBehaviour
             }
             GameManager.Instance.NumberOfTasksMade++;
         }
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         GameManager.Instance.RoomLose();
         GameManager.Instance.CheckIfDayFinished();
 
