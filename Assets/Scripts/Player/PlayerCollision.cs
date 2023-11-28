@@ -106,8 +106,14 @@ public class PlayerCollision : MonoBehaviour
                 ((ZoneEvent)collidertype).PlayerEnter(gameObject);
                 break;
             case "Object":
-                _playerUI.DisplayInputToPress(true, "Y");
                 collidertype = collision.transform.GetComponent<Object>();
+                if (!collision.transform.GetComponent<Object>().IsUsed)
+                {
+                    
+                    _playerUI.DisplayInputToPress(true, "Y");
+                }
+                
+                
                 break;
             case "Laser":
                 AudioManager.instance.PlaySFXOS("LaserImpact", _audioSource);

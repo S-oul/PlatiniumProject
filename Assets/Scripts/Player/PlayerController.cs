@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     public void DisableMovementEnableInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
-        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Interact"].Enable();
         _playerInput.actions["Movement"].Disable();
         _playerInput.actions["Decryptage"].Disable();
         _playerInput.actions["Jump"].Disable();

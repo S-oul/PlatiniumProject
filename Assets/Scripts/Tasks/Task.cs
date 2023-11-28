@@ -132,6 +132,7 @@ public abstract class Task : MonoBehaviour
                         _isStarted = true;
                         Init();
                     }
+
                 }
             }
         } 
@@ -139,6 +140,45 @@ public abstract class Task : MonoBehaviour
         {
             print("isDone");
         }
+    }
+
+    public void OnPlayerLeaveTask(GameObject player)
+    {
+        if (!IsDone)
+        {
+            if (AddPlayerAtRunTime)
+            {
+                if (IsStarted)
+                {
+                    if (_playersDoingTask.Count > 1)
+                    {
+                        //the safegard in question:
+                        if (player != _playersDoingTask[0])
+                        {
+                            _playersDoingTask.Remove(player);
+
+                        }
+                        return;
+                    }
+
+                }
+            }
+            else
+            {
+                if (_numberOfPlayers > 1)
+                {
+                    if (!_isStarted)
+                    {
+
+                        _playersDoingTask.Remove(player);
+                    }
+                }
+            }
+            
+                
+            
+        }
+        
     }
 
     public virtual void OnplayerExitTask() 
