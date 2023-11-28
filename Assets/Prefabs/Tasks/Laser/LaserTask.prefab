@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 700574894898952226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 8.07, y: 2.44, z: 0.03973891}
+  m_LocalPosition: {x: 25, y: 5.5, z: 0.03973891}
   m_LocalScale: {x: 0.05, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1407025531810033404}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -8.41, y: 2.44, z: 0.03973891}
+  m_LocalPosition: {x: -25, y: 5.5, z: 0.03973891}
   m_LocalScale: {x: 0.05, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 4113381672678326440}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.34, y: -0.117, z: 0.08529619}
+  m_LocalPosition: {x: 25, y: 4, z: 0.08529619}
   m_LocalScale: {x: 1, y: 4.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -165,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 4363406617373923662}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.29, y: -0.117, z: 0.08529619}
+  m_LocalPosition: {x: -25, y: 4, z: 0.08529619}
   m_LocalScale: {x: 1, y: 4.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -267,7 +267,7 @@ MonoBehaviour:
   _numberOfPlayers: 1
   _difficulty: 2
   _isReplayable: 0
-  _addPlayerAtRunTime: 0
+  _addPlayerAtRunTime: 1
   _laser: {fileID: 7741461767121130828, guid: 4bd164bb021a9c7448951302ef6ed145, type: 3}
   _doorL: {fileID: 4363406617373923662}
   _doorR: {fileID: 4113381672678326440}

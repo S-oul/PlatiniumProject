@@ -10,7 +10,7 @@ public class Laser : MonoBehaviour
     [SerializeField] private float _timeToSwap = 1;
     [SerializeField] private float _timePlayerIsDown = 2;
 
-    [SerializeField] SpriteRenderer _sprite;
+    [SerializeField] LineRenderer _line;
     BoxCollider2D _boxCollider;
     AudioSource _audioSource;
     bool _isActive = false;
@@ -21,12 +21,13 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
     {
+        _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _line = GetComponent<LineRenderer>();
         _isActive = false;
         StartCoroutine(SwapperOn());
         
@@ -34,10 +35,14 @@ public class Laser : MonoBehaviour
 
     void Update()
     {
-/*        _sprite.SetPosition(0,transform.position);
-        _sprite.SetPosition(1, transform.position - new Vector3(0,5,1));*/
+        _line.enabled = _isActive;
+        if (_isActive)
+        {
+            RaycastHit2D ray = Physics2D.Raycast(transform.localPosition, Vector2.down, 2f);
+            _line.SetPosition(1,ray.point);
+        }
 
-        //print(transform.localPosition.x + " //// " + ToFar.position.x);
+
         if (_goLeft)
         {
             transform.localPosition += Vector3.left * Time.deltaTime * _speed;
@@ -61,8 +66,9 @@ public class Laser : MonoBehaviour
     IEnumerator SwapperOn()
     {
         yield return new WaitForSeconds(_timeToSwap);
+        _isActive = true;
         AudioManager.instance.PlaySFXLoop(AudioManager.instance.FindClip("LaserConstant"), _audioSource);
-        _sprite.enabled = true;
+        _line.enabled = true;
         _boxCollider.enabled = true;
         StartCoroutine(SwapperOff());
     }
@@ -71,7 +77,7 @@ public class Laser : MonoBehaviour
         yield return new WaitForSeconds(_timeToSwap/2);
         AudioManager.instance.StopSource(_audioSource);
         _isActive = false;
-        _sprite.enabled = false;
+        _line.enabled = false;
         _boxCollider.enabled = false;
         StartCoroutine(SwapperOn());
 
