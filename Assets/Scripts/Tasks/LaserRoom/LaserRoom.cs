@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserRoom : Task , ITimedTask
+public class LaserRoom : Task
 {
     //[SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
     List<PlayerController> _players = new List<PlayerController>();
@@ -21,14 +21,14 @@ public class LaserRoom : Task , ITimedTask
     [SerializeField] Transform _spawnerR;
 
 
-    public float _givenTime => 45;
+    //public float _givenTime => 45;
     [SerializeField] float _recuperateTime => 2;
 
     float _actualTime;
 
     void Start()
     {
-        _actualTime = _givenTime;
+        // _actualTime = _givenTime;
         RoomTask = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
     }
@@ -70,7 +70,16 @@ public class LaserRoom : Task , ITimedTask
 
         }
     }
-
+    private void Update()
+    {
+        if(IsStarted && !IsDone)
+        {
+            if (!OnePlayerAlive())
+            {
+                End(false);
+            }
+        }
+    }
     IEnumerator BlockDoors(bool block)
     {
         BoxCollider2D b = _doorL.GetComponent<BoxCollider2D>();
@@ -90,10 +99,11 @@ public class LaserRoom : Task , ITimedTask
     }
     void StartTask()
     {
+        print("HEEEEEY");
         IsStarted = true;
         StartCoroutine(SpawnLaserTimer());
         StartCoroutine(BlockDoors(true));
-        StartCoroutine(timeTask());
+        //StartCoroutine(timeTask());
         _cam.FixOnRoomVoid(RoomTask);
     }
 
@@ -127,9 +137,7 @@ public class LaserRoom : Task , ITimedTask
     
     private void SpawnLaser(GameObject go)
     {
-        int r = Random.Range(0, 3);
-        if (r == 2)
-        {
+
             GameObject g = Instantiate(go);
             g.transform.parent = null;
             g.transform.position = _spawnerR.position;
@@ -138,38 +146,6 @@ public class LaserRoom : Task , ITimedTask
             l.ToFar = _spawnerL;
             _laserGO.Add(g);
 
-            GameObject g2 = Instantiate(go);
-            g2.transform.parent = null;
-            g2.transform.position = _spawnerL.position;
-            g2.transform.localScale = new Vector3(.16f, .16f, .16f);
-            Laser l2 = g2.GetComponent<Laser>();
-            l2.ToFar = _spawnerR;
-            l2.GoLeft = false;
-            _laserGO.Add(g);
-
-        }
-        else if (r == 1)
-        {
-            GameObject g = Instantiate(go);
-            g.transform.parent = null;
-            g.transform.position = _spawnerL.position;
-            g.transform.localScale = new Vector3(.16f, .16f, .16f);
-            Laser l = g.GetComponent<Laser>();
-            l.ToFar = _spawnerR;
-            l.GoLeft = false;
-            _laserGO.Add(g);
-
-        }
-        else
-        {
-            GameObject g = Instantiate(go);
-            g.transform.parent = null;
-            g.transform.position = _spawnerR.position;
-            g.transform.localScale = new Vector3(.16f, .16f, .16f);
-            Laser l = g.GetComponent<Laser>();
-            l.ToFar = _spawnerL;
-            _laserGO.Add(g);
-        }
     }
     IEnumerator RecuperatePlayer()
     {
@@ -185,27 +161,8 @@ public class LaserRoom : Task , ITimedTask
     {
         while (IsStarted)
         {
-            yield return new WaitForSeconds(Random.Range(6 - Difficulty - 0.25f, 6 - Difficulty + 0.25f));
+            yield return new WaitForSeconds(3);
             SpawnLaser(_laser);
         }
-    }
-    IEnumerator timeTask()
-    {
-        while (_actualTime > 0) 
-        {
-            //Debug.Log(_actualTime);
-            if (!OnePlayerAlive())
-            {
-                End(false);
-            }
-            _actualTime -= Time.deltaTime;
-            yield return null;
-        }       
-        if (_actualTime <= 0)
-        {
-            End(true);
-            _cam.FixOnRoom = false;
-        }
-
     }
 }
