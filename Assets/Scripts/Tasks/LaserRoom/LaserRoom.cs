@@ -21,20 +21,14 @@ public class LaserRoom : Task , ITimedTask
     [SerializeField] Transform _spawnerR;
 
 
-    public float _givenTime => 20;
+    public float _givenTime => 45;
     [SerializeField] float _recuperateTime => 2;
 
     float _actualTime;
 
-    public float GivenTime { get => _givenTime;}
-
-
     void Start()
     {
-        //_gameManager = GameManager.Instance;
-        //NumberOfPlayers = _gameManager.PlayerCount;
-        _actualTime = _givenTime * (Difficulty / 3f);
-        //print(_actualTime);
+        _actualTime = _givenTime;
         RoomTask = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
     }
