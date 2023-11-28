@@ -44,6 +44,10 @@ public class TamponageTask : InputTask, ITimedTask
     bool _hasTamponnageSoundPlayedP2 = false;
     private void Start()
     {
+        foreach (GameObject player in PlayersDoingTask)
+        {
+            player.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", true);
+        }
         _numOfClicksToDo *= Difficulty;
         _inputName = InputsToString[_inputToPress];
         _clock = gameObject.transform.parent.parent.Find("Timer").GetChild(0).GetChild(0);
@@ -67,10 +71,10 @@ public class TamponageTask : InputTask, ITimedTask
         StopCoroutine(_timer);
         foreach(GameObject player in PlayersDoingTask)
         {
-            
+            player.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", false);
             player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
             player.GetComponent<PlayerController>().BlockPlayer(false);
-            player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 8;
+            //player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 8;
             player.GetComponent<PlayerController>().EnableMovementDisableInputs();
         }
         base.End(isSuccessful);

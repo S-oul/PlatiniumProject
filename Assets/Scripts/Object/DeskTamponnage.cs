@@ -34,7 +34,7 @@ public class DeskTamponnage : Object
                 _playersOnDesk.Add(player);
                 Debug.Log("Players: " + _playersOnDesk.Count);
                 player.transform.position = _posListOnDesk[_indexPos].position;
-                player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 1;
+                //player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 1;
                 player.GetComponent<PlayerController>().BlockPlayer(true);
                 player.GetComponent<PlayerController>().DisableMovementEnableInputs();
                 _task.GetComponent<Task>().OnPlayerJoinedTask(player);
@@ -44,11 +44,7 @@ public class DeskTamponnage : Object
                     Debug.Log("Used");
                     _isUsed = true;
                 }
-            }
-            
+            } 
         }
-
-
-
     }
 }

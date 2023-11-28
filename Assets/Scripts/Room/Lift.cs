@@ -40,7 +40,7 @@ public class Lift : Room
                 AudioSource.pitch = 6f;
                 AudioManager.instance.PlaySFXOS("ElevatorDoorClose", AudioSource);
                 p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Default";
-                p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 1;
+                //p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 1;
                 players.Add(p);
             }
             StartCoroutine(TimeToTeleport(_timeToTeleport, players));
@@ -56,7 +56,7 @@ public class Lift : Room
             p.transform.position = TeleportPos.position;
             p.GetComponent<PlayerController>().EnableMovementDisableInputs();
             p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-            p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 0;
+            //p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 0;
         }
             AudioSource.pitch = 1f;
             AudioManager.instance.PlaySFXOS("ElevatorDing", TeleportPos.gameObject.GetComponent<AudioSource>());
