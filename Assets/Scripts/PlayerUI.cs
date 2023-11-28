@@ -159,8 +159,23 @@ public class PlayerUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             _answersDuolingo[i].text = /*inputs[i] + ": " +*/ words[i];
+            string inputName = "";
+            switch (i)
+            {
+                case 0:
+                    inputName = "Y";
+                    break;
+                case 1:
+                    inputName = "X";
+                    break;
+                case 2:
+                    inputName = "B";
+                    break;
+            }
+            _answersDuolingo[i].transform.parent.Find("Image").GetComponent<Image>().sprite = DataManager.Instance.FindInputSprite(inputName, gameObject.GetComponent<PlayerController>().Type);
         }
     }
+
 
     public void ClearAnswersDuolingo()
     {

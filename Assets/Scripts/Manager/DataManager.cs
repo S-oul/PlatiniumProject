@@ -45,7 +45,7 @@ public class DataManager : MonoBehaviour
     public List<RuntimeAnimatorController> AnimationPlayers { get => _animationPlayers; }
     public Dictionary<InputDeviceDescription, RuntimeAnimatorController> DicSpritePlayer { get => _dicSpritePlayer; set => _dicSpritePlayer = value; }
 
-    /* Dictionary<SystemLanguage, string> _languageSprite = new Dictionary<SystemLanguage, string>()
+    Dictionary<SystemLanguage, string> _languageSprite = new Dictionary<SystemLanguage, string>()
     {
         {SystemLanguage.English, "English"},
         {SystemLanguage.French, "French"},
@@ -55,8 +55,8 @@ public class DataManager : MonoBehaviour
     };
 
 
-    List<Sprite> _flags = new List<Sprite>();
- */
+    [SerializeField] List<Sprite> _flags = new List<Sprite>();
+
     public enum TaskEnum
     {
         CowboyQTE,
@@ -83,18 +83,19 @@ public class DataManager : MonoBehaviour
         
     }
 
-    /* public Sprite FindFlagSprite(SystemLanguage language)
+    public Sprite FindFlagSprite(SystemLanguage language)
     {
         string name = _languageSprite[language];
         Sprite _sprite = null;
         foreach (Sprite flag in _flags)
         {
-            if(flag.name == name)
+            if (flag.name == name)
             {
-                _sprite = flag;            }
+                _sprite = flag;
+            }
         }
         return _sprite;
-    } */
+    }
 
     public Sprite FindInputSprite(string name, PlayerManager.ControllerType type)
     {

@@ -92,9 +92,16 @@ public class DuolingoTask : InputTask
         }
         _rightWord = _allWords[Random.Range(0, _allWords.Count)];
         _allWords.Remove(_rightWord);
-        string rightWordTrad = TraductionOfWord(_rightWord, SystemLanguage.Spanish);
+        List<SystemLanguage> languages = new List<SystemLanguage>();
+        foreach(WordConfig.WordWrapper trad in _rightWord.traductions)
+        {
+            languages.Add(trad.language);
+        }
+        SystemLanguage languageRandom = languages[Random.Range(0, languages.Count)];
+        string rightWordTrad = TraductionOfWord(_rightWord, languageRandom);
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
         _npcDuolingo.GetComponent<UINpc>().ChangeBubbleText(rightWordTrad + "?");
+        _npcDuolingo.GetComponent<UINpc>().ChangeBubbleImage(DataManager.Instance.FindFlagSprite(languageRandom));
         DisplayAnswers(_rightWord);
         animator.SetTrigger("Talk");
     }
