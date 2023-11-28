@@ -1,23 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Laser : MonoBehaviour
 {
     [SerializeField] private Transform _toFar;
+    [SerializeField] private Transform _spawn;
     [SerializeField] private bool _goLeft = true;
     [SerializeField] private float _speed = 5;
     [SerializeField] private float _timeToSwap = 1;
     [SerializeField] private float _timePlayerIsDown = 2;
+
+    [SerializeField, Range(0f, 1f)] float _position = 0;
 
     [SerializeField] LineRenderer _line;
     BoxCollider2D _boxCollider;
     AudioSource _audioSource;
     bool _isActive = false;
 
+    RaycastHit2D ray;
+
     public float TimePlayerIsDown { get => _timePlayerIsDown; set => _timePlayerIsDown = value; }
     public Transform ToFar { get => _toFar; set => _toFar = value; }
     public bool GoLeft { get => _goLeft; set => _goLeft = value; }
+    public Transform Spawn { get => _spawn; set => _spawn = value; }
 
     private void Start()
     {
@@ -25,6 +32,7 @@ public class Laser : MonoBehaviour
 
     private void OnEnable()
     {
+        ray = Physics2D.Raycast(transform.position, Vector2.down);
         _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _line = GetComponent<LineRenderer>();
@@ -32,33 +40,43 @@ public class Laser : MonoBehaviour
         StartCoroutine(SwapperOn());
         
     }
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(transform.position, Vector2.down);
+    }
     void Update()
     {
         _line.enabled = _isActive;
         if (_isActive)
         {
-            RaycastHit2D ray = Physics2D.Raycast(transform.localPosition, Vector2.down, 2f);
-            _line.SetPosition(1,ray.point);
+            ray = Physics2D.Raycast(transform.position, Vector2.down);
+            print(ray.transform.name);
+            Vector3[] v3s = new Vector3[] {transform.position, ray.point};
+            _line.SetPositions(v3s);
         }
 
 
         if (_goLeft)
         {
-            transform.localPosition += Vector3.left * Time.deltaTime * _speed;
-            if (transform.localPosition.x < _toFar.position.x)
+            _position += Time.deltaTime * _speed;
+            _position = Mathf.Clamp01(_position);
+            transform.localPosition = Vector3.Lerp(_spawn.position,ToFar.position, _position);
+            if (_position >= 1)
             {
-                StopAllCoroutines();
-                Destroy(gameObject);
+                _position = 0;
+                _goLeft = false;
             }
         }
         else
         {
-            transform.localPosition += Vector3.right * Time.deltaTime * _speed;
-            if (transform.localPosition.x > _toFar.position.x)
+            _position += Time.deltaTime * _speed;
+            _position = Mathf.Clamp01(_position);
+            transform.localPosition = Vector3.Lerp(ToFar.position, _spawn.position, _position);
+            if (_position >= 1)
             {
-                StopAllCoroutines();
-                Destroy(gameObject);
+                _position = 0;
+                _goLeft = true;
             }
         }
     }

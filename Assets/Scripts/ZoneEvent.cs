@@ -19,9 +19,9 @@ public class ZoneEvent : MonoBehaviour
     public void PlayerEnter(GameObject player)
     {
         Task taskComp = _task.GetComponent<Task>();
-        print("HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
         if (!taskComp.IsDone)
         { 
+            print("HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
             taskComp.OnPlayerJoinedTask(player);
         }
         

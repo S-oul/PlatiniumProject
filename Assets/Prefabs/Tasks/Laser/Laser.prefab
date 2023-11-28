@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6730822234719964172}
   - component: {fileID: 677827880314125577}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 898005435109133565}
   - component: {fileID: 2950035236622047583}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 2154033794654102076}
   - component: {fileID: 7834946087240612232}
   - component: {fileID: 6693020542364297056}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Laser
   m_TagString: Laser
   m_Icon: {fileID: 0}
@@ -218,11 +218,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toFar: {fileID: 0}
+  _spawn: {fileID: 0}
   _goLeft: 1
-  _speed: 3
+  _speed: 0.1
   _timeToSwap: 1
   _timePlayerIsDown: 2
-  _sprite: {fileID: 0}
+  _position: 0
+  _line: {fileID: 2154033794654102076}
 --- !u!120 &2154033794654102076
 LineRenderer:
   serializedVersion: 2
@@ -342,7 +344,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

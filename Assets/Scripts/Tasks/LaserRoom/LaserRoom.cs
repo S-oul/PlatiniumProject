@@ -68,13 +68,17 @@ public class LaserRoom : Task
                 _players.Add(p.GetComponent<PlayerController>());
             }
             StartTask();
-
+            RoomTask.BoxCollider.enabled = false;
         }
     }
     private void Update()
     {
         if(IsStarted && !IsDone)
         {
+            //PHASES HERE
+
+
+
             if (!OnePlayerAlive())
             {
                 End(false);
@@ -100,7 +104,6 @@ public class LaserRoom : Task
     }
     void StartTask()
     {
-        print("HEEEEEY");
         IsStarted = true;
         StartCoroutine(SpawnLaserTimer());
         StartCoroutine(BlockDoors(true));
@@ -138,14 +141,14 @@ public class LaserRoom : Task
     
     private void SpawnLaser(GameObject go)
     {
-
-            GameObject g = Instantiate(go);
-            g.transform.parent = null;
-            g.transform.position = _spawnerR.position;
-            g.transform.localScale = new Vector3(.16f, .16f, .16f);
-            Laser l = g.GetComponent<Laser>();
-            l.ToFar = _spawnerL;
-            _laserGO.Add(g);
+        GameObject g = Instantiate(go);
+        g.transform.parent = null;
+        g.transform.position = _spawnerR.position;
+        g.transform.localScale = new Vector3(.16f, .16f, .16f);
+        Laser l = g.GetComponent<Laser>();
+        l.ToFar = _spawnerL;
+        l.Spawn = _spawnerR;
+        _laserGO.Add(g);
 
     }
     IEnumerator RecuperatePlayer()

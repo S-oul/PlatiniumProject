@@ -28,6 +28,7 @@ public class Room : MonoBehaviour
     [SerializeField] AudioClip _onRoomSuccessClip;
     [SerializeField] AudioClip _onRoomFailClip;
 
+    [SerializeField] BoxCollider2D _boxCollider;
 
 
     #endregion
@@ -55,13 +56,13 @@ public class Room : MonoBehaviour
     public AudioSource AudioSource { get => _audioSource; set => _audioSource = value; }
     public AudioClip OnRoomSuccessClip { get => _onRoomSuccessClip; set => _onRoomSuccessClip = value; }
     public AudioClip OnRoomFailClip { get => _onRoomFailClip; set => _onRoomFailClip = value; }
+    public BoxCollider2D BoxCollider { get => _boxCollider; set => _boxCollider = value; }
     #endregion
 
     public virtual void InitRoom()
     {
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
         if(_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
-
         //WinStateScreen.ChangeColor(Color.white);
         Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
         //print(gameObject.name + " : " + h + " " + s + " " + v);
@@ -110,14 +111,4 @@ public class Room : MonoBehaviour
         //_sprite.color = Color.HSVToRGB(h, s, 0.1f);
 
     }
-
-    #region UNITY EDITOR
-#if UNITY_EDITOR
-/*
-    private void OnValidate()
-    {
-        transform.localScale = new Vector3(RoomSize * 5, transform.localScale.y, 1);
-    }*/
-#endif
-    #endregion
 }

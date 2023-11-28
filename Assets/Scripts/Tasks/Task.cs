@@ -86,10 +86,11 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerJoinedTask(GameObject player)
     {
-        //Debug.Log("OnPlayerJoinedTask called");  //This func is called 1-3 times at randome. Safegards have been put in place.
+       // Debug.Log("OnPlayerJoinedTask called");  //This func is called 1-3 times at randome. Safegards have been put in place.
         
         if (!IsDone)
         {
+
             if (AddPlayerAtRunTime)
             {
                 if (_isStarted)
@@ -100,7 +101,6 @@ public abstract class Task : MonoBehaviour
                         if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) 
                         {
                             _playersDoingTask.Add(player);
-                            print("yea");
                         } 
                         return;
                     }
