@@ -92,7 +92,6 @@ public class PlayerManager : MonoBehaviour
 
     void AssignSortingOrder(GameObject player)
     {
-        Debug.Log("AssignSortingOrder is called on " + player.name + ". The new layer is " + _sortingOrderTracker);
         player.GetComponentInChildren<SpriteRenderer>().sortingOrder = _sortingOrderTracker;
         _sortingOrderTracker++;
     }
