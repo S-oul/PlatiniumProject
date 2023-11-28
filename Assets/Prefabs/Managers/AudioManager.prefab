@@ -306,8 +306,6 @@ MonoBehaviour:
   allSoundSource:
   - {fileID: 4501893612550109320}
   _music: {fileID: 6845538337165351616}
-  _gameMusic: {fileID: 0}
-  _gameMusicSubOneMinute: {fileID: 0}
   soundBank:
   - audioName: TaskSucceed
     description: Sound when a task is won
@@ -436,3 +434,20 @@ MonoBehaviour:
     description: When you kill the dummy
     audio:
     - {fileID: 8300000, guid: 2f3afbcf9d96304419e8adbc4449c281, type: 3}
+  - audioName: MainMenuMusic
+    description: Main menu music
+    audio:
+    - {fileID: 8300000, guid: 344214f3ca6fadb45a06e9f3ef516286, type: 3}
+  - audioName: LaserRoomMusic
+    description: Music when laser room
+    audio:
+    - {fileID: 8300000, guid: beaa2ba9285ad584db6aa40e3269e534, type: 3}
+    - {fileID: 8300000, guid: 3136d17bc3a06ca45a9732920a023477, type: 3}
+  - audioName: IngameMusic
+    description: Music in game
+    audio:
+    - {fileID: 8300000, guid: 81f1295ef06ae7f4087c444570227dda, type: 3}
+  - audioName: EndgameMusic
+    description: Music for end game
+    audio:
+    - {fileID: 8300000, guid: 58c2d32855ded584cb12ef7671eabb40, type: 3}

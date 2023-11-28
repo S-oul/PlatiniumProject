@@ -23,6 +23,11 @@ public class MenuPrincipal : MonoBehaviour
     public SpriteRenderer FadeScreen;
     public float alpha = 0f;
 
+    private void Start()
+    {
+        AudioManager.instance.PlayMusic("MainMenuMusic");
+    }
+
     public void PlayGame ()
     {
         CamMenu.SetActive(false);

@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2447dc0fd4acfbe45bf6114b7a2cc5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfPlayers: 2
+  _numberOfPlayers: 1
   _difficulty: 2
   _isReplayable: 0
   _addPlayerAtRunTime: 0
