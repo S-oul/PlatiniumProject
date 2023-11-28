@@ -27,4 +27,23 @@ public class Duolingo : NPC
         NPCUI.DisplayTalkingBubble(true);
         NPCUI.ChangeBubbleText(text);
     }
+
+    public void CheckIfDesksAreUsed()
+    {
+        if(LeftDesk.IsUsed && !RightDesk.IsUsed)
+        {
+            LeftDesk.ContourPlayer.gameObject.SetActive(false);
+            RightDesk.ContourPlayer.gameObject.SetActive(true);
+        }
+        else if (!LeftDesk.IsUsed && RightDesk.IsUsed)
+        {
+            LeftDesk.ContourPlayer.gameObject.SetActive(true);
+            RightDesk.ContourPlayer.gameObject.SetActive(false);
+        }
+        else if(!LeftDesk.IsUsed && !RightDesk.IsUsed)
+        {
+            LeftDesk.ContourPlayer.gameObject.SetActive(false);
+            RightDesk.ContourPlayer.gameObject.SetActive(false);
+        }
+    }
 }

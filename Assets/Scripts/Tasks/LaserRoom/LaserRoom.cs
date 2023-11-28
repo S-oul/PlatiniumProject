@@ -60,7 +60,10 @@ public class LaserRoom : Task
     public override void Init()
     {
         base.Init();
-        AudioManager.instance.PlayMusic("LaserRoomMusic");
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMusic("LaserRoomMusic");
+        }
         if(RoomTask.ListPlayer.Count >= NumberOfPlayers)
         {
             foreach (GameObject p in RoomTask.ListPlayer)

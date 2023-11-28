@@ -113,7 +113,7 @@ public class DataManager : MonoBehaviour
                         inputSprite = input.spritePlaystation;
                         break;
                     case PlayerManager.ControllerType.None:
-                        inputSprite = input.spriteXbox;
+                        inputSprite = input.spritePlaystation;
                         break;
                 }
 
