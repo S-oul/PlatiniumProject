@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerInputManager InputManager { get => _inputManager; set => _inputManager = value; }
     public enum ControllerType
     {
+        None,
         Xbox,
         Playstation
     }
@@ -60,6 +61,10 @@ public class PlayerManager : MonoBehaviour
         else if (player.devices[0].displayName.Contains("PLAYSTATION"))
         {
             player.gameObject.GetComponent<PlayerController>().Type = ControllerType.Playstation;
+        }
+        else
+        {
+            player.gameObject.GetComponent<PlayerController>().Type = ControllerType.None;
         }
     }
     /*

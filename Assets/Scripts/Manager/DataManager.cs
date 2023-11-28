@@ -45,6 +45,18 @@ public class DataManager : MonoBehaviour
     public List<RuntimeAnimatorController> AnimationPlayers { get => _animationPlayers; }
     public Dictionary<InputDeviceDescription, RuntimeAnimatorController> DicSpritePlayer { get => _dicSpritePlayer; set => _dicSpritePlayer = value; }
 
+    Dictionary<SystemLanguage, string> _languageSprite = new Dictionary<SystemLanguage, string>()
+    {
+        {SystemLanguage.English, "English"},
+        {SystemLanguage.French, "French"},
+        {SystemLanguage.Spanish, "Spanish"},
+        {SystemLanguage.Portuguese, "Portugese"},
+        {SystemLanguage.German, "German"}
+    };
+
+
+    [SerializeField] List<Sprite> _flags = new List<Sprite>();
+
     public enum TaskEnum
     {
         CowboyQTE,
@@ -68,5 +80,45 @@ public class DataManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
+    }
+
+    public Sprite FindFlagSprite(SystemLanguage language)
+    {
+        string name = _languageSprite[language];
+        Sprite _sprite = null;
+        foreach (Sprite flag in _flags)
+        {
+            if (flag.name == name)
+            {
+                _sprite = flag;
+            }
+        }
+        return _sprite;
+    }
+
+    public Sprite FindInputSprite(string name, PlayerManager.ControllerType type)
+    {
+        Sprite inputSprite = null;
+        foreach (InputConfig input in _inputsData.inputs)
+        {
+            if(input.baseName == name)
+            {
+                switch (type)
+                {
+                    case PlayerManager.ControllerType.Xbox:
+                        inputSprite = input.spriteXbox;
+                        break;
+                    case PlayerManager.ControllerType.Playstation:
+                        inputSprite = input.spritePlaystation;
+                        break;
+                    case PlayerManager.ControllerType.None:
+                        inputSprite = input.spriteXbox;
+                        break;
+                }
+
+            }
+        }
+        return inputSprite;
     }
 }

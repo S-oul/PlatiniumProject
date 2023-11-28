@@ -54,7 +54,7 @@ public class GoatTask : InputTask, ITimedTask
 
 
         _playerUI = PlayersDoingTask[0].GetComponent<PlayerUI>();
-        _playerUI.DisplayMashDownButton(true);
+        _playerUI.DisplayMashDownButton(true, InputsToString[_buttonToPress]);
         _dataManager = DataManager.Instance;
         foreach (GameObject p in PlayersDoingTask)
         {
@@ -79,7 +79,7 @@ public class GoatTask : InputTask, ITimedTask
             print("Noob : Was at " + _goatPos);
 
         }
-        _playerUI.DisplayMashDownButton(false);
+        _playerUI.DisplayMashDownButton(false, "");
         foreach (PlayerController controller in _controllers)
         {
             controller.EnableMovementDisableInputs();
