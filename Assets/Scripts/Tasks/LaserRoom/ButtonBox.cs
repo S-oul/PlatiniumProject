@@ -26,7 +26,6 @@ public class ButtonBox : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            print("IIIIIIIIIIIIIIIIIIIINNNNNNNNNNNNNN");
             _isOn = true;
             _laserRoom.CheckPhase();
             _spriteRenderer.color = Color.green;

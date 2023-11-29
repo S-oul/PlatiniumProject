@@ -66,10 +66,12 @@ public class LaserRoom : Task
     public override void Init()
     {
         base.Init();
+
         if (AudioManager.instance != null)
         {
             AudioManager.instance.PlayMusic("LaserRoomMusic");
         }
+        print(NumberOfPlayers + " " + RoomTask.ListPlayer.Count);
         if(RoomTask.ListPlayer.Count >= NumberOfPlayers)
         {
             foreach (GameObject p in RoomTask.ListPlayer)
@@ -79,7 +81,13 @@ public class LaserRoom : Task
                 _players.Add(pc);
             }
             _cam.FixOnRoomVoid(RoomTask);
-            StartTask();
+
+            _toActivate1.SetActive(true);
+            IsStarted = true;
+            foreach (LaserSpawner ls in _phase1)
+            {
+                StartCoroutine(ls.SpawnLaserTimer());
+            }
             RoomTask.BoxCollider.enabled = false;
         }
     }
@@ -94,15 +102,6 @@ public class LaserRoom : Task
         }
     }
 
-    void StartTask()
-    {
-        _toActivate1.SetActive(true);
-        IsStarted = true;
-        foreach (LaserSpawner ls in _phase1)
-        {
-            StartCoroutine(ls.SpawnLaserTimer());
-        }
-    }
 
     bool OnePlayerAlive()
     {
@@ -167,6 +166,10 @@ public class LaserRoom : Task
                 KillAllLaser();
                 _toActivate2.SetActive(false);
                 _toActivate3.SetActive(true);
+                foreach (LaserSpawner ls in _phase3)
+                {
+                    StartCoroutine(ls.SpawnLaserTimer());
+                }
                 return true;
             case 2:
                 foreach (ButtonBox b in _buttonPhase3)
@@ -180,6 +183,11 @@ public class LaserRoom : Task
                 KillAllLaser();
                 _toActivate3.SetActive(false);
                 _toActivate4.SetActive(true);
+                foreach (LaserSpawner ls in _phase4)
+                {
+                    StartCoroutine(ls.SpawnLaserTimer());
+                }
+
                 return true;
             case 3:
                 foreach (ButtonBox b in _buttonPhase4)

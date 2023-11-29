@@ -1,8 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using MyDirs;
 
+namespace MyDirs
+{
+    public enum dir
+    {
+        Down,
+        Left,
+        Up,
+        Right
+    }
+}
 public class Laser : MonoBehaviour
 {
     [SerializeField] private Transform _toFar;
@@ -19,7 +27,6 @@ public class Laser : MonoBehaviour
 
     [SerializeField] LineRenderer _line;
     [SerializeField] GameObject _impact;
-    BoxCollider2D _boxCollider;
     AudioSource _audioSource;
     bool _isActive = false;
 
@@ -29,22 +36,12 @@ public class Laser : MonoBehaviour
     public bool GoLeft { get => _goLeft; set => _goLeft = value; }
     public Transform ToFar { get => _toFar; set => _toFar = value; }
     public Transform Spawn { get => _spawn; set => _spawn = value; }
+    public dir Dir { get => _dir; set => _dir = value; }
 
 
-    public enum dir
+    public void StartLaser()
     {
-        Down,
-        Left,
-        Up,
-        Right
-    }
-
-    private void Start()
-    {
-    }
-
-    private void OnEnable()
-    {
+        print(_dir.ToString());
         switch (_dir)
         {
             case dir.Down:
@@ -57,16 +54,16 @@ public class Laser : MonoBehaviour
                 break;
             case dir.Right:
                 ray = Physics2D.Raycast(transform.position, Vector2.right);
-                _impact.transform.localEulerAngles = new Vector3(0, 0, 90f);
+                //_impact.transform.localEulerAngles = new Vector3(0, 0, 90f);
                 break;
             case dir.Up:
                 ray = Physics2D.Raycast(transform.position, Vector2.up);
-                _impact.transform.localEulerAngles = new Vector3(0, 0, 360f);
+                //_impact.transform.localEulerAngles = new Vector3(0, 0, 360f);
                 break;
 
         }
+            
         _audioSource = GetComponent<AudioSource>();
-        _boxCollider = GetComponent<BoxCollider2D>();
         _line = GetComponent<LineRenderer>();
 
         _isActive = true;
@@ -84,7 +81,22 @@ public class Laser : MonoBehaviour
         _line.enabled = _isActive;
         if (_isActive)
         {
-            ray = Physics2D.Raycast(transform.position, Vector2.down);
+            switch (_dir)
+            {
+                case dir.Down:
+                    ray = Physics2D.Raycast(transform.position, Vector2.down);
+                    break;
+                case dir.Left:
+                    ray = Physics2D.Raycast(transform.position, Vector2.left);
+                    break;
+                case dir.Right:
+                    ray = Physics2D.Raycast(transform.position, Vector2.right);
+                    break;
+                case dir.Up:
+                    ray = Physics2D.Raycast(transform.position, Vector2.up);
+                    break;
+
+            }
             //print(ray.transform.name);
             Vector3[] v3s = new Vector3[] { transform.position, ray.point};
             _impact.transform.position = ray.point;

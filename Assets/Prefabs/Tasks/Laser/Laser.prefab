@@ -226,6 +226,7 @@ MonoBehaviour:
   _timePlayerIsDown: 2
   _position: 0
   _line: {fileID: 2154033794654102076}
+  _impact: {fileID: 1465069492400365398}
 --- !u!120 &2154033794654102076
 LineRenderer:
   serializedVersion: 2

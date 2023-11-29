@@ -349,6 +349,7 @@ MonoBehaviour:
   _audioSource: {fileID: -1480516595800574039, guid: d2c937afe1be0b048830c031f6142629, type: 3}
   _onRoomSuccessClip: {fileID: 8300000, guid: 8e3a7e2d808eebe48ae117d2a6e12faf, type: 3}
   _onRoomFailClip: {fileID: 8300000, guid: 79e3bc2a96911374fb4dff7be51a2253, type: 3}
+  _boxCollider: {fileID: -7280390804125685453}
   _listPlayer: []
 --- !u!61 &-7280390804125685453
 BoxCollider2D:

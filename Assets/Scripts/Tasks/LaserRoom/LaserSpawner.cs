@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using MyDirs;
 
 public class LaserSpawner : MonoBehaviour
 {
@@ -12,17 +13,10 @@ public class LaserSpawner : MonoBehaviour
 
     [SerializeField] int _numberOfLaser = 4;
     [SerializeField] float _timeForSpawn = 2f;
-    
-    LaserRoom _laserRoom;
 
-    private void Start()
-    {
-        OnEnable();
-    }
-    private void OnEnable()
-    {
-        _laserRoom = FindObjectOfType<LaserRoom>();
-    }
+    [SerializeField] LaserRoom _laserRoom;
+
+    [SerializeField] private dir _dir;
 
     private void SpawnLaser()
     {
@@ -33,7 +27,10 @@ public class LaserSpawner : MonoBehaviour
         Laser l = g.GetComponent<Laser>();
         l.ToFar = _Pos2;
         l.Spawn = _Pos1;
-        //_laserRoom.LaserGO.Add(g);
+        l.Dir = _dir;
+
+        l.StartLaser();
+        _laserRoom.LaserGO.Add(g);
 
     }
     public IEnumerator SpawnLaserTimer()
