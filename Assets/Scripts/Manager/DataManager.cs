@@ -36,6 +36,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] List<GameObject> _allTasks = new List<GameObject>();
     [SerializeField] InputDataManager _inputsData;
 
+
     //[SerializeField] List<Sprite> _spritePlayers = new List<Sprite>();
     [SerializeField] List<RuntimeAnimatorController> _animationPlayers = new List<RuntimeAnimatorController>();
     Dictionary<InputDeviceDescription, RuntimeAnimatorController> _dicSpritePlayer = new Dictionary<InputDeviceDescription, RuntimeAnimatorController>();

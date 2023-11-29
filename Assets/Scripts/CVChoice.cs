@@ -11,6 +11,7 @@ public class CVChoice : MonoBehaviour
     Transform _zoneBase;
     [SerializeField] PlayerCursorManager _playerCursorManager;
     int _playerChosenCount;
+    
     public List<CV> Cvs { get => _cvs; set => _cvs = value; }
 
     public void ChangeToCV(int value, CursorPlayer player)
@@ -72,7 +73,8 @@ public class CVChoice : MonoBehaviour
         foreach(PlayerInput player in _playerCursorManager.Players)
         {
             DataManager.Instance.DicSpritePlayer.Add(player.devices[0].description, player.GetComponent<CursorPlayer>().CvChosen.AnimationPlayer);
-            print("Player Input = " + player.devices[0].description + " || PlayerAnimation = " + player.GetComponent<CursorPlayer>().CvChosen.AnimationPlayer.name);
+            
+            
         }
         SceneManager.LoadScene("Bureaucratie");
         //print(SceneManager.GetActiveScene().name);

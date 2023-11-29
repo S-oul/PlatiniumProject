@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -36,8 +37,10 @@ public class PlayerManager : MonoBehaviour
             GameManager.Instance.Players[newPlayer.playerIndex] = newPlayer.gameObject;
             GameManager.Instance.PlayerCount++;
             GetControllerType(newPlayer);
+            
             //PickRandomAnimation(GameManager.Instance.Players[newPlayer.playerIndex]);                         // Randome animatior chosen here
             AssignAnimationToPlayer(newPlayer);
+            GetColor(newPlayer.gameObject);
             GameManager.Instance.Players[newPlayer.playerIndex].transform.position = transform.position;      // Player spawns at the location of the PlayerManager Object
             AssignSortingOrder(GameManager.Instance.Players[newPlayer.playerIndex]);
             newPlayer.actions["InputTask"].Disable();                                                         // is "InputTask" the 'task' of adding a player?
@@ -81,6 +84,25 @@ public class PlayerManager : MonoBehaviour
     }
     */
 
+    public void GetColor(GameObject player)
+    {
+        switch (player.gameObject.GetComponentInChildren<Animator>().runtimeAnimatorController.name)
+        {
+            case "Blue_Animation":
+                player.GetComponent<PlayerController>().ColorPlayer = Color.blue;
+                break;
+            case "Red_Animation":
+                player.GetComponent<PlayerController>().ColorPlayer = Color.red;
+                break;
+            case "Green_Animation":
+                player.GetComponent<PlayerController>().ColorPlayer = Color.green;
+                break;
+            case "Yellow_Animation":
+                player.GetComponent<PlayerController>().ColorPlayer = Color.yellow;
+                break;
+
+        }
+    }
     void PickRandomAnimation(GameObject player) //Pick randome Animation
     {
         print(player);
@@ -99,5 +121,18 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("AssignSortingOrder is called on " + player.name + ". The new layer is " + _sortingOrderTracker);
         player.GetComponentInChildren<SpriteRenderer>().sortingOrder = _sortingOrderTracker;
         _sortingOrderTracker++;
+    }
+
+    public GameObject FindPlayerFromColor(Color color)
+    {
+        GameObject tempPlayer = null;
+        foreach(GameObject player in GameManager.Instance.Players)
+        {
+            if(player.GetComponent<PlayerController>().ColorPlayer == color)
+            {
+                tempPlayer = player;
+            }
+        }
+        return tempPlayer;
     }
 }

@@ -323,6 +323,7 @@ MonoBehaviour:
   _audioSource: {fileID: 6032432217816718020, guid: 69ce900d592a8e9449152385c8104367, type: 3}
   _onRoomSuccessClip: {fileID: 8300000, guid: 8e3a7e2d808eebe48ae117d2a6e12faf, type: 3}
   _onRoomFailClip: {fileID: 8300000, guid: 79e3bc2a96911374fb4dff7be51a2253, type: 3}
+  _boxCollider: {fileID: 0}
   _listPlayer: []
 --- !u!61 &4857214687516054678
 BoxCollider2D:
@@ -1472,6 +1473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeskTamponnage
       objectReference: {fileID: 0}
+    - target: {fileID: 8284643688371218199, guid: 3c322e66424ca7e4b89eed5ce59684de, type: 3}
+      propertyPath: _contourPlayer
+      value: 
+      objectReference: {fileID: 1110720802920250440}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

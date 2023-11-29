@@ -27,7 +27,7 @@ public class ProjectileMatrix : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            _task.PlayerTouched(collision.gameObject);
+            
             Destroy(gameObject);
         }
     }

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [Range(0.1f, 20f)]public float normalFallGravityForce = 3;              // Fall Speed
     [SerializeField] public bool AirControl = true;                         // Can contoll character while not Grounded
     [SerializeField] private float _jumpForce = 400f;
+    
     PlayerManager.ControllerType _type;
 
     ParticleSystem _runParticles;
@@ -46,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
     Coroutine _walkCoroutine;
 
+    public Color _colorPlayer;
+
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool CanMove { get => _canMove; set => _canMove = value; }
     public bool IsPlayerDown { get => _isPlayerDown; set => _isPlayerDown = value; }
@@ -55,6 +58,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 GraffitiContext { get => _graffitiContext; set => _graffitiContext = value; }
     public float JumpForce { get => _jumpForce; set => _jumpForce = value; }
     public PlayerManager.ControllerType Type { get => _type; set => _type = value; }
+    public Color ColorPlayer { get => _colorPlayer; set => _colorPlayer = value; }
 
     private void Awake()
     {
@@ -69,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
 
     // Functions called by the Player Input component. 
+
     public void OnMove(InputAction.CallbackContext context)
     {
         _horizontalMove = context.ReadValue<Vector2>().x * _moveSpeed;
@@ -386,4 +391,7 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    
+
 }

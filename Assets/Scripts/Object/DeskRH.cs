@@ -5,11 +5,9 @@ using UnityEngine;
 public class DeskRH : Object
 {
     GameObject _player;
-    bool _isUsed;
 
     public GameObject Player { get =>  _player; }
 
-    public bool IsUsed { get => _isUsed; set => _isUsed = value; }
     GameObject _task;
     [SerializeField] DataManager.TaskEnum _typeTask;
 
@@ -21,10 +19,10 @@ public class DeskRH : Object
     }
     public override void Interact(GameObject player)
     {
-        if(!_isUsed)
+        if(!IsUsed)
         {
             _player = player;
-            _isUsed = true;
+            IsUsed = true;
             _task.GetComponent<Task>().PlayerGameObject = player;
             _task.GetComponent<Task>().Init();
         }
