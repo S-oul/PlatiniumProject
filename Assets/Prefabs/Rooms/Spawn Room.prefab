@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1020944551795795644}
   m_Layer: 10
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,6 +225,9 @@ MonoBehaviour:
   _posItPos: {fileID: 0}
   _hasPostIt: 1
   _winStateScreen: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _onRoomSuccessClip: {fileID: 0}
+  _onRoomFailClip: {fileID: 0}
   _listPlayer: []
 --- !u!61 &-1723389438714349275
 BoxCollider2D:

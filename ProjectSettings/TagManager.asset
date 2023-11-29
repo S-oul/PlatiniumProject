@@ -22,6 +22,7 @@ TagManager:
   - AutoLift
   - GraffitiTask
   - ChattyNPC
+  - Ground
   layers:
   - Default
   - TransparentFX
