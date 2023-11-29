@@ -2,13 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserRoom : Task , ITimedTask
+public class LaserRoom : Task
 {
     //[SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
     List<PlayerController> _players = new List<PlayerController>();
 
     List<GameObject> _laserGO = new List<GameObject>();
 
+    [SerializeField] GameObject _toActivate1;
+    [SerializeField] GameObject _toActivate2;
+    [SerializeField] GameObject _toActivate3;
+    [SerializeField] GameObject _toActivate4;
+
+    [SerializeField] List<ButtonBox> _buttonPhase1 = new List<ButtonBox>();
+    [SerializeField] List<ButtonBox> _buttonPhase2 = new List<ButtonBox>();
+    [SerializeField] List<ButtonBox> _buttonPhase3 = new List<ButtonBox>();
+    [SerializeField] List<ButtonBox> _buttonPhase4 = new List<ButtonBox>();
+
+    [SerializeField] List<LaserSpawner> _phase1 = new List<LaserSpawner>();
+    [SerializeField] List<LaserSpawner> _phase2 = new List<LaserSpawner>();
+
+    List<bool> _isPhase = new List<bool>();
+
+    int _actPhase = 0;
 
     Cam _cam;
 
@@ -21,20 +37,16 @@ public class LaserRoom : Task , ITimedTask
     [SerializeField] Transform _spawnerR;
 
 
-    public float _givenTime => 20;
+    //public float _givenTime => 45;
     [SerializeField] float _recuperateTime => 2;
+
+    public List<GameObject> LaserGO { get => _laserGO; set => _laserGO = value; }
 
     float _actualTime;
 
-    public float GivenTime { get => _givenTime;}
-
-
     void Start()
     {
-        //_gameManager = GameManager.Instance;
-        //NumberOfPlayers = _gameManager.PlayerCount;
-        _actualTime = _givenTime * (Difficulty / 3f);
-        //print(_actualTime);
+        // _actualTime = _givenTime;
         RoomTask = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
     }
@@ -57,14 +69,18 @@ public class LaserRoom : Task , ITimedTask
     }
     void KillAllLaser()
     {
-        foreach(GameObject g in _laserGO)
+        for(int i = _laserGO.Count - 1; i > 0;i--)
         {
-            Destroy(g);
+            Destroy(_laserGO[i]);
         }
     }
     public override void Init()
     {
         base.Init();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMusic("LaserRoomMusic");
+        }
         if(RoomTask.ListPlayer.Count >= NumberOfPlayers)
         {
             foreach (GameObject p in RoomTask.ListPlayer)
@@ -72,10 +88,20 @@ public class LaserRoom : Task , ITimedTask
                 _players.Add(p.GetComponent<PlayerController>());
             }
             StartTask();
-
+            RoomTask.BoxCollider.enabled = false;
         }
     }
+    private void Update()
+    {
+        if(IsStarted && !IsDone)
+        {
 
+            if (!OnePlayerAlive())
+            {
+                End(false);
+            }
+        }
+    }
     IEnumerator BlockDoors(bool block)
     {
         BoxCollider2D b = _doorL.GetComponent<BoxCollider2D>();
@@ -96,10 +122,11 @@ public class LaserRoom : Task , ITimedTask
     void StartTask()
     {
         IsStarted = true;
-        StartCoroutine(SpawnLaserTimer());
-        StartCoroutine(BlockDoors(true));
-        StartCoroutine(timeTask());
         _cam.FixOnRoomVoid(RoomTask);
+        foreach (LaserSpawner ls in _phase1)
+        {
+            StartCoroutine(ls.SpawnLaserTimer());
+        }
     }
 
     bool OnePlayerAlive()
@@ -113,56 +140,79 @@ public class LaserRoom : Task , ITimedTask
         }
         return false;
     }
-    bool AllPlayerAlive()
+
+    /*bool AllPlayerAlive()
     {
+        string t = "";
+        foreach (PlayerController _controller in _players)
+        {
+            if (!_controller.IsPlayerDown)
+            {
+                t += "t";
+            }
+        }
+        if (t == "tttt")
+        {
+            return true;
+        }
         return false;
-    }
-    
-    private void SpawnLaser(GameObject go)
+    }*/
+
+    public bool CheckPhase()
     {
-        int r = Random.Range(0, 3);
-        if (r == 2)
+        print("BBBBBBBBBBBBBBcccccccccccccc       " + _actPhase);
+        switch (_actPhase)
         {
-            GameObject g = Instantiate(go);
-            g.transform.parent = null;
-            g.transform.position = _spawnerR.position;
-            g.transform.localScale = new Vector3(.16f, .16f, .16f);
-            Laser l = g.GetComponent<Laser>();
-            l.ToFar = _spawnerL;
-            _laserGO.Add(g);
-
-            GameObject g2 = Instantiate(go);
-            g2.transform.parent = null;
-            g2.transform.position = _spawnerL.position;
-            g2.transform.localScale = new Vector3(.16f, .16f, .16f);
-            Laser l2 = g2.GetComponent<Laser>();
-            l2.ToFar = _spawnerR;
-            l2.GoLeft = false;
-            _laserGO.Add(g);
-
+            case 0:
+                foreach (ButtonBox b in _buttonPhase1)
+                {
+                    if (b.IsOn == false)
+                    {
+                        return false;
+                    }
+                }
+                _actPhase++;
+                KillAllLaser();
+                _toActivate1.SetActive(false);
+                _toActivate2.SetActive(true);
+                foreach (LaserSpawner ls in _phase2)
+                {
+                    StartCoroutine(ls.SpawnLaserTimer());
+                }
+                print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+                return true;
+            case 1:
+                foreach (ButtonBox b in _buttonPhase2)
+                {
+                    if (b.IsOn == false)
+                    {
+                        return false;
+                    }
+                }
+                _actPhase++;
+                KillAllLaser();
+                _toActivate2.SetActive(false);
+                _toActivate3.SetActive(true);
+                return true;
+            case 2:
+                foreach (ButtonBox b in _buttonPhase3)
+                {
+                    if (b.IsOn == false)
+                    {
+                        return false;
+                    }
+                }
+                _actPhase++;
+                KillAllLaser();
+                _toActivate3.SetActive(false);
+                _toActivate4.SetActive(true);
+                return true;
+            case 3:
+                _toActivate4.SetActive(false);
+                KillAllLaser();
+                return true;
         }
-        else if (r == 1)
-        {
-            GameObject g = Instantiate(go);
-            g.transform.parent = null;
-            g.transform.position = _spawnerL.position;
-            g.transform.localScale = new Vector3(.16f, .16f, .16f);
-            Laser l = g.GetComponent<Laser>();
-            l.ToFar = _spawnerR;
-            l.GoLeft = false;
-            _laserGO.Add(g);
-
-        }
-        else
-        {
-            GameObject g = Instantiate(go);
-            g.transform.parent = null;
-            g.transform.position = _spawnerR.position;
-            g.transform.localScale = new Vector3(.16f, .16f, .16f);
-            Laser l = g.GetComponent<Laser>();
-            l.ToFar = _spawnerL;
-            _laserGO.Add(g);
-        }
+        return false;
     }
     IEnumerator RecuperatePlayer()
     {
@@ -174,31 +224,5 @@ public class LaserRoom : Task , ITimedTask
         }
         KillAllLaser();
     }
-    IEnumerator SpawnLaserTimer()
-    {
-        while (IsStarted)
-        {
-            yield return new WaitForSeconds(Random.Range(6 - Difficulty - 0.25f, 6 - Difficulty + 0.25f));
-            SpawnLaser(_laser);
-        }
-    }
-    IEnumerator timeTask()
-    {
-        while (_actualTime > 0) 
-        {
-            //Debug.Log(_actualTime);
-            if (!OnePlayerAlive())
-            {
-                End(false);
-            }
-            _actualTime -= Time.deltaTime;
-            yield return null;
-        }       
-        if (_actualTime <= 0)
-        {
-            End(true);
-            _cam.FixOnRoom = false;
-        }
 
-    }
 }

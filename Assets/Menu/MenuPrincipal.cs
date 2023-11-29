@@ -23,7 +23,13 @@ public class MenuPrincipal : MonoBehaviour
     public SpriteRenderer FadeScreen;
     public float alpha = 0f;
 
-    public GameObject LinkedObject;
+    private void Start()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMusic("MainMenuMusic");
+        }
+    }
 
     public void PlayGame ()
     {
@@ -81,9 +87,6 @@ public class MenuPrincipal : MonoBehaviour
             // Mettre à jour la position du texte en fonction de la vitesse de défilement
             textTransform.anchoredPosition += new Vector2(0f, scrollSpeed * Time.deltaTime);
 
-            // Mettre à jour la position du GameObject lié au texte
-            LinkedObject.transform.position = textTransform.position;
-
             // Vérifier si le texte est sorti de l'écran
             if (textTransform.anchoredPosition.y > Screen.height)
             {
@@ -103,7 +106,7 @@ public class MenuPrincipal : MonoBehaviour
         CamPlay2.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         //Lancer la partie
-        SceneManager.LoadScene("Bureaucratie");
+        SceneManager.LoadScene("CharacterChoice");
     }
 
     // the image you want to fade, assign in inspector

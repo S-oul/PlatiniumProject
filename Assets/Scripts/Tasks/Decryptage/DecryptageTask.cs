@@ -9,6 +9,7 @@ public class DecryptageTask : Task
     
     [SerializeField] ObstacleManager _obstacles;
     [SerializeField] PlayerPointerMover _arrow;
+    [SerializeField] GameObject PlayerStandsHere;
     PlayerController _controller;
 
 
@@ -17,6 +18,7 @@ public class DecryptageTask : Task
         if (!isSuccessful)
         {
         }
+        StopCraftingAnimation(PlayerGameObject);
         _controller.DisableDecryptageEnableMovements();
         _obstacles.DoSpin = false;
         base.End(isSuccessful);
@@ -30,7 +32,23 @@ public class DecryptageTask : Task
             _obstacles.speedList[i] = _obstacles.speedList[i] * Difficulty;
         }
         _controller.EnableDecryptageDisableMovements();
+        TeleportPlayerToStandingSpot(PlayerGameObject);
+        StartCraftingAnimation(PlayerGameObject);
         StartTask();
+    }
+
+    void TeleportPlayerToStandingSpot (GameObject player)
+    {
+        player.GetComponent<Transform>().position = PlayerStandsHere.GetComponent<Transform>().position;
+    }
+
+    void StartCraftingAnimation (GameObject player)
+    {
+        player.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", true);
+    }
+    void StopCraftingAnimation(GameObject player)
+    {
+        player.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", false);
     }
 
     private void Update()

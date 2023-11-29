@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Things we should forget ='(/CarrionSimple.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/MenuTest.unity
+    path: Assets/Scenes/Menu Principal.unity
     guid: c57287cf5c101d741aaa5fe5d0a7407a
+  - enabled: 1
+    path: Assets/Scenes/CharacterChoice.unity
+    guid: e3cb303e6d8c5054d9094796fff7ca48
   - enabled: 1
     path: Assets/Scenes/Bureaucratie.unity
     guid: a4e85f5c154ba3d4dad373b87114570b

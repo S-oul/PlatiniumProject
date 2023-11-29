@@ -44,6 +44,10 @@ public class TamponageTask : InputTask, ITimedTask
     bool _hasTamponnageSoundPlayedP2 = false;
     private void Start()
     {
+        foreach (GameObject player in PlayersDoingTask)
+        {
+            player.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", true);
+        }
         _numOfClicksToDo *= Difficulty;
         _inputName = InputsToString[_inputToPress];
         _clock = gameObject.transform.parent.parent.Find("Timer").GetChild(0).GetChild(0);
@@ -67,10 +71,10 @@ public class TamponageTask : InputTask, ITimedTask
         StopCoroutine(_timer);
         foreach(GameObject player in PlayersDoingTask)
         {
-            
+            player.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", false);
             player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
             player.GetComponent<PlayerController>().BlockPlayer(false);
-            player.GetComponent<SpriteRenderer>().sortingOrder = 8;
+            //player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 8;
             player.GetComponent<PlayerController>().EnableMovementDisableInputs();
         }
         base.End(isSuccessful);
@@ -80,6 +84,7 @@ public class TamponageTask : InputTask, ITimedTask
     public override void StartTask()
     {
         _textScore.text = "0/" + _numOfClicksToDo;
+        _textScore.color = Color.white;
         _angle = 360f;
         _player1 = PlayersDoingTask[0].GetComponent<PlayerController>();
         _player2 = PlayersDoingTask[1].GetComponent<PlayerController>();
@@ -125,7 +130,7 @@ public class TamponageTask : InputTask, ITimedTask
                 _player1UI.DisplayInputToPress(false, "");
                 _player2UI.DisplayInputToPress(false, "");
                 _numOfClicksDone++;
-                _textScore.color = Color.black;
+                _textScore.color = Color.white;
                 _textScore.text = _numOfClicksDone +  "/" + _numOfClicksToDo;
                 _p1Value = 0;
                 _p2Value = 0;
@@ -186,9 +191,11 @@ public class TamponageTask : InputTask, ITimedTask
         _p2Value = 0;
         _player1.GetComponent<PlayerController>().DisableAllInputs();
         _player2.GetComponent<PlayerController>().DisableAllInputs();
+        _player1UI.DisplayInputToPress(false, "");
+        _player2UI.DisplayInputToPress(false, "");
         AudioManager.instance.PlaySFXOS("QTEFail", RoomTask.AudioSource);
         yield return new WaitForSeconds(5);
-        _textScore.color = Color.black;
+        _textScore.color = Color.white;
         _textScore.text = _numOfClicksDone + "/" + _numOfClicksToDo;
         _player1.GetComponent<PlayerController>().DisableMovementEnableInputs();
         _player2.GetComponent<PlayerController>().DisableMovementEnableInputs();

@@ -11,30 +11,24 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<AudioSource> allSoundSource;
     [SerializeField] AudioSource _music;
 
-    [SerializeField] AudioClip _gameMusic;
-    [SerializeField] AudioClip _gameMusicSubOneMinute;
-
     float restingTime = 0;
     float oldVol = 0;
 
     public List<SoundConfig> soundBank = new();
 
     public List<AudioSource> AllSoundSource { get => allSoundSource; set => allSoundSource = value; }
+    public AudioSource Music { get => _music; set => _music = value; }
+    public AudioSource Sfx { get => _sfx; set => _sfx = value; }
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
-    void Start()
-    {
-        _music.loop = true;
-        if(_gameMusic != null) { PlayMusic(_gameMusic); }
-        //StartCoroutine(FadeToZero(1));
-        
-    }
+    
 
     public void PlaySFXOS(string clipName, AudioSource source)
     {
@@ -62,7 +56,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySFXLoop(AudioClip clip, AudioSource source)
     {
 
-
+        
         if (clip != null)
         {
             source.clip = clip;
@@ -103,25 +97,26 @@ public class AudioManager : MonoBehaviour
         return clip;
     }
 
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(string clipName)
     {
-        _music.clip = clip;
-        _music.Play();
+        AudioClip clip = FindClip(clipName);
+        Music.clip = clip;
+        Music.Play();
     }
 
     public IEnumerator FadeToZero(float timeToFade)
     {
         restingTime = timeToFade;
-        oldVol = _music.volume;
+        oldVol = Music.volume;
         while(restingTime > 0)
         {
             restingTime -= Time.deltaTime;
             float percent = restingTime / timeToFade;
             print(restingTime + " " + oldVol + " " + Mathf.Lerp(0, oldVol, percent));
-            _music.volume = Mathf.Lerp(0, oldVol,percent);
+            Music.volume = Mathf.Lerp(0, oldVol,percent);
             yield return null;
         }
-        _music.volume = 0;
+        Music.volume = 0;
         restingTime = 0;
         oldVol = 0;
     }

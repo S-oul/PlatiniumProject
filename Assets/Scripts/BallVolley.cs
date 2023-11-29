@@ -73,11 +73,13 @@ public class BallVolley : MonoBehaviour
     {
         if (collision.gameObject == _task.Squid)
         {
+            
             if (_isFirstShot)
             {
                 _isFirstShot = false;
                 Vector3 dir = new Vector3(Random.Range(-0.8f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
-                
+
+                _task.PlayTentacleAnimation();
                 _rb.velocity = Vector2.zero;
                 print(dir);
                 _rb.AddForce(dir);
@@ -88,6 +90,7 @@ public class BallVolley : MonoBehaviour
                 {
                     _lastCollisionObject = collision.gameObject;
                     Vector3 dir = new Vector3(Random.Range(-0.8f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
+                    _task.PlayTentacleAnimation();
                     _rb.velocity = Vector2.zero;
                     _rb.AddForce(dir);
                 }
@@ -138,6 +141,7 @@ public class BallVolley : MonoBehaviour
 
     public IEnumerator TimerBeforeDestroy(bool isForPlayer)
     {
+        _task.CheckPoints(isForPlayer);
         if (isForPlayer)
         {
             _task.TextVolleyUI.gameObject.SetActive(true);
@@ -161,7 +165,7 @@ public class BallVolley : MonoBehaviour
             Collider2D playerCollider = player.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider, false);
         }
-        _task.Point(isForPlayer);
+        _task.Point();
         Destroy(gameObject);
     }
 

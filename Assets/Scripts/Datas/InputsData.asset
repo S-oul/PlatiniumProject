@@ -15,51 +15,51 @@ MonoBehaviour:
   inputs:
   - baseName: X
     nameXbox: X
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: a44d642fa443e2a4ea055b2db69060d2, type: 3}
     namePlaystation: Square
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 0bdd85e685ae4c1469c96d7d1e21da9b, type: 3}
   - baseName: Y
     nameXbox: Y
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: 7254c8d095ae52c469b6f24cff2f9c17, type: 3}
     namePlaystation: Triangle
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 56d98b22e5bb93342b0a227226a4124c, type: 3}
   - baseName: A
     nameXbox: A
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: 2b6ac707e76cbc5499212adbfdddb7c2, type: 3}
     namePlaystation: Cross
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 59f8bf28f3671c74bb6469c5454b6058, type: 3}
   - baseName: B
     nameXbox: B
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: b008655d43068ef4a8856a5ce5203035, type: 3}
     namePlaystation: Circle
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 97736d9ca92e2ac469eb9ed49ca22077, type: 3}
   - baseName: R1
     nameXbox: Right Bumper
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: 6379a1b48a16c964d9981313070b0566, type: 3}
     namePlaystation: R1
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 7c382a4bb478c00459fa383c517a6c68, type: 3}
   - baseName: R2
     nameXbox: Right Trigger
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: c1841f7c48638134f872f2d779e1651d, type: 3}
     namePlaystation: R2
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 4a008f82e412b744ea0998ebfd20a87d, type: 3}
   - baseName: R3
     nameXbox: Right Stick Press
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: 6991517fe59a3df419a76e5878bbd1d8, type: 3}
     namePlaystation: R3
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 016ed0bc634cad94db88d8cbee2130fe, type: 3}
   - baseName: L1
     nameXbox: Left Bumper
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: 127051a9fd3d2474884e4063dfd6859b, type: 3}
     namePlaystation: L1
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 7a3291089894fbc4ea1f18829382f26e, type: 3}
   - baseName: L2
     nameXbox: Left Trigger
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: 875d68730d0161245a1bc24bf19cde91, type: 3}
     namePlaystation: L2
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 21779ae74b17fb44895daedb94b9ad6d, type: 3}
   - baseName: L3
     nameXbox: Left Stick Press
-    spriteXbox: {fileID: 0}
+    spriteXbox: {fileID: 21300000, guid: 3c5c7634102aa244f995471dc75b49b9, type: 3}
     namePlaystation: L3
-    spritePlaystation: {fileID: 0}
+    spritePlaystation: {fileID: 21300000, guid: 3c9ad75c5df615743bfffd56046947d8, type: 3}

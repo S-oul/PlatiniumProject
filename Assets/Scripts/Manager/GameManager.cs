@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _timeForTheDay;
     [SerializeField] DaySlider _daySlider;
     [SerializeField] DayTimer _dayTimer;
-    [SerializeField] Animator _animator;
+    [SerializeField] DayManager _dayManager;
+
 
     private int _roomLose = 0;
     private int _roomWin = 0;
@@ -27,13 +28,13 @@ public class GameManager : MonoBehaviour
 
     GameObject _finalDoor;
 
-    [SerializeField] GameObject[] _players = new GameObject[4];
+    [SerializeField] List<GameObject> _players = new List<GameObject>();
 
     [SerializeField] int _numberOfTasksMade;
 
     public int PlayerCount { get => _playerCount; set => _playerCount = value; }
 
-    public GameObject[] Players { get => _players; }
+    public List<GameObject> Players { get => _players; set => _players = value; }
     public List<Room> RoomList { get => _roomList; set => _roomList = value; }
     public List<Lift> LiftList { get => _liftList; set => _liftList = value; }
     public List<Room> RoomTaskList { get => _roomTaskList; set => _roomTaskList = value; }
@@ -41,17 +42,18 @@ public class GameManager : MonoBehaviour
     public GameObject FinalDoor { get => _finalDoor; set => _finalDoor = value; }
     public int DayIndex { get => _dayIndex; set => _dayIndex = value; }
     public GameObject FinalRoom { get => _finalRoom; set => _finalRoom = value; }
-    public Animator Animator { get => _animator; set => _animator = value; }
     public float TimeForTheDay { get => _timeForTheDay; set => _timeForTheDay = value; }
+    public DayManager DayManager { get => _dayManager; set => _dayManager = value; }
 
     private void Start()
     {
-        StartDay();
+        /*StartDay();*/
     }
 
-    void StartDay()
+    public void StartDay()
     {
-        _daySlider.SetValue(1);
+        _dayTimer = DayManager.DayTimer;
+        _daySlider = DayManager.DaySlider;
     }
 
     public int RoomWin()
@@ -126,13 +128,16 @@ public class GameManager : MonoBehaviour
     {
         if(_numberOfTasksMade == RoomTaskList.Count)
         {
+            /*_dayTimer.DoTimer = false;
+            _daySlider.IsOnCrunch = true;*/
             OpenTheFinalDoor();
         }
     }
 
     public void OpenTheFinalDoor()
     {
-        
+        _dayTimer.DoTimer = false;
+        _daySlider.IsOnCrunch = true;
         StartCoroutine(_finalDoor.GetComponent<FinalDoor>().OpenDoor());
     }
 

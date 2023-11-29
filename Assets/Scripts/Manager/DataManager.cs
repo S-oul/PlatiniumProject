@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Layouts;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
@@ -33,14 +34,28 @@ public class DataManager : MonoBehaviour
     public Dictionary<string, string> InputNamesConverter { get => inputsNamesConverter; }
 
     [SerializeField] List<GameObject> _allTasks = new List<GameObject>();
+    [SerializeField] InputDataManager _inputsData;
 
     //[SerializeField] List<Sprite> _spritePlayers = new List<Sprite>();
     [SerializeField] List<RuntimeAnimatorController> _animationPlayers = new List<RuntimeAnimatorController>();
-
+    Dictionary<InputDeviceDescription, RuntimeAnimatorController> _dicSpritePlayer = new Dictionary<InputDeviceDescription, RuntimeAnimatorController>();
     public List<GameObject> AllTasks { get => _allTasks; }
 
     //public List<Sprite> SpritePlayers { get => _spritePlayers; }
     public List<RuntimeAnimatorController> AnimationPlayers { get => _animationPlayers; }
+    public Dictionary<InputDeviceDescription, RuntimeAnimatorController> DicSpritePlayer { get => _dicSpritePlayer; set => _dicSpritePlayer = value; }
+
+    Dictionary<SystemLanguage, string> _languageSprite = new Dictionary<SystemLanguage, string>()
+    {
+        {SystemLanguage.English, "English"},
+        {SystemLanguage.French, "French"},
+        {SystemLanguage.Spanish, "Spanish"},
+        {SystemLanguage.Portuguese, "Portugese"},
+        {SystemLanguage.German, "German"}
+    };
+
+
+    [SerializeField] List<Sprite> _flags = new List<Sprite>();
 
     public enum TaskEnum
     {
@@ -65,5 +80,45 @@ public class DataManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
+    }
+
+    public Sprite FindFlagSprite(SystemLanguage language)
+    {
+        string name = _languageSprite[language];
+        Sprite _sprite = null;
+        foreach (Sprite flag in _flags)
+        {
+            if (flag.name == name)
+            {
+                _sprite = flag;
+            }
+        }
+        return _sprite;
+    }
+
+    public Sprite FindInputSprite(string name, PlayerManager.ControllerType type)
+    {
+        Sprite inputSprite = null;
+        foreach (InputConfig input in _inputsData.inputs)
+        {
+            if(input.baseName == name)
+            {
+                switch (type)
+                {
+                    case PlayerManager.ControllerType.Xbox:
+                        inputSprite = input.spriteXbox;
+                        break;
+                    case PlayerManager.ControllerType.Playstation:
+                        inputSprite = input.spritePlaystation;
+                        break;
+                    case PlayerManager.ControllerType.None:
+                        inputSprite = input.spritePlaystation;
+                        break;
+                }
+
+            }
+        }
+        return inputSprite;
     }
 }

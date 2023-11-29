@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Lift : Room
@@ -27,34 +28,39 @@ public class Lift : Room
     }
     public void InteractLift(GameObject player)
     {
+
+        List<GameObject> players = new List<GameObject>();
         if (_canTeleport)
         {
-            _player = player;
-            player.GetComponent<PlayerController>().DisableMovements();
-            _animator.SetTrigger("Lift");
-            AudioSource.pitch = 6f;
-            AudioManager.instance.PlaySFXOS("ElevatorDoorClose", AudioSource);
-            _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Default";
-            _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 1;
-            StartCoroutine(TimeToTeleport(_timeToTeleport));
+            foreach(GameObject p in ListPlayer)
+            {
+                //_player = player;
+                p.GetComponent<PlayerController>().DisableMovements();
+                _animator.SetTrigger("Lift");
+                AudioSource.pitch = 6f;
+                AudioManager.instance.PlaySFXOS("ElevatorDoorClose", AudioSource);
+                p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+                //p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 1;
+                players.Add(p);
+            }
+            StartCoroutine(TimeToTeleport(_timeToTeleport, players));
         }
     }
 
-    IEnumerator TimeToTeleport(float time)
+    IEnumerator TimeToTeleport(float time, List<GameObject> players)
     {
+
         yield return new WaitForSeconds(time);
-        if(_player != null)
+        foreach(GameObject p in players)
         {
+            p.transform.position = TeleportPos.position;
+            p.GetComponent<PlayerController>().EnableMovementDisableInputs();
+            p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+            //p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 0;
+        }
             AudioSource.pitch = 1f;
             AudioManager.instance.PlaySFXOS("ElevatorDing", TeleportPos.gameObject.GetComponent<AudioSource>());
-            _player.transform.position = TeleportPos.position;
-            _player.GetComponent<PlayerController>().EnableMovementDisableInputs();
-            _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-            _player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 0;
-
-
-        }
-        _player = null;
+        //_player = null;
         StartCoroutine(TeleportCooldown(_teleporterCooldown));
     }
     IEnumerator TeleportCooldown(float time)

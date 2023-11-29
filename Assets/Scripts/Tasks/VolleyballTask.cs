@@ -17,6 +17,8 @@ public class VolleyballTask : Task
 
     [SerializeField] int _pointsToWin;
 
+    GameObject _tentacle;
+
     GameObject _net;
 
     GameObject _squid;
@@ -42,6 +44,7 @@ public class VolleyballTask : Task
     public GameObject PlayerTouch { get => _playerTouch; set => _playerTouch = value; }
     public Transform PointVolley { get => _pointVolley; set => _pointVolley = value; }
     public TextMeshProUGUI TextVolleyUI { get => _textVolleyUI; set => _textVolleyUI = value; }
+    public GameObject Tentacle { get => _tentacle; set => _tentacle = value; }
 
     public override void End(bool isSuccessful)
     {
@@ -78,6 +81,7 @@ public class VolleyballTask : Task
         _spawnBallPos = RoomTask.transform.Find("BallStartPos");
         
         Squid = RoomTask.transform.Find("Squid").gameObject;
+        Tentacle = _squid.transform.GetChild(0).GetChild(0).gameObject;
         Net = RoomTask.transform.Find("Net").gameObject;
         _cam = Camera.main.GetComponent<Cam>();
         _cam.FixOnRoomVoid(RoomTask);
@@ -105,18 +109,11 @@ public class VolleyballTask : Task
 
     }
 
-    public void Point(bool isForPlayer)
+    public void Point()
     {
         
-        if (isForPlayer)
-        {
-            _playersPoints++;
-        }
-        else
-        {
-            _squidPoints++;
-        }
-        _textScore.text = _playersPoints + " | " + _squidPoints;
+        
+        
         if (_squidPoints < _pointsToWin && _playersPoints < _pointsToWin)
         {
             StartCoroutine(TimerBeforeBall(2f));
@@ -131,6 +128,19 @@ public class VolleyballTask : Task
             _textVolleyUI.gameObject.SetActive(false);
             Debug.Log("Win");
         }
+    }
+
+    public void CheckPoints(bool isForPlayer)
+    {
+        if (isForPlayer)
+        {
+            _playersPoints++;
+        }
+        else
+        {
+            _squidPoints++;
+        }
+        _textScore.text = _playersPoints + " | " + _squidPoints;
     }
 
     public void ChangeColorPlayers()
@@ -171,5 +181,10 @@ public class VolleyballTask : Task
             yield return null;
 
         }
+    }
+
+    public void PlayTentacleAnimation()
+    {
+        Tentacle.GetComponent<Animator>().SetTrigger("Attacks");
     }
 }

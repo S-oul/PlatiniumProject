@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5636436242116628975}
   m_Layer: 10
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,11 +301,12 @@ MonoBehaviour:
   _spriteRoom: {fileID: 0}
   _screenTexture: {fileID: 0}
   _posItPos: {fileID: 4753302601974979704}
-  _hasPostIt: 0
+  _hasPostIt: 1
   _winStateScreen: {fileID: 0}
   _audioSource: {fileID: -1480516595800574039}
   _onRoomSuccessClip: {fileID: 8300000, guid: 8e3a7e2d808eebe48ae117d2a6e12faf, type: 3}
   _onRoomFailClip: {fileID: 8300000, guid: 79e3bc2a96911374fb4dff7be51a2253, type: 3}
+  _boxCollider: {fileID: 1877957529937847395}
   _listPlayer: []
 --- !u!61 &1877957529937847395
 BoxCollider2D:
@@ -319,11 +320,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 68
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 4
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -538,6 +539,10 @@ PrefabInstance:
     - target: {fileID: 3513065608492074799, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_Name
       value: ZoneEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3513065608492074799, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3513065608492074799, guid: 36b50014129e63b42ad772dbe0100ace, type: 3}
       propertyPath: m_TagString

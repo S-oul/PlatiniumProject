@@ -73,3 +73,73 @@ MonoBehaviour:
       word: Krankenhaus
     - language: 28
       word: Hospital
+  - baseWord: Apple
+    traductions:
+    - language: 14
+      word: Pomme
+    - language: 34
+      word: Manzana
+    - language: 15
+      word: Apfel
+    - language: 28
+      word: "Ma\xE7\xE3"
+  - baseWord: Black
+    traductions:
+    - language: 14
+      word: Noir
+    - language: 34
+      word: Negro
+    - language: 15
+      word: Schwarz
+    - language: 28
+      word: Preto
+  - baseWord: Blue
+    traductions:
+    - language: 14
+      word: Bleu
+    - language: 34
+      word: Azul
+    - language: 15
+      word: Blau
+    - language: 28
+      word: Azul
+  - baseWord: Red
+    traductions:
+    - language: 14
+      word: Rouge
+    - language: 34
+      word: Rojo
+    - language: 15
+      word: Rot
+    - language: 28
+      word: Vermelho
+  - baseWord: Green
+    traductions:
+    - language: 14
+      word: Vert
+    - language: 34
+      word: Verde
+    - language: 15
+      word: "Gr\xFCn"
+    - language: 28
+      word: Verde
+  - baseWord: White
+    traductions:
+    - language: 14
+      word: Blanc
+    - language: 34
+      word: Blanco
+    - language: 15
+      word: "Wei\xDF"
+    - language: 28
+      word: Branco
+  - baseWord: Star
+    traductions:
+    - language: 14
+      word: Etoile
+    - language: 34
+      word: Estrella
+    - language: 15
+      word: Stern
+    - language: 28
+      word: Estrela

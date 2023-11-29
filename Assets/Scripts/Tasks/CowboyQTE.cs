@@ -108,13 +108,13 @@ public class CowboyQTE : InputTask
         }
         _playerUI.SliderPercentValue = 1f;
         _playerUI.ChangeUIInputs(Color.white);
-        _playerUI.ChangeInputValueUI(InputsToString[input]);
+        _playerUI.ChangeInputValueUI(DataManager.Instance.FindInputSprite(InputsToString[input], _controller.Type));
         _currentInput = input;
         _inputCoroutine = StartCoroutine(TimerToPressInput(_timeToDoQTE));
         _npcCowboy.Fire();
     }
 
-
+    
     //Action when the input is the wrong or the right one
     void InputValue(bool isInputRight)
     {

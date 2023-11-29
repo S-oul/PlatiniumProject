@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [Range(0.1f, 20f)]public float normalFallGravityForce = 3;              // Fall Speed
     [SerializeField] public bool AirControl = true;                         // Can contoll character while not Grounded
     [SerializeField] private float _jumpForce = 400f;
+    PlayerManager.ControllerType _type;
+
+    ParticleSystem _runParticles;
 
     float _baseMoveSpeed;
     float _baseJumpForce;
@@ -40,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     public string currentContextName;
 
+    Coroutine _walkCoroutine;
 
     public bool IsInteracting { get => _isInteracting; set => _isInteracting = value; }
     public bool CanMove { get => _canMove; set => _canMove = value; }
@@ -49,6 +54,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 JoystickContext { get => _joystickContext; set => _joystickContext = value; }
     public Vector2 GraffitiContext { get => _graffitiContext; set => _graffitiContext = value; }
     public float JumpForce { get => _jumpForce; set => _jumpForce = value; }
+    public PlayerManager.ControllerType Type { get => _type; set => _type = value; }
 
     private void Awake()
     {
@@ -58,6 +64,7 @@ public class PlayerController : MonoBehaviour
         _baseMoveSpeed = _moveSpeed;
         _audioSource = gameObject.transform.Find("AudioSource").GetComponent<AudioSource>();
         _walkingSoundCanPlay = true;
+        _runParticles = _runParticles = _controller.AllParticles.Find("Run").GetChild(0).GetComponent<ParticleSystem>();
     }
 
 
@@ -89,7 +96,7 @@ public class PlayerController : MonoBehaviour
     public void DisableMovementEnableInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
-        _playerInput.actions["Interact"].Disable();
+        _playerInput.actions["Interact"].Enable();
         _playerInput.actions["Movement"].Disable();
         _playerInput.actions["Decryptage"].Disable();
         _playerInput.actions["Jump"].Disable();
@@ -279,7 +286,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isPlayerDown) { transform.localEulerAngles = new Vector3(0, 0, 90); }
         else { transform.localEulerAngles = new Vector3(0, 0, 0); }
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumping);
+        _controller.Movement(_horizontalMove * Time.fixedDeltaTime, _isJumping);
         _isJumping = false;
 
         if (_horizontalMove != 0) 
@@ -287,13 +294,35 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isWalking", true);
             if (_walkingSoundCanPlay)
             {
-                StartCoroutine(PlaySoundWalking());
+                _walkCoroutine = StartCoroutine(PlaySoundWalking());
             }
         }
         else { animator.SetBool("isWalking", false); }
 
-        if (_horizontalMove < 0 && _isMirrored == false) { flipAnimation(); _isMirrored = true; }
-        else if (_horizontalMove > 0 &&  _isMirrored == true) { flipAnimation(); _isMirrored = false; }
+        if (_horizontalMove < 0 && _isMirrored == false) 
+        { 
+            flipAnimation(); 
+            _isMirrored = true;
+            if(_walkCoroutine != null)
+            {
+                StopCoroutine(_walkCoroutine);
+                _runParticles.Stop();
+                _walkingSoundCanPlay = true;
+            }
+            _runParticles = _controller.AllParticles.Find("Run").GetChild(1).GetComponent<ParticleSystem>();  
+        }
+        else if (_horizontalMove > 0 &&  _isMirrored == true) 
+        { 
+            flipAnimation(); 
+            _isMirrored = false;
+            if (_walkCoroutine != null)
+            {
+                StopCoroutine(_walkCoroutine);
+                _runParticles.Stop();
+                _walkingSoundCanPlay = true;
+            }
+            _runParticles = _controller.AllParticles.Find("Run").GetChild(0).GetComponent<ParticleSystem>(); 
+        }
     }
 
     private void flipAnimation()
@@ -316,8 +345,11 @@ public class PlayerController : MonoBehaviour
         AudioClip clip = AudioManager.instance.FindClip("PlayerWalk");
         AudioManager.instance.PlaySFXOS(clip, _audioSource);
         //print("Audio");
+
+        _runParticles.Play();
         yield return new WaitForSeconds(clip.length + 0.4f);
         _walkingSoundCanPlay = true;
+        _walkCoroutine = null;
     }
 
     private void Update()
@@ -338,5 +370,20 @@ public class PlayerController : MonoBehaviour
     {
         _moveSpeed = _baseMoveSpeed * moveSpeedFactor;
         _jumpForce = _baseJumpForce * jumpForceFactor;
+    }
+
+    public void DisconnectPlayer()
+    {
+        foreach(GameObject player in GameManager.Instance.Players)
+        {
+            if(gameObject == player)
+            {
+                GameManager.Instance.Players.Remove(player);
+                GameManager.Instance.PlayerCount--;
+                PlayerManager.Instance.InputManager.EnableJoining();
+                //Delete from PlayerManager's Player Input list
+            }
+        }
+        
     }
 }

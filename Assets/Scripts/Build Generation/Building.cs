@@ -254,6 +254,11 @@ public class Building : MonoBehaviour
     #region Generate & Destroy Button
     private void Generate()
     {
+        if(AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMusic("IngameMusic");
+        }
+        
         _hasSpawnRoom = false;
         _hasBigRoom = false;
         System.Console.Clear();

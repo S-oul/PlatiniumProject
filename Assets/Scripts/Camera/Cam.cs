@@ -64,14 +64,20 @@ public class Cam : MonoBehaviour
 
     private void ZoomOnRoom(Room room)
     {
-        Bounds bounds = room.transform.GetComponent<BoxCollider2D>().bounds;
+        room.BoxCollider.enabled = true;
+        Bounds bounds = room.BoxCollider.bounds;
+        room.BoxCollider.enabled = false;
+
         float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x/25 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
         //print(MaxDist / _zoomLimiter + " ::::::::: " + _zoomCurve.Evaluate(MaxDist / _zoomLimiter));
         _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, newZoom, Time.deltaTime);
     }
     private void MoveOnRoom(Room room)
     {
-        Bounds bounds = room.transform.GetComponent<BoxCollider2D>().bounds;
+        room.BoxCollider.enabled = true;
+        Bounds bounds = room.BoxCollider.bounds;
+        room.BoxCollider.enabled = false;
+        
         float newZoom = Mathf.Lerp(_minZoom, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x / 30 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
         Vector3 centralPoint = bounds.center;
         //print(MaxDist / _zoomLimiter + " ::::::::: " + _zoomCurve.Evaluate(MaxDist / _zoomLimiter));

@@ -9,12 +9,12 @@ public class DuolingoTask : InputTask
     [Header("Duolingo")]
     [SerializeField] ZeroBingoData _wordsData;
 
-    NPC _npcDuolingo;
+    Duolingo _npcDuolingo;
 
     string _contextName;
     PlayerController _controller;
     /*string _rightWord = "";*/
-    
+    List<DeskDuolingo> _desks = new List<DeskDuolingo>();
 
     [SerializeField] int _numberOfWordsAsked;
 
@@ -34,7 +34,7 @@ public class DuolingoTask : InputTask
 
     [SerializeField] Sprite _fail;
     [SerializeField] Sprite _success;
-    public NPC NPCDuolingo { get => _npcDuolingo; set => _npcDuolingo = value; }
+    public Duolingo NPCDuolingo { get => _npcDuolingo; set => _npcDuolingo = value; }
 
     Animator animator;
 
@@ -42,7 +42,11 @@ public class DuolingoTask : InputTask
 
     WordConfig _rightWord;
 
+
+
     
+
+
     public override void StartTask()
     {
         
@@ -53,6 +57,7 @@ public class DuolingoTask : InputTask
         _otherPlayer = players[1];
         _rightAnswerIndex = 0;
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
+        
         TaskLoop();
         /*_rightAnswers.Clear();
         _wordToKey.Clear();
@@ -88,9 +93,16 @@ public class DuolingoTask : InputTask
         }
         _rightWord = _allWords[Random.Range(0, _allWords.Count)];
         _allWords.Remove(_rightWord);
-        string rightWordTrad = TraductionOfWord(_rightWord, SystemLanguage.Spanish);
+        List<SystemLanguage> languages = new List<SystemLanguage>();
+        foreach(WordConfig.WordWrapper trad in _rightWord.traductions)
+        {
+            languages.Add(trad.language);
+        }
+        SystemLanguage languageRandom = languages[Random.Range(0, languages.Count)];
+        string rightWordTrad = TraductionOfWord(_rightWord, languageRandom);
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
         _npcDuolingo.GetComponent<UINpc>().ChangeBubbleText(rightWordTrad + "?");
+        _npcDuolingo.GetComponent<UINpc>().ChangeBubbleImage(DataManager.Instance.FindFlagSprite(languageRandom));
         DisplayAnswers(_rightWord);
         animator.SetTrigger("Talk");
     }
@@ -242,6 +254,8 @@ public class DuolingoTask : InputTask
 
     void EndDuolingo(bool value)
     {
+        _npcDuolingo.LeftDesk.IsUsed = true;
+        _npcDuolingo.RightDesk.IsUsed = true;
         foreach (GameObject player in PlayersDoingTask)
         {
             player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
@@ -251,12 +265,13 @@ public class DuolingoTask : InputTask
             if(value == false)
             {
                 StartCoroutine(player.GetComponent<PlayerController>().PlayerDown(2f));
-                player.GetComponent<PlayerUI>().ClearAnswersDuolingo();
-                player.GetComponent<PlayerUI>().DisplayDuolingoUI(false);
+                
                 StartCoroutine(RecuperatePlayer(player));
             }
+            player.GetComponent<PlayerUI>().ClearAnswersDuolingo();
+            player.GetComponent<PlayerUI>().DisplayDuolingoUI(false);
         }
-
+        
         _npcDuolingo.GetComponent<UINpc>().ChangeBubbleText("");
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(false);
         End(value);

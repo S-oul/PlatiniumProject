@@ -87,7 +87,6 @@ public class GraffitiDrawing
         _graffitiObject.SetActive(true);
         foreach (Transform child in _graffitiObject.transform.Find("Animations"))
         {
-            Debug.Log(child);
             _animationAciveStatusDict.Add(new GraffitiCleanAnimation(child.transform.GetChild(0).gameObject), false);
         }
     }

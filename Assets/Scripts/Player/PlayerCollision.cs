@@ -61,6 +61,7 @@ public class PlayerCollision : MonoBehaviour
                     break;
                 case GoatTask:
                     ((GoatTask)collidertype).OnPlayerJoinedTask(this.gameObject);
+                    _playerUI.DisplayInputToPress(false, "");
                     break;
                 case StoreTask:
 
@@ -105,13 +106,19 @@ public class PlayerCollision : MonoBehaviour
                 ((ZoneEvent)collidertype).PlayerEnter(gameObject);
                 break;
             case "Object":
-                _playerUI.DisplayInputToPress(true, "Y");
                 collidertype = collision.transform.GetComponent<Object>();
+                if (!collision.transform.GetComponent<Object>().IsUsed)
+                {
+                    
+                    _playerUI.DisplayInputToPress(true, "Y");
+                }
+                
+                
                 break;
-            case "Laser":
+/*            case "Laser":
                 AudioManager.instance.PlaySFXOS("LaserImpact", _audioSource);
                 StartCoroutine(_controller.PlayerDown(collision.GetComponent<Laser>().TimePlayerIsDown));
-                break;
+                break;*/
             case "DecryptInteract":
                 collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
                 _playerUI.DisplayInputToPress(true, "Y");
@@ -157,7 +164,11 @@ public class PlayerCollision : MonoBehaviour
             case "GraffitiTask":
                 collidertype = collision.transform.parent.GetComponent<GraffitiGameManager>();
                 break;
+            
+                
         }
+        
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -231,7 +242,9 @@ public class PlayerCollision : MonoBehaviour
                 break;
         }
     }
-   
+
+
+
     IEnumerator AutoLiftWait()
     {
         _canAutoLift = false;

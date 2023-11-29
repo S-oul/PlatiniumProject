@@ -86,10 +86,11 @@ public abstract class Task : MonoBehaviour
     }
     public void OnPlayerJoinedTask(GameObject player)
     {
-        //Debug.Log("OnPlayerJoinedTask called");  //This func is called 1-3 times at randome. Safegards have been put in place.
+       // Debug.Log("OnPlayerJoinedTask called");  //This func is called 1-3 times at randome. Safegards have been put in place.
         
         if (!IsDone)
         {
+
             if (AddPlayerAtRunTime)
             {
                 if (_isStarted)
@@ -97,7 +98,10 @@ public abstract class Task : MonoBehaviour
                     if (_playersDoingTask.Count < 4)
                     {   
                         //the safegard in question:
-                        if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) { _playersDoingTask.Add(player); } 
+                        if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) 
+                        {
+                            _playersDoingTask.Add(player);
+                        } 
                         return;
                     }
                 }
@@ -128,6 +132,7 @@ public abstract class Task : MonoBehaviour
                         _isStarted = true;
                         Init();
                     }
+
                 }
             }
         } 
@@ -137,13 +142,52 @@ public abstract class Task : MonoBehaviour
         }
     }
 
+    public void OnPlayerLeaveTask(GameObject player)
+    {
+        if (!IsDone)
+        {
+            if (AddPlayerAtRunTime)
+            {
+                if (IsStarted)
+                {
+                    if (_playersDoingTask.Count > 1)
+                    {
+                        //the safegard in question:
+                        if (player != _playersDoingTask[0])
+                        {
+                            _playersDoingTask.Remove(player);
+
+                        }
+                        return;
+                    }
+
+                }
+            }
+            else
+            {
+                if (_numberOfPlayers > 1)
+                {
+                    if (!_isStarted)
+                    {
+
+                        _playersDoingTask.Remove(player);
+                    }
+                }
+            }
+            
+                
+            
+        }
+        
+    }
+
     public virtual void OnplayerExitTask() 
     { 
         
     }
     public void OnRoomSuccess()
     {
-        Debug.Log(gameObject.name + " = Success");
+        Debug.Log(gameObject.name + " = Success " + _difficulty);
         GameManager.Instance.NumberOfTasksMade++;
         
         GameManager.Instance.RoomWin();
@@ -171,7 +215,7 @@ public abstract class Task : MonoBehaviour
             }
             GameManager.Instance.NumberOfTasksMade++;
         }
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         GameManager.Instance.RoomLose();
         GameManager.Instance.CheckIfDayFinished();
 
