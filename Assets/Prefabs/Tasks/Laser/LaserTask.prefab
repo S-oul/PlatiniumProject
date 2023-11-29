@@ -207,7 +207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3712469980020392724
 Transform:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3750380704098477338
 Transform:
   m_ObjectHideFlags: 0
@@ -441,8 +441,8 @@ MonoBehaviour:
   _addPlayerAtRunTime: 1
   _toActivate1: {fileID: 4627530695423959660}
   _toActivate2: {fileID: 4346166601699466491}
-  _toActivate3: {fileID: 0}
-  _toActivate4: {fileID: 0}
+  _toActivate3: {fileID: 3200658799509171093}
+  _toActivate4: {fileID: 454854248255803305}
   _buttonPhase1:
   - {fileID: 0}
   - {fileID: 0}
@@ -454,11 +454,8 @@ MonoBehaviour:
   - {fileID: 0}
   _phase2:
   - {fileID: 0}
-  _laser: {fileID: 7741461767121130828, guid: 4bd164bb021a9c7448951302ef6ed145, type: 3}
-  _doorL: {fileID: 4363406617373923662}
-  _doorR: {fileID: 4113381672678326440}
-  _spawnerL: {fileID: 0}
-  _spawnerR: {fileID: 0}
+  _phase3: []
+  _phase4: []
 --- !u!1 &5679431924182009585
 GameObject:
   m_ObjectHideFlags: 0

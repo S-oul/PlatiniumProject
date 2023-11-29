@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LaserRoom : Task
 {
-    //[SerializeField] List<GameObject> _listPlayer = new List<GameObject>();
     List<PlayerController> _players = new List<PlayerController>();
 
     List<GameObject> _laserGO = new List<GameObject>();
@@ -21,21 +20,12 @@ public class LaserRoom : Task
 
     [SerializeField] List<LaserSpawner> _phase1 = new List<LaserSpawner>();
     [SerializeField] List<LaserSpawner> _phase2 = new List<LaserSpawner>();
-
-    List<bool> _isPhase = new List<bool>();
+    [SerializeField] List<LaserSpawner> _phase3 = new List<LaserSpawner>();
+    [SerializeField] List<LaserSpawner> _phase4 = new List<LaserSpawner>();
 
     int _actPhase = 0;
 
     Cam _cam;
-
-    [SerializeField] GameObject _laser;
-
-    [SerializeField] GameObject _doorL;
-    [SerializeField] GameObject _doorR;
-
-    [SerializeField] Transform _spawnerL;
-    [SerializeField] Transform _spawnerR;
-
 
     //public float _givenTime => 45;
     [SerializeField] float _recuperateTime => 2;
@@ -56,7 +46,6 @@ public class LaserRoom : Task
         IsStarted = false;
         IsDone = true;
         _cam.FixOnRoom = false;
-        StartCoroutine(BlockDoors(false));
         if (isSuccessful)
         {
             StartCoroutine(RecuperatePlayer());
@@ -85,8 +74,11 @@ public class LaserRoom : Task
         {
             foreach (GameObject p in RoomTask.ListPlayer)
             {
-                _players.Add(p.GetComponent<PlayerController>());
+                PlayerController pc = p.GetComponent<PlayerController>();
+                pc.ChangeMobiltyFactor(1.5f, 2f);
+                _players.Add(pc);
             }
+            _cam.FixOnRoomVoid(RoomTask);
             StartTask();
             RoomTask.BoxCollider.enabled = false;
         }
@@ -95,34 +87,17 @@ public class LaserRoom : Task
     {
         if(IsStarted && !IsDone)
         {
-
             if (!OnePlayerAlive())
             {
                 End(false);
             }
         }
     }
-    IEnumerator BlockDoors(bool block)
-    {
-        BoxCollider2D b = _doorL.GetComponent<BoxCollider2D>();
-        BoxCollider2D b2 = _doorR.GetComponent<BoxCollider2D>();
-        
-        if (block)
-        {
-            yield return new WaitForSeconds(.25f);
-            b.enabled = true;
-            b2.enabled = true;
-        }
-        else
-        {
-            b.enabled = false;
-            b2.enabled = false;
-        }
-    }
+
     void StartTask()
     {
+        _toActivate1.SetActive(true);
         IsStarted = true;
-        _cam.FixOnRoomVoid(RoomTask);
         foreach (LaserSpawner ls in _phase1)
         {
             StartCoroutine(ls.SpawnLaserTimer());
@@ -160,7 +135,6 @@ public class LaserRoom : Task
 
     public bool CheckPhase()
     {
-        print("BBBBBBBBBBBBBBcccccccccccccc       " + _actPhase);
         switch (_actPhase)
         {
             case 0:
@@ -208,6 +182,13 @@ public class LaserRoom : Task
                 _toActivate4.SetActive(true);
                 return true;
             case 3:
+                foreach (ButtonBox b in _buttonPhase4)
+                {
+                    if (b.IsOn == false)
+                    {
+                        return false;
+                    }
+                }
                 _toActivate4.SetActive(false);
                 KillAllLaser();
                 return true;
