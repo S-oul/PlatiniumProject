@@ -4998,10 +4998,12 @@ SceneRoots:
   - {fileID: 974036631}
   - {fileID: 442499347}
   - {fileID: 170604679}
+<<<<<<< HEAD:Assets/Scenes/MenuTest.unity
   - {fileID: 1344801128}
   - {fileID: 1572604381}
+=======
   - {fileID: 620638789}
   - {fileID: 301557746}
   - {fileID: 1585150980}
   - {fileID: 1714964079}
-
+>>>>>>> origin/SachaLeVrai:Assets/Scenes/Menu Principal.unity

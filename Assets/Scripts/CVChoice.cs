@@ -13,6 +13,8 @@ public class CVChoice : MonoBehaviour
     int _playerChosenCount;
     public List<CV> Cvs { get => _cvs; set => _cvs = value; }
 
+    [SerializeField] FadeScreen fadeScreen;
+
     public void ChangeToCV(int value, CursorPlayer player)
     {
         if(player.CurrentZoneID == 0)
@@ -74,7 +76,9 @@ public class CVChoice : MonoBehaviour
             DataManager.Instance.DicSpritePlayer.Add(player.devices[0].description, player.GetComponent<CursorPlayer>().CvChosen.AnimationPlayer);
             print("Player Input = " + player.devices[0].description + " || PlayerAnimation = " + player.GetComponent<CursorPlayer>().CvChosen.AnimationPlayer.name);
         }
-        SceneManager.LoadScene("Bureaucratie");
+        
+        StartCoroutine(fadeScreen.Fade(false));
+        print("ca marche CV");
         //print(SceneManager.GetActiveScene().name);
         //GameManager.Instance.StartDay();
     }
