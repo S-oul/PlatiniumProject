@@ -9,6 +9,22 @@ public class LaserRoom : Task
 
     List<GameObject> _laserGO = new List<GameObject>();
 
+    [SerializeField] GameObject _toActivate1;
+    [SerializeField] GameObject _toActivate2;
+    [SerializeField] GameObject _toActivate3;
+    [SerializeField] GameObject _toActivate4;
+
+    [SerializeField] List<ButtonBox> _buttonPhase1 = new List<ButtonBox>();
+    [SerializeField] List<ButtonBox> _buttonPhase2 = new List<ButtonBox>();
+    [SerializeField] List<ButtonBox> _buttonPhase3 = new List<ButtonBox>();
+    [SerializeField] List<ButtonBox> _buttonPhase4 = new List<ButtonBox>();
+
+    [SerializeField] List<LaserSpawner> _phase1 = new List<LaserSpawner>();
+    [SerializeField] List<LaserSpawner> _phase2 = new List<LaserSpawner>();
+
+    List<bool> _isPhase = new List<bool>();
+
+    int _actPhase = 0;
 
     Cam _cam;
 
@@ -23,6 +39,8 @@ public class LaserRoom : Task
 
     //public float _givenTime => 45;
     [SerializeField] float _recuperateTime => 2;
+
+    public List<GameObject> LaserGO { get => _laserGO; set => _laserGO = value; }
 
     float _actualTime;
 
@@ -54,7 +72,6 @@ public class LaserRoom : Task
         for(int i = _laserGO.Count - 1; i > 0;i--)
         {
             Destroy(_laserGO[i]);
-            print(i);
         }
     }
     public override void Init()
@@ -78,9 +95,6 @@ public class LaserRoom : Task
     {
         if(IsStarted && !IsDone)
         {
-            //PHASES HERE
-
-
 
             if (!OnePlayerAlive())
             {
@@ -108,10 +122,11 @@ public class LaserRoom : Task
     void StartTask()
     {
         IsStarted = true;
-        StartCoroutine(SpawnLaserTimer());
-        StartCoroutine(BlockDoors(true));
-        //StartCoroutine(timeTask());
         _cam.FixOnRoomVoid(RoomTask);
+        foreach (LaserSpawner ls in _phase1)
+        {
+            StartCoroutine(ls.SpawnLaserTimer());
+        }
     }
 
     bool OnePlayerAlive()
@@ -125,34 +140,79 @@ public class LaserRoom : Task
         }
         return false;
     }
-    bool AllPlayerAlive()
+
+    /*bool AllPlayerAlive()
     {
         string t = "";
         foreach (PlayerController _controller in _players)
         {
             if (!_controller.IsPlayerDown)
             {
-                t+= "t";
+                t += "t";
             }
         }
-        if(t == "tttt")
+        if (t == "tttt")
         {
             return true;
         }
         return false;
-    }
-    
-    private void SpawnLaser(GameObject go)
-    {
-        GameObject g = Instantiate(go);
-        g.transform.parent = null;
-        g.transform.position = _spawnerR.position;
-        g.transform.localScale = new Vector3(.16f, .16f, .16f);
-        Laser l = g.GetComponent<Laser>();
-        l.ToFar = _spawnerL;
-        l.Spawn = _spawnerR;
-        _laserGO.Add(g);
+    }*/
 
+    public bool CheckPhase()
+    {
+        print("BBBBBBBBBBBBBBcccccccccccccc       " + _actPhase);
+        switch (_actPhase)
+        {
+            case 0:
+                foreach (ButtonBox b in _buttonPhase1)
+                {
+                    if (b.IsOn == false)
+                    {
+                        return false;
+                    }
+                }
+                _actPhase++;
+                KillAllLaser();
+                _toActivate1.SetActive(false);
+                _toActivate2.SetActive(true);
+                foreach (LaserSpawner ls in _phase2)
+                {
+                    StartCoroutine(ls.SpawnLaserTimer());
+                }
+                print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+                return true;
+            case 1:
+                foreach (ButtonBox b in _buttonPhase2)
+                {
+                    if (b.IsOn == false)
+                    {
+                        return false;
+                    }
+                }
+                _actPhase++;
+                KillAllLaser();
+                _toActivate2.SetActive(false);
+                _toActivate3.SetActive(true);
+                return true;
+            case 2:
+                foreach (ButtonBox b in _buttonPhase3)
+                {
+                    if (b.IsOn == false)
+                    {
+                        return false;
+                    }
+                }
+                _actPhase++;
+                KillAllLaser();
+                _toActivate3.SetActive(false);
+                _toActivate4.SetActive(true);
+                return true;
+            case 3:
+                _toActivate4.SetActive(false);
+                KillAllLaser();
+                return true;
+        }
+        return false;
     }
     IEnumerator RecuperatePlayer()
     {
@@ -164,12 +224,5 @@ public class LaserRoom : Task
         }
         KillAllLaser();
     }
-    IEnumerator SpawnLaserTimer()
-    {
-        while (IsStarted)
-        {
-            yield return new WaitForSeconds(3);
-            SpawnLaser(_laser);
-        }
-    }
+
 }

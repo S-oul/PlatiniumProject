@@ -115,10 +115,10 @@ public class PlayerCollision : MonoBehaviour
                 
                 
                 break;
-            case "Laser":
+/*            case "Laser":
                 AudioManager.instance.PlaySFXOS("LaserImpact", _audioSource);
                 StartCoroutine(_controller.PlayerDown(collision.GetComponent<Laser>().TimePlayerIsDown));
-                break;
+                break;*/
             case "DecryptInteract":
                 collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
                 _playerUI.DisplayInputToPress(true, "Y");

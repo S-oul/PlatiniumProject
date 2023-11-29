@@ -22,8 +22,8 @@ public class Laser : MonoBehaviour
     RaycastHit2D ray;
 
     public float TimePlayerIsDown { get => _timePlayerIsDown; set => _timePlayerIsDown = value; }
-    public Transform ToFar { get => _toFar; set => _toFar = value; }
     public bool GoLeft { get => _goLeft; set => _goLeft = value; }
+    public Transform ToFar { get => _toFar; set => _toFar = value; }
     public Transform Spawn { get => _spawn; set => _spawn = value; }
 
     private void Start()
@@ -36,9 +36,11 @@ public class Laser : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _line = GetComponent<LineRenderer>();
-        _isActive = false;
-        StartCoroutine(SwapperOn());
-        
+
+        _isActive = true;
+        AudioManager.instance.PlaySFXLoop(AudioManager.instance.FindClip("LaserConstant"), _audioSource);
+        _line.enabled = true;
+
     }
     private void OnDrawGizmos()
     {
@@ -51,9 +53,14 @@ public class Laser : MonoBehaviour
         if (_isActive)
         {
             ray = Physics2D.Raycast(transform.position, Vector2.down);
-            print(ray.transform.name);
-            Vector3[] v3s = new Vector3[] {transform.position, ray.point};
+            //print(ray.transform.name);
+            Vector3[] v3s = new Vector3[] { transform.position, ray.point };
             _line.SetPositions(v3s);
+            if (ray.collider.CompareTag("Player"))
+            {
+                AudioManager.instance.PlaySFXOS("LaserImpact", _audioSource);
+                StartCoroutine(ray.collider.GetComponent<PlayerController>().PlayerDown(TimePlayerIsDown));
+            }
         }
 
 
@@ -61,7 +68,7 @@ public class Laser : MonoBehaviour
         {
             _position += Time.deltaTime * _speed;
             _position = Mathf.Clamp01(_position);
-            transform.localPosition = Vector3.Lerp(_spawn.position,ToFar.position, _position);
+            transform.localPosition = Vector3.Lerp(_spawn.position, ToFar.position, _position);
             if (_position >= 1)
             {
                 _position = 0;
@@ -80,24 +87,5 @@ public class Laser : MonoBehaviour
             }
         }
     }
-
-    IEnumerator SwapperOn()
-    {
-        yield return new WaitForSeconds(_timeToSwap);
-        _isActive = true;
-        AudioManager.instance.PlaySFXLoop(AudioManager.instance.FindClip("LaserConstant"), _audioSource);
-        _line.enabled = true;
-        _boxCollider.enabled = true;
-        StartCoroutine(SwapperOff());
-    }
-    IEnumerator SwapperOff()
-    {
-        yield return new WaitForSeconds(_timeToSwap/2);
-        AudioManager.instance.StopSource(_audioSource);
-        _isActive = false;
-        _line.enabled = false;
-        _boxCollider.enabled = false;
-        StartCoroutine(SwapperOn());
-
-    }
 }
+
