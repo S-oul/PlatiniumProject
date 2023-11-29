@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0193f3ed179e0c241bb32e4e3abfb261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playersDoingTask: []
   _numberOfPlayers: 2
   _difficulty: 1
+  _isReplayable: 0
+  _addPlayerAtRunTime: 0
   _numOfClicksToDo: 10
   _timeLimit: 30
   _inputToPress: 0

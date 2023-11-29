@@ -59,6 +59,11 @@ public class PlayerManager : MonoBehaviour
         
     }
 
+    public void ResetPlayers()
+    {
+        GameManager.Instance.PlayerCount = 0;
+    }
+
     void GetControllerType(PlayerInput player)
     {
         if (player.devices[0].displayName.Contains("Xbox"))

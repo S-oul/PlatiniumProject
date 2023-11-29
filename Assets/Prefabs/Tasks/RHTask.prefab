@@ -46,4 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPlayers: 1
   _difficulty: 1
+  _isReplayable: 0
+  _addPlayerAtRunTime: 0
+  _playersAsked: []
   _npcRH: {fileID: 0}
