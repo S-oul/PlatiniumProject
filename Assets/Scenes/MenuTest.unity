@@ -932,12 +932,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301557744}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.04, y: 2.33, z: -0.01714539}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.0190144, y: -0.20851207, z: 0.52673596}
   m_LocalScale: {x: 0.99477607, y: 1.0755553, z: 1.0325}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1344801128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &362191149
 GameObject:
@@ -1215,8 +1215,8 @@ Transform:
   m_GameObject: {fileID: 534727970}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.66, y: -3.35, z: -0.25}
-  m_LocalScale: {x: 12.417462, y: 12.219868, z: 1}
+  m_LocalPosition: {x: -8.67, y: -3.4811, z: -0.25}
+  m_LocalScale: {x: 11.206759, y: 11.02843, z: 0.9025}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1803589630}
@@ -1522,12 +1522,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620638787}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.33, y: 2.34, z: -1.09}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.3090143, y: -0.19851208, z: -0.5461187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1344801128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &626665886
 GameObject:
@@ -1750,10 +1750,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Credit\n\nProducers :\nLe L\nLe R\n\nGame Designers :\nLe E\nLe N\nLe
-    S\nLe B\n\nGame Artists :\nLe Re\nLe M\nLe I\n\nGame Programmers :\nLe Roux\nLe
-    Aa\nLe S\n\nSpecials Thanks :\nMr White\nRome\nWill Smith\nBob Razowski\nFlash
-    McQueen\n\n\n\nThanks for playing\n\n\u0D9E"
+  m_Text: "OFFICE 51\n\n\nProducers:\r\n\r\nLo\xEFc Ravon\r\nRaphael Zecchin\n\n\nGame/Level
+    Designers:\r\n\r\nEnzo Gourlay\r\nMateo Le Breton\r\nNicolas Fauchay\r\nSimon
+    Lenain\n\n\nGame Artists:\r\n\r\nMatteo Boizet\r\nIvan Bon\r\nReda Lotfi\n\n\nGame
+    Programmers:\r\n\r\nAlexis Le Bourhis\r\nShane Dorin\r\nSacha Epry\n\n\nSound
+    Designers:\r\n\r\nVictor Desrat\r\nLuc\n\n\nSpecial thanks:\n\n"
 --- !u!222 &730024658
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1917,6 +1918,7 @@ MonoBehaviour:
   textComponent: {fileID: 730024657}
   FadeScreen: {fileID: 0}
   alpha: 1
+  LinkedObject: {fileID: 1572604377}
   img: {fileID: 1074154270}
 --- !u!4 &828682700
 Transform:
@@ -2970,6 +2972,40 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1181368441}
+--- !u!1 &1344801127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344801128}
+  m_Layer: 0
+  m_Name: -Background-
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344801128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344801127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.0209856, y: 2.538512, z: -0.54388136}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 620638789}
+  - {fileID: 301557746}
+  - {fileID: 1585150980}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1347346799
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,6 +3517,116 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1572604377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1572604381}
+  - component: {fileID: 1572604380}
+  - component: {fileID: 1572604379}
+  - component: {fileID: 1572604378}
+  m_Layer: 0
+  m_Name: Credit Text Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!102 &1572604378
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572604377}
+  m_Text: "f\xE9gagga'g\nzhR\nEH\nEQRH\net\nqetheq\nrgeq\nRH S R\nT H\nQETH\nQ"
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 26
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 75a43073ba5b96f47a7ed8fb20d98979, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &1572604379
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572604377}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 75a43073ba5b96f47a7ed8fb20d98979, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!222 &1572604380
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572604377}
+  m_CullTransparentMesh: 1
+--- !u!224 &1572604381
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572604377}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -73}
+  m_LocalScale: {x: 21.65, y: 21.65, z: 21.65}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1188, y: 681}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1585150978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,12 +3704,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585150978}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.11, y: 2.33, z: -0.01714539}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30.130985, y: -0.20851207, z: 0.52673596}
   m_LocalScale: {x: 0.99477607, y: 1.0755553, z: 1.0325}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1344801128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616955790
 GameObject:
@@ -4795,6 +4941,5 @@ SceneRoots:
   - {fileID: 974036631}
   - {fileID: 442499347}
   - {fileID: 170604679}
-  - {fileID: 620638789}
-  - {fileID: 301557746}
-  - {fileID: 1585150980}
+  - {fileID: 1344801128}
+  - {fileID: 1572604381}

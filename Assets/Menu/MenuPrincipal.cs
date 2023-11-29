@@ -23,6 +23,8 @@ public class MenuPrincipal : MonoBehaviour
     public SpriteRenderer FadeScreen;
     public float alpha = 0f;
 
+    public GameObject LinkedObject;
+
     public void PlayGame ()
     {
         CamMenu.SetActive(false);
@@ -78,6 +80,9 @@ public class MenuPrincipal : MonoBehaviour
         {
             // Mettre à jour la position du texte en fonction de la vitesse de défilement
             textTransform.anchoredPosition += new Vector2(0f, scrollSpeed * Time.deltaTime);
+
+            // Mettre à jour la position du GameObject lié au texte
+            LinkedObject.transform.position = textTransform.position;
 
             // Vérifier si le texte est sorti de l'écran
             if (textTransform.anchoredPosition.y > Screen.height)
