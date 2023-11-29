@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
@@ -6,20 +7,21 @@ using UnityEngine.EventSystems;
 
 public class CharacterController2D : MonoBehaviour
 {
-	private float m_JumpForce;							// Amount of force added when the player jumps.
+    List<ParticleSystem> _landParticles = new List<ParticleSystem>();
+	[SerializeField] Transform _allParticles;
+	bool _canLandParticles;
+    private float m_JumpForce;							// Amount of force added when the player jumps.
 	//[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	//[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	//[SerializeField] private bool m_AirControl = true;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded. 
-	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.                 // A collider that will be disabled when crouching
 																				//[SerializeField] private float m_normalFallGravityForce = 3;
 																				//[SerializeField] private float m_fastFallGravityForce = 5;
 	// PlayerController and values to retreive from PlayerControler
 	PlayerController _playerController;
 	float m_MovementSmoothing;
 	bool m_AirControl;
-
     float m_normalFallGravityForce;
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -32,7 +34,7 @@ public class CharacterController2D : MonoBehaviour
 
 	AudioSource m_AudioSource;
 
-	[Header("Events")]
+	/*[Header("Events")]
 	[Space]
 
 	public UnityEvent OnLandEvent;
@@ -40,11 +42,11 @@ public class CharacterController2D : MonoBehaviour
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
-	public BoolEvent OnCrouchEvent;
+	public BoolEvent OnCrouchEvent;*/
 
     // Information for PlayerStateManager
     [HideInInspector] public bool isIdle { get; private set; }
-
+    public Transform AllParticles { get => _allParticles; set => _allParticles = value; }
 
     private void Awake()
 	{
@@ -53,8 +55,10 @@ public class CharacterController2D : MonoBehaviour
 		_playerController = GetComponent<PlayerController>();
         m_AudioSource = gameObject.transform.Find("AudioSource").GetComponent<AudioSource>();
 
-        if (OnLandEvent == null)
-			OnLandEvent = new UnityEvent();
+        /*if (OnLandEvent == null)
+			OnLandEvent = new UnityEvent();*/
+
+
 
 	}
 
@@ -77,7 +81,16 @@ public class CharacterController2D : MonoBehaviour
 			{
 				m_Grounded = true;
 				if (!wasGrounded)
-					OnLandEvent.Invoke();
+				{
+					
+
+                    AudioManager.instance.PlaySFXOS("PlayerLand", m_AudioSource);
+					foreach (Transform particle in AllParticles.Find("Land"))
+					{
+						particle.GetComponent<ParticleSystem>().Play();
+					}
+				}
+					
 			}
 		}
 	}
@@ -114,14 +127,14 @@ public class CharacterController2D : MonoBehaviour
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
-			// Trigger Player Jump animation. 
-			GetComponentInChildren<Animator>().SetTrigger("JumpAnimationTrigger");
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            // Trigger Player Jump animation. 
+            GetComponentInChildren<Animator>().SetTrigger("JumpAnimationTrigger");
 
 			AudioManager.instance.PlaySFXOS("PlayerJump", m_AudioSource);
         }
-		
+
     }
 
 

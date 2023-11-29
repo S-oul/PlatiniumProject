@@ -164,7 +164,11 @@ public class PlayerCollision : MonoBehaviour
             case "GraffitiTask":
                 collidertype = collision.transform.parent.GetComponent<GraffitiGameManager>();
                 break;
+            
+                
         }
+        
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -238,7 +242,9 @@ public class PlayerCollision : MonoBehaviour
                 break;
         }
     }
-   
+
+
+
     IEnumerator AutoLiftWait()
     {
         _canAutoLift = false;
