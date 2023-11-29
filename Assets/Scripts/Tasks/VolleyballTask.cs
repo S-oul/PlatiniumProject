@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VolleyballTask : Task
 {
@@ -55,6 +56,13 @@ public class VolleyballTask : Task
         {
             player.GetComponent<PlayerController>().ChangeMobiltyFactor(1, 1);
         }
+
+        GameManager.Instance.DayIndex++;
+        List<GameObject> l = new List<GameObject>();
+        l = GameManager.Instance.Players;
+        SceneManager.LoadScene(2);
+        GameManager.Instance.Players = l;
+        
     }
     public override void Init()
     {
@@ -121,10 +129,13 @@ public class VolleyballTask : Task
         else if (_squidPoints == _pointsToWin)
         {
             _textVolleyUI.gameObject.SetActive(false);
+            End(false);
             Debug.Log("Defeat");
         }
         else if (_playersPoints == _pointsToWin)
         {
+
+            End(true) ;
             _textVolleyUI.gameObject.SetActive(false);
             Debug.Log("Win");
         }

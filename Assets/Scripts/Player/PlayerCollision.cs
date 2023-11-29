@@ -83,7 +83,7 @@ public class PlayerCollision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Room room = collision.transform.GetComponent<Room>();
-        if (room != null && collision.gameObject.layer == LayerMask.NameToLayer("Room"))
+        if (room != null && (collision.gameObject.layer == LayerMask.NameToLayer("Room") || collision.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast")))
         {
             room.ListPlayer.Add(gameObject);
             room.OnRoomEnter();
@@ -115,10 +115,10 @@ public class PlayerCollision : MonoBehaviour
                 
                 
                 break;
-            case "Laser":
+/*            case "Laser":
                 AudioManager.instance.PlaySFXOS("LaserImpact", _audioSource);
                 StartCoroutine(_controller.PlayerDown(collision.GetComponent<Laser>().TimePlayerIsDown));
-                break;
+                break;*/
             case "DecryptInteract":
                 collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
                 _playerUI.DisplayInputToPress(true, "Y");
