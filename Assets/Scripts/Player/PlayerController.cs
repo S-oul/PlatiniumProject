@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     [Range(0.1f, 20f)]public float normalFallGravityForce = 3;              // Fall Speed
     [SerializeField] public bool AirControl = true;                         // Can contoll character while not Grounded
     [SerializeField] private float _jumpForce = 400f;
-    
+
+    string _name;
     PlayerManager.ControllerType _type;
 
     ParticleSystem _runParticles;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     public float JumpForce { get => _jumpForce; set => _jumpForce = value; }
     public PlayerManager.ControllerType Type { get => _type; set => _type = value; }
     public Color ColorPlayer { get => _colorPlayer; set => _colorPlayer = value; }
+    public string Name { get => _name; set => _name = value; }
 
     private void Awake()
     {

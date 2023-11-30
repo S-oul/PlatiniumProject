@@ -10,6 +10,15 @@ public class MatrixBoss : MonoBehaviour
     [SerializeField] Image _contour;
     [SerializeField] TextMeshProUGUI _text;
     [SerializeField] Animator _animator;
+    [SerializeField] Slider _slider;
+    [SerializeField] Transform _playerInput;
+    Image _inputPlayerImage;
+    Image _inputPlayerState;
+    Image _inputPlayer;
+    [SerializeField] Sprite _success;
+    [SerializeField] Sprite _fail;
+
+
 
     public void DisplayInput(Sprite image)
     {
@@ -37,6 +46,22 @@ public class MatrixBoss : MonoBehaviour
         _input.color = new Color32(255, 255, 255, 0);
     }
 
+    public void DisplayInputPlayer(Sprite input, bool isRight, GameObject player)
+    {
+        /*_playerInput.gameObject.SetActive(true);
+
+        _inputPlayer.sprite = player.transform.Find("Animation").GetComponent<SpriteRenderer>().sprite;
+        _inputPlayerImage.sprite = input;
+        if (isRight)
+        {
+            _inputPlayerState.sprite = ;
+        }*/
+    }
+
+    public void ClearInputPlayer()
+    {
+        _playerInput.gameObject.SetActive(false);
+    }
     public void SetActiveInput(bool value)
     {
         
@@ -62,5 +87,15 @@ public class MatrixBoss : MonoBehaviour
     public void HitAnimation()
     {
         _animator.SetTrigger("TakeHit");
+    }
+
+    public void SliderValue(float percent)
+    {
+        _slider.value = percent;
+    }
+
+    public void SliderActive(bool value)
+    {
+        _slider.gameObject.SetActive(value);
     }
 }

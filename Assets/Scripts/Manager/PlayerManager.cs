@@ -95,15 +95,19 @@ public class PlayerManager : MonoBehaviour
         {
             case "Blue_Animation":
                 player.GetComponent<PlayerController>().ColorPlayer = Color.blue;
+                player.GetComponent<PlayerController>().Name = "Frederic";
                 break;
             case "Red_Animation":
                 player.GetComponent<PlayerController>().ColorPlayer = Color.red;
+                player.GetComponent<PlayerController>().Name = "Tom";
                 break;
             case "Green_Animation":
                 player.GetComponent<PlayerController>().ColorPlayer = Color.green;
+                player.GetComponent<PlayerController>().Name = "Franck";
                 break;
             case "Yellow_Animation":
                 player.GetComponent<PlayerController>().ColorPlayer = Color.yellow;
+                player.GetComponent<PlayerController>().Name = "Celine";
                 break;
 
         }
