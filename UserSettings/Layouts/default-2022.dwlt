@@ -1225,7 +1225,7 @@ MonoBehaviour:
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
-  m_StartGridSize: 96
+  m_StartGridSize: 58
   m_LastFolders:
   - Assets/Scripts/Tasks
   m_LastFoldersGridSize: 96
