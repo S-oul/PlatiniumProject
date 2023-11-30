@@ -44,10 +44,6 @@ public class TamponageTask : InputTask, ITimedTask
     bool _hasTamponnageSoundPlayedP2 = false;
     private void Start()
     {
-        foreach (GameObject player in PlayersDoingTask)
-        {
-            player.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", true);
-        }
         _numOfClicksToDo *= Difficulty;
         _inputName = InputsToString[_inputToPress];
         _clock = gameObject.transform.parent.parent.Find("Timer").GetChild(0).GetChild(0);
@@ -83,6 +79,10 @@ public class TamponageTask : InputTask, ITimedTask
 
     public override void StartTask()
     {
+        foreach (GameObject player in PlayersDoingTask)
+        {
+            player.GetComponentInChildren<Animator>().SetBool("isInteractingWithItem", true);
+        }
         _textScore.text = "0/" + _numOfClicksToDo;
         _textScore.color = Color.white;
         _angle = 360f;
