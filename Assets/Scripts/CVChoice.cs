@@ -14,6 +14,8 @@ public class CVChoice : MonoBehaviour
     
     public List<CV> Cvs { get => _cvs; set => _cvs = value; }
 
+    [SerializeField] FadeScreen fadeScreen;
+
     public void ChangeToCV(int value, CursorPlayer player)
     {
         if(player.CurrentZoneID == 0)
@@ -76,7 +78,9 @@ public class CVChoice : MonoBehaviour
             
             
         }
-        SceneManager.LoadScene("Bureaucratie");
+        
+        StartCoroutine(fadeScreen.Fade(false));
+        print("ca marche CV");
         //print(SceneManager.GetActiveScene().name);
         //GameManager.Instance.StartDay();
     }
