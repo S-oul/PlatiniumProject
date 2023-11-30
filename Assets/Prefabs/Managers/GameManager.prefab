@@ -48,7 +48,7 @@ MonoBehaviour:
   _timeForTheDay: 0
   _daySlider: {fileID: 0}
   _dayTimer: {fileID: 0}
-  _animator: {fileID: 0}
+  _dayManager: {fileID: 0}
   _maxRoomFail: 3
   _dayIndex: 0
   _liftList: []

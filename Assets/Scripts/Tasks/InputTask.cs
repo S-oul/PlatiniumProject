@@ -83,6 +83,7 @@ public abstract class InputTask : Task
         _data.InputNamesConverter.TryGetValue(contextName, out string userInputName);
         if (userInputName == inputNeeded)
         {
+            print("Right: " + contextName + " // " + inputNeeded);
             contextName = "";
             _inputValue = PlayerInputValue.RightValue;
             
@@ -90,6 +91,7 @@ public abstract class InputTask : Task
         }
         else
         {
+            print("Wrong: " + contextName + " // " + inputNeeded);
             _inputValue = PlayerInputValue.WrongValue;
             return PlayerInputValue.WrongValue;
         }

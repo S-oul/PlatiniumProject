@@ -10,15 +10,21 @@ public class MatrixBoss : MonoBehaviour
     [SerializeField] Image _contour;
     [SerializeField] TextMeshProUGUI _text;
     [SerializeField] Animator _animator;
+    [SerializeField] Transform _askForInput;
     [SerializeField] Slider _slider;
-    [SerializeField] Transform _playerInput;
+    [SerializeField] Transform _lives;
     Image _inputPlayerImage;
     Image _inputPlayerState;
     Image _inputPlayer;
-    [SerializeField] Sprite _success;
-    [SerializeField] Sprite _fail;
+    List<Image> _allLives = new List<Image>();
 
-
+    /*private void Start()
+    {
+        foreach (Image live in _lives)
+        {
+            _allLives.Add(live);
+        }
+    }*/
 
     public void DisplayInput(Sprite image)
     {
@@ -58,10 +64,7 @@ public class MatrixBoss : MonoBehaviour
         }*/
     }
 
-    public void ClearInputPlayer()
-    {
-        _playerInput.gameObject.SetActive(false);
-    }
+
     public void SetActiveInput(bool value)
     {
         
@@ -96,6 +99,26 @@ public class MatrixBoss : MonoBehaviour
 
     public void SliderActive(bool value)
     {
+        _askForInput.gameObject.SetActive(value);
         _slider.gameObject.SetActive(value);
     }
+
+    /*public void SetPlayerLife(int life)
+    {
+        
+        foreach (Image live in _allLives)
+        {
+            live.gameObject.SetActive(false);
+        }
+        if (life > 0)
+        {
+            for (int i = 0; i < life; i++)
+            {
+                _allLives[i].gameObject.SetActive(true);
+            }
+        }
+        
+        
+        
+    }*/
 }

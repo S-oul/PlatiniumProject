@@ -872,6 +872,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1477843553228632923, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2939747803743041767, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -912,12 +916,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4750431223713030903, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7469478213423230349, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
       propertyPath: m_Name
       value: TeleBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 7894991770260931335, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
+      propertyPath: _lives
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501650733680566671, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1477843553228632923, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
+    - {fileID: 8501650733680566671, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
+    - {fileID: 4750431223713030903, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
+    - {fileID: 499098239178278611, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2be25a7d14939d438f297f1ce15aa58, type: 3}

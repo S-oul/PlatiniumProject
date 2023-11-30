@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.Tilemaps;
+
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.Windows;
+using UnityEngine.SceneManagement;
+
 
 public class MatrixTask : InputTask
 {
@@ -25,16 +24,17 @@ public class MatrixTask : InputTask
     List<Color> colors = new List<Color> ();
     List<Inputs> _inputsList = new List<Inputs> ();
     List<Coroutine> _coroutinesRunning = new List<Coroutine> ();
-
+    [SerializeField] int tries;
     Dictionary<int, Color> inputsPlayer = new Dictionary<int, Color> ();
 
-    bool _canChekInput = false;
+    bool _canCheckInput = false;
     private void Start()
     {
         
     }
     public override void StartTask()
     {
+
         foreach(Transform pos in RoomTask.gameObject.transform.Find("PlayerPositions"))
         {
             _posPlayers.Add(pos);
@@ -42,9 +42,10 @@ public class MatrixTask : InputTask
         print(_posPlayers.Count);
         _teleBoss = RoomTask.gameObject.transform.Find("TeleBoss").GetComponent<MatrixBoss>();
         _teleBoss.SetActiveInput(false);
+        _teleBoss.SliderActive(false);
         _cam = Camera.main.GetComponent<Cam>();
         _cam.FixOnRoomVoid(RoomTask);
-        _phase = 1;
+        _phase = 3;
         _currentInputID = 0;
         _inputHasBeenPressed = false;
         foreach(GameObject player in PlayersDoingTask)
@@ -56,7 +57,12 @@ public class MatrixTask : InputTask
     }   
     public override void End(bool isSuccessful)
     {
-
+        base.End(isSuccessful);
+        GameManager.Instance.DayIndex++;
+        List<GameObject> l = new List<GameObject>();
+        l = GameManager.Instance.Players;
+        SceneManager.LoadScene(2);
+        GameManager.Instance.Players = l;
     }
 
     void ShufflePlayerOrder()
@@ -107,6 +113,7 @@ public class MatrixTask : InputTask
     {
   
         ShufflePlayerOrder();
+        _inputsToDo.Clear();
         _inputsToDo = CreateListInputs();
 
         StartCoroutine(DisplayInputs(_inputsToDo));
@@ -121,6 +128,7 @@ public class MatrixTask : InputTask
         int IDInput = 0;
         yield return new WaitForSeconds(3); // => Message "Watch!"
         inputsPlayer.Clear();
+        _inputsList.Clear();
         _teleBoss.DisplayText("");
         colors = SetColorList();
         _teleBoss.SetActiveInput(true);
@@ -151,7 +159,6 @@ public class MatrixTask : InputTask
             case 2:
                 for (int i = 0; i < _playersInOrder.Count; i++)
                 {
-                    print(_playersInOrder[i].GetComponent<PlayerController>().ColorPlayer);
                     _colorScreen = colors[i];
                     _teleBoss.AttackAnimation();
                     foreach (Inputs input in list[i])
@@ -159,33 +166,42 @@ public class MatrixTask : InputTask
                         
                         inputsPlayer.Add(IDInput, _colorScreen);
                         IDInput++;
-                        _inputsList.Add(input);
-                        
-                        _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
                         _teleBoss.DisplayColorInput(_colorScreen);
+                        _inputsList.Add(input);
+                        _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
+                        
                         yield return new WaitForSeconds(0.5f);
                         _teleBoss.ClearInput();
                         yield return new WaitForSeconds(0.05f);
                     }
-                    yield return new WaitForSeconds(0.5f);
                 }
                 break;
             case 3:
                 colors = GetRandomColor(colors, _playersInOrder.Count * list[0].Count);
-                for (int i = 0; i < _playersInOrder.Count * list[i].Count; i++)
+                print(_playersInOrder.Count * list[0].Count);
+                for (int i = 0; i < _playersInOrder.Count * list[0].Count; i++)
                 {
                     
                     _colorScreen = colors[i];
+                    GameObject _currentPlayer = PlayerManager.Instance.FindPlayerFromColor(_colorScreen);
+                    int IDPlayer = 0;
+                    for (int j = 0; j < _playersInOrder.Count; j++)
+                    {
+                        if(_playersInOrder[j] == _currentPlayer)
+                        {
+                            IDPlayer = j;
+                        }
+                    }
                     _teleBoss.AttackAnimation();
-                    int randomID = Random.Range(0, _inputsToDo.Count);
+                    int randomID = Random.Range(0, list.Count);
 
-                    Inputs input = _inputsToDo[randomID][Random.Range(0, list[i].Count)];
+                    Inputs input = list[randomID][Random.Range(0, list[randomID].Count)];
                     _inputsToDo[randomID].Remove(input);
                     _inputsList.Add(input);
                     inputsPlayer.Add(IDInput, _colorScreen);
                     IDInput++;
                     _teleBoss.DisplayColorInput(_colorScreen);
-                    _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
+                    _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[IDPlayer].GetComponent<PlayerController>().Type));
 
                     yield return new WaitForSeconds(0.4f);
                     _teleBoss.ClearInput();
@@ -193,8 +209,9 @@ public class MatrixTask : InputTask
                 }
                 break;
         }
+
         _teleBoss.SetActiveInput(false);
-        _canChekInput = true;
+        _canCheckInput = true;
         StartCoroutine(TimeBeforeInputCheck()); // => Message "Ready? 3-2-1"
     }
 
@@ -244,49 +261,63 @@ public class MatrixTask : InputTask
     IEnumerator WaitToPressInput(GameObject player, float timeBetweenInputs, Inputs _currentInput)
     {
         EnableInput(true, player);
-
+        bool _isTheRightPlayer = false;
+        if (player == PlayerManager.Instance.FindPlayerFromColor(inputsPlayer[_currentInputID]))
+        {
+            _isTheRightPlayer = true;
+        }
         PlayerController _controller = player.GetComponent<PlayerController>();
-        _currentColor = colors[_currentInputID];
+        
         _teleBoss.SliderActive(true);
         PlayerUI _playerUI = player.GetComponent<PlayerUI>();
         float _timeToPressInput = timeBetweenInputs;
-        while (CheckInputValue(_controller.currentContextName, InputsToString[_currentInput], _controller) == PlayerInputValue.None && _timeToPressInput > 0)
+        
+        while (_canCheckInput && CheckInputValue(_controller.currentContextName, InputsToString[_inputsList[_currentInputID]], _controller) == PlayerInputValue.None && _timeToPressInput > 0)
         {
-            
-            if (_canChekInput)
+            _timeToPressInput -= Time.deltaTime;
+            if (_isTheRightPlayer)
             {
-                _timeToPressInput -= Time.deltaTime;
+                
                 _teleBoss.SliderValue(Mathf.InverseLerp(0, timeBetweenInputs, _timeToPressInput));
             }
-               
-            yield return null; //=> Inportant => Inbecile
+            
+
+            yield return null; 
 
         }
+        if (!_canCheckInput)
+        {
+            print("stop wait canCheck: " + _controller.Name);
+        }
         
-        if (_canChekInput)
+        if (_canCheckInput)
         {
             if (_timeToPressInput <= 0)
             {
-                _canChekInput = false;
+                _canCheckInput = false;
+                print("Time's up : ");
                 InputValue(false, player);
 
             }
 
             else if (_inputValue == PlayerInputValue.WrongValue)
             {
-                _canChekInput = false;
+                _canCheckInput = false;
                 _inputHasBeenPressed = true;
+                print("Wrong Input");
                 InputValue(false, player);
 
             }
             else if (_inputValue == PlayerInputValue.RightValue)
             {
-                _canChekInput = false;
+                _canCheckInput = false;
                 _inputHasBeenPressed = true;
+
                 InputValue(true, player);
 
             }
         }
+
        
 
     }
@@ -305,19 +336,26 @@ public class MatrixTask : InputTask
             EnableInput(false, playerObject);
             
         }
-       
+       print("Current input id = " + _currentInputID + " => Input: " + _inputsList[_currentInputID]);
         if (player == PlayerManager.Instance.FindPlayerFromColor(_currentColor))
         {
             if (isInputRight)
             {
                 _currentInputID++;
-                if (_currentInputID == colors.Count )
+                if (_currentInputID == _inputsList.Count )
                 {
                     print("QTE suite réussie");
                     _teleBoss.HitAnimation();
                     _phase++;
+                    if(_phase == 4)
+                    {
+                        End(true);
+                    }
+                    else
+                    {
+                        DisplayAllInputs();
+                    }
                     
-                    DisplayAllInputs();
 
                     //_playerUI.ChangeUIInputsValidation(_index, Color.green);
                     //EndQTE(true);
@@ -329,12 +367,14 @@ public class MatrixTask : InputTask
                     //Display Input fait une overflow
                     // _playerUI.ChangeUIInputsValidation(_index, Color.green);
                     print("QTE solo réussi");
+                    _canCheckInput = true;
                     foreach (GameObject playerObject in PlayersDoingTask)
                     {
+                        
                         Coroutine newCouroutine = StartCoroutine(WaitToPressInput(playerObject, 2f, _inputsList[_currentInputID]));
                         _coroutinesRunning.Add(newCouroutine);
                     }
-                    _canChekInput = true;
+                    
                     
                     
                     return;
@@ -342,7 +382,11 @@ public class MatrixTask : InputTask
             }
             else
             {
-                print("QTE solo fail");
+                if(tries > 0)
+                {
+                    tries--;
+                    StartCoroutine(DialoguesPlayerLoss());
+                }
                 /*_numberOfFails++;
                 FeedBackBadInputs();
                 if (_numberOfFails == 3)
@@ -363,25 +407,46 @@ public class MatrixTask : InputTask
 
             }
         }
-        
+        else
+        {
+            if (tries > 0)
+            {
+                tries--;
+                StartCoroutine(DialoguesPlayerLoss());
+            }
+        }
         
         
 
+    }
+
+    IEnumerator DialoguesPlayerLoss()
+    {
+        _teleBoss.DisplayText("You failed?");
+        yield return new WaitForSeconds(2.5f);
+
+        _teleBoss.DisplayText("Retry.");
+        yield return new WaitForSeconds(2.5f);
+        _teleBoss.DisplayText("");
+        DisplayAllInputs();
     }
 
 
     List<List<Inputs>> CreateListInputs()
     {
         List<List<Inputs>> inputs = new List<List<Inputs>>();
-        for (int i = 0; i < PlayersDoingTask.Count; i++)
+        for (int i = 0; i < _playersInOrder.Count; i++)
         {
             List<Inputs> inputsPlayer = new List<Inputs>();
             for (int j = 0; j < _phase; j++)
             {
-                inputsPlayer.Add((Inputs)Random.Range(0, 4));
+                Inputs newInput = (Inputs)Random.Range(0, 4);
+                inputsPlayer.Add(newInput);
             }
+            
             inputs.Add(inputsPlayer);
         }
+        
         return inputs;
     }
 

@@ -15,6 +15,7 @@ public class PlayerCursorManager : MonoBehaviour
     {
         if(AudioManager.instance != null && !AudioManager.instance.Music.isPlaying)
         {
+            print("coubeh");
             AudioManager.instance.PlayMusic("MainMenuMusic");
         }
     }
