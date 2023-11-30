@@ -11,7 +11,13 @@ public class PlayerCursorManager : MonoBehaviour
     [SerializeField] List<GameObject> _buttons;
     public List<PlayerInput> Players { get => players; set => players = value; }
     public RectTransform SpawnZone { get => _spawnZone; set => _spawnZone = value; }
-
+    private void Start()
+    {
+        if(AudioManager.instance != null && !AudioManager.instance.Music.isPlaying)
+        {
+            AudioManager.instance.PlayMusic("MainMenuMusic");
+        }
+    }
     void OnPlayerJoined(PlayerInput player)
     {
         if(player.devices[0].name == "Keyboard")

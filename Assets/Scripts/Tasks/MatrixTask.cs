@@ -26,6 +26,8 @@ public class MatrixTask : InputTask
     List<Inputs> _inputsList = new List<Inputs> ();
     List<Coroutine> _coroutinesRunning = new List<Coroutine> ();
 
+    Dictionary<int, Color> inputsPlayer = new Dictionary<int, Color> ();
+
     private void Start()
     {
         
@@ -37,7 +39,12 @@ public class MatrixTask : InputTask
         _cam = Camera.main.GetComponent<Cam>();
         _cam.FixOnRoomVoid(RoomTask);
         _phase = 1;
+        _currentInputID = 0;
         _inputHasBeenPressed = false;
+        foreach(GameObject player in PlayersDoingTask)
+        {
+            player.GetComponent<PlayerController>().DisableAllInputs();
+        }
         StartCoroutine(WaitForStart());
 
     }   
@@ -54,10 +61,26 @@ public class MatrixTask : InputTask
         {
             playersTemp.Add(player);
         }
-        for (int i = 0; i < playersTemp.Count; i++)
+        int iteration = playersTemp.Count;
+        for (int i = 0; i < iteration; i++)
         {
-            _playersInOrder.Add(playersTemp[Random.Range(0, playersTemp.Count)]);
+            GameObject _tempPlayer = playersTemp[Random.Range(0, playersTemp.Count)];
+            _playersInOrder.Add(_tempPlayer);
+            playersTemp.Remove(_tempPlayer);
         }
+    }
+
+    void EnableInput(bool value, GameObject player)
+    {
+        if(value)
+        {
+            player.GetComponent<PlayerController>().DisableMovementEnableInputs();
+        }
+        else
+        {
+            player.GetComponent<PlayerController>().DisableAllInputs();
+        }
+        
     }
 
     IEnumerator WaitForStart()
@@ -79,10 +102,14 @@ public class MatrixTask : InputTask
 
     IEnumerator DisplayInputs(List<List<Inputs>> list)
     {
+        _teleBoss.DisplayText("Watch!");
+        int IDInput = 0;
         yield return new WaitForSeconds(3); // => Message "Watch!"
-        _currentInputID = 0;
+        inputsPlayer.Clear();
+        _teleBoss.DisplayText("");
         colors = SetColorList();
         _teleBoss.SetActiveInput(true);
+        _currentInputID = 0;
         switch (_phase)
         {
             case 1:
@@ -94,10 +121,14 @@ public class MatrixTask : InputTask
                     _teleBoss.AttackAnimation();
                     foreach (Inputs input in list[i])
                     {
+                        
+                        inputsPlayer.Add(IDInput, _colorScreen);
+                        IDInput++;
+                        _teleBoss.DisplayColorInput(_colorScreen);
                         _inputsList.Add(input);
                         _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));                        
                     }
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.6f);
                     _teleBoss.ClearInput();
                     yield return new WaitForSeconds(0.05f);
                 }
@@ -109,7 +140,12 @@ public class MatrixTask : InputTask
                     _teleBoss.AttackAnimation();
                     foreach (Inputs input in list[i])
                     {
+                        
+                        inputsPlayer.Add(IDInput, _colorScreen);
+                        print(IDInput + " || " + _colorScreen);
+                        IDInput++;
                         _inputsList.Add(input);
+                        _teleBoss.DisplayColorInput(_colorScreen);
                         _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
                         yield return new WaitForSeconds(0.5f);
                         _teleBoss.ClearInput();
@@ -122,13 +158,20 @@ public class MatrixTask : InputTask
                 colors = GetRandomColor(colors, _playersInOrder.Count * list[0].Count);
                 for (int i = 0; i < _playersInOrder.Count * list[i].Count; i++)
                 {
+                    
                     _colorScreen = colors[i];
                     _teleBoss.AttackAnimation();
-                    Inputs input = _inputsToDo[Random.Range(0, _inputsToDo.Count)][Random.Range(0, list[i].Count)];
+                    int randomID = Random.Range(0, _inputsToDo.Count);
+
+                    Inputs input = _inputsToDo[randomID][Random.Range(0, list[i].Count)];
+                    _inputsToDo[randomID].Remove(input);
                     _inputsList.Add(input);
+                    inputsPlayer.Add(IDInput, _colorScreen);
+                    IDInput++;
+                    _teleBoss.DisplayColorInput(_colorScreen);
                     _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
 
-                    yield return new WaitForSeconds(0.3f);
+                    yield return new WaitForSeconds(0.4f);
                     _teleBoss.ClearInput();
                     yield return new WaitForSeconds(0.05f);
                 }
@@ -153,7 +196,17 @@ public class MatrixTask : InputTask
 
     IEnumerator TimeBeforeInputCheck()
     {
-        yield return new WaitForSeconds(4);
+        float time = 4;
+        _teleBoss.DisplayText("Ready?");
+        yield return new WaitForSeconds(3);
+        while (time > 0)
+        {
+            _teleBoss.DisplayText("" + (int)time);
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        _teleBoss.DisplayText("");
+
         foreach (GameObject player in PlayersDoingTask)
         {
             _coroutinesRunning.Add(StartCoroutine(WaitToPressInput(player, 2f, _inputsList[0])));
@@ -172,7 +225,10 @@ public class MatrixTask : InputTask
 
     IEnumerator WaitToPressInput(GameObject player, float timeBetweenInputs, Inputs _currentInput)
     {
+        EnableInput(true, player);
         PlayerController _controller = player.GetComponent<PlayerController>();
+        _currentColor = colors[_currentInputID];
+        
         PlayerUI _playerUI = player.GetComponent<PlayerUI>();
         float _timeToPressInput = timeBetweenInputs;
         while (CheckInputValue(_controller.currentContextName, InputsToString[_currentInput], _controller) == PlayerInputValue.None && _timeToPressInput > 0)
@@ -181,6 +237,7 @@ public class MatrixTask : InputTask
             yield return null; //=> Inportant => Inbecile
 
         }
+        
         if (_timeToPressInput <= 0)
         {
             InputValue(false, player);
@@ -202,18 +259,25 @@ public class MatrixTask : InputTask
     }
     void InputValue(bool isInputRight, GameObject player)
     {
-        foreach(GameObject playerObject in PlayersDoingTask)
+        print(_currentInputID + " || " + _phase);
+        _currentColor = inputsPlayer[_currentInputID];
+        foreach (GameObject playerObject in PlayersDoingTask)
         {
             playerObject.GetComponent<PlayerController>().currentContextName = "";
+            EnableInput(false, playerObject);
         }
-        
+        print(_currentColor);
         if (player == PlayerManager.Instance.FindPlayerFromColor(_currentColor))
         {
+            
             if (isInputRight)
             {
                 _currentInputID++;
-                if (_currentInputID == colors.Count - 1)
+                if (_currentInputID == colors.Count )
                 {
+                    _teleBoss.HitAnimation();
+                    _phase++;
+                    DisplayAllInputs();
                     //_playerUI.ChangeUIInputsValidation(_index, Color.green);
                     //EndQTE(true);
                     return;
@@ -228,6 +292,8 @@ public class MatrixTask : InputTask
                     {
                         _coroutinesRunning.Add(StartCoroutine(WaitToPressInput(playerObject, 2f, _inputsList[_currentInputID])));
                     }
+                    print(_currentInputID + " / " + _inputsList.Count);
+                    
                     return;
                 }
             }

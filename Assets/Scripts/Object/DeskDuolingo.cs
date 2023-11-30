@@ -37,14 +37,18 @@ public class DeskDuolingo : Object
             }
             else
             {
-                IsUsed = false;
-                _task.GetComponent<DuolingoTask>().NPCDuolingo.CheckIfDesksAreUsed();
-                player.transform.position = _task.transform.parent.parent.Find("PlayerRespawnPoint").position;
-                player.GetComponent<PlayerController>().BlockPlayer(false);
-                player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-                player.GetComponent<PlayerController>().EnableMovementDisableInputs();
-                _task.GetComponent<Task>().OnPlayerLeaveTask(player);
-                player.GetComponent<PlayerUI>().DisplayInputToPress(false, "");
+                if (!_task.GetComponent<DuolingoTask>().IsStarted)
+                {
+                    IsUsed = false;
+                    _task.GetComponent<DuolingoTask>().NPCDuolingo.CheckIfDesksAreUsed();
+                    player.transform.position = _task.transform.parent.parent.Find("PlayerRespawnPoint").position;
+                    player.GetComponent<PlayerController>().BlockPlayer(false);
+                    player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+                    player.GetComponent<PlayerController>().EnableMovementInteractDisableInputs();
+                    _task.GetComponent<Task>().OnPlayerLeaveTask(player);
+                    player.GetComponent<PlayerUI>().DisplayInputToPress(false, "");
+                }
+                
 
             }
 

@@ -133,7 +133,7 @@ public class PlayerManager : MonoBehaviour
         GameObject tempPlayer = null;
         foreach(GameObject player in GameManager.Instance.Players)
         {
-            if(player.GetComponent<PlayerController>().ColorPlayer == color)
+            if(player != null && player.GetComponent<PlayerController>().ColorPlayer == color)
             {
                 tempPlayer = player;
             }

@@ -141,10 +141,24 @@ public class PlayerController : MonoBehaviour
         EnableMovementDisableInputs();
         _isPlayerDown = false;
     }
-    public void EnableMovementDisableInputs()
+
+    public void EnableMovementInteractDisableInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Enable();
+        _playerInput.actions["Jump"].Enable();
+        _playerInput.actions["InputTask"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
+        _playerInput.actions["Code"].Disable();
+
+        _canMove = true;
+
+    }
+    public void EnableMovementDisableInputs()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Disable();
         _playerInput.actions["Movement"].Enable();
         _playerInput.actions["Jump"].Enable();
         _playerInput.actions["InputTask"].Disable();

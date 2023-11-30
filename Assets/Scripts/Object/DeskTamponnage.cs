@@ -34,6 +34,7 @@ public class DeskTamponnage : Object
             {
                 if(!_playersOnDesk.Contains(player))
                 {
+                    
                     _playersOnDesk.Add(player);
                     player.transform.position = _posListOnDesk[_indexPos].position;
                     player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Deco";
@@ -54,15 +55,19 @@ public class DeskTamponnage : Object
                 }
                 else
                 {
-                    _playersOnDesk.Remove(player);
-                    _indexPos--;
-                    player.transform.position = _task.GetComponent<TamponageTask>().gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
-                    player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-                    player.GetComponent<PlayerController>().BlockPlayer(false);
-                    player.GetComponent<PlayerController>().EnableMovementDisableInputs();
-                    _task.GetComponent<Task>().OnPlayerLeaveTask(player);
-                    player.GetComponent<PlayerUI>().DisplayInputToPress(true, "Y");
-                    _contourPlayer.gameObject.SetActive(false);
+                    if (!_task.GetComponent<TamponageTask>().IsStarted)
+                    {
+                        _playersOnDesk.Remove(player);
+                        _indexPos--;
+                        player.transform.position = _task.GetComponent<TamponageTask>().gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
+                        player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+                        player.GetComponent<PlayerController>().BlockPlayer(false);
+                        player.GetComponent<PlayerController>().EnableMovementInteractDisableInputs();
+                        _task.GetComponent<Task>().OnPlayerLeaveTask(player);
+                        player.GetComponent<PlayerUI>().DisplayInputToPress(true, "Y");
+                        _contourPlayer.gameObject.SetActive(false);
+                    }
+                    
                     //_task.GetComponent<DuolingoTask>().NPCDuolingo.CheckIfDesksAreUsed();
 
 
