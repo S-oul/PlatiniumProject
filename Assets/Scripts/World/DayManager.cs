@@ -20,9 +20,16 @@ public class DayManager : MonoBehaviour
         _dayTimer = FindObjectOfType<DayTimer>();
         _daySlider = FindObjectOfType<DaySlider>();
         GameManager.Instance.StartDay();
-        print(_daySlider);
-        _daySlider.SetValue(1);
-        _textDay.text = GameManager.Instance.DayIndex.ToString();
+        if(GameManager.Instance.DayIndex == 0)
+        {
+            _daySlider.SetValue(1);
+
+        }
+        else
+        {
+            _daySlider.SetValue(GameManager.Instance.DaySliderOverDay + .3f);
+        }
+        _textDay.text = (GameManager.Instance.DayIndex +1).ToString();
     }
 
 

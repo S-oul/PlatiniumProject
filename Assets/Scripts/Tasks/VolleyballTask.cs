@@ -60,6 +60,7 @@ public class VolleyballTask : Task
         GameManager.Instance.DayIndex++;
         List<GameObject> l = new List<GameObject>();
         l = GameManager.Instance.Players;
+        GameManager.Instance.DaySliderOverDay = GameManager.Instance.DaySlider.GetValue();
         SceneManager.LoadScene(2);
         GameManager.Instance.Players = l;
         

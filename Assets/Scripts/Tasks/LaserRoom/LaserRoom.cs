@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LaserRoom : Task
 {
@@ -151,9 +152,12 @@ public class LaserRoom : Task
                 KillAllLaser();
                 _toActivate1.SetActive(false);
                 _toActivate2.SetActive(true);
-                for(int i = 0; i < 4; i++)
+                for(int i = 0; i < GameManager.Instance.Players.Count; i++)
                 {
-                    GameManager.Instance.Players[i].transform.position = _transform[i].position;
+                    if(GameManager.Instance.Players[i] != null)
+                    {
+                        GameManager.Instance.Players[i].transform.position = _transform[i].position;
+                    }
                 }
                 foreach (LaserSpawner ls in _phase2)
                 {
