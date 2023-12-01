@@ -149,10 +149,12 @@ public class MatrixTask : InputTask
                         IDInput++;
                         _teleBoss.DisplayColorInput(_colorScreen);
                         _inputsList.Add(input);
-                        _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));                        
+                        _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
+                        _teleBoss.ChangeScreensColor(_colorScreen);
                     }
                     yield return new WaitForSeconds(0.6f);
                     _teleBoss.ClearInput();
+
                     yield return new WaitForSeconds(0.05f);
                 }
                 break;
@@ -167,6 +169,7 @@ public class MatrixTask : InputTask
                         inputsPlayer.Add(IDInput, _colorScreen);
                         IDInput++;
                         _teleBoss.DisplayColorInput(_colorScreen);
+                        _teleBoss.ChangeScreensColor(_colorScreen);
                         _inputsList.Add(input);
                         _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
                         
@@ -210,6 +213,7 @@ public class MatrixTask : InputTask
                     
                     _inputsList.Add(input);
                     inputsPlayer.Add(i, _colorScreen);
+                    _teleBoss.ChangeScreensColor(_colorScreen);
                     IDInput++;
                     _teleBoss.DisplayColorInput(_colorScreen);
                     _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[IDPlayer].GetComponent<PlayerController>().Type));
@@ -222,6 +226,7 @@ public class MatrixTask : InputTask
         }
 
         _teleBoss.SetActiveInput(false);
+        _teleBoss.ChangeScreensColor(Color.black);
         _canCheckInput = true;
         StartCoroutine(TimeBeforeInputCheck()); // => Message "Ready? 3-2-1"
     }
