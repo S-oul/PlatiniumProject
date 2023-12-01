@@ -38,9 +38,12 @@ public class PlayerCollision : MonoBehaviour
     }
     void MakeInteraction()
     {
+       
+        
         if (collidertype == null) { return; }
         if (_controller.IsInteracting)
         {
+            
             switch (collidertype)
             {
                 case InteractableNPC:
