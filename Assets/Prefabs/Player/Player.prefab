@@ -2415,6 +2415,7 @@ MonoBehaviour:
   AirControl: 1
   _jumpForce: 400
   currentContextName: 
+  _colorPlayer: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8814755984296022983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2430,7 +2431,7 @@ MonoBehaviour:
   _allParticles: {fileID: 1435016570121783230}
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 1846
+    m_Bits: 1042
   m_GroundCheck: {fileID: 2974644016071864153}
 --- !u!114 &4960940516979384560
 MonoBehaviour:
