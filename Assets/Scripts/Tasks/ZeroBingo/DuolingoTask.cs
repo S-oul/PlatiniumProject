@@ -261,7 +261,7 @@ public class DuolingoTask : InputTask
             player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
             player.GetComponent<PlayerController>().BlockPlayer(false);
             player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-            player.GetComponent<PlayerController>().EnableMovementDisableInputs();
+            player.GetComponent<PlayerController>().EnableMovementInteractDisableInputs();
             if(value == false)
             {
                 StartCoroutine(player.GetComponent<PlayerController>().PlayerDown(2f));
@@ -280,7 +280,7 @@ public class DuolingoTask : InputTask
     IEnumerator RecuperatePlayer(GameObject player)
     {
         yield return new WaitForSeconds(5);
-        player.GetComponent<PlayerController>().EnableMovementDisableInputs();
+        player.GetComponent<PlayerController>().EnableMovementInteractDisableInputs();
 
     }
 }

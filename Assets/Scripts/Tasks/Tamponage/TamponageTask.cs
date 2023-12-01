@@ -71,7 +71,7 @@ public class TamponageTask : InputTask, ITimedTask
             player.transform.position = gameObject.transform.parent.parent.Find("PlayerRespawnPoint").position;
             player.GetComponent<PlayerController>().BlockPlayer(false);
             //player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 8;
-            player.GetComponent<PlayerController>().EnableMovementDisableInputs();
+            player.GetComponent<PlayerController>().EnableMovementInteractDisableInputs();
         }
         base.End(isSuccessful);
     }

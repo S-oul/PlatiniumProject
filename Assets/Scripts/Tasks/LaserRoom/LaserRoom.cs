@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LaserRoom : Task
 {
@@ -231,7 +230,7 @@ public class LaserRoom : Task
         yield return new WaitForSeconds(_recuperateTime);
         foreach (PlayerController _controller in _players)
         {
-            _controller.EnableMovementDisableInputs();
+            _controller.EnableMovementInteractDisableInputs();
 
         }
         KillAllLaser();

@@ -43,6 +43,7 @@ public class PlayerCursorManager : MonoBehaviour
 
     void OnPlayerLeft(PlayerInput player) 
     {
+        print("SALE PD");
         players.Remove(player);
         Destroy(player.gameObject);
         UpdateBaseZone();
