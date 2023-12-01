@@ -82,7 +82,7 @@ public class GoatTask : InputTask, ITimedTask
         _playerUI.DisplayMashDownButton(false, "");
         foreach (PlayerController controller in _controllers)
         {
-            controller.EnableMovementDisableInputs();
+            controller.EnableMovementInteractDisableInputs();
         }
         base.End(IsSuccess);
     }

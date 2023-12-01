@@ -231,7 +231,7 @@ public class LaserRoom : Task
         yield return new WaitForSeconds(_recuperateTime);
         foreach (PlayerController _controller in _players)
         {
-            _controller.EnableMovementDisableInputs();
+            _controller.EnableMovementInteractDisableInputs();
 
         }
         KillAllLaser();

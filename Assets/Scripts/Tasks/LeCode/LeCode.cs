@@ -76,7 +76,7 @@ public class LeCode : Task
     public override void OnplayerExitTask()
     {
         base.OnplayerExitTask();
-        _controller.EnableMovementDisableInputs();
+        _controller.EnableMovementInteractDisableInputs();
         _playerUI.DisplayLeCodeUI(false);
     }
 
