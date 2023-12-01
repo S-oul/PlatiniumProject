@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using NaughtyAttributes;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class DaySlider : MonoBehaviour
 {
@@ -38,7 +39,10 @@ public class DaySlider : MonoBehaviour
     {
         _unclampedValue = Mathf.Clamp01(_unclampedValue);
         RemoveValue(_speedTimer * Time.deltaTime);
-
+        if(_unclampedValue <= 0)
+        {
+            GetFired();
+        }
         _slider.value = Mathf.Lerp(_slider.value, _unclampedValue, _speedUnclamped);
 
         UpdateColor();
@@ -63,16 +67,18 @@ public class DaySlider : MonoBehaviour
     }
     public float RemoveValue(float val)
     {
-        if (!_isOnCrunch)
-        {
-            _unclampedValue -= val;
-        }
+        _unclampedValue -= val;
         return _unclampedValue;
     }
 
     public float GetValue()
     {
         return _unclampedValue;
+    }
+
+    public void GetFired()
+    {
+        SceneManager.LoadScene(3);
     }
 
     private void SetColor()
