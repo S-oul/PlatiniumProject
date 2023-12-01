@@ -17,6 +17,7 @@ public class MatrixBoss : MonoBehaviour
     Image _inputPlayerState;
     Image _inputPlayer;
     List<Image> _allLives = new List<Image>();
+    [SerializeField] SpriteRenderer _screensSide;
 
     /*private void Start()
     {
@@ -71,6 +72,11 @@ public class MatrixBoss : MonoBehaviour
         _input.gameObject.SetActive(value);
         _contour.gameObject.SetActive(value);
         ClearColorInput();
+    }
+
+    public void ChangeScreensColor(Color color)
+    {
+        _screensSide.color = color;
     }
 
     public void SetActiveText(bool value)
