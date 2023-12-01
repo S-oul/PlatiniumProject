@@ -179,7 +179,7 @@ public class MatrixTask : InputTask
             case 3:
                 
                 int numberInterations = _playersInOrder.Count * list[0].Count;
-                colors = GetRandomColor(colors, numberInterations);
+                colors = GetRandomColor(numberInterations);
                 foreach(Color color in colors)
                 {
                     print(color);
@@ -214,7 +214,7 @@ public class MatrixTask : InputTask
                     _teleBoss.DisplayColorInput(_colorScreen);
                     _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[IDPlayer].GetComponent<PlayerController>().Type));
 
-                    yield return new WaitForSeconds(0.4f);
+                    yield return new WaitForSeconds(1);
                     _teleBoss.ClearInput();
                     yield return new WaitForSeconds(0.05f);
                 }
@@ -226,13 +226,25 @@ public class MatrixTask : InputTask
         StartCoroutine(TimeBeforeInputCheck()); // => Message "Ready? 3-2-1"
     }
 
-    List<Color> GetRandomColor(List<Color> colors, int iteration)
+    List<Color> GetRandomColor(int iteration)
     {
+        List<Color> colors = new List<Color>();
+        for (int i = 0; i < _playersInOrder.Count; i++)
+        {
+            for (int j = 0; j < _phase; j++)
+            {
+                colors.Add(_playersInOrder[i].GetComponent<PlayerController>().ColorPlayer);
+            }
+            
+        }
+
         List<Color> randomColor = new List<Color>();
         for (int i = 0; i < iteration; i++)
         {
+           
             Color tempColor = colors[Random.Range(0, colors.Count)];
             randomColor.Add(tempColor);
+            colors.Remove(tempColor);
         }
         
         return randomColor;
@@ -276,44 +288,39 @@ public class MatrixTask : InputTask
         if (player == PlayerManager.Instance.FindPlayerFromColor(inputsPlayer[_currentInputID]))
         {
             _isTheRightPlayer = true;
+            print(player.GetComponent<PlayerController>().Name);
         }
+        
         PlayerController _controller = player.GetComponent<PlayerController>();
         
         _teleBoss.SliderActive(true);
         PlayerUI _playerUI = player.GetComponent<PlayerUI>();
         float _timeToPressInput = timeBetweenInputs;
-        
+        int actualInputID = _currentInputID;
         while (_canCheckInput && CheckInputValue(_controller.currentContextName, InputsToString[_inputsList[_currentInputID]], _controller) == PlayerInputValue.None && _timeToPressInput > 0)
         {
             _timeToPressInput -= Time.deltaTime;
             if (_isTheRightPlayer)
             {
-                
+                print(actualInputID);
                 _teleBoss.SliderValue(Mathf.InverseLerp(0, timeBetweenInputs, _timeToPressInput));
             }
-            
-
             yield return null; 
 
         }
-        if (!_canCheckInput)
-        {
-            print("stop wait canCheck: " + _controller.Name);
-        }
+        
         
         if (_canCheckInput)
         {
             if (_timeToPressInput <= 0)
             {
-                _canCheckInput = false;
-                print("Time's up : ");
+                print("Time's up : " + player.GetComponent<PlayerController>().Name + " " + actualInputID);
                 InputValue(false, player);
 
             }
 
             else if (_inputValue == PlayerInputValue.WrongValue)
             {
-                _canCheckInput = false;
                 _inputHasBeenPressed = true;
                 print("Wrong Input");
                 InputValue(false, player);
@@ -321,7 +328,7 @@ public class MatrixTask : InputTask
             }
             else if (_inputValue == PlayerInputValue.RightValue)
             {
-                _canCheckInput = false;
+                
                 _inputHasBeenPressed = true;
 
                 InputValue(true, player);
@@ -334,7 +341,7 @@ public class MatrixTask : InputTask
     }
     void InputValue(bool isInputRight, GameObject player)
     {
-        
+        _canCheckInput = false;
         _teleBoss.SliderActive(false);
         _teleBoss.SliderValue(0);
         _currentColor = inputsPlayer[_currentInputID];
@@ -345,9 +352,11 @@ public class MatrixTask : InputTask
             
             playerObject.GetComponent<PlayerController>().currentContextName = "";
             EnableInput(false, playerObject);
-            
+
+
         }
-       print("Current input id = " + _currentInputID + " => Input: " + _inputsList[_currentInputID]);
+        StopAllCoroutines();            
+        
         if (player == PlayerManager.Instance.FindPlayerFromColor(_currentColor))
         {
             if (isInputRight)
