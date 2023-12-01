@@ -32,6 +32,8 @@ public class LaserRoom : Task
     //public float _givenTime => 45;
     [SerializeField] float _recuperateTime => 2;
 
+    Animator _bossAnimator; //to control the boss anomation
+
     public List<GameObject> LaserGO { get => _laserGO; set => _laserGO = value; }
 
     float _actualTime;
@@ -41,6 +43,8 @@ public class LaserRoom : Task
         // _actualTime = _givenTime;
         RoomTask = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
+
+        _bossAnimator = GameObject.Find("BossAnime").GetComponent<Animator>();
     }
     public override void End(bool isSuccessful)
     {
@@ -50,12 +54,9 @@ public class LaserRoom : Task
         _cam.FixOnRoom = false;
         if (isSuccessful)
         {
-            StartCoroutine(RecuperatePlayer());
+            TriggerGameWinBossAnimation();
         }
-        else
-        {
             StartCoroutine(RecuperatePlayer());
-        }
         base.End(isSuccessful);
     }
     void KillAllLaser()
@@ -158,7 +159,7 @@ public class LaserRoom : Task
                 {
                     StartCoroutine(ls.SpawnLaserTimer());
                 }
-                print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+                TriggerBossHitAnimation();
                 return true;
             case 1:
                 foreach (ButtonBox b in _buttonPhase2)
@@ -180,6 +181,7 @@ public class LaserRoom : Task
                 {
                     StartCoroutine(ls.SpawnLaserTimer());
                 }
+                TriggerBossHitAnimation();
                 return true;
             case 2:
                 foreach (ButtonBox b in _buttonPhase3)
@@ -201,7 +203,7 @@ public class LaserRoom : Task
                 {
                     StartCoroutine(ls.SpawnLaserTimer());
                 }
-
+                TriggerBossHitAnimation();
                 return true;
             case 3:
                 foreach (ButtonBox b in _buttonPhase4)
@@ -213,6 +215,7 @@ public class LaserRoom : Task
                 }
                 _toActivate4.SetActive(false);
                 KillAllLaser();
+                TriggerBossHitAnimation();
                 return true;
         }
         return false;
@@ -227,5 +230,15 @@ public class LaserRoom : Task
         }
         KillAllLaser();
     }
+    
+    void TriggerBossHitAnimation()
+    {
+        _bossAnimator.SetTrigger("Hit");
+    }
 
+    void TriggerGameWinBossAnimation()
+    {
+        _bossAnimator.SetTrigger("GameWin");
+    }
 }
+
