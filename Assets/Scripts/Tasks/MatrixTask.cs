@@ -152,7 +152,7 @@ public class MatrixTask : InputTask
                         _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
                         _teleBoss.ChangeScreensColor(_colorScreen);
                     }
-                    yield return new WaitForSeconds(0.6f);
+                    yield return new WaitForSeconds(0.8f);
                     _teleBoss.ClearInput();
 
                     yield return new WaitForSeconds(0.05f);
@@ -173,7 +173,7 @@ public class MatrixTask : InputTask
                         _inputsList.Add(input);
                         _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
                         
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.65f);
                         _teleBoss.ClearInput();
                         yield return new WaitForSeconds(0.05f);
                     }
@@ -218,7 +218,7 @@ public class MatrixTask : InputTask
                     _teleBoss.DisplayColorInput(_colorScreen);
                     _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[IDPlayer].GetComponent<PlayerController>().Type));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
                     _teleBoss.ClearInput();
                     yield return new WaitForSeconds(0.05f);
                 }
@@ -410,7 +410,14 @@ public class MatrixTask : InputTask
                 if(tries > 0)
                 {
                     tries--;
-                    StartCoroutine(DialoguesPlayerLoss());
+                    if (tries > 0)
+                    {
+                        StartCoroutine(DialoguesPlayerLoss());
+                    }
+                    else
+                    {
+                        End(false);
+                    }
                 }
                 /*_numberOfFails++;
                 FeedBackBadInputs();
@@ -437,7 +444,15 @@ public class MatrixTask : InputTask
             if (tries > 0)
             {
                 tries--;
-                StartCoroutine(DialoguesPlayerLoss());
+                if(tries > 0)
+                {
+                    StartCoroutine(DialoguesPlayerLoss());
+                }
+                else
+                {
+                    End(false);
+                }
+                
             }
         }
         

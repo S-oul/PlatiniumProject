@@ -80,7 +80,6 @@ public class CVChoice : MonoBehaviour
         }
         
         StartCoroutine(fadeScreen.Fade(false));
-        print("ca marche CV");
         //print(SceneManager.GetActiveScene().name);
         //GameManager.Instance.StartDay();
     }
