@@ -27,6 +27,8 @@ public class LaserRoom : Task
 
     Cam _cam;
 
+    [SerializeField] List<Transform> _transform = new List<Transform>();
+
     //public float _givenTime => 45;
     [SerializeField] float _recuperateTime => 2;
 
@@ -148,6 +150,10 @@ public class LaserRoom : Task
                 KillAllLaser();
                 _toActivate1.SetActive(false);
                 _toActivate2.SetActive(true);
+                for(int i = 0; i < 4; i++)
+                {
+                    GameManager.Instance.Players[i].transform.position = _transform[i].position;
+                }
                 foreach (LaserSpawner ls in _phase2)
                 {
                     StartCoroutine(ls.SpawnLaserTimer());
@@ -166,6 +172,10 @@ public class LaserRoom : Task
                 KillAllLaser();
                 _toActivate2.SetActive(false);
                 _toActivate3.SetActive(true);
+                for (int i = 0; i < 4; i++)
+                {
+                    GameManager.Instance.Players[i].transform.position = _transform[i].position;
+                }
                 foreach (LaserSpawner ls in _phase3)
                 {
                     StartCoroutine(ls.SpawnLaserTimer());
@@ -183,6 +193,10 @@ public class LaserRoom : Task
                 KillAllLaser();
                 _toActivate3.SetActive(false);
                 _toActivate4.SetActive(true);
+                for (int i = 0; i < 4; i++)
+                {
+                    GameManager.Instance.Players[i].transform.position = _transform[i].position;
+                }
                 foreach (LaserSpawner ls in _phase4)
                 {
                     StartCoroutine(ls.SpawnLaserTimer());
