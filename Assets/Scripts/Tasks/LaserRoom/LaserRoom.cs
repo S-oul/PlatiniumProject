@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LaserRoom : Task
@@ -220,6 +221,7 @@ public class LaserRoom : Task
                 _toActivate4.SetActive(false);
                 KillAllLaser();
                 TriggerBossHitAnimation();
+                SceneManager.LoadScene(4);
                 return true;
         }
         return false;
