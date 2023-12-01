@@ -80,6 +80,7 @@ public class GraffitiGameManager : Task
         {
             player.setCraftingAnimation(false);
             player.playerController.DisableDecryptageEnableMovements();
+            player.playerUI.EnableAnimationStick(false);
         }
         base.End(isSuccessful);
     }
@@ -240,6 +241,7 @@ public class GraffitiGameManager : Task
     {
         PlayerInGraffiti newPlayer = new PlayerInGraffiti(newPlayerObject);
         newPlayer.playerController.EnableDecryptageDisableMovements();
+        newPlayer.playerUI.EnableAnimationStick(true);
         newPlayer.AssignGraffiti(ChooseGraffitiToStartCleaning()); // new player MUST NOT be added if there are no remaining graffiti
         newPlayer.setCraftingAnimation(true);
 

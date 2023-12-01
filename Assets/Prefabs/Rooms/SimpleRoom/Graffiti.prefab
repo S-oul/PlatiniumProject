@@ -378,6 +378,7 @@ MonoBehaviour:
   _audioSource: {fileID: 6032432217816718020, guid: 69ce900d592a8e9449152385c8104367, type: 3}
   _onRoomSuccessClip: {fileID: 8300000, guid: 8e3a7e2d808eebe48ae117d2a6e12faf, type: 3}
   _onRoomFailClip: {fileID: 8300000, guid: 79e3bc2a96911374fb4dff7be51a2253, type: 3}
+  _boxCollider: {fileID: 0}
   _listPlayer: []
 --- !u!61 &3108168623149331971
 BoxCollider2D:
@@ -676,6 +677,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8665029958405812661}
     m_Modifications:
+    - target: {fileID: 906423338928402621, guid: e4ba05b3482329b4ab1b178cbe120b13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1351008533352304932, guid: e4ba05b3482329b4ab1b178cbe120b13, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -812,6 +817,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9117145630748332004, guid: e4ba05b3482329b4ab1b178cbe120b13, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 37886e71a4ab8204aa4550a6773c1fb8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

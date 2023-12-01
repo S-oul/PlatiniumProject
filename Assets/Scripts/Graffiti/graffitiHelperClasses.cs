@@ -7,6 +7,7 @@ public class PlayerInGraffiti
     GraffitiCleanAnimation _currentGraffitiAnimation;
 
     public PlayerController playerController { get; set; }
+    public PlayerUI playerUI { get; set; }
     public GraffitiDrawing currentGraffiti { get; set; }
 
     // for managing player input
@@ -17,6 +18,7 @@ public class PlayerInGraffiti
     {
         this._playerObject = _playerObject;
         playerController = this._playerObject.GetComponent<PlayerController>();
+        playerUI = this._playerObject.GetComponent<PlayerUI>();
     } 
 
     public void AssignGraffiti(GraffitiDrawing graffiti)

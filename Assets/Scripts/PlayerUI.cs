@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 
 public class PlayerUI : MonoBehaviour
@@ -10,7 +10,6 @@ public class PlayerUI : MonoBehaviour
     
     [SerializeField] Canvas _canvas;
 
-    [Header("InputsUI")]
     Transform _qteUI;
     TextMeshProUGUI _textInputsUI;
     Slider _sliderInputsUI;
@@ -21,7 +20,7 @@ public class PlayerUI : MonoBehaviour
     Slider _validationBadInputSlider;
     Image _roundInputTimer;
     Vector3 _roundTimerOriginalSize;
-   
+    
 
 
     [Header("Duolingo")]
@@ -36,8 +35,12 @@ public class PlayerUI : MonoBehaviour
     Image _left;
 
 
+
+
     [Header("MashDownButton")]
     Transform _mashDownTransform;
+
+    [SerializeField] Transform _animationStick;
 
     public float SliderPercentValue { get => sliderPercentValue; set => sliderPercentValue = value; }
     public Image RoundInputTimer { get => _roundInputTimer; set => _roundInputTimer = value; }
@@ -61,11 +64,13 @@ public class PlayerUI : MonoBehaviour
         _inputQTE = _qteUI.transform.Find("Slider").Find("SmallerCircle").Find("Image").GetComponent<Image>();
         _validationBadInputSlider = _qteUI.transform.Find("Validation").Find("BadInputs").GetComponent<Slider>();
         _inputToPress = _canvas.transform.Find("InputToPress");
+        _animationStick = _canvas.transform.Find("InputStickAnimation");
         /*RoundInputTimer = _sliderInputsUI.transform.GetChild(3).GetComponent<Image>();*/
        /* _roundTimerOriginalSize = RoundInputTimer.transform.localScale;*/
         DisplayCowboyQTEUI(false);
         DisplayVolleyQTEUI(false);
         DisplayInputToPress(false, "");
+        EnableAnimationStick(false);
 
 
         //Duolingo
@@ -151,6 +156,11 @@ public class PlayerUI : MonoBehaviour
         Sprite inputSprite = DataManager.Instance.FindInputSprite(input, gameObject.GetComponent<PlayerController>().Type);
         _inputToPress.Find("InputImage").GetComponent<Image>().sprite = inputSprite;
 
+    }
+
+    public void EnableAnimationStick(bool value)
+    {
+        _animationStick.gameObject.SetActive(value);
     }
 
     public void DisplayAnswersDuolingo(List<string> words, List<string> inputs)
