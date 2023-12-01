@@ -76,6 +76,7 @@ public class PlayerCollision : MonoBehaviour
                     break;
                 case GraffitiGameManager:
                     ((GraffitiGameManager)collidertype).OnPlayerJoinedTask(this.gameObject);
+                    _playerUI.DisplayInputToPress(false, "");
                     break;
             }
             _controller.IsInteracting = false;
@@ -166,6 +167,11 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "GraffitiTask":
                 collidertype = collision.transform.parent.GetComponent<GraffitiGameManager>();
+                if (!collision.transform.parent.GetComponent<GraffitiGameManager>().IsDone)
+                {
+                    _playerUI.DisplayInputToPress(true, "Y");
+                }
+                
                 break;
             
                 
@@ -241,6 +247,10 @@ public class PlayerCollision : MonoBehaviour
                 }
                 break;
             case "Lift":
+                _playerUI.DisplayInputToPress(false, "");
+                break;
+            case "GraffitiTask":
+                
                 _playerUI.DisplayInputToPress(false, "");
                 break;
         }

@@ -22,7 +22,7 @@ public class DayManager : MonoBehaviour
         GameManager.Instance.StartDay();
         print(_daySlider);
         _daySlider.SetValue(1);
-        _textDay.text = GameManager.Instance.DayIndex.ToString();
+        //_textDay.text = GameManager.Instance.DayIndex.ToString();
     }
 
 
