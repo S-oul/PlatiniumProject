@@ -176,7 +176,7 @@ public class CowboyQTE : InputTask
 
     void EndQTE(bool value)
     {
-        _controller.EnableMovementDisableInputs();
+        _controller.EnableMovementInteractDisableInputs();
         _playerInput.actions["InputTask"].Disable();
         _playerUI.ClearUIInputs();
         _playerUI.DisplayInputsTaskUI(false);

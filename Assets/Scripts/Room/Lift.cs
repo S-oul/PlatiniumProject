@@ -30,6 +30,7 @@ public class Lift : Room
     {
 
         List<GameObject> players = new List<GameObject>();
+        
         if (_canTeleport)
         {
             foreach(GameObject p in ListPlayer)
@@ -54,7 +55,7 @@ public class Lift : Room
         foreach(GameObject p in players)
         {
             p.transform.position = TeleportPos.position;
-            p.GetComponent<PlayerController>().EnableMovementDisableInputs();
+            p.GetComponent<PlayerController>().EnableMovementInteractDisableInputs();
             p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Player";
             //p.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingOrder = 0;
         }

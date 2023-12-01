@@ -45,7 +45,7 @@ public class MatrixTask : InputTask
         _teleBoss.SliderActive(false);
         _cam = Camera.main.GetComponent<Cam>();
         _cam.FixOnRoomVoid(RoomTask);
-        _phase = 3;
+        _phase = 1;
         _currentInputID = 0;
         _inputHasBeenPressed = false;
         foreach(GameObject player in PlayersDoingTask)
@@ -177,9 +177,14 @@ public class MatrixTask : InputTask
                 }
                 break;
             case 3:
-                colors = GetRandomColor(colors, _playersInOrder.Count * list[0].Count);
-                print(_playersInOrder.Count * list[0].Count);
-                for (int i = 0; i < _playersInOrder.Count * list[0].Count; i++)
+                
+                int numberInterations = _playersInOrder.Count * list[0].Count;
+                colors = GetRandomColor(colors, numberInterations);
+                foreach(Color color in colors)
+                {
+                    print(color);
+                }
+                for (int i = 0; i < numberInterations; i++)
                 {
                     
                     _colorScreen = colors[i];
@@ -194,11 +199,17 @@ public class MatrixTask : InputTask
                     }
                     _teleBoss.AttackAnimation();
                     int randomID = Random.Range(0, list.Count);
-
-                    Inputs input = list[randomID][Random.Range(0, list[randomID].Count)];
-                    _inputsToDo[randomID].Remove(input);
+                    int randomInputID = Random.Range(0, list[randomID].Count);
+                    Inputs input = list[randomID][randomInputID];
+                    list[randomID].Remove(input);
+                    if (list[randomID].Count == 0)
+                    {
+                        list.Remove(list[randomID]);
+                    }
+                    /*_inputsToDo[randomID].Remove(input);*/
+                    
                     _inputsList.Add(input);
-                    inputsPlayer.Add(IDInput, _colorScreen);
+                    inputsPlayer.Add(i, _colorScreen);
                     IDInput++;
                     _teleBoss.DisplayColorInput(_colorScreen);
                     _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[IDPlayer].GetComponent<PlayerController>().Type));
