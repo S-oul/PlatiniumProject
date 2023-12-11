@@ -31,10 +31,10 @@ public abstract class InputTask : Task
         B,
         L1,
         L2,
-        L3,
+/*        L3,*/
         R1,
         R2,
-        R3
+/*        R3*/
     }
     Dictionary<Inputs, string> _inputsToString = new Dictionary<Inputs, string>()
     {
@@ -44,10 +44,10 @@ public abstract class InputTask : Task
         {Inputs.B, "B"},
         {Inputs.R1, "R1" },
         {Inputs.R2, "R2" },
-        {Inputs.R3, "R3" },
+/*        {Inputs.R3, "R3" },*/
         {Inputs.L1, "L1"},
         {Inputs.L2, "L2"},
-        {Inputs.L3, "L3" }
+/*        {Inputs.L3, "L3" }*/
     };
 
     protected enum QTEAccuracy

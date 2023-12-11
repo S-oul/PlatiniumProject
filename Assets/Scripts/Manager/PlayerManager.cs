@@ -13,7 +13,8 @@ public class PlayerManager : MonoBehaviour
     {
         None,
         Xbox,
-        Playstation
+        Playstation,
+        Switch
     }
     private void Awake()
     {
@@ -65,17 +66,31 @@ public class PlayerManager : MonoBehaviour
 
     void GetControllerType(PlayerInput player)
     {
-        if (player.devices[0].displayName.Contains("Xbox"))
-        {
-            player.gameObject.GetComponent<PlayerController>().Type = ControllerType.Xbox;
-        }
-        else if (player.devices[0].displayName.Contains("PLAYSTATION"))
+        InputDevice gamepad = player.devices[0];
+        if (gamepad is UnityEngine.InputSystem.DualShock.DualShockGamepad)
         {
             player.gameObject.GetComponent<PlayerController>().Type = ControllerType.Playstation;
         }
+        else if(gamepad is UnityEngine.InputSystem.XInput.XInputController)
+        {
+            player.gameObject.GetComponent<PlayerController>().Type = ControllerType.Xbox;
+        }
+        else if (gamepad is UnityEngine.InputSystem.Switch.SwitchProControllerHID)
+        {
+            foreach (var item in Gamepad.all)
+            {
+                if ((item is UnityEngine.InputSystem.XInput.XInputController) && (Mathf.Abs((float)(item.lastUpdateTime - gamepad.lastUpdateTime)) < 0.1f))
+                {
+                    
+                    InputSystem.DisableDevice(item);
+                }
+            }
+            player.gameObject.GetComponent<PlayerController>().Type = ControllerType.Switch;
+        }
+
         else
         {
-            player.gameObject.GetComponent<PlayerController>().Type = ControllerType.None;
+            player.gameObject.GetComponent<PlayerController>().Type = ControllerType.Playstation;
         }
     }
     /*

@@ -36,9 +36,34 @@ public class PlayerCursorManager : MonoBehaviour
             player.gameObject.GetComponent<CursorPlayer>().CanInteract = true;
             CheckNameAndID();
             player.gameObject.GetComponent<CursorPlayer>().CurrentZoneID = 1;
+            CheckController(player);
         }
             
 
+    }
+
+    void CheckController(PlayerInput player)
+    {
+        InputDevice gamepad = player.devices[0];
+        if (gamepad is UnityEngine.InputSystem.DualShock.DualShockGamepad)
+        {
+            print("Play");
+        }
+        else if (gamepad is UnityEngine.InputSystem.XInput.XInputController)
+        {
+            print("xbox");
+        }
+        else if (gamepad is UnityEngine.InputSystem.Switch.SwitchProControllerHID)
+        {
+            foreach (var item in Gamepad.all)
+            {
+                if ((item is UnityEngine.InputSystem.XInput.XInputController) && (Mathf.Abs((float)(item.lastUpdateTime - gamepad.lastUpdateTime)) < 0.1f))
+                {
+                    Debug.Log($"Switch Pro controller detected and a copy of XInput was active at almost the same time. Disabling XInput device. `{gamepad}`; `{item}`");
+                    InputSystem.DisableDevice(item);
+                }
+            }
+        }
     }
 
     void OnPlayerLeft(PlayerInput player) 

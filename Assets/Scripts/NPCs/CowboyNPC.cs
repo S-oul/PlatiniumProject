@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CowboyNPC : NPC, IChattyNPC
 {
@@ -16,7 +17,8 @@ public class CowboyNPC : NPC, IChattyNPC
 
     [SerializeField] GameObject _player;
 
-
+    [SerializeField] GameObject _animationIdle;
+    [SerializeField] GameObject _animationOther;
 
     public GameObject Player { get => _player; set => _player = value; }
     public SpriteRenderer SpriteNPC { get => _sprite; set => _sprite = value; }
@@ -24,7 +26,7 @@ public class CowboyNPC : NPC, IChattyNPC
     private void Start()
     {
         _firePoint = transform.GetChild(0).transform;
-        _sprite = transform.Find("Animation").GetComponent<SpriteRenderer>();
+        SwitchToSpeAnimations(false);
 
     }
     public void Talk(string text)
@@ -35,11 +37,24 @@ public class CowboyNPC : NPC, IChattyNPC
 
     public void Fire()
     {
+        SwitchToSpeAnimations(true);
         GetComponentInChildren<Animator>().SetTrigger("Fire");
-
     }
 
-
+  
+    public void SwitchToSpeAnimations(bool value)
+    {
+        if(value)
+        {
+            _sprite = transform.Find("Cowboy").GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            _sprite = transform.Find("Animation").GetComponent<SpriteRenderer>();
+        }
+        _animationOther.SetActive(value);
+        _animationIdle.SetActive(!value);
+    }
 
     public void FlipNPC()
     {
