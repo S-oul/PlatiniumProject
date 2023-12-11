@@ -30,6 +30,12 @@ public class GoatTask : InputTask, ITimedTask
 
     public float _givenTime => _timeToDoTask;
 
+    public void AddPlayer(GameObject p)
+    {
+        _controller = p.GetComponent<PlayerController>();
+        _controller.DisableMovementEnableInputs();
+        _controllers.Add(_controller);
+    }
     public override void StartTask()
     {
 
@@ -105,6 +111,7 @@ public class GoatTask : InputTask, ITimedTask
             bool hasclickedOnce = false;
             foreach(PlayerController controller in _controllers)
             {
+                print(controller.Name);
                 if (controller.currentContextName != "" && _dataManager.InputNamesConverter[controller.currentContextName] == InputsToString[_buttonToPress])
                 {
                     hasclickedOnce = true;

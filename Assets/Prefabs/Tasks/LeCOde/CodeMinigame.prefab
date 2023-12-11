@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPlayers: 1
   _difficulty: 1
+  _isReplayable: 1
   _addPlayerAtRunTime: 0
   _postIt: {fileID: 3637963249798596177, guid: 00a76fd96106a5c4ca3c960d9e76f0a7, type: 3}
 --- !u!1 &4653947968737248530

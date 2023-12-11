@@ -13,6 +13,7 @@ public class LeCode : Task
     string _code = "";
     TextMeshPro _screenText;
 
+    int _inputPressed = 0;
 
     public bool HaveOnePlayer() { if (PlayersDoingTask[0] != null) return true; else return false; }
     public PlayerController Controller { get => _controller; set => _controller = value; }
@@ -22,7 +23,7 @@ public class LeCode : Task
     private void Awake()
     {       
         _screenText = GetComponentInChildren<TextMeshPro>();
-        _screenText.text = "";
+        _screenText.text = "_ _ _ _";
         if (GameManager.Instance != null) _gameManager = GameManager.Instance;
 
         _code = Random.Range(1, 5).ToString();
@@ -83,7 +84,7 @@ public class LeCode : Task
     IEnumerator TimeBeforeRestart()
     {
         yield return new WaitForSeconds(2f);
-        _screenText.text = "";
+        _screenText.text = "_ _ _ _";
     }
     private void Update()
     {
@@ -91,9 +92,9 @@ public class LeCode : Task
         {
             if(_controller.CodeContext != null)
             {
-                if (_screenText.text.Length > 4)
+                if (_inputPressed > 3)
                 {
-                    _screenText.text = "";
+                    _screenText.text = "_ _ _ _";
                 }
                 _screenText.color = Color.white;
                 switch (_controller.CodeContext)
@@ -131,15 +132,17 @@ public class LeCode : Task
 
                         break;
                 }
-                if(_code == _screenText.text)
+                _inputPressed += 1;
+                if (_code == _screenText.text)
                 {
                     End(true);
                 }
                 else if(_screenText.text.Length == 4 && _code != _screenText.text)
                 {
+
                     _screenText.color = Color.red;
                     End(false);
-                    Debug.Log("Wrong code");
+                    //Debug.Log("Wrong code");
                 }
                 
             }

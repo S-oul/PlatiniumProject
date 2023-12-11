@@ -101,6 +101,11 @@ public abstract class Task : MonoBehaviour
                         if (player != _playersDoingTask[PlayersDoingTask.Count - 1]) 
                         {
                             _playersDoingTask.Add(player);
+                            GoatTask t = GetComponent<GoatTask>(); 
+                            if (t != null)
+                            {
+                                t.AddPlayer(player);
+                            }
                         } 
                         return;
                     }
