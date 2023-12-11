@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int _numberOfTasksMade;
 
+    TextMeshProUGUI _roomsRemainingText;
+
     public int PlayerCount { get => _playerCount; set => _playerCount = value; }
 
     public List<GameObject> Players { get => _players; set => _players = value; }
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
     public float TimeForTheDay { get => _timeForTheDay; set => _timeForTheDay = value; }
     public DayManager DayManager { get => _dayManager; set => _dayManager = value; }
     public DaySlider DaySlider { get => _daySlider; set => _daySlider = value; }
+    public TextMeshProUGUI RoomsRemainingText { get => _roomsRemainingText; set => _roomsRemainingText = value; }
+
     public float DaySliderOverDay = 0;
     private void Start()
     {
