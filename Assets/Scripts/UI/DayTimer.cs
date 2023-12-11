@@ -13,7 +13,7 @@ public class DayTimer : MonoBehaviour
 
     TextMeshProUGUI _text;
 
-    [SerializeField]bool _doTimer = false;
+    [SerializeField] bool _doTimer = false;
 
     [SerializeField] Animator _animator;
 
@@ -35,25 +35,26 @@ public class DayTimer : MonoBehaviour
         _time = TimeSpan.FromSeconds((int)DayTime);
         string m = "";
         string s = "";
-        if(_time.Minutes < 10) { m = 0 + _time.Minutes.ToString(); } else { m = _time.Minutes.ToString(); }
-        if(_time.Seconds < 10) { s = 0 + _time.Seconds.ToString(); } else { s = _time.Seconds.ToString(); }
+        if (_time.Minutes < 10) { m = 0 + _time.Minutes.ToString(); } else { m = _time.Minutes.ToString(); }
+        if (_time.Seconds < 10) { s = 0 + _time.Seconds.ToString(); } else { s = _time.Seconds.ToString(); }
 
-        _text.text =  m + " : " + s;
+        _text.text = m + " : " + s;
 
         if (_doTimer)
         {
             DayTime -= Time.deltaTime;
             DayTime = Mathf.Clamp(DayTime, 0, 999);
-            if (!_wasSubMinute && _subMinute()) 
+            if (!_wasSubMinute && _subMinute())
             {
                 _wasSubMinute = true;
                 print("DATIMER UNDER A MINUTE");
             }
-            if (!_hasEnd && _time.Minutes == 0 && _time.Seconds == 0) 
-            { 
+            if (!_hasEnd && _time.Minutes == 0 && _time.Seconds == 0)
+            {
                 _hasEnd = true;
+                GameManager.Instance.DaySlider.IsOnCrunch = true;
                 _animator.SetTrigger("DoCrunchAnim");
-                print("DATIMER ISDONE"); 
+                print("DATIMER ISDONE");
             }
 
         }

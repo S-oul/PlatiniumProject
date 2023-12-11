@@ -30,10 +30,10 @@ public class LaserRoom : Task
 
     [SerializeField] List<Transform> _transform = new List<Transform>();
 
-    //public float _givenTime => 45;
+    //public float _givenTime => 45; 
     [SerializeField] float _recuperateTime => 2;
 
-    Animator _bossAnimator; //to control the boss anomation
+    Animator _bossAnimator; //to control the boss anomation 
 
     public List<GameObject> LaserGO { get => _laserGO; set => _laserGO = value; }
 
@@ -41,7 +41,7 @@ public class LaserRoom : Task
 
     void Start()
     {
-        // _actualTime = _givenTime;
+        // _actualTime = _givenTime; 
         RoomTask = transform.parent.parent.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
 
@@ -56,13 +56,19 @@ public class LaserRoom : Task
         if (isSuccessful)
         {
             TriggerGameWinBossAnimation();
+            GameManager.Instance.DaySlider.AddValue(.3f);
+            SceneManager.LoadScene(4);
         }
-            StartCoroutine(RecuperatePlayer());
+        else
+        {
+            SceneManager.LoadScene(3);
+        }
+        StartCoroutine(RecuperatePlayer());
         base.End(isSuccessful);
     }
     void KillAllLaser()
     {
-        for(int i = _laserGO.Count - 1; i > 0;i--)
+        for (int i = _laserGO.Count - 1; i > 0; i--)
         {
             Destroy(_laserGO[i]);
         }
@@ -76,7 +82,7 @@ public class LaserRoom : Task
             AudioManager.instance.PlayMusic("LaserRoomMusic");
         }
         print(NumberOfPlayers + " " + RoomTask.ListPlayer.Count);
-        if(RoomTask.ListPlayer.Count >= NumberOfPlayers)
+        if (RoomTask.ListPlayer.Count >= NumberOfPlayers)
         {
             foreach (GameObject p in RoomTask.ListPlayer)
             {
@@ -97,7 +103,7 @@ public class LaserRoom : Task
     }
     private void Update()
     {
-        if(IsStarted && !IsDone)
+        if (IsStarted && !IsDone)
         {
             if (!OnePlayerAlive())
             {
@@ -111,7 +117,7 @@ public class LaserRoom : Task
     {
         foreach (PlayerController _controller in _players)
         {
-            if (!_controller.IsPlayerDown) 
+            if (!_controller.IsPlayerDown)
             {
                 return true;
             }
@@ -119,21 +125,21 @@ public class LaserRoom : Task
         return false;
     }
 
-    /*bool AllPlayerAlive()
-    {
-        string t = "";
-        foreach (PlayerController _controller in _players)
-        {
-            if (!_controller.IsPlayerDown)
-            {
-                t += "t";
-            }
-        }
-        if (t == "tttt")
-        {
-            return true;
-        }
-        return false;
+    /*bool AllPlayerAlive() 
+    { 
+        string t = ""; 
+        foreach (PlayerController _controller in _players) 
+        { 
+            if (!_controller.IsPlayerDown) 
+            { 
+                t += "t"; 
+            } 
+        } 
+        if (t == "tttt") 
+        { 
+            return true; 
+        } 
+        return false; 
     }*/
 
     public bool CheckPhase()
@@ -152,9 +158,9 @@ public class LaserRoom : Task
                 KillAllLaser();
                 _toActivate1.SetActive(false);
                 _toActivate2.SetActive(true);
-                for(int i = 0; i < GameManager.Instance.Players.Count; i++)
+                for (int i = 0; i < GameManager.Instance.Players.Count; i++)
                 {
-                    if(GameManager.Instance.Players[i] != null)
+                    if (GameManager.Instance.Players[i] != null)
                     {
                         GameManager.Instance.Players[i].transform.position = _transform[i].position;
                     }
@@ -220,7 +226,7 @@ public class LaserRoom : Task
                 _toActivate4.SetActive(false);
                 KillAllLaser();
                 TriggerBossHitAnimation();
-                SceneManager.LoadScene(4);
+
                 return true;
         }
         return false;
@@ -235,7 +241,7 @@ public class LaserRoom : Task
         }
         KillAllLaser();
     }
-    
+
     void TriggerBossHitAnimation()
     {
         _bossAnimator.SetTrigger("Hit");

@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2891303753b1147ae22b39e48f6f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayTime: 240
+  _dayTime: 4
   _doTimer: 1
   _animator: {fileID: 973819175}
 --- !u!222 &445611535
@@ -2604,7 +2604,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HEURE SUP'
+  m_text: 'OverTime
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

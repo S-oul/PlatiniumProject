@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
+
     List<Room> _roomList = new List<Room>();
     [SerializeField] List<Room> _roomTaskList = new List<Room>();
 
@@ -65,6 +66,10 @@ public class GameManager : MonoBehaviour
     }
     public int RoomLose()
     {
+        if (_daySlider.IsOnCrunch)
+        {
+            SceneManager.LoadScene(3);
+        }
         _roomLose++;
         _daySlider.RemoveValue(_daySlider.OnRoomLoose);
 
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void LinkLifts()
     {
         ShuffleLift(_liftList);
-        for(int i = 0; i < _liftList.Count; i++)
+        for (int i = 0; i < _liftList.Count; i++)
         {
             if (i + 1 >= _liftList.Count)
             {
@@ -88,27 +93,27 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                _liftList[i].TeleportPos = _liftList[i+1].MyPos;
+                _liftList[i].TeleportPos = _liftList[i + 1].MyPos;
             }
         }
     }
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        
-        
+
+
     }
 
     public List<Lift> ShuffleLift(List<Lift> list)
     {
         int r = 0;
         int n = list.Count;
-        while (n> 1)
+        while (n > 1)
         {
             r = Random.Range(0, list.Count - 2);
             Lift l = list[r];
@@ -119,13 +124,13 @@ public class GameManager : MonoBehaviour
         return list;
     }
 
-    
+
 
     public void CheckIfDayFinished()
     {
-        if(_numberOfTasksMade == RoomTaskList.Count)
+        if (_numberOfTasksMade == RoomTaskList.Count)
         {
-            /*_dayTimer.DoTimer = false;
+            /*_dayTimer.DoTimer = false; 
             _daySlider.IsOnCrunch = true;*/
             OpenTheFinalDoor();
         }
@@ -140,13 +145,13 @@ public class GameManager : MonoBehaviour
 
     public void GoToFinalRoom()
     {
-        foreach(GameObject player in _players)
+        foreach (GameObject player in _players)
         {
             if (player != null)
             {
                 player.transform.position = _finalRoom.transform.position;
             }
         }
-        
+
     }
 }

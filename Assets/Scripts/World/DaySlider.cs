@@ -23,12 +23,14 @@ public class DaySlider : MonoBehaviour
     Color _currentColor;
 
     private bool _isOnCrunch = false;
-
+    bool _doSlider = true;
     public float OnRoomLoose { get => _OnRoomLoose; set => _OnRoomLoose = value; }
     public float OnRoomWin { get => _OnRoomWin; set => _OnRoomWin = value; }
     public bool IsOnCrunch { get => _isOnCrunch; set => _isOnCrunch = value; }
     public float DaySliderValue { get => _unclampedValue; }
     public Color SliderColor { get => _currentColor; }
+
+    public bool DoSlider { get => _doSlider; set => _doSlider = value; }
 
     private void Start()
     {
@@ -38,8 +40,11 @@ public class DaySlider : MonoBehaviour
     private void Update()
     {
         _unclampedValue = Mathf.Clamp01(_unclampedValue);
-        RemoveValue(_speedTimer * Time.deltaTime);
-        if(_unclampedValue <= 0)
+        if (DoSlider)
+        {
+            RemoveValue(_speedTimer * Time.deltaTime);
+        }
+        if (_unclampedValue <= 0)
         {
             GetFired();
         }
@@ -83,7 +88,7 @@ public class DaySlider : MonoBehaviour
 
     private void SetColor()
     {
-        //_slider.
+        //_slider. 
         return;
     }
 

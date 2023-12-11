@@ -83,7 +83,6 @@ public abstract class Task : MonoBehaviour
         {
             OnRoomFail();
         }
-        GameManager.Instance.DaySlider.AddValue(.3f);
     }
     public void OnPlayerJoinedTask(GameObject player)
     {

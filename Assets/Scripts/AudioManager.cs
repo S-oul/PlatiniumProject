@@ -32,18 +32,18 @@ public class AudioManager : MonoBehaviour
             Destroy(this);
         }
     }
-    
+
 
     public void PlaySFXOS(string clipName, AudioSource source)
     {
         AudioClip clip = FindClip(clipName);
-        
-        if(clip != null)
+
+        if (clip != null)
         {
             source.PlayOneShot(clip);
 
         }
-        
+
     }
 
     public void PlaySFXOS(AudioClip clip, AudioSource source)
@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySFXLoop(AudioClip clip, AudioSource source)
     {
 
-        
+
         if (clip != null)
         {
             source.clip = clip;
@@ -74,7 +74,7 @@ public class AudioManager : MonoBehaviour
     {
         source.Stop();
         source.clip = null;
-        
+
     }
 
     public AudioClip FindClip(string clipName)
@@ -106,18 +106,19 @@ public class AudioManager : MonoBehaviour
         AudioClip clip = FindClip(clipName);
         Music.clip = clip;
         Music.Play();
+        Music.loop = true;
     }
 
     public IEnumerator FadeToZero(float timeToFade)
     {
         restingTime = timeToFade;
         oldVol = Music.volume;
-        while(restingTime > 0)
+        while (restingTime > 0)
         {
             restingTime -= Time.deltaTime;
             float percent = restingTime / timeToFade;
             print(restingTime + " " + oldVol + " " + Mathf.Lerp(0, oldVol, percent));
-            Music.volume = Mathf.Lerp(0, oldVol,percent);
+            Music.volume = Mathf.Lerp(0, oldVol, percent);
             yield return null;
         }
         Music.volume = 0;

@@ -23,7 +23,7 @@ public class FinalDoor : MonoBehaviour
 
     public IEnumerator OpenDoor()
     {
-        
+        GameManager.Instance.DaySlider.DoSlider = false;
         while (_d1PosX > -0.75f && _d2PosX < 0.75f)
         {
             _d1PosX -= Time.deltaTime;
@@ -37,10 +37,10 @@ public class FinalDoor : MonoBehaviour
 
     public void EnterInTheDoor()
     {
-        if(_isOpened)
+        if (_isOpened)
         {
             GameManager.Instance.GoToFinalRoom();
         }
-        
+
     }
 }

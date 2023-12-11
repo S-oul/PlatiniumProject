@@ -221,7 +221,7 @@ MonoBehaviour:
   _spawn: {fileID: 0}
   _goLeft: 1
   _dir: 0
-  _speed: 0.1
+  _speed: 0.15
   _timeToSwap: 1
   _timePlayerIsDown: 2
   _position: 0
