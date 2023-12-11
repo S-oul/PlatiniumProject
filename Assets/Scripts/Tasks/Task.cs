@@ -28,6 +28,7 @@ public abstract class Task : MonoBehaviour
     public Room RoomTask { get => _room; set => _room = value; }
     public int Difficulty { get => _difficulty; set => _difficulty = value; }
     public bool AddPlayerAtRunTime { get => _addPlayerAtRunTime; set => _addPlayerAtRunTime = value; }
+    public bool IsReplayable { get => _isReplayable; set => _isReplayable = value; }
 
     private void Start()
     {
