@@ -61,7 +61,7 @@ public class CowboyQTE : InputTask
         _currentInputID = 0;
         for (int i = 0; i < _numberOfInputs; i++)
         {
-            Inputs newInput = (Inputs)((int)(Random.Range(0, 10)));
+            Inputs newInput = (Inputs)((int)(Random.Range(0, 8)));
             _inputsNeeded.Add(newInput);
         }
 
@@ -183,6 +183,13 @@ public class CowboyQTE : InputTask
         _playerUI.DisplayCowboyQTEUI(true);
         base.End(value);
         _npcCowboy.GetComponentInChildren<Animator>().SetTrigger("GameEnd");
+        StartCoroutine(ReturnToIdle());
+    }
+
+    IEnumerator ReturnToIdle()
+    {
+        yield return new WaitForSeconds(1);
+        _npcCowboy.SwitchToSpeAnimations(false);
     }
 
 }
