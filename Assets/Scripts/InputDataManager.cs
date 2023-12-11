@@ -16,6 +16,10 @@ public struct InputConfig
     public string namePlaystation;
     public Sprite spritePlaystation;
 
+    [Header("Switch")]
+    public string nameSwitch;
+    public Sprite spriteSwitch;
+
 }
 
 [CreateAssetMenu(fileName = "InputDataManager", menuName = "Assets/InputDataManager")]

@@ -18,48 +18,68 @@ MonoBehaviour:
     spriteXbox: {fileID: 21300000, guid: a44d642fa443e2a4ea055b2db69060d2, type: 3}
     namePlaystation: Square
     spritePlaystation: {fileID: 21300000, guid: 0bdd85e685ae4c1469c96d7d1e21da9b, type: 3}
+    nameSwitch: Y
+    spriteSwitch: {fileID: 21300000, guid: e7b056b4bcf748f47a112e1ca212b632, type: 3}
   - baseName: Y
     nameXbox: Y
     spriteXbox: {fileID: 21300000, guid: 7254c8d095ae52c469b6f24cff2f9c17, type: 3}
     namePlaystation: Triangle
     spritePlaystation: {fileID: 21300000, guid: 56d98b22e5bb93342b0a227226a4124c, type: 3}
+    nameSwitch: X
+    spriteSwitch: {fileID: 21300000, guid: e7bb7a48cdc2a7f438d7002e7589ad03, type: 3}
   - baseName: A
     nameXbox: A
     spriteXbox: {fileID: 21300000, guid: 2b6ac707e76cbc5499212adbfdddb7c2, type: 3}
     namePlaystation: Cross
     spritePlaystation: {fileID: 21300000, guid: 59f8bf28f3671c74bb6469c5454b6058, type: 3}
+    nameSwitch: B
+    spriteSwitch: {fileID: 21300000, guid: 63bff3305c6532040928f7117c9ace0b, type: 3}
   - baseName: B
     nameXbox: B
     spriteXbox: {fileID: 21300000, guid: b008655d43068ef4a8856a5ce5203035, type: 3}
     namePlaystation: Circle
     spritePlaystation: {fileID: 21300000, guid: 97736d9ca92e2ac469eb9ed49ca22077, type: 3}
+    nameSwitch: A
+    spriteSwitch: {fileID: 21300000, guid: 654fe06490e674240bcf06b245655344, type: 3}
   - baseName: R1
     nameXbox: Right Bumper
     spriteXbox: {fileID: 21300000, guid: 6379a1b48a16c964d9981313070b0566, type: 3}
     namePlaystation: R1
     spritePlaystation: {fileID: 21300000, guid: 7c382a4bb478c00459fa383c517a6c68, type: 3}
+    nameSwitch: R
+    spriteSwitch: {fileID: 21300000, guid: 95a7edc5414e7ee47ad10b8de6944746, type: 3}
   - baseName: R2
     nameXbox: Right Trigger
     spriteXbox: {fileID: 21300000, guid: c1841f7c48638134f872f2d779e1651d, type: 3}
     namePlaystation: R2
     spritePlaystation: {fileID: 21300000, guid: 4a008f82e412b744ea0998ebfd20a87d, type: 3}
+    nameSwitch: ZR
+    spriteSwitch: {fileID: 21300000, guid: ec3f30421869e0a4aaf84b8eb2a080b4, type: 3}
   - baseName: R3
     nameXbox: Right Stick Press
     spriteXbox: {fileID: 21300000, guid: 6991517fe59a3df419a76e5878bbd1d8, type: 3}
     namePlaystation: R3
     spritePlaystation: {fileID: 21300000, guid: 016ed0bc634cad94db88d8cbee2130fe, type: 3}
+    nameSwitch: Right Stick
+    spriteSwitch: {fileID: 21300000, guid: f630010144816e7469cf1a3c518985f3, type: 3}
   - baseName: L1
     nameXbox: Left Bumper
     spriteXbox: {fileID: 21300000, guid: 127051a9fd3d2474884e4063dfd6859b, type: 3}
     namePlaystation: L1
     spritePlaystation: {fileID: 21300000, guid: 7a3291089894fbc4ea1f18829382f26e, type: 3}
+    nameSwitch: L
+    spriteSwitch: {fileID: 21300000, guid: 499b37f20b73d4a429a5cb29d14d9051, type: 3}
   - baseName: L2
     nameXbox: Left Trigger
     spriteXbox: {fileID: 21300000, guid: 875d68730d0161245a1bc24bf19cde91, type: 3}
     namePlaystation: L2
     spritePlaystation: {fileID: 21300000, guid: 21779ae74b17fb44895daedb94b9ad6d, type: 3}
+    nameSwitch: ZL
+    spriteSwitch: {fileID: 21300000, guid: 235fd90a828495946ad5c20a34044e89, type: 3}
   - baseName: L3
     nameXbox: Left Stick Press
     spriteXbox: {fileID: 21300000, guid: 3c5c7634102aa244f995471dc75b49b9, type: 3}
     namePlaystation: L3
     spritePlaystation: {fileID: 21300000, guid: 3c9ad75c5df615743bfffd56046947d8, type: 3}
+    nameSwitch: Left Stick
+    spriteSwitch: {fileID: 21300000, guid: ed005a44f307c71458a324e019b95791, type: 3}

@@ -234,6 +234,7 @@ public class PlayerController : MonoBehaviour
         if(context.performed)
         {
             currentContextName = context.action.activeControl.displayName;
+            Debug.Log(currentContextName);
         }
         else
         {
@@ -305,6 +306,7 @@ public class PlayerController : MonoBehaviour
     // Comunicate contol inputs to CharacterContoller2D Script component
     private void FixedUpdate()
     {
+        
         if (_isPlayerDown) { transform.localEulerAngles = new Vector3(0, 0, 90); }
         else { transform.localEulerAngles = new Vector3(0, 0, 0); }
         _controller.Movement(_horizontalMove * Time.fixedDeltaTime, _isJumping);

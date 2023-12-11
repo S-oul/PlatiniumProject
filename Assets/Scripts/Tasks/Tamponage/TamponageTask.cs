@@ -140,12 +140,12 @@ public class TamponageTask : InputTask, ITimedTask
                 _p1Value = 0;
                 _p2Value = 0;
             }
-            if (_player1.currentContextName != "" && _data.InputNamesConverter[_player1.currentContextName] == _inputName)
+            if (_player1.currentContextName != "" && _data.ChoseRightConverterDic(_player1)[_player1.currentContextName] == _inputName)
             {
                 _p1Value++;
                 _player1.currentContextName = "";
             }
-            if (_player2.currentContextName != "" && _data.InputNamesConverter[_player2.currentContextName] == _inputName)
+            if (_player2.currentContextName != "" && _data.ChoseRightConverterDic(_player2)[_player2.currentContextName] == _inputName)
             {
                 _p2Value++;
                 _player2.currentContextName = "";

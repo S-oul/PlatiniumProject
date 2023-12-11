@@ -7,7 +7,23 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
 
-    Dictionary<string, string> inputsNamesConverter = new Dictionary<string, string>()
+    Dictionary<string, string> inputsNamesConverterSwitch = new Dictionary<string, string>()
+    {
+        
+        
+        {"Y", "X" },
+        {"X", "Y" },
+        {"B", "A" },
+        {"A", "B" },
+        {"R", "R1" },
+        {"ZR", "R2" },
+        {"Right Stick", "R3" },
+        {"L", "L1" },
+        {"ZL", "L2" },
+        {"Left Stick", "L3" },
+    };
+
+    Dictionary<string, string> inputsNamesConverterXbox = new Dictionary<string, string>()
     {
         {"X", "X" },
         {"Y", "Y" },
@@ -19,6 +35,10 @@ public class DataManager : MonoBehaviour
         {"Left Bumper", "L1" },
         {"Left Trigger", "L2" },
         {"Left Stick Press", "L3" },
+    };
+
+    Dictionary<string, string> inputsNamesConverterPlaystation = new Dictionary<string, string>()
+    {
         {"Square", "X" },
         {"Triangle", "Y" },
         {"Cross", "A" },
@@ -31,7 +51,7 @@ public class DataManager : MonoBehaviour
         {"L3", "L3" },
     };
 
-    public Dictionary<string, string> InputNamesConverter { get => inputsNamesConverter; }
+    
 
     [SerializeField] List<GameObject> _allTasks = new List<GameObject>();
     [SerializeField] InputDataManager _inputsData;
@@ -45,6 +65,9 @@ public class DataManager : MonoBehaviour
     //public List<Sprite> SpritePlayers { get => _spritePlayers; }
     public List<RuntimeAnimatorController> AnimationPlayers { get => _animationPlayers; }
     public Dictionary<InputDeviceDescription, RuntimeAnimatorController> DicSpritePlayer { get => _dicSpritePlayer; set => _dicSpritePlayer = value; }
+    public Dictionary<string, string> InputsNamesConverterPlaystation { get => inputsNamesConverterPlaystation; set => inputsNamesConverterPlaystation = value; }
+    public Dictionary<string, string> InputsNamesConverterXbox { get => inputsNamesConverterXbox; set => inputsNamesConverterXbox = value; }
+    public Dictionary<string, string> InputsNamesConverterSwitch { get => inputsNamesConverterSwitch; set => inputsNamesConverterSwitch = value; }
 
     Dictionary<SystemLanguage, string> _languageSprite = new Dictionary<SystemLanguage, string>()
     {
@@ -84,6 +107,27 @@ public class DataManager : MonoBehaviour
         
     }
 
+    public Dictionary<string, string> ChoseRightConverterDic(PlayerController player)
+    {
+        Dictionary<string, string> tempDic = new Dictionary<string, string>();
+        switch (player.Type)
+        {
+            case PlayerManager.ControllerType.None:
+                tempDic = inputsNamesConverterPlaystation;
+                break;
+            case PlayerManager.ControllerType.Playstation:
+                tempDic = inputsNamesConverterPlaystation;
+                break;
+            case PlayerManager.ControllerType.Xbox:
+                tempDic = inputsNamesConverterXbox;
+                break;
+            case PlayerManager.ControllerType.Switch:
+                tempDic = inputsNamesConverterSwitch;
+                break;
+        }
+        return tempDic;
+    }
+
     public Sprite FindFlagSprite(SystemLanguage language)
     {
         string name = _languageSprite[language];
@@ -112,6 +156,9 @@ public class DataManager : MonoBehaviour
                         break;
                     case PlayerManager.ControllerType.Playstation:
                         inputSprite = input.spritePlaystation;
+                        break;
+                    case PlayerManager.ControllerType.Switch:
+                        inputSprite = input.spriteSwitch;
                         break;
                     case PlayerManager.ControllerType.None:
                         inputSprite = input.spritePlaystation;

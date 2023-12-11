@@ -81,7 +81,7 @@ public class PlayerManager : MonoBehaviour
             {
                 if ((item is UnityEngine.InputSystem.XInput.XInputController) && (Mathf.Abs((float)(item.lastUpdateTime - gamepad.lastUpdateTime)) < 0.1f))
                 {
-                    
+                    //Debug.Log($"Switch Pro controller detected and a copy of XInput was active at almost the same time. Disabling XInput device. `{gamepad}`; `{item}`");
                     InputSystem.DisableDevice(item);
                 }
             }

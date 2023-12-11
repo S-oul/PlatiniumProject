@@ -112,7 +112,7 @@ public class GoatTask : InputTask, ITimedTask
             foreach(PlayerController controller in _controllers)
             {
                 print(controller.Name);
-                if (controller.currentContextName != "" && _dataManager.InputNamesConverter[controller.currentContextName] == InputsToString[_buttonToPress])
+                if (controller.currentContextName != "" && _dataManager.ChoseRightConverterDic(controller)[controller.currentContextName] == InputsToString[_buttonToPress])
                 {
                     hasclickedOnce = true;
                     _goatPos += _playerForce * Time.fixedDeltaTime;

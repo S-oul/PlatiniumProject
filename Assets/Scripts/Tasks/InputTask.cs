@@ -80,7 +80,7 @@ public abstract class InputTask : Task
             return PlayerInputValue.None;
         }
         
-        _data.InputNamesConverter.TryGetValue(contextName, out string userInputName);
+        _data.ChoseRightConverterDic(controller).TryGetValue(contextName, out string userInputName);
         if (userInputName == inputNeeded)
         {
             print("Right: " + contextName + " // " + inputNeeded);
