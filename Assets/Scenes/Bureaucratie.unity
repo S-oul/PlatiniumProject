@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2891303753b1147ae22b39e48f6f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayTime: 4
+  _dayTime: 240
   _doTimer: 1
   _animator: {fileID: 973819175}
 --- !u!222 &445611535
