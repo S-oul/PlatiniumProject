@@ -103,7 +103,11 @@ public class LeCode : Task
                     _screenText.text = "_ _ _ _";
                 }
                 _screenText.color = Color.white;
-                print("CACACACACA" + _controller.CodeContext.ToCharArray());
+                if(_inputPressed == 0)
+                {
+                    _screenText.text = "";
+                }
+                //print("CACACACACA" + _controller.CodeContext.ToCharArray());
                 switch (DataManager.Instance.ChoseRightConverterDic(_controller)[_controller.CodeContext])
                 {
 
@@ -137,23 +141,26 @@ public class LeCode : Task
                 }
                 _inputPressed += 1;
                 print(_inputPressed);
-                if (_code == _screenText.text)
+                if (_inputPressed == 4)
                 {
-                    End(true);
-                }
-                else if(_screenText.text.Length == 4 && _code != _screenText.text)
-                {
-                    _cross[_error].GetComponent<SpriteRenderer>().color = Color.white;
-                    _error += 1;
-                    if(_error == 3)
+                    _inputPressed = 0;
+                    if (_code == _screenText.text)
                     {
-                        IsReplayable = false;
+                        End(true);
                     }
-                    _screenText.color = Color.red;
-                    End(false);
-                    //Debug.Log("Wrong code");
-                }
-                
+                    else
+                    {
+                        _cross[_error].GetComponent<SpriteRenderer>().color = Color.white;
+                        _error += 1;
+                        if (_error == 3)
+                        {
+                            IsReplayable = false;
+                        }
+                        _screenText.color = Color.red;
+                        End(false);
+                        //Debug.Log("Wrong code");
+                    }
+                }                
             }
         }
     }
