@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,10 +11,15 @@ public class LeCode : Task
     PlayerInput _playerInput;
 
     [SerializeField] GameObject _postIt;
+
+    [SerializeField] List<GameObject> _cross = new List<GameObject>();
+
     string _code = "";
     TextMeshPro _screenText;
 
     int _inputPressed = 0;
+    int _maxError = 3;
+    int _error = 0;
 
     public bool HaveOnePlayer() { if (PlayersDoingTask[0] != null) return true; else return false; }
     public PlayerController Controller { get => _controller; set => _controller = value; }
@@ -90,18 +96,18 @@ public class LeCode : Task
     {
         if (IsStarted && !IsDone)
         {
-            if(_controller.CodeContext != null)
+            if(!string.IsNullOrEmpty(_controller.CodeContext))
             {
                 if (_inputPressed > 3)
                 {
                     _screenText.text = "_ _ _ _";
                 }
                 _screenText.color = Color.white;
-                switch (_controller.CodeContext)
+                print("CACACACACA" + _controller.CodeContext.ToCharArray());
+                switch (DataManager.Instance.ChoseRightConverterDic(_controller)[_controller.CodeContext])
                 {
 
                     //HAUT
-                    case "Triangle":
                     case "Y":
                         //print("aaaa");
                         _screenText.text += "1";
@@ -109,7 +115,6 @@ public class LeCode : Task
                     break;
 
                     //BAS
-                    case "Cross":
                     case "A":
                         _screenText.text += "3";
                         _controller.CodeContext = "";
@@ -117,7 +122,6 @@ public class LeCode : Task
                         break;
 
                     //Gauche
-                    case "Square":
                     case "X":
                         _screenText.text += "4";
                         _controller.CodeContext = "";
@@ -125,7 +129,6 @@ public class LeCode : Task
                         break;
 
                     //Droite
-                    case "Circle":
                     case "B":
                         _screenText.text += "2";
                         _controller.CodeContext = "";
@@ -133,13 +136,19 @@ public class LeCode : Task
                         break;
                 }
                 _inputPressed += 1;
+                print(_inputPressed);
                 if (_code == _screenText.text)
                 {
                     End(true);
                 }
                 else if(_screenText.text.Length == 4 && _code != _screenText.text)
                 {
-
+                    _cross[_error].GetComponent<SpriteRenderer>().color = Color.white;
+                    _error += 1;
+                    if(_error == 3)
+                    {
+                        IsReplayable = false;
+                    }
                     _screenText.color = Color.red;
                     End(false);
                     //Debug.Log("Wrong code");
