@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using TMPro;
 
 public class Building : MonoBehaviour
 {
@@ -83,6 +84,8 @@ public class Building : MonoBehaviour
                 Room spawnRoom = InstantiateRoom(_spawnRoom, height, i);
                 i += spawnRoom.RoomSize;
                 _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
+                
+                
             }
             else
             {
@@ -117,6 +120,8 @@ public class Building : MonoBehaviour
                 Room spawnRoom = InstantiateRoom(_spawnRoom, height, i);
                 i += spawnRoom.RoomSize;
                 _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
+                _gameManager.RoomsRemainingText = spawnRoom.transform.Find("Screen").Find("Value").GetComponent<TextMeshProUGUI>();
+                
             }
             else
             {
@@ -138,6 +143,7 @@ public class Building : MonoBehaviour
                 i += InstantiateRoom(_allPool[intC][r], height, i).RoomSize;
             }
         }
+        
     }
 
     Room InstantiateRoom(GameObject room, float height, int roomStart)
