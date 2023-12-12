@@ -24,7 +24,10 @@ public class GoatTask : InputTask, ITimedTask
     PlayerController _controller;
     List<PlayerController> _controllers = new List<PlayerController>();
     Animator theAnimator;
-
+    [SerializeField] Transform _idleAnimation;
+    [SerializeField] Transform _eatAnimation;
+    [SerializeField] Transform _goatSprite;
+    
 
     [SerializeField] Inputs _buttonToPress;
 
@@ -55,6 +58,7 @@ public class GoatTask : InputTask, ITimedTask
         {
             _goatForce *= ((float)(Difficulty) / 2);
         }
+        SwitchToEatAnimation(false);
 
 
 
@@ -72,12 +76,29 @@ public class GoatTask : InputTask, ITimedTask
         theAnimator = GetComponentInChildren<Animator>();
     }
 
+    void SwitchToEatAnimation(bool value)
+    {
+        _idleAnimation.gameObject.SetActive(!value);
+        _eatAnimation.gameObject.SetActive(value);  
+    }
+
+    IEnumerator WaitForEndOfEating()
+    {
+        _eatAnimation.GetComponent<Animator>().SetTrigger("Eat");
+        yield return new WaitForSeconds(0.6f);
+        _goatSprite.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.6f);
+        SwitchToEatAnimation(false);
+    }
+
     public override void End(bool IsSuccess)
     {
         theAnimator.SetTrigger("GoatIdle");
         if (IsSuccess)
         {
             AudioManager.instance.PlaySFXOS("UndergroundCreatureEat", _monster.gameObject.GetComponent<AudioSource>());
+            SwitchToEatAnimation(true);
+            StartCoroutine(WaitForEndOfEating());
             print("GG : Remaining " + _actualTime);    
         }
         else

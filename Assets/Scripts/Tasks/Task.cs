@@ -63,6 +63,8 @@ public abstract class Task : MonoBehaviour
 
     }
 
+    
+
     public virtual void End(bool isSuccessful)
     {
         PlayersDoingTask.Clear();
@@ -195,7 +197,8 @@ public abstract class Task : MonoBehaviour
     {
         Debug.Log(gameObject.name + " = Success " + _difficulty);
         GameManager.Instance.NumberOfTasksMade++;
-        
+        GameManager.Instance.RoomsRemainingText.text = (GameManager.Instance.RoomTaskList.Count - GameManager.Instance.NumberOfTasksMade).ToString();
+
         GameManager.Instance.RoomWin();
         GameManager.Instance.CheckIfDayFinished();
         if (_room.WinStateScreen != null)
@@ -220,6 +223,8 @@ public abstract class Task : MonoBehaviour
                 _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Fail);
             }
             GameManager.Instance.NumberOfTasksMade++;
+            GameManager.Instance.RoomsRemainingText.text = (GameManager.Instance.RoomTaskList.Count - GameManager.Instance.NumberOfTasksMade).ToString();
+
         }
         //Debug.Log(gameObject.name);
         GameManager.Instance.RoomLose();

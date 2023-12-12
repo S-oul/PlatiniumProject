@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
     {
         _dayTimer = DayManager.DayTimer;
         _daySlider = DayManager.DaySlider;
+        RoomsRemainingText.text = (RoomTaskList.Count - NumberOfTasksMade).ToString();
+
     }
 
     public int RoomWin()
@@ -158,4 +160,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+   
 }
