@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public abstract class Task : MonoBehaviour
@@ -197,7 +198,7 @@ public abstract class Task : MonoBehaviour
     {
         Debug.Log(gameObject.name + " = Success " + _difficulty);
         GameManager.Instance.NumberOfTasksMade++;
-        GameManager.Instance.RoomsRemainingText.text = (GameManager.Instance.RoomTaskList.Count - GameManager.Instance.NumberOfTasksMade).ToString();
+        GameManager.Instance.RoomRemainingText.Find("Value").GetComponent<TextMeshProUGUI>().text = (GameManager.Instance.RoomTaskList.Count - GameManager.Instance.NumberOfTasksMade).ToString();
 
         GameManager.Instance.RoomWin();
         GameManager.Instance.CheckIfDayFinished();
@@ -223,7 +224,7 @@ public abstract class Task : MonoBehaviour
                 _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Fail);
             }
             GameManager.Instance.NumberOfTasksMade++;
-            GameManager.Instance.RoomsRemainingText.text = (GameManager.Instance.RoomTaskList.Count - GameManager.Instance.NumberOfTasksMade).ToString();
+            GameManager.Instance.RoomRemainingText.Find("Value").GetComponent<TextMeshProUGUI>().text = (GameManager.Instance.RoomTaskList.Count - GameManager.Instance.NumberOfTasksMade).ToString();
 
         }
         //Debug.Log(gameObject.name);
