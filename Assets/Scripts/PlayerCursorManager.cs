@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerCursorManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerCursorManager : MonoBehaviour
     [SerializeField] CVChoice _cvChoice;
     [SerializeField] RectTransform _spawnZone;
     [SerializeField] List<GameObject> _buttons;
+    [SerializeField] TextMeshProUGUI _playersRemaining;
     public List<PlayerInput> Players { get => players; set => players = value; }
     public RectTransform SpawnZone { get => _spawnZone; set => _spawnZone = value; }
     private void Start()
@@ -18,6 +20,7 @@ public class PlayerCursorManager : MonoBehaviour
             print("coubeh");
             AudioManager.instance.PlayMusic("MainMenuMusic");
         }
+        _playersRemaining.text = "4 player(s) left...";
     }
     void OnPlayerJoined(PlayerInput player)
     {
@@ -38,7 +41,15 @@ public class PlayerCursorManager : MonoBehaviour
             player.gameObject.GetComponent<CursorPlayer>().CurrentZoneID = 1;
             CheckController(player);
         }
-            
+        if(players.Count == 4)
+        {
+            _playersRemaining.gameObject.SetActive(false);
+        }
+        else
+        {
+            _playersRemaining.text = (4 - players.Count) + " player(s) left...";
+        }
+        
 
     }
 
