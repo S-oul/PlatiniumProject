@@ -149,9 +149,8 @@ public class GameManager : MonoBehaviour
         {
             if (player != null)
             {
-                player.transform.position = _finalRoom.transform.position;
+                player.transform.position = _finalRoom.transform.position + Vector3.up *4;
             }
         }
-
     }
 }

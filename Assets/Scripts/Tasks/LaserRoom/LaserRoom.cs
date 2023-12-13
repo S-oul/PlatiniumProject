@@ -42,7 +42,7 @@ public class LaserRoom : Task
     void Start()
     {
         // _actualTime = _givenTime; 
-        RoomTask = transform.parent.parent.GetComponent<Room>();
+        RoomTask = transform.GetComponent<Room>();
         _cam = Camera.main.GetComponent<Cam>();
 
         _bossAnimator = GameObject.Find("BossAnime").GetComponent<Animator>();
@@ -81,6 +81,8 @@ public class LaserRoom : Task
         {
             AudioManager.instance.PlayMusic("LaserRoomMusic");
         }
+        Debug.Log("Triggered boss START anime");
+        TriggerBossStartAnimation();
         print(NumberOfPlayers + " " + RoomTask.ListPlayer.Count);
         if (RoomTask.ListPlayer.Count >= NumberOfPlayers)
         {
@@ -250,6 +252,11 @@ public class LaserRoom : Task
     void TriggerGameWinBossAnimation()
     {
         _bossAnimator.SetTrigger("GameWin");
+    }
+
+    void TriggerBossStartAnimation()
+    {
+        _bossAnimator.SetTrigger("BossFightStart");
     }
 }
 
