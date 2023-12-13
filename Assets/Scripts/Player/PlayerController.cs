@@ -374,8 +374,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator PlaySoundWalking()
     {
         _walkingSoundCanPlay = false;
-        AudioClip clip = AudioManager.instance.FindClip("PlayerWalk");
-        AudioManager.instance.PlaySFXOS(clip, _audioSource);
+        AudioClip clip = AudioManager.Instance.FindClip("PlayerWalk");
+        AudioManager.Instance.PlaySFXOS(clip, _audioSource);
         //print("Audio");
 
         _runParticles.Play();

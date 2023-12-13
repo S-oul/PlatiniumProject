@@ -45,9 +45,9 @@ public class PlayerManager : MonoBehaviour
             AssignSortingOrder(GameManager.Instance.Players[newPlayer.playerIndex]);
             newPlayer.actions["InputTask"].Disable();                                                         // is "InputTask" the 'task' of adding a player?
             Camera.main.gameObject.GetComponent<Cam>().Targets.Add(newPlayer.gameObject);
-            if(AudioManager.instance != null)
+            if(AudioManager.Instance != null)
             {
-                AudioManager.instance.AllSoundSource.Add(newPlayer.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
+                AudioManager.Instance.AllSoundSource.Add(newPlayer.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
             }
             
             

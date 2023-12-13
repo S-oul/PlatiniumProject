@@ -57,7 +57,7 @@ public class DuolingoTask : InputTask
         _otherPlayer = players[1];
         _rightAnswerIndex = 0;
         _npcDuolingo.GetComponent<UINpc>().DisplayTalkingBubble(true);
-        AudioManager.instance.PlaySFXOS("Zerobingo", _npcDuolingo.gameObject.GetComponent<AudioSource>());
+        AudioManager.Instance.PlaySFXOS("Zerobingo", _npcDuolingo.gameObject.GetComponent<AudioSource>());
         TaskLoop();
         /*_rightAnswers.Clear();
         _wordToKey.Clear();

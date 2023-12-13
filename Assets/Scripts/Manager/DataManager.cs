@@ -96,13 +96,26 @@ public class DataManager : MonoBehaviour
 
 
 
-    
+    private void Start()
+    {
+        if (DataManager.Instance == null)
+        {
+            Awake();
+        }
+    }
     private void Awake()
     {
         if (Instance == null)
         {
+            print("Set Data Instance");
+            print(DicSpritePlayer.Count);
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            print("Double DATA Manager initiate Destroy");
+            Destroy(gameObject);
         }
         
     }
@@ -168,5 +181,13 @@ public class DataManager : MonoBehaviour
             }
         }
         return inputSprite;
+    }
+
+
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
+        DestroyImmediate(gameObject);
+        //return this.gameObject;
     }
 }

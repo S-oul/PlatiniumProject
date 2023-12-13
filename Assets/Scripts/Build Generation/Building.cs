@@ -261,10 +261,10 @@ public class Building : MonoBehaviour
     #region Generate & Destroy Button
     private void Generate()
     {
-        if(AudioManager.instance != null)
+        if(AudioManager.Instance != null)
         {
-            AudioManager.instance.PlayMusic("IngameMusic");
-            AudioManager.instance.PlaySFXLoop("AmbianceOffice", AudioManager.instance.transform.Find("SFX").GetComponent<AudioSource>());
+            AudioManager.Instance.PlayMusic("IngameMusic");
+            AudioManager.Instance.PlaySFXLoop("AmbianceOffice", AudioManager.Instance.transform.Find("SFX").GetComponent<AudioSource>());
         }
         
         _hasSpawnRoom = false;

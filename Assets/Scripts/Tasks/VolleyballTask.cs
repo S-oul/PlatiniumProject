@@ -101,7 +101,7 @@ public class VolleyballTask : Task
     IEnumerator TimerBeforeBall(float time)
     {
         yield return new WaitForSeconds(time/4 * 3);
-        AudioManager.instance.PlaySFXOS("SquidVO", _squid.GetComponent<AudioSource>());
+        AudioManager.Instance.PlaySFXOS("SquidVO", _squid.GetComponent<AudioSource>());
         yield return new WaitForSeconds(time/4);
         /*while (time > 0)
         {
@@ -203,6 +203,6 @@ public class VolleyballTask : Task
     public void PlayTentacleAnimation()
     {
         Tentacle.GetComponent<Animator>().SetTrigger("Attacks");
-        AudioManager.instance.PlaySFXOS("SquidHit", _squid.GetComponent<AudioSource>());
+        AudioManager.Instance.PlaySFXOS("SquidHit", _squid.GetComponent<AudioSource>());
     }
 }

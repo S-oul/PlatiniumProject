@@ -128,7 +128,7 @@ public class TamponageTask : InputTask, ITimedTask
             {
                 if (!_hasTamponnageSoundPlayedP2)
                 {
-                    AudioManager.instance.PlaySFXOS("Tampon", _player2.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
+                    AudioManager.Instance.PlaySFXOS("Tampon", _player2.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
                     _hasTamponnageSoundPlayedP2 = true;
                 }
                 
@@ -161,7 +161,7 @@ public class TamponageTask : InputTask, ITimedTask
             {
                 if (!_hasTamponnageSoundPlayedP1)
                 {
-                    AudioManager.instance.PlaySFXOS("Tampon", _player1.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
+                    AudioManager.Instance.PlaySFXOS("Tampon", _player1.gameObject.transform.Find("AudioSource").GetComponent<AudioSource>());
                     _hasTamponnageSoundPlayedP1 = true;
 
                 }
@@ -198,7 +198,7 @@ public class TamponageTask : InputTask, ITimedTask
         _player2.GetComponent<PlayerController>().DisableAllInputs();
         _player1UI.DisplayInputToPress(false, "");
         _player2UI.DisplayInputToPress(false, "");
-        AudioManager.instance.PlaySFXOS("QTEFail", RoomTask.AudioSource);
+        AudioManager.Instance.PlaySFXOS("QTEFail", RoomTask.AudioSource);
         yield return new WaitForSeconds(5);
         _textScore.color = Color.white;
         _textScore.text = _numOfClicksDone + "/" + _numOfClicksToDo;

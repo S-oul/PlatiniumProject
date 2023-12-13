@@ -121,7 +121,7 @@ public class CowboyQTE : InputTask
         _controller.currentContextName = "";
         if (isInputRight)
         {
-            AudioManager.instance.PlaySFXOS("QTESuccess", RoomTask.gameObject.GetComponent<AudioSource>());
+            AudioManager.Instance.PlaySFXOS("QTESuccess", RoomTask.gameObject.GetComponent<AudioSource>());
             _currentInputID++;
             if (_currentInputID == _numberOfInputs)
             {
@@ -141,7 +141,7 @@ public class CowboyQTE : InputTask
         }
         else
         {
-            AudioManager.instance.PlaySFXOS("QTEFail", RoomTask.gameObject.GetComponent<AudioSource>());
+            AudioManager.Instance.PlaySFXOS("QTEFail", RoomTask.gameObject.GetComponent<AudioSource>());
             _numberOfFails++;
             FeedBackBadInputs();
             if (_numberOfFails == 3)

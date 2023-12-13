@@ -13,10 +13,10 @@ public class PlayerCursorManager : MonoBehaviour
     public RectTransform SpawnZone { get => _spawnZone; set => _spawnZone = value; }
     private void Start()
     {
-        if(AudioManager.instance != null && !AudioManager.instance.Music.isPlaying)
+        if(AudioManager.Instance != null && !AudioManager.Instance.Music.isPlaying)
         {
             print("coubeh");
-            AudioManager.instance.PlayMusic("MainMenuMusic");
+            AudioManager.Instance.PlayMusic("MainMenuMusic");
         }
     }
     void OnPlayerJoined(PlayerInput player)

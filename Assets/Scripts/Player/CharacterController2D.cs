@@ -84,7 +84,7 @@ public class CharacterController2D : MonoBehaviour
 				{
 					
 
-                    AudioManager.instance.PlaySFXOS("PlayerLand", m_AudioSource);
+                    AudioManager.Instance.PlaySFXOS("PlayerLand", m_AudioSource);
 					foreach (Transform particle in AllParticles.Find("Land"))
 					{
 						particle.GetComponent<ParticleSystem>().Play();
@@ -132,7 +132,7 @@ public class CharacterController2D : MonoBehaviour
             // Trigger Player Jump animation. 
             GetComponentInChildren<Animator>().SetTrigger("JumpAnimationTrigger");
 
-			AudioManager.instance.PlaySFXOS("PlayerJump", m_AudioSource);
+			AudioManager.Instance.PlaySFXOS("PlayerJump", m_AudioSource);
         }
 
     }

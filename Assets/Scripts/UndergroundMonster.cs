@@ -23,8 +23,8 @@ public class UndergroundMonster : InteractableNPC
     IEnumerator PlaySoundMonster()
     {
         _monsterSoundCanPlay = false;
-        AudioClip clip = AudioManager.instance.FindClip("UndergroundCreature");
-        AudioManager.instance.PlaySFXOS(clip, _audioSource);
+        AudioClip clip = AudioManager.Instance.FindClip("UndergroundCreature");
+        AudioManager.Instance.PlaySFXOS(clip, _audioSource);
         yield return new WaitForSeconds(clip.length + 1f);
         _monsterSoundCanPlay = true;
     }

@@ -40,7 +40,7 @@ public class CowboyNPC : NPC, IChattyNPC
     {
         SwitchToSpeAnimations(true);
         GetComponentInChildren<Animator>().SetTrigger("Fire");
-        AudioManager.instance.PlaySFXOS("SherifShootgun", gameObject.GetComponent<AudioSource>());
+        AudioManager.Instance.PlaySFXOS("SherifShootgun", gameObject.GetComponent<AudioSource>());
     }
 
   

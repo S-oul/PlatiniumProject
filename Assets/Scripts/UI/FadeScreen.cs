@@ -18,7 +18,7 @@ public class FadeScreen : MonoBehaviour
 
     public IEnumerator Fade(bool fadeAway)
     {
-        print("ca marche FADE");
+        print("ca marche FADE : " + fadeAway);
         // fade from opaque to transparent
         if (fadeAway)
         {
@@ -44,7 +44,7 @@ public class FadeScreen : MonoBehaviour
 
         yield return new WaitForSeconds(timeFade);
 
-        SceneManager.LoadScene("Bureaucratie");
+        SceneManager.LoadScene(2);
         //print("ca change de scene");
     }
 }

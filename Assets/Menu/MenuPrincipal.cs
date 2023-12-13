@@ -25,9 +25,9 @@ public class MenuPrincipal : MonoBehaviour
 
     private void Start()
     {
-        if (AudioManager.instance != null)
+        if (AudioManager.Instance != null)
         {
-            AudioManager.instance.PlayMusic("MainMenuMusic");
+            AudioManager.Instance.PlayMusic("MainMenuMusic");
         }
     }
 

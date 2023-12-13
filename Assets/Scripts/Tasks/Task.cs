@@ -217,7 +217,7 @@ public abstract class Task : MonoBehaviour
         {
             _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Success);
         }
-        AudioManager.instance.PlaySFXOS("TaskSucceed", _room.AudioSource);
+        AudioManager.Instance.PlaySFXOS("TaskSucceed", _room.AudioSource);
     }
     public void OnRoomFail()
     {
@@ -242,7 +242,7 @@ public abstract class Task : MonoBehaviour
         GameManager.Instance.RoomLose();
         GameManager.Instance.CheckIfDayFinished();
 
-        AudioManager.instance.PlaySFXOS("TaskFail", _room.AudioSource);
+        AudioManager.Instance.PlaySFXOS("TaskFail", _room.AudioSource);
 
 
     }

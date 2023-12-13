@@ -77,9 +77,9 @@ public class LaserRoom : Task
     {
         base.Init();
 
-        if (AudioManager.instance != null)
+        if (AudioManager.Instance != null)
         {
-            AudioManager.instance.PlayMusic("LaserRoomMusic");
+            AudioManager.Instance.PlayMusic("LaserRoomMusic");
         }
         Debug.Log("Triggered boss START anime");
         TriggerBossStartAnimation();

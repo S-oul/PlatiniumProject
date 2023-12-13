@@ -188,5 +188,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
+        DestroyImmediate(gameObject);
+        //DestroyObject(gameObject);
+        //return this.gameObject;
+    }
    
 }

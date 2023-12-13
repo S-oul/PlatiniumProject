@@ -67,7 +67,7 @@ public class Laser : MonoBehaviour
         _line = GetComponent<LineRenderer>();
 
         _isActive = true;
-        AudioManager.instance.PlaySFXLoop(AudioManager.instance.FindClip("LaserConstant"), _audioSource);
+        AudioManager.Instance.PlaySFXLoop(AudioManager.Instance.FindClip("LaserConstant"), _audioSource);
         _line.enabled = true;
 
     }
@@ -103,7 +103,7 @@ public class Laser : MonoBehaviour
             _line.SetPositions(v3s);
             if (ray.collider.CompareTag("Player"))
             {
-                AudioManager.instance.PlaySFXOS("LaserImpact", _audioSource);
+                AudioManager.Instance.PlaySFXOS("LaserImpact", _audioSource);
                 StartCoroutine(ray.collider.GetComponent<PlayerController>().PlayerDown(TimePlayerIsDown));
             }
         }

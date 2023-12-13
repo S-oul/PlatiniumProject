@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager Instance;
 
     [SerializeField] AudioSource _sfx;
     [SerializeField] List<AudioSource> allSoundSource;
@@ -22,9 +22,9 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -141,5 +141,14 @@ public class AudioManager : MonoBehaviour
         Music.volume = 0;
         restingTime = 0;
         oldVol = 0;
+    }
+
+
+
+    public void DestroySelf()
+    {
+        Destroy(this.gameObject);
+        DestroyImmediate(this.gameObject);
+        //return this.gameObject;
     }
 }
