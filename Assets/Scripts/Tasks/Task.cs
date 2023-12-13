@@ -4,6 +4,10 @@ using UnityEngine;
 
 public abstract class Task : MonoBehaviour
 {
+    [SerializeField] float rumbleLowForce = .4f;
+    [SerializeField] float rumbleHighForce = .1f;
+    [SerializeField] float rumbleTime = .4f;
+
     public Action<Task> OnTaskCompleted { get; set; }
     private List<GameObject> _playersDoingTask = new List<GameObject>();
     [Header("Task variables")]
@@ -67,7 +71,6 @@ public abstract class Task : MonoBehaviour
 
     public virtual void End(bool isSuccessful)
     {
-        PlayersDoingTask.Clear();
         IsStarted = false;
         if (_isReplayable)
         {
@@ -84,6 +87,17 @@ public abstract class Task : MonoBehaviour
         }
         else
         {
+            print("TaskFAIled");
+            foreach(GameObject p in _playersDoingTask)
+            {
+                print("AyoWhatdatfuk");
+                if (p != null)
+                {
+                    print("realnuggets" + p.name);
+                    StartCoroutine(p.GetComponent<PlayerController>().RumbeMeDaddy(rumbleLowForce, rumbleHighForce, rumbleTime));   
+                }
+            }
+            PlayersDoingTask.Clear();
             OnRoomFail();
         }
     }

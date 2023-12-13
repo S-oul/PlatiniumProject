@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     AudioSource _audioSource;
 
+    Gamepad pad = Gamepad.current;
+
     string _codeContext;
     Vector2 _DecrytContext;
     Vector2 _joystickContext;
@@ -247,8 +249,7 @@ public class PlayerController : MonoBehaviour
         
         if (context.performed)
         {
-            _isInteracting = true ;
-            
+            _isInteracting = true;
         }
         else
         {
@@ -287,6 +288,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             _joystickContext = Vector2.one;
+        }
+    }
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            print("CONTROLLER COFFEE");
+            GameManager.Instance.SetPause();
         }
     }
 
@@ -386,9 +395,20 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.OpenTheFinalDoor();
         }
-
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            GameManager.Instance.SetPause();
+        }
     }
 
+    public IEnumerator RumbeMeDaddy(float lowfreq, float highfreq, float time)
+    {
+        print("RABLIMG");
+        pad.SetMotorSpeeds(lowfreq, highfreq);
+        yield return new WaitForSecondsRealtime(time);
+        pad.SetMotorSpeeds(0, 0);
+
+    }
     public void ChangeMobiltyFactor(float moveSpeedFactor, float jumpForceFactor)
     {
         _moveSpeed = _baseMoveSpeed * moveSpeedFactor;

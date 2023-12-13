@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour
 
     TextMeshProUGUI _roomsRemainingText;
 
-    public int PlayerCount { get => _playerCount; set => _playerCount = value; }
+    [SerializeField] GameObject _pauseMenu;
+    [SerializeField] bool _pauseBool = false;
 
+    public int PlayerCount { get => _playerCount; set => _playerCount = value; }
     public List<GameObject> Players { get => _players; set => _players = value; }
     public List<Room> RoomList { get => _roomList; set => _roomList = value; }
     public List<Lift> LiftList { get => _liftList; set => _liftList = value; }
@@ -49,6 +51,8 @@ public class GameManager : MonoBehaviour
     public DayManager DayManager { get => _dayManager; set => _dayManager = value; }
     public DaySlider DaySlider { get => _daySlider; set => _daySlider = value; }
     public TextMeshProUGUI RoomsRemainingText { get => _roomsRemainingText; set => _roomsRemainingText = value; }
+    public bool PauseBool { get => _pauseBool; set => _pauseBool = value; }
+    public GameObject PauseMenu { get => _pauseMenu; set => _pauseMenu = value; }
 
     public float DaySliderOverDay = 0;
     private void Start()
@@ -148,7 +152,22 @@ public class GameManager : MonoBehaviour
         _daySlider.IsOnCrunch = true;
         StartCoroutine(_finalDoor.GetComponent<FinalDoor>().OpenDoor());
     }
+    public void SetPause()
+    {
+        print("MANGER COFFEE");
+        _pauseBool = !_pauseBool;
+        _pauseMenu.SetActive(_pauseBool);
+        if (_pauseBool)
+        {
+            Time.timeScale = 0;
 
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
+    }
     public void GoToFinalRoom()
     {
         foreach (GameObject player in _players)
