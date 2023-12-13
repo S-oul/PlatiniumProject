@@ -25,6 +25,18 @@ public class CVChoice : MonoBehaviour
                 Cvs[player.CurrentCVID].GoOnCV(player.gameObject);
 
             }
+            else if(player.CurrentCVID + value >= Cvs.Count)
+            {
+                Cvs[player.CurrentCVID].ExitCV(player.gameObject);
+                player.CurrentCVID = 0;
+                Cvs[player.CurrentCVID].GoOnCV(player.gameObject);
+            }
+            else if(player.CurrentCVID + value < 0)
+            {
+                Cvs[player.CurrentCVID].ExitCV(player.gameObject);
+                player.CurrentCVID = 3;
+                Cvs[player.CurrentCVID].GoOnCV(player.gameObject);
+            }
         }
         player.CanInteract = true;
     }

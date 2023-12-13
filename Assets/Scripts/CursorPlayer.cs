@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 
 public class CursorPlayer : MonoBehaviour
 {
@@ -50,6 +50,18 @@ public class CursorPlayer : MonoBehaviour
         
     }
 
+    void CursorIsLocked(bool value)
+    {
+        if (value)
+        {
+            transform.Find("Sprite").GetComponent<Image>().color = new Color32(0, 0, 0, 205);
+        }
+        else
+        {
+            transform.Find("Sprite").GetComponent<Image>().color = Color.white;
+        }
+    }
+
     public void OnSubmit(InputAction.CallbackContext context)
     {
         if(CurrentZoneID == 0)
@@ -61,12 +73,14 @@ public class CursorPlayer : MonoBehaviour
                     if (!_cvChoice.Cvs[CurrentCVID].IsChosen)
                     {
                         HasChosenCV = true;
+                        CursorIsLocked(true);
                         _cvChoice.Cvs[CurrentCVID].LockCV(this);
                     }
                 }
                 else if (HasChosenCV)
                 {
                     HasChosenCV = false;
+                    CursorIsLocked(false);
                     _cvChoice.Cvs[CurrentCVID].UnlockCV();
                 }
             }

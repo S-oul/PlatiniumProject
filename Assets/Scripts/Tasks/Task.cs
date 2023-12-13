@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,7 +9,6 @@ public abstract class Task : MonoBehaviour
     [SerializeField] float rumbleHighForce = .1f;
     [SerializeField] float rumbleTime = .4f;
 
-    public Action<Task> OnTaskCompleted { get; set; }
     private List<GameObject> _playersDoingTask = new List<GameObject>();
     [Header("Task variables")]
     [Range(1, 4)][SerializeField] int _numberOfPlayers = 1;
@@ -37,7 +36,18 @@ public abstract class Task : MonoBehaviour
 
     private void Start()
     {
-
+        switch (GameManager.Instance.DayIndex)
+        {
+            case 0:
+                _difficulty = 1;
+                break;
+            case 1:
+                _difficulty = Random.Range(2, 4);
+                break;
+            case 2:
+                _difficulty = Random.Range(4, 6);
+                break;
+        }
         
 
     }
