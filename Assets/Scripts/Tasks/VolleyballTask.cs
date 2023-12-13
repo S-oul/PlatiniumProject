@@ -198,5 +198,6 @@ public class VolleyballTask : Task
     public void PlayTentacleAnimation()
     {
         Tentacle.GetComponent<Animator>().SetTrigger("Attacks");
+        AudioManager.instance.PlaySFXOS("SquidHit", _squid.GetComponent<AudioSource>());
     }
 }

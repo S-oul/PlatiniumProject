@@ -307,20 +307,120 @@ MonoBehaviour:
   - {fileID: 4501893612550109320}
   _music: {fileID: 6845538337165351616}
   soundBank:
-  - audioName: TaskSucceed
-    description: Sound when a task is won
+  - audioName: AmbianceOffice
+    description: 
     audio:
-    - {fileID: 8300000, guid: b4f9b1ab360f37d49ab4c7fc4aec3407, type: 3}
-    - {fileID: 8300000, guid: 94b6f70326500934d809a8f41015aa64, type: 3}
-    - {fileID: 8300000, guid: e99607b297150504dac609b43ec2f93e, type: 3}
-    - {fileID: 8300000, guid: 8e3a7e2d808eebe48ae117d2a6e12faf, type: 3}
-  - audioName: TaskFail
-    description: Sound when a task is failed
+    - {fileID: 8300000, guid: 3be50666857320e4ca82fa928f9a54cc, type: 3}
+  - audioName: BossLaugh
+    description: 
     audio:
-    - {fileID: 8300000, guid: dae5adf41d0290b46be47d71f7132533, type: 3}
-    - {fileID: 8300000, guid: 929d05d6d0c7c2341ac60539b6772bb1, type: 3}
-    - {fileID: 8300000, guid: 76ef13bcdab6e044d9efb66bf554a34d, type: 3}
-    - {fileID: 8300000, guid: 79e3bc2a96911374fb4dff7be51a2253, type: 3}
+    - {fileID: 8300000, guid: 909ba42c112464743bef38f01fc76100, type: 3}
+    - {fileID: 8300000, guid: d5f585bf16842bf4ea56715674c63de6, type: 3}
+    - {fileID: 8300000, guid: 62c4969e8f1e244449cd40a5330d5c26, type: 3}
+    - {fileID: 8300000, guid: 53bf99bdc9b1b544fbba53dcaa0b66a9, type: 3}
+  - audioName: BossPain
+    description: 
+    audio:
+    - {fileID: 8300000, guid: ef33278cb0712fb4e85f5ce147d4f83f, type: 3}
+    - {fileID: 8300000, guid: 9407aa26716939749a8400d68aaa65cd, type: 3}
+    - {fileID: 8300000, guid: 7e5c839a0e4aa364fad334e699990a8d, type: 3}
+    - {fileID: 8300000, guid: ac37d910a3e8d4040bee9e45c48bc947, type: 3}
+  - audioName: Champagne
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 7711a206c70bb50419b52a294a74ae57, type: 3}
+    - {fileID: 8300000, guid: ceb7e5dd2eae0944d817d4c6dc140af2, type: 3}
+    - {fileID: 8300000, guid: eb12fe16376acef49ab55dd1928e33cd, type: 3}
+    - {fileID: 8300000, guid: 4d7329b0acf2a7e43ab25befe0a60b28, type: 3}
+    - {fileID: 8300000, guid: ddd65414399c9004fb47f46f3660cece, type: 3}
+    - {fileID: 8300000, guid: 20414cc9bdb827a46aeedfc343079667, type: 3}
+  - audioName: ElevatorDing
+    description: Elevator ding
+    audio:
+    - {fileID: 8300000, guid: 33edf1378a576c8488883fed3822d929, type: 3}
+  - audioName: ElevatorDoorClose
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 54389e2822aef8d4192014f8eea3d485, type: 3}
+  - audioName: ElevatorDoorOpen
+    description: 
+    audio:
+    - {fileID: 8300000, guid: f88c84cb8f39f7e46b6c6e09196574c3, type: 3}
+  - audioName: EndgameMusic
+    description: Music for end game
+    audio:
+    - {fileID: 8300000, guid: 58c2d32855ded584cb12ef7671eabb40, type: 3}
+  - audioName: GladieuRobot
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 4fe872e6ec6f65e45a511d8fc65445bd, type: 3}
+    - {fileID: 8300000, guid: 457e9e17dfca62545b9a961ec9b59a04, type: 3}
+    - {fileID: 8300000, guid: 971e273ebffb50243b9af14b64e06570, type: 3}
+    - {fileID: 8300000, guid: 70cd0a77244f64f43b520ef13b262c19, type: 3}
+  - audioName: IngameMusic
+    description: Music in game
+    audio:
+    - {fileID: 8300000, guid: 81f1295ef06ae7f4087c444570227dda, type: 3}
+  - audioName: KillDummy
+    description: When you kill the dummy
+    audio:
+    - {fileID: 8300000, guid: 2f3afbcf9d96304419e8adbc4449c281, type: 3}
+  - audioName: LaserConstant
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 707258fe8d0ef6143a45a15c31f3ad5e, type: 3}
+  - audioName: LaserImpact
+    description: 
+    audio:
+    - {fileID: 8300000, guid: d5e4998dce107554ba1e681cf58f6b46, type: 3}
+    - {fileID: 8300000, guid: 9a50988e6f237494e9c831ec47a427b5, type: 3}
+    - {fileID: 8300000, guid: 1bda1aec410dae74fb752e00e2361979, type: 3}
+    - {fileID: 8300000, guid: 4fb060115d3909c40aea2d46062d47f2, type: 3}
+  - audioName: LaserRoomMusic
+    description: Music when laser room
+    audio:
+    - {fileID: 8300000, guid: beaa2ba9285ad584db6aa40e3269e534, type: 3}
+    - {fileID: 8300000, guid: 3136d17bc3a06ca45a9732920a023477, type: 3}
+  - audioName: MainMenuMusic
+    description: Main menu music
+    audio:
+    - {fileID: 8300000, guid: 344214f3ca6fadb45a06e9f3ef516286, type: 3}
+  - audioName: MatrixLaugh
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 3a2c13c436e1c724e90eb69c451c3264, type: 3}
+    - {fileID: 8300000, guid: 41cdcba2c829f4842ba011fb6930076e, type: 3}
+    - {fileID: 8300000, guid: fb48ff05c7ec55c4c8cc3f003b8a69d9, type: 3}
+    - {fileID: 8300000, guid: dd26354f7d904e74b855876cae88503c, type: 3}
+  - audioName: MatrixPain
+    description: 
+    audio:
+    - {fileID: 8300000, guid: e8b7c23db0911c74fa7eabfc9c7ca932, type: 3}
+    - {fileID: 8300000, guid: d9d06ab643ecac7438b5cb9e28578fc2, type: 3}
+    - {fileID: 8300000, guid: ee21ce32d2b1fa947b4a75c2bd1a97ca, type: 3}
+    - {fileID: 8300000, guid: 6d970b808ad87e44b8fb95bf88dead59, type: 3}
+  - audioName: PlayerGrab
+    description: When a player grab
+    audio:
+    - {fileID: 8300000, guid: 4e560b711a38a5a40b7bda9b9443d2ac, type: 3}
+    - {fileID: 8300000, guid: 62d8d23b5850e4443bdc0803f7b6d8bd, type: 3}
+    - {fileID: 8300000, guid: 189a52ed21c021e45b56cd87330861c4, type: 3}
+    - {fileID: 8300000, guid: 3357b1c0cacd7a643864b007ac3bf27d, type: 3}
+  - audioName: PlayerGrabPaper
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 85a7e9c8d565cb040ab7343fbae801db, type: 3}
+    - {fileID: 8300000, guid: 25d9fb5863571894e95619f44d7ff6d3, type: 3}
+    - {fileID: 8300000, guid: 29683b50e9615f04eae6d46c45911fce, type: 3}
+    - {fileID: 8300000, guid: ee366deb8da995846a0664bdbaa8e773, type: 3}
+  - audioName: PlayerHitVolleyBall
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 9068493de6ae49d43925c0877d1bfeac, type: 3}
+    - {fileID: 8300000, guid: a3df0ea763659f147be14405a5d6cf7e, type: 3}
+    - {fileID: 8300000, guid: c75a1783237828740879df960f4799ba, type: 3}
+    - {fileID: 8300000, guid: a88ce23a5c9b1054d807e4fb1322b7fb, type: 3}
+    - {fileID: 8300000, guid: fde73b99e0895f545875620fef56fd1f, type: 3}
   - audioName: PlayerJump
     description: When a player jump
     audio:
@@ -347,13 +447,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 37c772e3ba58f844ab1c15b52a033152, type: 3}
     - {fileID: 8300000, guid: f0f43f3d141a03049979b5b828998cd2, type: 3}
     - {fileID: 8300000, guid: 6f370ee3e9ed203459534f2f1e4ddbce, type: 3}
-  - audioName: PlayerGrab
-    description: When a player grab
-    audio:
-    - {fileID: 8300000, guid: 4e560b711a38a5a40b7bda9b9443d2ac, type: 3}
-    - {fileID: 8300000, guid: 62d8d23b5850e4443bdc0803f7b6d8bd, type: 3}
-    - {fileID: 8300000, guid: 189a52ed21c021e45b56cd87330861c4, type: 3}
-    - {fileID: 8300000, guid: 3357b1c0cacd7a643864b007ac3bf27d, type: 3}
   - audioName: PressButton
     description: 
     audio:
@@ -361,6 +454,16 @@ MonoBehaviour:
     - {fileID: 8300000, guid: e2aa073ae967006478792fe7012a1c28, type: 3}
     - {fileID: 8300000, guid: 68eaa83c14833b24d8b265f792bd2854, type: 3}
     - {fileID: 8300000, guid: df17a84cfbd51a749a16725ac1823dfa, type: 3}
+  - audioName: QTEFail
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 5b0744530e135524e9104351b98abf48, type: 3}
+  - audioName: QTESuccess
+    description: 
+    audio:
+    - {fileID: 8300000, guid: 52df1d0f3295d454fb6ac40cffbd0917, type: 3}
+    - {fileID: 8300000, guid: 36ff3ed1473e1d8418489bca1d0119fb, type: 3}
+    - {fileID: 8300000, guid: 2ebb3159dff4abb429d0dd272509bf44, type: 3}
   - audioName: SherifShootgun
     description: Sherif fire sound
     audio:
@@ -370,32 +473,22 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 326df526198a1294fa276c4710a1e34e, type: 3}
     - {fileID: 8300000, guid: f5f99ff8f88ab154493d8e268abcbd8a, type: 3}
     - {fileID: 8300000, guid: 28a0d36dfac5c5749aecb17f6635f590, type: 3}
-  - audioName: GladieuRobot
+  - audioName: SquidHit
     description: 
     audio:
-    - {fileID: 8300000, guid: 4fe872e6ec6f65e45a511d8fc65445bd, type: 3}
-    - {fileID: 8300000, guid: 457e9e17dfca62545b9a961ec9b59a04, type: 3}
-    - {fileID: 8300000, guid: 971e273ebffb50243b9af14b64e06570, type: 3}
-    - {fileID: 8300000, guid: 70cd0a77244f64f43b520ef13b262c19, type: 3}
-  - audioName: UndergroundCreature
-    description: Goat monster
-    audio:
-    - {fileID: 8300000, guid: f39f679ac01cd3246b1323a34e9afc44, type: 3}
-    - {fileID: 8300000, guid: 8c7c5a546f2af624b8625f14ce6863c5, type: 3}
-    - {fileID: 8300000, guid: 7a50a93460587f0428791782e03293fb, type: 3}
-    - {fileID: 8300000, guid: 3016fdc8c58b7604a83ef9d4ce3716b6, type: 3}
-  - audioName: ElevatorDing
-    description: Elevator ding
-    audio:
-    - {fileID: 8300000, guid: 33edf1378a576c8488883fed3822d929, type: 3}
-  - audioName: ElevatorDoorOpen
+    - {fileID: 8300000, guid: 352685b4d36d21245b21e5c433cf4f4e, type: 3}
+    - {fileID: 8300000, guid: 6837888e7a2e7e646a6c7749d0fa8083, type: 3}
+    - {fileID: 8300000, guid: 8ea1b41b08ffe1545b699e5c2d5ac525, type: 3}
+    - {fileID: 8300000, guid: a9bedab51d76c214fb7db6801484f2ab, type: 3}
+    - {fileID: 8300000, guid: 9138c5e6baf30084aa8dd2461b8f9fa2, type: 3}
+    - {fileID: 8300000, guid: 5f0a96db2087e5042a8332af0994f3e1, type: 3}
+  - audioName: SquidVO
     description: 
     audio:
-    - {fileID: 8300000, guid: f88c84cb8f39f7e46b6c6e09196574c3, type: 3}
-  - audioName: ElevatorDoorClose
-    description: 
-    audio:
-    - {fileID: 8300000, guid: 54389e2822aef8d4192014f8eea3d485, type: 3}
+    - {fileID: 8300000, guid: e316d8138b46fbf428f38da3ffdcf54a, type: 3}
+    - {fileID: 8300000, guid: 1f25d765643b42342bebe73ced61d425, type: 3}
+    - {fileID: 8300000, guid: 06a9362b3386b584a87c7d4819ceb4af, type: 3}
+    - {fileID: 8300000, guid: 6df38ac68a909aa44918c916aed7c071, type: 3}
   - audioName: Tampon
     description: 
     audio:
@@ -404,50 +497,32 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 54b75e9ce71337948809d6be1ca33617, type: 3}
     - {fileID: 8300000, guid: 83ab710944e0ea245af7394392e29589, type: 3}
     - {fileID: 8300000, guid: 4978b8b31a0641a41b7495198f6760b6, type: 3}
-  - audioName: LaserConstant
-    description: 
+  - audioName: TaskFail
+    description: Sound when a task is failed
     audio:
-    - {fileID: 8300000, guid: 707258fe8d0ef6143a45a15c31f3ad5e, type: 3}
-  - audioName: LaserImpact
-    description: 
+    - {fileID: 8300000, guid: dae5adf41d0290b46be47d71f7132533, type: 3}
+    - {fileID: 8300000, guid: 929d05d6d0c7c2341ac60539b6772bb1, type: 3}
+    - {fileID: 8300000, guid: 76ef13bcdab6e044d9efb66bf554a34d, type: 3}
+    - {fileID: 8300000, guid: 79e3bc2a96911374fb4dff7be51a2253, type: 3}
+  - audioName: TaskSucceed
+    description: Sound when a task is won
     audio:
-    - {fileID: 8300000, guid: d5e4998dce107554ba1e681cf58f6b46, type: 3}
-    - {fileID: 8300000, guid: 9a50988e6f237494e9c831ec47a427b5, type: 3}
-    - {fileID: 8300000, guid: 1bda1aec410dae74fb752e00e2361979, type: 3}
-    - {fileID: 8300000, guid: 4fb060115d3909c40aea2d46062d47f2, type: 3}
+    - {fileID: 8300000, guid: b4f9b1ab360f37d49ab4c7fc4aec3407, type: 3}
+    - {fileID: 8300000, guid: 94b6f70326500934d809a8f41015aa64, type: 3}
+    - {fileID: 8300000, guid: e99607b297150504dac609b43ec2f93e, type: 3}
+    - {fileID: 8300000, guid: 8e3a7e2d808eebe48ae117d2a6e12faf, type: 3}
+  - audioName: UndergroundCreature
+    description: Goat monster
+    audio:
+    - {fileID: 8300000, guid: f39f679ac01cd3246b1323a34e9afc44, type: 3}
+    - {fileID: 8300000, guid: 8c7c5a546f2af624b8625f14ce6863c5, type: 3}
+    - {fileID: 8300000, guid: 7a50a93460587f0428791782e03293fb, type: 3}
+    - {fileID: 8300000, guid: 3016fdc8c58b7604a83ef9d4ce3716b6, type: 3}
   - audioName: UndergroundCreatureEat
     description: 
     audio:
     - {fileID: 8300000, guid: 52ef5dd41c2adb44a95e2c65d2cb8230, type: 3}
-  - audioName: PlayerGrabPaper
+  - audioName: Zerobingo
     description: 
     audio:
-    - {fileID: 8300000, guid: 85a7e9c8d565cb040ab7343fbae801db, type: 3}
-    - {fileID: 8300000, guid: 25d9fb5863571894e95619f44d7ff6d3, type: 3}
-    - {fileID: 8300000, guid: 29683b50e9615f04eae6d46c45911fce, type: 3}
-    - {fileID: 8300000, guid: ee366deb8da995846a0664bdbaa8e773, type: 3}
-  - audioName: QTEFail
-    description: 
-    audio:
-    - {fileID: 8300000, guid: 5b0744530e135524e9104351b98abf48, type: 3}
-  - audioName: KillDummy
-    description: When you kill the dummy
-    audio:
-    - {fileID: 8300000, guid: 2f3afbcf9d96304419e8adbc4449c281, type: 3}
-  - audioName: MainMenuMusic
-    description: Main menu music
-    audio:
-    - {fileID: 8300000, guid: 344214f3ca6fadb45a06e9f3ef516286, type: 3}
-  - audioName: LaserRoomMusic
-    description: Music when laser room
-    audio:
-    - {fileID: 8300000, guid: beaa2ba9285ad584db6aa40e3269e534, type: 3}
-    - {fileID: 8300000, guid: 3136d17bc3a06ca45a9732920a023477, type: 3}
-  - audioName: IngameMusic
-    description: Music in game
-    audio:
-    - {fileID: 8300000, guid: 81f1295ef06ae7f4087c444570227dda, type: 3}
-  - audioName: EndgameMusic
-    description: Music for end game
-    audio:
-    - {fileID: 8300000, guid: 58c2d32855ded584cb12ef7671eabb40, type: 3}
+    - {fileID: 8300000, guid: 48a9d035f288cd84b90015f2da808924, type: 3}
