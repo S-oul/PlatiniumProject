@@ -124,7 +124,8 @@ public class MatrixTask : InputTask
     IEnumerator DisplayInputs(List<List<Inputs>> list)
     {
         _teleBoss.SliderActive(false);
-        _teleBoss.DisplayText("Watch!");
+        _teleBoss.DisplayText("Watch carefully!");
+        AudioManager.instance.PlaySFXOS("MatrixLaugh", _teleBoss.gameObject.GetComponent<AudioSource>());
         int IDInput = 0;
         yield return new WaitForSeconds(3); // => Message "Watch!"
         inputsPlayer.Clear();
@@ -133,6 +134,7 @@ public class MatrixTask : InputTask
         colors = SetColorList();
         _teleBoss.SetActiveInput(true);
         _currentInputID = 0;
+        
         switch (_phase)
         {
             case 1:
@@ -371,6 +373,7 @@ public class MatrixTask : InputTask
                 {
                     print("QTE suite réussie");
                     _teleBoss.HitAnimation();
+                    AudioManager.instance.PlaySFXOS("MatrixPain", _teleBoss.gameObject.GetComponent<AudioSource>());
                     _phase++;
                     if(_phase == 4)
                     {

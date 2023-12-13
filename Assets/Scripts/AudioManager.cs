@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
 
         if (clip != null)
         {
+            source.loop = false;
             source.PlayOneShot(clip);
 
         }
@@ -51,6 +52,7 @@ public class AudioManager : MonoBehaviour
 
         if (clip != null)
         {
+            source.loop = false;
             source.PlayOneShot(clip);
 
         }
@@ -63,6 +65,21 @@ public class AudioManager : MonoBehaviour
 
         if (clip != null)
         {
+            source.loop = true;
+            source.clip = clip;
+            source.Play();
+
+        }
+
+    }
+
+    public void PlaySFXLoop(string clipName, AudioSource source)
+    {
+
+        AudioClip clip = FindClip(clipName);
+        if (clip != null)
+        {
+            source.loop = true;
             source.clip = clip;
             source.Play();
 

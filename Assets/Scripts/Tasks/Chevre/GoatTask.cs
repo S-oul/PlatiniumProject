@@ -85,7 +85,9 @@ public class GoatTask : InputTask, ITimedTask
     IEnumerator WaitForEndOfEating()
     {
         _eatAnimation.GetComponent<Animator>().SetTrigger("Eat");
+        AudioManager.instance.PlaySFXOS("UndergroundCreatureEat", _monster.gameObject.GetComponent<AudioSource>());
         yield return new WaitForSeconds(0.6f);
+        
         _goatSprite.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.6f);
         SwitchToEatAnimation(false);
@@ -96,7 +98,7 @@ public class GoatTask : InputTask, ITimedTask
         theAnimator.SetTrigger("GoatIdle");
         if (IsSuccess)
         {
-            AudioManager.instance.PlaySFXOS("UndergroundCreatureEat", _monster.gameObject.GetComponent<AudioSource>());
+            
             SwitchToEatAnimation(true);
             StartCoroutine(WaitForEndOfEating());
             print("GG : Remaining " + _actualTime);    

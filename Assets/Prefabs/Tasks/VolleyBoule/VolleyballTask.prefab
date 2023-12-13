@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e92b963e2a17aa48bbc45b29774fd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfPlayers: 1
+  _numberOfPlayers: 4
   _difficulty: 1
   _isReplayable: 0
   _addPlayerAtRunTime: 0
-  _timeBeforeStart: 3
+  _timeBeforeStart: 5
   _ballPrefab: {fileID: 204925619320414526, guid: 1598ab04da6dfbc4aa0a01d590aa304d, type: 3}
   _squidChanceToHit: 50
   _pointsToWin: 6

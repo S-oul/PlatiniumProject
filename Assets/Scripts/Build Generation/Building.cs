@@ -264,6 +264,7 @@ public class Building : MonoBehaviour
         if(AudioManager.instance != null)
         {
             AudioManager.instance.PlayMusic("IngameMusic");
+            AudioManager.instance.PlaySFXLoop("AmbianceOffice", AudioManager.instance.transform.Find("SFX").GetComponent<AudioSource>());
         }
         
         _hasSpawnRoom = false;

@@ -11,7 +11,8 @@ public class CowboyNPC : NPC, IChattyNPC
 
     [SerializeField] GameObject _bulletPrefab;
 
-    SpriteRenderer _sprite;
+    SpriteRenderer _spriteIdle;
+    SpriteRenderer _spriteSpe;
 
     Transform _firePoint;
 
@@ -21,13 +22,13 @@ public class CowboyNPC : NPC, IChattyNPC
     [SerializeField] GameObject _animationOther;
 
     public GameObject Player { get => _player; set => _player = value; }
-    public SpriteRenderer SpriteNPC { get => _sprite; set => _sprite = value; }
 
     private void Start()
     {
         _firePoint = transform.GetChild(0).transform;
         SwitchToSpeAnimations(false);
-
+        _spriteIdle = transform.Find("Cowboy").GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
+        _spriteSpe = transform.Find("Animation").GetComponent<SpriteRenderer>();
     }
     public void Talk(string text)
     {
@@ -39,34 +40,31 @@ public class CowboyNPC : NPC, IChattyNPC
     {
         SwitchToSpeAnimations(true);
         GetComponentInChildren<Animator>().SetTrigger("Fire");
+        AudioManager.instance.PlaySFXOS("SherifShootgun", gameObject.GetComponent<AudioSource>());
     }
 
   
     public void SwitchToSpeAnimations(bool value)
     {
-        if(value)
-        {
-            _sprite = transform.Find("Cowboy").GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
-        }
-        else
-        {
-            _sprite = transform.Find("Animation").GetComponent<SpriteRenderer>();
-        }
+       
         _animationOther.SetActive(value);
         _animationIdle.SetActive(!value);
     }
 
     public void FlipNPC()
     {
+        
         Vector2 _vectorFromPlayer = Player.transform.position - transform.position;
         float xValue = _vectorFromPlayer.x;
         if (xValue > 0)
         {
-            _sprite.flipX = true;
+            _spriteSpe.flipX = true;
+            _spriteIdle.flipX = true;
         }
         else
         {
-            _sprite.flipX = false;
+            _spriteSpe.flipX = false;
+            _spriteIdle.flipX = false;
         }
 
 

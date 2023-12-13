@@ -45,7 +45,7 @@ public class BallVolley : MonoBehaviour
                     _numberOfTouches++;
 
                 }*/
-                Debug.Log(_numberOfTouches);
+                AudioManager.instance.PlaySFXOS("PlayerHitVolleyBall", collision.gameObject.GetComponent<AudioSource>());
                 _task.ChangeColorPlayers();
                 CheckTouches();
                 //Vector3 _dir = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
