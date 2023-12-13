@@ -18,8 +18,9 @@ public class GraffitiGameManager : Task
     [SerializeField] float LargeGraffitiWashSpeed = 1;
 
     // Adjust overall wash speed
-    [SerializeField] float _adjustableSpriteDisapearanceSpeed = 1; 
+    [SerializeField] float _adjustableSpriteDisapearanceSpeed = 1;
 
+    bool _isFinished = false;
     List<GameObject> _tempGraffitiList;
     List<GraffitiDrawing> _graffitiList = new List<GraffitiDrawing>();
     /* Old Code
@@ -45,6 +46,7 @@ public class GraffitiGameManager : Task
     {
         CreateGraffitiList();
         ActivateGraffitiInList();
+        _isFinished = false;
     }
 
     public override void Init()
@@ -76,13 +78,18 @@ public class GraffitiGameManager : Task
     public override void End(bool isSuccessful)
     {
         //if (!isSuccessful) { }
-        foreach (PlayerInGraffiti player in _listOfPlayersInGraffiti)
+        if (!_isFinished)
         {
-            player.setCraftingAnimation(false);
-            player.playerController.DisableDecryptageEnableMovements();
-            player.playerUI.EnableAnimationStick(false);
+            foreach (PlayerInGraffiti player in _listOfPlayersInGraffiti)
+            {
+                player.setCraftingAnimation(false);
+                player.playerController.DisableDecryptageEnableMovements();
+                player.playerUI.EnableAnimationStick(false);
+            }
+            base.End(isSuccessful);
+            _isFinished = true;
         }
-        base.End(isSuccessful);
+        
     }
 
 

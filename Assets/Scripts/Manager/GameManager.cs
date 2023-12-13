@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int _numberOfTasksMade;
 
-    TextMeshProUGUI _roomsRemainingText;
+    Transform _roomRemainingText;
+    Transform _roomRemainingImage;
 
     [SerializeField] GameObject _pauseMenu;
     [SerializeField] bool _pauseBool = false;
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour
     public float TimeForTheDay { get => _timeForTheDay; set => _timeForTheDay = value; }
     public DayManager DayManager { get => _dayManager; set => _dayManager = value; }
     public DaySlider DaySlider { get => _daySlider; set => _daySlider = value; }
+    public Transform RoomRemainingText { get => _roomRemainingText; set => _roomRemainingText = value; }
+    public Transform RoomRemainingImage { get => _roomRemainingImage; set => _roomRemainingImage = value; }
     public TextMeshProUGUI RoomsRemainingText { get => _roomsRemainingText; set => _roomsRemainingText = value; }
     public bool PauseBool { get => _pauseBool; set => _pauseBool = value; }
     public GameObject PauseMenu { get => _pauseMenu; set => _pauseMenu = value; }
@@ -64,7 +67,11 @@ public class GameManager : MonoBehaviour
     {
         _dayTimer = DayManager.DayTimer;
         _daySlider = DayManager.DaySlider;
-        RoomsRemainingText.text = (RoomTaskList.Count - NumberOfTasksMade).ToString();
+        RoomRemainingImage.gameObject.SetActive(false);
+        RoomRemainingText.gameObject.SetActive(true);
+        RoomRemainingText.Find("Value").GetComponent<TextMeshProUGUI>().text = (RoomTaskList.Count - NumberOfTasksMade).ToString();
+        
+        
 
     }
 
@@ -142,6 +149,8 @@ public class GameManager : MonoBehaviour
         {
             /*_dayTimer.DoTimer = false; 
             _daySlider.IsOnCrunch = true;*/
+            RoomRemainingImage.gameObject.SetActive(true);
+            RoomRemainingText.gameObject.SetActive(false);
             OpenTheFinalDoor();
         }
     }

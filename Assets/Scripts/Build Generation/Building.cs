@@ -120,7 +120,8 @@ public class Building : MonoBehaviour
                 Room spawnRoom = InstantiateRoom(_spawnRoom, height, i);
                 i += spawnRoom.RoomSize;
                 _gameManager.FinalDoor = spawnRoom.transform.Find("FinalDoor").gameObject;
-                _gameManager.RoomsRemainingText = spawnRoom.transform.Find("Screen").Find("Value").GetComponent<TextMeshProUGUI>();
+                _gameManager.RoomRemainingText = spawnRoom.transform.Find("Screen").Find("Text");
+                _gameManager.RoomRemainingImage = spawnRoom.transform.Find("Screen").Find("BossNeon");
                 
             }
             else
@@ -263,6 +264,7 @@ public class Building : MonoBehaviour
         if(AudioManager.instance != null)
         {
             AudioManager.instance.PlayMusic("IngameMusic");
+            AudioManager.instance.PlaySFXLoop("AmbianceOffice", AudioManager.instance.transform.Find("SFX").GetComponent<AudioSource>());
         }
         
         _hasSpawnRoom = false;

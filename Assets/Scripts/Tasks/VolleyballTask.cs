@@ -95,17 +95,22 @@ public class VolleyballTask : Task
         _cam = Camera.main.GetComponent<Cam>();
         _cam.FixOnRoomVoid(RoomTask);
         StartCoroutine(TimerBeforeBall(_timeBeforeStart));
+        
     }
 
     IEnumerator TimerBeforeBall(float time)
     {
-        while (time > 0)
+        yield return new WaitForSeconds(time/4 * 3);
+        AudioManager.instance.PlaySFXOS("SquidVO", _squid.GetComponent<AudioSource>());
+        yield return new WaitForSeconds(time/4);
+        /*while (time > 0)
         {
             
             time -= Time.deltaTime;
+            
             //Feedback Canvas timer
             yield return null;
-        }
+        }*/
         _textVolleyUI.gameObject.SetActive(false);
         SpawnVolleyBall();
     }
@@ -198,5 +203,6 @@ public class VolleyballTask : Task
     public void PlayTentacleAnimation()
     {
         Tentacle.GetComponent<Animator>().SetTrigger("Attacks");
+        AudioManager.instance.PlaySFXOS("SquidHit", _squid.GetComponent<AudioSource>());
     }
 }

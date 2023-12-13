@@ -68,7 +68,6 @@ public class PlayerCursorManager : MonoBehaviour
 
     void OnPlayerLeft(PlayerInput player) 
     {
-        print("SALE PD");
         players.Remove(player);
         Destroy(player.gameObject);
         UpdateBaseZone();
@@ -80,7 +79,7 @@ public class PlayerCursorManager : MonoBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
-            players[i].GetComponent<CursorPlayer>().PlayerID = "J" + (i + 1);
+            players[i].GetComponent<CursorPlayer>().PlayerID = "P" + (i + 1);
             players[i].GetComponent<CursorPlayer>().ChangePlayerName(players[i].GetComponent<CursorPlayer>().PlayerID);
         }
     }
