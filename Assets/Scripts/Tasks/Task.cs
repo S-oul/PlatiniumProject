@@ -63,9 +63,6 @@ public abstract class Task : MonoBehaviour
         {
             _room.WinStateScreen.ChangeValue(WinStateScreen.WinScreenState.Idle);
         }
-        
-
-
     }
 
     

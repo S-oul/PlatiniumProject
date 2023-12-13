@@ -448,6 +448,7 @@ MonoBehaviour:
   _addPlayerAtRunTime: 0
   _obstacles: {fileID: 5673804121946836985}
   _arrow: {fileID: 2300834784979676389}
+  PlayerStandsHere: {fileID: 0}
 --- !u!1 &2137026908256105429
 GameObject:
   m_ObjectHideFlags: 0
