@@ -115,7 +115,6 @@ public abstract class Task : MonoBehaviour
         
         if (!IsDone)
         {
-
             if (AddPlayerAtRunTime)
             {
                 if (_isStarted)

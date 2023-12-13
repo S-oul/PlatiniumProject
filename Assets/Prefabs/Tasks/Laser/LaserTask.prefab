@@ -803,6 +803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2447dc0fd4acfbe45bf6114b7a2cc5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rumbleLowForce: 0.4
+  rumbleHighForce: 0.1
+  rumbleTime: 0.4
   _numberOfPlayers: 4
   _difficulty: 2
   _isReplayable: 0
@@ -1520,6 +1523,10 @@ PrefabInstance:
       propertyPath: _laserRoom
       value: 
       objectReference: {fileID: 6955491714665668847}
+    - target: {fileID: 5522283659312913461, guid: 17a645103751b414ba1896ff331eec48, type: 3}
+      propertyPath: _numberOfLaser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959503064294928456, guid: 17a645103751b414ba1896ff331eec48, type: 3}
       propertyPath: m_Name
       value: LaserSpawner (2)
@@ -1791,6 +1798,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button02
       objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.559999
@@ -1863,6 +1878,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1941,6 +1964,10 @@ PrefabInstance:
       propertyPath: _laserRoom
       value: 
       objectReference: {fileID: 6955491714665668847}
+    - target: {fileID: 5522283659312913461, guid: 17a645103751b414ba1896ff331eec48, type: 3}
+      propertyPath: _numberOfLaser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959503064294928456, guid: 17a645103751b414ba1896ff331eec48, type: 3}
       propertyPath: m_Name
       value: LaserSpawner
@@ -2021,6 +2048,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2914,6 +2949,10 @@ PrefabInstance:
       propertyPath: _laserRoom
       value: 
       objectReference: {fileID: 6955491714665668847}
+    - target: {fileID: 5522283659312913461, guid: 17a645103751b414ba1896ff331eec48, type: 3}
+      propertyPath: _numberOfLaser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959503064294928456, guid: 17a645103751b414ba1896ff331eec48, type: 3}
       propertyPath: m_Name
       value: LaserSpawner (1)
@@ -3060,6 +3099,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3258,6 +3305,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button03
       objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.59
@@ -3396,6 +3451,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3541,6 +3604,10 @@ PrefabInstance:
       propertyPath: _laserRoom
       value: 
       objectReference: {fileID: 6955491714665668847}
+    - target: {fileID: 5522283659312913461, guid: 17a645103751b414ba1896ff331eec48, type: 3}
+      propertyPath: _numberOfLaser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959503064294928456, guid: 17a645103751b414ba1896ff331eec48, type: 3}
       propertyPath: m_Name
       value: LaserSpawner
@@ -3689,6 +3756,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button04
       objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.31099987
@@ -3823,6 +3898,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4150,6 +4233,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button01
       objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.792841
@@ -4284,6 +4375,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4481,6 +4580,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5052,6 +5159,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button01
       objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.85
@@ -5377,6 +5492,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button03
       objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.105
@@ -5449,6 +5572,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5593,6 +5724,10 @@ PrefabInstance:
       propertyPath: _laserRoom
       value: 
       objectReference: {fileID: 6955491714665668847}
+    - target: {fileID: 5522283659312913461, guid: 17a645103751b414ba1896ff331eec48, type: 3}
+      propertyPath: _numberOfLaser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959503064294928456, guid: 17a645103751b414ba1896ff331eec48, type: 3}
       propertyPath: m_Name
       value: LaserSpawnerHautBas
@@ -5863,6 +5998,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6573,6 +6716,10 @@ PrefabInstance:
       propertyPath: _laserRoom
       value: 
       objectReference: {fileID: 6955491714665668847}
+    - target: {fileID: 5522283659312913461, guid: 17a645103751b414ba1896ff331eec48, type: 3}
+      propertyPath: _numberOfLaser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959503064294928456, guid: 17a645103751b414ba1896ff331eec48, type: 3}
       propertyPath: m_Name
       value: LaserSpawner
@@ -6733,6 +6880,10 @@ PrefabInstance:
       propertyPath: _laserRoom
       value: 
       objectReference: {fileID: 6955491714665668847}
+    - target: {fileID: 5522283659312913461, guid: 17a645103751b414ba1896ff331eec48, type: 3}
+      propertyPath: _numberOfLaser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959503064294928456, guid: 17a645103751b414ba1896ff331eec48, type: 3}
       propertyPath: m_Name
       value: LaserSpawner (1)
@@ -6817,6 +6968,14 @@ PrefabInstance:
     - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_Name
       value: Button04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868747612492618253, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4528968000888808048, guid: 330abb14ffa465f43a162050e41aabcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6965,6 +7124,10 @@ PrefabInstance:
       propertyPath: _laserRoom
       value: 
       objectReference: {fileID: 6955491714665668847}
+    - target: {fileID: 5522283659312913461, guid: 17a645103751b414ba1896ff331eec48, type: 3}
+      propertyPath: _numberOfLaser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959503064294928456, guid: 17a645103751b414ba1896ff331eec48, type: 3}
       propertyPath: m_Name
       value: LaserSpawner
