@@ -1,5 +1,7 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -7,8 +9,11 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
     PlayerInputManager _inputManager;
     int _sortingOrderTracker = 0;
+    TextMeshProUGUI _playersRemaining;
 
     public PlayerInputManager InputManager { get => _inputManager; set => _inputManager = value; }
+    public TextMeshProUGUI PlayersRemaining { get => _playersRemaining; set => _playersRemaining = value; }
+
     public enum ControllerType
     {
         None,
@@ -25,6 +30,11 @@ public class PlayerManager : MonoBehaviour
         InputManager = gameObject.GetComponent<PlayerInputManager>();
         DontDestroyOnLoad(gameObject);
 
+
+    }
+    private void Start()
+    {
+        
     }
     void OnPlayerJoined(PlayerInput newPlayer)
     {
@@ -56,7 +66,16 @@ public class PlayerManager : MonoBehaviour
                 InputManager.DisableJoining();
             }
         }
-        
+        if (GameManager.Instance.PlayerCount == 4)
+        {
+            PlayersRemaining.gameObject.SetActive(false);
+        }
+        else
+        {
+            //PlayersRemaining.text = (4 - GameManager.Instance.PlayerCount) + " player(s) left...";
+            PlayersRemaining.text = (4 - GameManager.Instance.PlayerCount) + " player(s) left...";
+        }
+
     }
 
     public void ResetPlayers()

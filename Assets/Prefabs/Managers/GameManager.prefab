@@ -58,4 +58,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _numberOfTasksMade: 0
+  _pauseMenu: {fileID: 0}
+  _pauseBool: 0
   DaySliderOverDay: 0
