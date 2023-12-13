@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     public DaySlider DaySlider { get => _daySlider; set => _daySlider = value; }
     public Transform RoomRemainingText { get => _roomRemainingText; set => _roomRemainingText = value; }
     public Transform RoomRemainingImage { get => _roomRemainingImage; set => _roomRemainingImage = value; }
-    public TextMeshProUGUI RoomsRemainingText { get => _roomsRemainingText; set => _roomsRemainingText = value; }
+    // public TextMeshProUGUI RoomsRemainingText { get => _roomsRemainingText; set => _roomsRemainingText = value; } // Room without S 
     public bool PauseBool { get => _pauseBool; set => _pauseBool = value; }
     public GameObject PauseMenu { get => _pauseMenu; set => _pauseMenu = value; }
 
