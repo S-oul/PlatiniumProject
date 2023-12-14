@@ -77,12 +77,13 @@ public class LaserRoom : Task
     {
         base.Init();
 
+        TriggerBossStartAnimation();
+
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayMusic("LaserRoomMusic");
         }
         Debug.Log("Triggered boss START anime");
-        TriggerBossStartAnimation();
         print(NumberOfPlayers + " " + RoomTask.ListPlayer.Count);
         if (RoomTask.ListPlayer.Count >= NumberOfPlayers)
         {
