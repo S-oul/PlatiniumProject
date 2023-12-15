@@ -39,7 +39,7 @@ public class DeskTamponnage : Object
                     player.transform.position = _posListOnDesk[_indexPos].position;
                     player.transform.Find("Animation").GetComponent<SpriteRenderer>().sortingLayerName = "Deco";
                     player.GetComponent<PlayerController>().BlockPlayer(true);
-                    player.GetComponent<PlayerController>().DisableMovementEnableInputs();
+                    player.GetComponent<PlayerController>().DisableInteractMovementEnableInputs();
                     _task.GetComponent<Task>().OnPlayerJoinedTask(player);
                     player.GetComponent<PlayerUI>().DisplayInputToPress(false, "");
                     _indexPos++;

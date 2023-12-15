@@ -112,6 +112,16 @@ public class PlayerController : MonoBehaviour
         _playerInput.actions["InputTask"].Enable();
         _canMove = false;
     }
+    public void DisableInteractMovementEnableInputs()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _playerInput.actions["InputTask"].Enable();
+        _canMove = false;
+    }
     public void DisableAllInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
@@ -236,7 +246,6 @@ public class PlayerController : MonoBehaviour
         if(context.performed)
         {
             currentContextName = context.action.activeControl.displayName;
-            Debug.Log(currentContextName);
         }
         else
         {
@@ -249,6 +258,7 @@ public class PlayerController : MonoBehaviour
         
         if (context.performed)
         {
+            print("interact");
             _isInteracting = true;
         }
         else

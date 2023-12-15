@@ -20,6 +20,8 @@ public class DaySlider : MonoBehaviour
 
     [SerializeField] Image FillImageComponent;
 
+    float _totalValue = 0;
+
     Color _currentColor;
 
     private bool _isOnCrunch = false;
@@ -31,11 +33,13 @@ public class DaySlider : MonoBehaviour
     public Color SliderColor { get => _currentColor; }
 
     public bool DoSlider { get => _doSlider; set => _doSlider = value; }
+    public float TotalValue { get => _totalValue; set => _totalValue = value; }
 
     private void Start()
     {
         _slider = GetComponent<Slider>();
         Color _currentColor = _startColor;
+        TotalValue = _slider.value;
     }
     private void Update()
     {
