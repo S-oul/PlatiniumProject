@@ -811,8 +811,8 @@ MonoBehaviour:
   _isReplayable: 0
   _addPlayerAtRunTime: 1
   _toActivate1: {fileID: 4627530695423959660}
-  _toActivate2: {fileID: 4346166601699466491}
-  _toActivate3: {fileID: 3200658799509171093}
+  _toActivate2: {fileID: 3200658799509171093}
+  _toActivate3: {fileID: 4346166601699466491}
   _toActivate4: {fileID: 454854248255803305}
   _buttonPhase1:
   - {fileID: 3674831532461807074}
