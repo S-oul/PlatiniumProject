@@ -103,8 +103,12 @@ public class Laser : MonoBehaviour
             _line.SetPositions(v3s);
             if (ray.collider.CompareTag("Player"))
             {
-                AudioManager.Instance.PlaySFXOS("LaserImpact", _audioSource);
-                StartCoroutine(ray.collider.GetComponent<PlayerController>().PlayerDown(TimePlayerIsDown));
+                if(ray.collider.GetComponent<PlayerController>().IsPlayerDown == false)
+                {
+                    AudioManager.Instance.PlaySFXOS("LaserImpact", _audioSource);
+                    StartCoroutine(ray.collider.GetComponent<PlayerController>().PlayerDown(TimePlayerIsDown));
+                    GameManager.Instance.DaySlider.RemoveValue(.1f);
+                }
             }
         }
 

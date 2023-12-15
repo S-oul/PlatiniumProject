@@ -106,13 +106,13 @@ public class LaserRoom : Task
     }
     private void Update()
     {
-        if (IsStarted && !IsDone)
+/*        if (IsStarted && !IsDone)
         {
             if (!OnePlayerAlive())
             {
                 End(false);
             }
-        }
+        }*/
     }
 
 

@@ -149,6 +149,7 @@ public class BallVolley : MonoBehaviour
         }
         else
         {
+            GameManager.Instance.DaySlider.RemoveValue(.17f);
             _task.TextVolleyUI.gameObject.SetActive(true);
             _task.TextVolleyUI.text = "Point for squid!";
 

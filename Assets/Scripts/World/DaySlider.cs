@@ -75,12 +75,10 @@ public class DaySlider : MonoBehaviour
         _unclampedValue -= val;
         return _unclampedValue;
     }
-
     public float GetValue()
     {
         return _unclampedValue;
     }
-
     public void GetFired()
     {
         SceneManager.LoadScene(3);
