@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     AudioSource _audioSource;
 
-    Gamepad pad = Gamepad.current;
+    public Gamepad pad = Gamepad.current;
 
     string _codeContext;
     Vector2 _DecrytContext;

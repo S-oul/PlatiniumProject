@@ -85,6 +85,11 @@ public class DaySlider : MonoBehaviour
     }
     public void GetFired()
     {
+        foreach(GameObject g in GameManager.Instance.Players)
+        {
+            if(g != null)
+            g.GetComponent<PlayerController>().pad.SetMotorSpeeds(0, 0);
+        }
         SceneManager.LoadScene(3);
     }
 
