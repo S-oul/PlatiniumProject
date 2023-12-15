@@ -71,7 +71,7 @@ public class Room : MonoBehaviour
         //Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
         if(_light != null)
         {
-            _light.color = new Color(0, 0, 0, 0.9f);
+            _light.color = new Color(0, 0, 0, 1f);
         }
         
         //print(gameObject.name + " : " + h + " " + s + " " + v);

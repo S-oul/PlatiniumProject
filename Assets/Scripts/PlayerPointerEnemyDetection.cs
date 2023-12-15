@@ -10,7 +10,8 @@ public class PlayerPointerEnemyDetection : MonoBehaviour
     void OnTriggerEnter2D (Collider2D otherCollider)
     {
         if (otherCollider.gameObject.tag == "DecryptageEnemy")
-        {   
+        {
+            
             _playerPointerMover.killPlayerPointer();
         }
 
