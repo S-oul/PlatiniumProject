@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     AudioSource _audioSource;
 
-    Gamepad pad = Gamepad.current;
+    public Gamepad pad = Gamepad.current;
 
     string _codeContext;
     Vector2 _DecrytContext;
@@ -103,6 +103,16 @@ public class PlayerController : MonoBehaviour
         
     }
     public void DisableMovementEnableInputs()
+    {
+        PlayerInput _playerInput = GetComponent<PlayerInput>();
+        _playerInput.actions["Interact"].Enable();
+        _playerInput.actions["Movement"].Disable();
+        _playerInput.actions["Decryptage"].Disable();
+        _playerInput.actions["Jump"].Disable();
+        _playerInput.actions["InputTask"].Enable();
+        _canMove = false;
+    }
+    public void DisableInteractMovementEnableInputs()
     {
         PlayerInput _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Interact"].Enable();
@@ -236,7 +246,6 @@ public class PlayerController : MonoBehaviour
         if(context.performed)
         {
             currentContextName = context.action.activeControl.displayName;
-            Debug.Log(currentContextName);
         }
         else
         {
@@ -249,6 +258,7 @@ public class PlayerController : MonoBehaviour
         
         if (context.performed)
         {
+            print("interact");
             _isInteracting = true;
         }
         else

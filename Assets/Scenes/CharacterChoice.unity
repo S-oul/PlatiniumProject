@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: _dayIndex
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5810057472575257350, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2805,9 +2805,9 @@ RectTransform:
   - {fileID: 1060186302}
   - {fileID: 1699227713}
   - {fileID: 999149332}
+  - {fileID: 1107492832}
   - {fileID: 1870276573}
   - {fileID: 865789161}
-  - {fileID: 1107492832}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

@@ -21,6 +21,8 @@ public class DaySlider : MonoBehaviour
     [SerializeField] Image FillImageComponent;
     [SerializeField] Animator _redOutlineAnim;
 
+    float _totalValue = 0;
+
     Color _currentColor;
 
     private bool _isOnCrunch = false;
@@ -32,11 +34,13 @@ public class DaySlider : MonoBehaviour
     public Color SliderColor { get => _currentColor; }
 
     public bool DoSlider { get => _doSlider; set => _doSlider = value; }
+    public float TotalValue { get => _totalValue; set => _totalValue = value; }
 
     private void Start()
     {
         _slider = GetComponent<Slider>();
         Color _currentColor = _startColor;
+        TotalValue = _slider.value;
     }
     private void Update()
     {
@@ -85,14 +89,17 @@ public class DaySlider : MonoBehaviour
         _unclampedValue -= val;
         return _unclampedValue;
     }
-
     public float GetValue()
     {
         return _unclampedValue;
     }
-
     public void GetFired()
     {
+        foreach(GameObject g in GameManager.Instance.Players)
+        {
+            if(g != null)
+            g.GetComponent<PlayerController>().pad.SetMotorSpeeds(0, 0);
+        }
         SceneManager.LoadScene(3);
     }
 
