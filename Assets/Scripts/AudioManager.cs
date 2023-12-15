@@ -26,6 +26,15 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            /// Preload All audios in game;
+            foreach(SoundConfig SC in soundBank)
+            {
+                foreach(AudioClip clip in SC.audio)
+                {
+                    clip.LoadAudioData();
+                }
+            }
         }
         else
         {
