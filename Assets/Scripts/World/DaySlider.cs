@@ -19,6 +19,7 @@ public class DaySlider : MonoBehaviour
     [SerializeField] Color _endColor = Color.red;
 
     [SerializeField] Image FillImageComponent;
+    [SerializeField] Animator _redOutlineAnim;
 
     Color _currentColor;
 
@@ -51,6 +52,15 @@ public class DaySlider : MonoBehaviour
         _slider.value = Mathf.Lerp(_slider.value, _unclampedValue, _speedUnclamped);
 
         UpdateColor();
+
+        if (_unclampedValue < 0.2f) // To activate blinking red animation when timer is almost up. 
+        {
+            _redOutlineAnim.SetTrigger("ActivateRedOutline");
+        }
+        else
+        {
+            _redOutlineAnim.SetTrigger("StopRedOutline");
+        }
 
     }
     public float SetValue(float val)
