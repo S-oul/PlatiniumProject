@@ -412,6 +412,7 @@ public class MatrixTask : InputTask
             {
                 if(tries > 0)
                 {
+                    GameManager.Instance.DaySlider.RemoveValue(GameManager.Instance.DaySlider.TotalValue / 5);
                     tries--;
                     if (tries > 0)
                     {

@@ -105,6 +105,7 @@ public class Laser : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFXOS("LaserImpact", _audioSource);
                 StartCoroutine(ray.collider.GetComponent<PlayerController>().PlayerDown(TimePlayerIsDown));
+                GameManager.Instance.DaySlider.RemoveValue(GameManager.Instance.DaySlider.TotalValue / 10);
             }
         }
 

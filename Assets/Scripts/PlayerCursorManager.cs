@@ -17,7 +17,6 @@ public class PlayerCursorManager : MonoBehaviour
     {
         if(AudioManager.Instance != null && !AudioManager.Instance.Music.isPlaying)
         {
-            print("coubeh");
             AudioManager.Instance.PlayMusic("MainMenuMusic");
         }
         _playersRemaining.text = "4 player(s) left...";

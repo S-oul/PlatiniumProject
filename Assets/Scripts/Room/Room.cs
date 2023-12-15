@@ -35,6 +35,8 @@ public class Room : MonoBehaviour
 
     GameManager _gameManager;
 
+    SpriteRenderer _light;
+
 
     #region in Game Variable
 
@@ -62,11 +64,18 @@ public class Room : MonoBehaviour
     public virtual void InitRoom()
     {
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
+        
         if(_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
+        if(!Id.Contains("S")) { _light = gameObject.transform.Find("LightBlack").GetComponent<SpriteRenderer>(); }
         //WinStateScreen.ChangeColor(Color.white);
-        Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
+        //Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
+        if(_light != null)
+        {
+            _light.color = new Color(0, 0, 0, 0.9f);
+        }
+        
         //print(gameObject.name + " : " + h + " " + s + " " + v);
-        _spriteRoom.color = Color.HSVToRGB(h, s, .2f);
+        //_spriteRoom.color = Color.HSVToRGB(h, s, 0);
 
         _gameManager.RoomList.Add(this);
 /*        foreach (var o in _npcList)
@@ -100,9 +109,13 @@ public class Room : MonoBehaviour
 
     public void OnRoomEnter()
     {
-        if(_spriteRoom != null)
+        /*if(_spriteRoom != null)
         {
             _spriteRoom.color = Color.HSVToRGB(h, s, v);
+        }*/
+        if(_light != null)
+        {
+            _light.color = new Color(0, 0, 0, 0);
         }
         
     }

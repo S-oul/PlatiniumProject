@@ -95,10 +95,10 @@ public abstract class Task : MonoBehaviour
         }
         else
         {
-            print("TaskFAIled");
+            
             foreach(GameObject p in _playersDoingTask)
             {
-                print("AyoWhatdatfuk");
+                
                 if (p != null)
                 {
                     print("realnuggets" + p.name);
