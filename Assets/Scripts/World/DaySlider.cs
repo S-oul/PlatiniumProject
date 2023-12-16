@@ -51,6 +51,7 @@ public class DaySlider : MonoBehaviour
         }
         if (_unclampedValue <= 0)
         {
+            CameraZoomCutscene();
             GetFired();
         }
         _slider.value = Mathf.Lerp(_slider.value, _unclampedValue, _speedUnclamped);
@@ -124,4 +125,17 @@ public class DaySlider : MonoBehaviour
         _currentColor = _gradient.Evaluate(_unclampedValue);
         FillImageComponent.color = _currentColor;
     }
+
+    void CameraZoomCutscene()
+    {
+        /* game over not caused by player => return;
+         * 
+         * targetPlayer = player who caused Game over (info from task)
+         * 
+         * call FocusOn function in camera, with player as paramiter. 
+         */
+        if (_unclampedValue == 0) return;
+
+
+    } 
 }

@@ -53,6 +53,8 @@ public class Cam : MonoBehaviour
             ZoomOnRoom(_room);
             MoveOnRoom(_room);
         }
+
+
     }
 
     public void FixOnRoomVoid(Room r)

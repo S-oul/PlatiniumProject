@@ -411,7 +411,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public IEnumerator RumbeMeDaddy(float lowfreq, float highfreq, float time)
+    public IEnumerator RumbeMeDaddyOhYesHarderHarder(float lowfreq, float highfreq, float time)
     {
         print("RABLIMG");
         pad.SetMotorSpeeds(lowfreq, highfreq);
