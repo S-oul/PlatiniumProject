@@ -53,11 +53,13 @@ public class Cam : MonoBehaviour
             ZoomOnRoom(_room);
             MoveOnRoom(_room);
         }
+
+
     }
 
     public void FixOnRoomVoid(Room r)
     {
-        //Debug.Log("LE CACA DE LA CAMERA");
+        //Debug.Log("LE CACA DE LA CAMERA");  // -_-
         _fixOnRoom = true;
         _room = r;
     }
