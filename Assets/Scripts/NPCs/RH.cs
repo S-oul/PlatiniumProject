@@ -6,14 +6,14 @@ public class RH : NPC, IChattyNPC
 {
     [SerializeField] List<string> _dialogues = new List<string>();
     public List<string> dialogueTexts { get => _dialogues; set => _dialogues = value; }
-    Task _task;
+    RHTask _task;
     bool _isPlayerNeeded = false;
     GameObject _playerNeeded;
 
     [SerializeField] Animator _animator;
 
     public bool IsPlayerNeeded { get => _isPlayerNeeded; set => _isPlayerNeeded = value; } 
-    public Task TaskRH { get => _task; set => _task = value; }
+    public RHTask TaskRH { get => _task; set => _task = value; }
     public GameObject PlayerNeeded { get => _playerNeeded; set => _playerNeeded = value; }
 
     private void Start()
@@ -46,6 +46,7 @@ public class RH : NPC, IChattyNPC
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        TaskRH.PlayersDoingTask.Add(collision.gameObject);
         if(_isPlayerNeeded && collision.gameObject == _playerNeeded )
         {
             _task.End(true);
@@ -53,6 +54,14 @@ public class RH : NPC, IChattyNPC
         else if(_isPlayerNeeded && collision.tag == "Player" && collision.gameObject != _task.PlayerGameObject)
         {
             _task.End(false);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            TaskRH.PlayersDoingTask.Remove(collision.gameObject);
+
         }
     }
 }
