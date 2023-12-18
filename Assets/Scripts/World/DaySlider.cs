@@ -20,6 +20,8 @@ public class DaySlider : MonoBehaviour
 
     [SerializeField] Image FillImageComponent;
     [SerializeField] Animator _redOutlineAnim;
+    [SerializeField] Animator _whiteCoverAnim;
+    void triggerWhiteCover() => _whiteCoverAnim.SetTrigger("WhiteCover");
 
     float _totalValue = 0;
 
@@ -47,7 +49,7 @@ public class DaySlider : MonoBehaviour
         _unclampedValue = Mathf.Clamp01(_unclampedValue);
         if (DoSlider)
         {
-            RemoveValue(_speedTimer * Time.deltaTime);
+            RemoveValueWithoutWhiteCover(_speedTimer * Time.deltaTime);
         }
         if (_unclampedValue <= 0)
         {
@@ -73,6 +75,7 @@ public class DaySlider : MonoBehaviour
         if (!_isOnCrunch)
         {
             _unclampedValue = val;
+            triggerWhiteCover();
         }
         return _unclampedValue;
 
@@ -82,10 +85,17 @@ public class DaySlider : MonoBehaviour
         if (!_isOnCrunch)
         {
             _unclampedValue += val;
+            triggerWhiteCover();
         }
         return _unclampedValue;
     }
     public float RemoveValue(float val)
+    {
+        _unclampedValue -= val;
+        triggerWhiteCover();
+        return _unclampedValue;
+    }
+    public float RemoveValueWithoutWhiteCover(float val)
     {
         _unclampedValue -= val;
         return _unclampedValue;
@@ -135,7 +145,6 @@ public class DaySlider : MonoBehaviour
          * call FocusOn function in camera, with player as paramiter. 
          */
         if (_unclampedValue == 0) return;
-
 
     } 
 }
