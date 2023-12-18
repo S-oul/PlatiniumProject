@@ -377,7 +377,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefabs/Rooms/Double Room
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0

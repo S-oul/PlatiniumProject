@@ -73,8 +73,8 @@ public class PlayerPointerMover : MonoBehaviour
         _playerStepDistance = new Vector3(_playerStepDistanceX, 0, 0);
         _positionDict = CreatePositionDictionary();
 
-        _ppVisualsSprite = GameObject.Find("PPVisuals").GetComponent<Renderer>();
-        _ppDeathVisualsSprite = GameObject.Find("PPDeathVisual").GetComponent<Renderer>();
+        _ppVisualsSprite = GameObject.Find("PPVisuals").GetComponent<SpriteRenderer>();
+        _ppDeathVisualsSprite = GameObject.Find("PPDeathVisual").GetComponent<SpriteRenderer>();
 
         _winCoverSprite = _winCover.GetComponent<SpriteRenderer>();
         _loseCoverSprite = _loseCover.GetComponent<SpriteRenderer>();
@@ -137,6 +137,8 @@ else if (context.canceled)
                 case PlayerPointerState.HIT:
                     _ppVisualsSprite.enabled = false;
                     _ppDeathVisualsSprite.enabled = true;
+                    print("Explosion: " + _ppDeathVisualsSprite.enabled);
+                    print("Base: " + _ppVisualsSprite.enabled);
                     _deathCountDown = _deathDuriation;
                     SetState(PlayerPointerState.DIEING);
                     break;
@@ -144,6 +146,8 @@ else if (context.canceled)
                     if (_deathCountDown > 0) { _deathCountDown -= Time.deltaTime; break; }
                     _ppVisualsSprite.enabled = true;
                     _ppDeathVisualsSprite.enabled = false;
+                    print("Explosion: " + _ppDeathVisualsSprite.enabled);
+                    print("Base: " + _ppVisualsSprite.enabled);
                     _currentPlayerLayerPosition = PlayerLayerPosition.START;
                     _playerPointerTrans.localPosition = _positionDict[_currentPlayerLayerPosition];
                     SetState(PlayerPointerState.IDLE);
@@ -187,6 +191,7 @@ else if (context.canceled)
         if (_currentState == PlayerPointerState.DIEING ||  _currentState == PlayerPointerState.HIT || _currentPlayerLayerPosition == PlayerLayerPosition.HOME) { return; }
         _numOfDeaths++;
         if (_numOfDeaths >= _maxDeaths) { EndGame(END_STATE.LOSE); return; }
+        
         SetState(PlayerPointerState.HIT);
     }
 
