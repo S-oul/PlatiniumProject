@@ -98,7 +98,7 @@ public abstract class Task : MonoBehaviour
         {
             foreach(GameObject p in _playersDoingTask)
             {
-                if (p != null)
+                if (p != null && RoomTask.Id.Contains("T"))
                 {
                     print("realnuggets" + p.name);
                     StartCoroutine(p.GetComponent<PlayerController>().RumbeMeDaddyOhYesHarderHarder(rumbleLowForce, rumbleHighForce, rumbleTime));   
