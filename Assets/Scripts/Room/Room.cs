@@ -115,7 +115,7 @@ public class Room : MonoBehaviour
         {
             _spriteRoom.color = Color.HSVToRGB(h, s, v);
         }*/
-        if(Light != null && _canChangeLight)
+        if(Light != null)
         {
 
             Light.color = new Color(0, 0, 0, 0);
