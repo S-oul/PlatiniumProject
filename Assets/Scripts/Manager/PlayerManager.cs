@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        ResetPlayers();
     }
     void OnPlayerJoined(PlayerInput newPlayer)
     {
