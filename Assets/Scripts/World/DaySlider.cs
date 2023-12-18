@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class DaySlider : MonoBehaviour
 {
@@ -126,8 +127,15 @@ public class DaySlider : MonoBehaviour
         FillImageComponent.color = _currentColor;
     }
 
-    void CameraZoomCutscene()
+    IEnumerator CameraZoomCutscene()
     {
+        Camera.main.gameObject.GetComponent<Cam>().FixOnPlayer(GameManager.Instance.LastPlayerToFail);
+        //While loop to reducce timescale + Cam func to make;
+        yield return new WaitForSecondsRealtime(4f);
+        GetFired();
+        
+        
+        
         /* game over not caused by player => return;
          * 
          * targetPlayer = player who caused Game over (info from task)

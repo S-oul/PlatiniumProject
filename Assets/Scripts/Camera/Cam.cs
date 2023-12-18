@@ -26,6 +26,9 @@ public class Cam : MonoBehaviour
 
     private bool _fixOnRoom = false;
     private Room _room;
+    
+    private bool _fixOnPlayer = false;
+    private GameObject _player;
 
     private Camera _camera;
 
@@ -62,6 +65,12 @@ public class Cam : MonoBehaviour
         //Debug.Log("LE CACA DE LA CAMERA");  // -_-
         _fixOnRoom = true;
         _room = r;
+    }
+
+    public void FixOnPlayer(GameObject p)
+    {
+        _fixOnPlayer = true;
+        _player = p;
     }
 
     private void ZoomOnRoom(Room room)

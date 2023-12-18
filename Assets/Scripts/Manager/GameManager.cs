@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public GameObject LastPlayerToFail; //for animating the camera in Game Over cutscene
+    private GameObject _lastPlayerToFail; //for animating the camera in Game Over cutscene
+    Coroutine _failerCo;
+    bool _hisfaultBool = false;
 
     List<Room> _roomList = new List<Room>();
     [SerializeField] List<Room> _roomTaskList = new List<Room>();
@@ -58,7 +61,20 @@ public class GameManager : MonoBehaviour
     // public TextMeshProUGUI RoomsRemainingText { get => _roomsRemainingText; set => _roomsRemainingText = value; } // Room without S 
     public bool PauseBool { get => _pauseBool; set => _pauseBool = value; }
     public GameObject PauseMenu { get => _pauseMenu; set => _pauseMenu = value; }
+    public GameObject LastPlayerToFail { get => _lastPlayerToFail; set => _lastPlayerToFail = value; }
 
+    public void ChangeLastPlayerToFail(GameObject g)
+    {
+        if(_failerCo != null) StopCoroutine(_failerCo);
+        _hisfaultBool = true;
+        _lastPlayerToFail = g;
+        _failerCo = StartCoroutine(HisFault());
+    }
+    IEnumerator HisFault()
+    {
+        yield return new WaitForSecondsRealtime(4f);
+        _hisfaultBool = true;
+    }
     public float DaySliderOverDay = 0;
     private void Start()
     {

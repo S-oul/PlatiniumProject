@@ -98,14 +98,13 @@ public abstract class Task : MonoBehaviour
         {
             foreach(GameObject p in _playersDoingTask)
             {
-                GameManager.Instance.LastPlayerToFail = p;
-                
                 if (p != null)
                 {
                     print("realnuggets" + p.name);
                     StartCoroutine(p.GetComponent<PlayerController>().RumbeMeDaddyOhYesHarderHarder(rumbleLowForce, rumbleHighForce, rumbleTime));   
                 }
             }
+            GameManager.Instance.ChangeLastPlayerToFail(PlayersDoingTask[0]);
             PlayersDoingTask.Clear();
             OnRoomFail();
         }
