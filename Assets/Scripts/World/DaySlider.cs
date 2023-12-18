@@ -131,7 +131,8 @@ public class DaySlider : MonoBehaviour
     {
         Camera.main.gameObject.GetComponent<Cam>().FixOnPlayer(GameManager.Instance.LastPlayerToFail);
         //While loop to reducce timescale + Cam func to make;
-        yield return new WaitForSecondsRealtime(4f);
+        //yield return new WaitForSecondsRealtime(4f);
+        yield return null;
         GetFired();
         
         
@@ -142,7 +143,7 @@ public class DaySlider : MonoBehaviour
          * 
          * call FocusOn function in camera, with player as paramiter. 
          */
-        if (_unclampedValue == 0) return;
+        //if (_unclampedValue == 0) return;
 
 
     } 
