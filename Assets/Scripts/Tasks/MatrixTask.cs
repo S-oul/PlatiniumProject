@@ -34,8 +34,11 @@ public class MatrixTask : InputTask
     }
     public override void StartTask()
     {
-
-        foreach(Transform pos in RoomTask.gameObject.transform.Find("PlayerPositions"))
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic("FinalRoomMusic");
+        }
+        foreach (Transform pos in RoomTask.gameObject.transform.Find("PlayerPositions"))
         {
             _posPlayers.Add(pos);
         }

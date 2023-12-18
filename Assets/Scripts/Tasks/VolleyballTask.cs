@@ -69,12 +69,17 @@ public class VolleyballTask : Task
     {
 
         base.Init();
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic("FinalRoomMusic");
+        }
         UIManager.Instance.UIVolley.gameObject.SetActive(true);
         _textVolleyUI = UIManager.Instance.UIVolley.GetChild(0).GetComponent<TextMeshProUGUI>();
         _textVolleyUI.gameObject.SetActive(false);
         _textScore = RoomTask.transform.Find("Score").GetChild(0).Find("ScoreText").GetComponent<TextMeshProUGUI>();
         _textScore.text = "0 | 0";
         _pointVolley = RoomTask.transform.Find("PointVolley");
+
         PlayerTouch = null;
         foreach (Transform pos in RoomTask.transform.Find("PlayerPositions"))
         {

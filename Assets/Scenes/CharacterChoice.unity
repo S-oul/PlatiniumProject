@@ -2033,6 +2033,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5861934477357899012, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
+      propertyPath: soundBank.Array.data[13].audioName
+      value: FinalRoomMusic
+      objectReference: {fileID: 0}
     - target: {fileID: 7076917014563659527, guid: 3d39fe77e1c9e43468ac94cd73b3131d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 47.27084
