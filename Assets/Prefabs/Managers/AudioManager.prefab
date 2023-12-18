@@ -376,7 +376,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9a50988e6f237494e9c831ec47a427b5, type: 3}
     - {fileID: 8300000, guid: 1bda1aec410dae74fb752e00e2361979, type: 3}
     - {fileID: 8300000, guid: 4fb060115d3909c40aea2d46062d47f2, type: 3}
-  - audioName: LaserRoomMusic
+  - audioName: FinalRoomMusic
     description: Music when laser room
     audio:
     - {fileID: 8300000, guid: beaa2ba9285ad584db6aa40e3269e534, type: 3}

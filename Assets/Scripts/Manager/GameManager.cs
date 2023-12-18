@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         RoomRemainingImage.gameObject.SetActive(false);
         RoomRemainingText.gameObject.SetActive(true);
         RoomRemainingText.Find("Value").GetComponent<TextMeshProUGUI>().text = (RoomTaskList.Count - NumberOfTasksMade).ToString();
-        _roomTaskList.Clear();
+        
         
 
     }

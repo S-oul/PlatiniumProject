@@ -114,7 +114,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "Object":
                 Collidertype = collision.transform.GetComponent<Object>();
-                print("Object");
+                
                 if (!collision.transform.GetComponent<Object>().IsUsed)
                 {
                     
@@ -130,6 +130,7 @@ public class PlayerCollision : MonoBehaviour
             case "DecryptInteract":
                 Collidertype = collision.transform.parent.GetComponent<DecryptageTask>();
                 _playerUI.DisplayInputToPress(true, "Y");
+                
                 break;
             case "CodeZone":
                 Collidertype = collision.transform.parent.GetComponent<LeCode>();
@@ -149,6 +150,7 @@ public class PlayerCollision : MonoBehaviour
             case "Goat":
                 Collidertype = collision.transform.GetComponent<GoatTask>();
                 _playerUI.DisplayInputToPress(true, "Y");
+
                 break;
             case "StoreZone":
                 Collidertype = collision.transform.parent.GetComponent<StoreTask>();
