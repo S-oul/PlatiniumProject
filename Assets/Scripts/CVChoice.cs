@@ -83,6 +83,7 @@ public class CVChoice : MonoBehaviour
     {
         foreach(PlayerInput player in _playerCursorManager.Players)
         {
+            
             DataManager.Instance.DicSpritePlayer.Add(player.devices[0].description, player.GetComponent<CursorPlayer>().CvChosen.AnimationPlayer);
             //Debug.Log(CompilationPipeline.codeOptimization);
             

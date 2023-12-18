@@ -11,11 +11,15 @@ public class Lift : Room
     [SerializeField] float _timeToTeleport = .5f;
     [SerializeField] float _teleporterCooldown = 1f;
     [SerializeField] Animator _animator;
+    [SerializeField] Sprite _redHautLift;
+    [SerializeField] Sprite _redPorteLift;
     private bool _canTeleport = true;
 
     public Transform MyPos { get => _myPos; }
     public Transform TeleportPos { get => _teleportPos; set => _teleportPos = value; }
     public bool CanTeleport { get => _canTeleport; set => _canTeleport = value; }
+    public Sprite RedHautLift { get => _redHautLift; set => _redHautLift = value; }
+    public Sprite RedPorteLift { get => _redPorteLift; set => _redPorteLift = value; }
 
     private GameObject _player;
     private void Awake()
