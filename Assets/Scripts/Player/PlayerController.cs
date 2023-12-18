@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController2D))]
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
+    public Animator _animator;
     bool _isMirrored = false;
 
     [Header ("For Game Design")]   
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     AudioSource _audioSource;
 
-    Gamepad pad = Gamepad.current;
+    public Gamepad pad = Gamepad.current;
 
     string _codeContext;
     Vector2 _DecrytContext;
@@ -147,12 +147,21 @@ public class PlayerController : MonoBehaviour
     }
     private void DownPlayer()
     {
-        DisableAllInputs();
         _isPlayerDown = true;
+        DisableAllInputs();
+        _animator.SetTrigger("Down");
+        StartCoroutine(dawait());
+    }
+    IEnumerator dawait()
+    {
+        yield return new WaitForSeconds(1f);
+        transform.localEulerAngles = new Vector3(0, 0, 90);
     }
     private void UpPlayer()
     {
         EnableMovementDisableInputs();
+        transform.localPosition += Vector3.up * 0.1f;
+        transform.localEulerAngles = new Vector3(0, 0, 0);
         _isPlayerDown = false;
     }
 
@@ -326,20 +335,18 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         
-        if (_isPlayerDown) { transform.localEulerAngles = new Vector3(0, 0, 90); }
-        else { transform.localEulerAngles = new Vector3(0, 0, 0); }
         _controller.Movement(_horizontalMove * Time.fixedDeltaTime, _isJumping);
         _isJumping = false;
 
         if (_horizontalMove != 0) 
         { 
-            animator.SetBool("isWalking", true);
+            _animator.SetBool("isWalking", true);
             if (_walkingSoundCanPlay)
             {
                 _walkCoroutine = StartCoroutine(PlaySoundWalking());
             }
         }
-        else { animator.SetBool("isWalking", false); }
+        else { _animator.SetBool("isWalking", false); }
 
         if (_horizontalMove < 0 && _isMirrored == false) 
         { 
@@ -369,7 +376,7 @@ public class PlayerController : MonoBehaviour
 
     private void flipAnimation()
     {
-        Transform animTrans = animator.GetComponent<Transform>();
+        Transform animTrans = _animator.GetComponent<Transform>();
         animTrans.localScale = new Vector3(animTrans.localScale.x *-1, animTrans.localScale.y, animTrans.localScale.z);
         //animTrans.rotation = new Quaternion.Euler(new Vector3(0f, 180f, 0f));
     }
@@ -411,7 +418,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public IEnumerator RumbeMeDaddy(float lowfreq, float highfreq, float time)
+    public IEnumerator RumbeMeDaddyOhYesHarderHarder(float lowfreq, float highfreq, float time)
     {
         print("RABLIMG");
         pad.SetMotorSpeeds(lowfreq, highfreq);

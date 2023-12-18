@@ -40,7 +40,11 @@ public class DaySliderAnimationManager : MonoBehaviour
 
         GetComponent<RectTransform>().localPosition = newPos;
 
-        if (GameManager.Instance.DaySlider.DaySliderValue < 0.05f) { this.gameObject.SetActive(false); }
+        //if (GameManager.Instance.DaySlider.DaySliderValue < 0.05f) 
+        if (sliderManager.GetComponent<DaySlider>().DaySliderValue < 0.05f)
+        { 
+            this.gameObject.SetActive(false); 
+        }
 
         UpdateColor();
     }
@@ -48,6 +52,7 @@ public class DaySliderAnimationManager : MonoBehaviour
     void UpdateColor()
     {
         GetComponent<Image>().color = sliderManager.GetComponent<DaySlider>().SliderColor;
+
         //GetComponent<Image>().color = GameManager.Instance.DaySlider.SliderColor;
     }
 

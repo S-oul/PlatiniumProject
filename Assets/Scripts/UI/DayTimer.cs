@@ -53,7 +53,7 @@ public class DayTimer : MonoBehaviour
             {
                 _hasEnd = true;
                 GameManager.Instance.DaySlider.IsOnCrunch = true;
-                _animator.SetTrigger("DoCrunchAnim");
+                _animator.SetTrigger("Crunche");
                 print("DATIMER ISDONE");
             }
 

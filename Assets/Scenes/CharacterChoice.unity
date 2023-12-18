@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3639429895702234363, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: _dayIndex
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5810057472575257350, guid: 295e7e142f88b0a4997fe30fdea359d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2357,9 +2357,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1986245950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -343.92}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 196.08376}
   m_SizeDelta: {x: 597.9629, y: 392.1675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1870276574
@@ -2757,10 +2757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 80.18
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96

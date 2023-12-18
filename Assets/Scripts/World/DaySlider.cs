@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class DaySlider : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class DaySlider : MonoBehaviour
     [SerializeField] Color _endColor = Color.red;
 
     [SerializeField] Image FillImageComponent;
+    [SerializeField] Animator _redOutlineAnim;
 
     float _totalValue = 0;
 
@@ -50,11 +52,21 @@ public class DaySlider : MonoBehaviour
         }
         if (_unclampedValue <= 0)
         {
+            CameraZoomCutscene();
             GetFired();
         }
         _slider.value = Mathf.Lerp(_slider.value, _unclampedValue, _speedUnclamped);
 
         UpdateColor();
+
+        if (_unclampedValue < 0.2f) // To activate blinking red animation when timer is almost up. 
+        {
+            _redOutlineAnim.SetTrigger("ActivateRedOutline");
+        }
+        else
+        {
+            _redOutlineAnim.SetTrigger("StopRedOutline");
+        }
 
     }
     public float SetValue(float val)
@@ -85,6 +97,11 @@ public class DaySlider : MonoBehaviour
     }
     public void GetFired()
     {
+        foreach(GameObject g in GameManager.Instance.Players)
+        {
+            if(g != null)
+            g.GetComponent<PlayerController>().pad.SetMotorSpeeds(0, 0);
+        }
         SceneManager.LoadScene(3);
     }
 
@@ -109,4 +126,24 @@ public class DaySlider : MonoBehaviour
         _currentColor = _gradient.Evaluate(_unclampedValue);
         FillImageComponent.color = _currentColor;
     }
+
+    IEnumerator CameraZoomCutscene()
+    {
+        Camera.main.gameObject.GetComponent<Cam>().FixOnPlayer(GameManager.Instance.LastPlayerToFail);
+        //While loop to reducce timescale + Cam func to make;
+        yield return new WaitForSecondsRealtime(4f);
+        GetFired();
+        
+        
+        
+        /* game over not caused by player => return;
+         * 
+         * targetPlayer = player who caused Game over (info from task)
+         * 
+         * call FocusOn function in camera, with player as paramiter. 
+         */
+        if (_unclampedValue == 0) return;
+
+
+    } 
 }

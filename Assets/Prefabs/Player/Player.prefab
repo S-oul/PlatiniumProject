@@ -2351,7 +2351,7 @@ Animator:
   m_GameObject: {fileID: 5533577487480182078}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cd743ca84889a9540bf6dbf956294c4f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 88088766235b82e44b02cbbf15772650, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2506,7 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec195b6573cd894ea90f497666e00ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 6281449416814043574}
+  _animator: {fileID: 6281449416814043574}
   _moveSpeed: 40
   movementSmoothing: 0.05
   normalFallGravityForce: 3
@@ -2732,6 +2732,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2b193ed0-91d8-4fab-b3f1-ca57806aa831
     m_ActionName: Player/Pause[/DualShock4GamepadHID/start,/DualShock4GamepadHID1/start,/DualShock4GamepadHID2/start,/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a5be71da-f4a2-4c98-8a1a-c81d79dab371
+    m_ActionName: Submiter/Validate[/DualShock4GamepadHID/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player

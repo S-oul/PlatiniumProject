@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Task : MonoBehaviour
@@ -95,16 +96,15 @@ public abstract class Task : MonoBehaviour
         }
         else
         {
-            
             foreach(GameObject p in _playersDoingTask)
             {
-                
                 if (p != null)
                 {
                     print("realnuggets" + p.name);
-                    StartCoroutine(p.GetComponent<PlayerController>().RumbeMeDaddy(rumbleLowForce, rumbleHighForce, rumbleTime));   
+                    StartCoroutine(p.GetComponent<PlayerController>().RumbeMeDaddyOhYesHarderHarder(rumbleLowForce, rumbleHighForce, rumbleTime));   
                 }
             }
+            GameManager.Instance.ChangeLastPlayerToFail(PlayersDoingTask[0]);
             PlayersDoingTask.Clear();
             OnRoomFail();
         }
@@ -185,7 +185,6 @@ public abstract class Task : MonoBehaviour
                         if (player != _playersDoingTask[0])
                         {
                             _playersDoingTask.Remove(player);
-
                         }
                         return;
                     }
@@ -198,22 +197,18 @@ public abstract class Task : MonoBehaviour
                 {
                     if (!_isStarted)
                     {
-
                         _playersDoingTask.Remove(player);
                     }
                 }
             }
-            
-                
-            
         }
-        
     }
 
     public virtual void OnplayerExitTask() 
     { 
         
     }
+
     public void OnRoomSuccess()
     {
         Debug.Log(gameObject.name + " = Success " + _difficulty);
