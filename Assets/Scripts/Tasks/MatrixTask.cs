@@ -185,8 +185,27 @@ public class MatrixTask : InputTask
                 }
                 break;
             case 3:
-                
-                int numberInterations = _playersInOrder.Count * list[0].Count;
+                for (int i = 0; i < _playersInOrder.Count; i++)
+                {
+                    _colorScreen = colors[i];
+                    _teleBoss.AttackAnimation();
+                    foreach (Inputs input in list[i])
+                    {
+
+                        inputsPlayer.Add(IDInput, _colorScreen);
+                        IDInput++;
+                        _teleBoss.DisplayColorInput(_colorScreen);
+                        _teleBoss.ChangeScreensColor(_colorScreen);
+                        _inputsList.Add(input);
+                        _teleBoss.DisplayInput(DataManager.Instance.FindInputSprite(InputsToString[input], _playersInOrder[i].GetComponent<PlayerController>().Type));
+
+                        yield return new WaitForSeconds(0.55f);
+                        _teleBoss.ClearInput();
+                        yield return new WaitForSeconds(0.05f);
+                    }
+                }
+                break;
+                /*int numberInterations = _playersInOrder.Count * list[0].Count;
                 colors = GetRandomColor(numberInterations);
                 foreach(Color color in colors)
                 {
@@ -214,7 +233,7 @@ public class MatrixTask : InputTask
                     {
                         list.Remove(list[randomID]);
                     }
-                    /*_inputsToDo[randomID].Remove(input);*/
+                    *//*_inputsToDo[randomID].Remove(input);*//*
                     
                     _inputsList.Add(input);
                     inputsPlayer.Add(i, _colorScreen);
@@ -227,7 +246,7 @@ public class MatrixTask : InputTask
                     _teleBoss.ClearInput();
                     yield return new WaitForSeconds(0.05f);
                 }
-                break;
+                break;*/
         }
 
         _teleBoss.SetActiveInput(false);

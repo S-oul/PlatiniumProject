@@ -46,7 +46,11 @@ public class RH : NPC, IChattyNPC
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        TaskRH.PlayersDoingTask.Add(collision.gameObject);
+        if(collision.tag == "Player")
+        {
+            TaskRH.PlayersDoingTask.Add(collision.gameObject);
+        }
+        
         if(_isPlayerNeeded && collision.gameObject == _playerNeeded )
         {
             _task.End(true);
