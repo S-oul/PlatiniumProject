@@ -424,7 +424,6 @@ public class PlayerController : MonoBehaviour
         pad.SetMotorSpeeds(lowfreq, highfreq);
         yield return new WaitForSecondsRealtime(time);
         pad.SetMotorSpeeds(0, 0);
-
     }
     public void ChangeMobiltyFactor(float moveSpeedFactor, float jumpForceFactor)
     {
