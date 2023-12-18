@@ -18,9 +18,10 @@ public class RHTask : Task
     }
     public override void End(bool isSuccessful)
     {
+        base.End(isSuccessful);
         StartCoroutine(FeedBack(isSuccessful));
         _npcRH.IsPlayerNeeded = false;
-        base.End(isSuccessful);
+        
     }
 
     public override void Init()

@@ -270,6 +270,7 @@ public class Building : MonoBehaviour
     private void Generate()
     {
         GameManager.Instance.RoomTaskList.Clear();
+        GameManager.Instance.NumberOfTasksMade = 0;
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayMusic("IngameMusic");
