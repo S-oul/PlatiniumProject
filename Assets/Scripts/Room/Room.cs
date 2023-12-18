@@ -34,7 +34,7 @@ public class Room : MonoBehaviour
     #endregion
 
     GameManager _gameManager;
-
+    bool _canChangeLight;
     SpriteRenderer _light;
 
 
@@ -59,19 +59,21 @@ public class Room : MonoBehaviour
     public AudioClip OnRoomSuccessClip { get => _onRoomSuccessClip; set => _onRoomSuccessClip = value; }
     public AudioClip OnRoomFailClip { get => _onRoomFailClip; set => _onRoomFailClip = value; }
     public BoxCollider2D BoxCollider { get => _boxCollider; set => _boxCollider = value; }
+    public SpriteRenderer Light { get => _light; set => _light = value; }
+    public bool CanChangeLight { get => _canChangeLight; set => _canChangeLight = value; }
     #endregion
 
     public virtual void InitRoom()
     {
         if(GameManager.Instance != null) _gameManager = GameManager.Instance;
-        
-        if(_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
-        if(!Id.Contains("S")) { _light = gameObject.transform.Find("LightBlack").GetComponent<SpriteRenderer>(); }
+        _canChangeLight = true;
+        if (_spriteRoom == null) { _spriteRoom = GetComponentInChildren<SpriteRenderer>(); }
+        if(!Id.Contains("S")) { Light = gameObject.transform.Find("LightBlack").GetComponent<SpriteRenderer>(); }
         //WinStateScreen.ChangeColor(Color.white);
         //Color.RGBToHSV(_spriteRoom.color, out h, out s, out v);
-        if(_light != null)
+        if(Light != null)
         {
-            _light.color = new Color(0, 0, 0, 1f);
+            Light.color = new Color(0, 0, 0, 0.98f);
         }
         
         //print(gameObject.name + " : " + h + " " + s + " " + v);
@@ -113,9 +115,10 @@ public class Room : MonoBehaviour
         {
             _spriteRoom.color = Color.HSVToRGB(h, s, v);
         }*/
-        if(_light != null)
+        if(Light != null && _canChangeLight)
         {
-            _light.color = new Color(0, 0, 0, 0);
+
+            Light.color = new Color(0, 0, 0, 0);
         }
         
     }

@@ -78,15 +78,15 @@ TagManager:
   - name: MiniGame
     uniqueID: 3731426517
     locked: 0
-  - name: Player
-    uniqueID: 940664647
-    locked: 0
   - name: 'LightBG '
     uniqueID: 245853705
     locked: 0
-  - name: UIPlayer
-    uniqueID: 2510225839
-    locked: 0
   - name: BlackLight
     uniqueID: 1558860639
+    locked: 0
+  - name: Player
+    uniqueID: 940664647
+    locked: 0
+  - name: UIPlayer
+    uniqueID: 2510225839
     locked: 0
