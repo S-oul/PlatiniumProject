@@ -142,7 +142,7 @@ public class DaySlider : MonoBehaviour
          * 
          * call FocusOn function in camera, with player as paramiter. 
          */
-        if (_unclampedValue == 0) return;
+        if (_unclampedValue == 0) yield return null;
 
 
     } 
