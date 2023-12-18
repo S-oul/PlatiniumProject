@@ -179,7 +179,9 @@ public class GameManager : MonoBehaviour
         foreach(Lift lift in LiftList)
         {
             lift.GetComponent<Room>().CanChangeLight = false;
-            lift.GetComponent<Room>().Light.color = new Color(0.7f, 0, 0, 0.7f);
+            lift.transform.Find("salle_ascensseur_haut").GetComponent<SpriteRenderer>().sprite = lift.RedHautLift;
+            lift.transform.Find("salle_ascensseur_porte").GetComponent<SpriteRenderer>().sprite = lift.RedPorteLift;
+            lift.GetComponent<Animator>().SetTrigger("CloseDeactivate");
             lift.CanTeleport = false;
             
         }

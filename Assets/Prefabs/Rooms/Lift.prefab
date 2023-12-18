@@ -273,6 +273,8 @@ MonoBehaviour:
   _timeToTeleport: 0.3
   _teleporterCooldown: 1
   _animator: {fileID: 8574650707960248930}
+  _redHautLift: {fileID: 21300000, guid: 2e303bbc0cebb4f448f6500ab8f75af5, type: 3}
+  _redPorteLift: {fileID: 21300000, guid: 902f82b8696df36418411a7bc7850f51, type: 3}
 --- !u!61 &-573729857295420596
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -982,7 +984,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1558860639
-  m_SortingLayer: 5
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
