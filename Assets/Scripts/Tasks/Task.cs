@@ -250,7 +250,7 @@ public abstract class Task : MonoBehaviour
         GameManager.Instance.RoomLose();
         GameManager.Instance.CheckIfDayFinished();
 
-        if (!RoomTask.Id.Contains("T"))
+        if (RoomTask.Id.Contains("T"))
         {
             AudioManager.Instance.PlaySFXOS("TaskFail", _room.AudioSource);
         }
