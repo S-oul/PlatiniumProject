@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
     public bool PauseBool { get => _pauseBool; set => _pauseBool = value; }
     public GameObject PauseMenu { get => _pauseMenu; set => _pauseMenu = value; }
     public GameObject LastPlayerToFail { get => _lastPlayerToFail; set => _lastPlayerToFail = value; }
+    public bool HisfaultBool { get => _hisfaultBool; set => _hisfaultBool = value; }
 
     public void ChangeLastPlayerToFail(GameObject g)
     {
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
     IEnumerator HisFault()
     {
         yield return new WaitForSecondsRealtime(4f);
-        _hisfaultBool = true;
+        _hisfaultBool = false;
     }
     public float DaySliderOverDay = 0;
     private void Start()

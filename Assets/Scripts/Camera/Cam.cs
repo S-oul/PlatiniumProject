@@ -47,7 +47,11 @@ public class Cam : MonoBehaviour
     private void LateUpdate()
     {
         if(targets.Count == 0) { return; }
-        if (!_fixOnRoom)
+        if (_fixOnPlayer)
+        {
+            MoveOnPlayer(_player);
+            ZoomOnPlayer(_player);
+        }else if (!_fixOnRoom)
         {
             Move();
             Zoom();
@@ -67,12 +71,31 @@ public class Cam : MonoBehaviour
         _room = r;
     }
 
-    public void FixOnPlayer(GameObject p)
+    public void FixOnPlayerVoid(GameObject p)
     {
         _fixOnPlayer = true;
         _player = p;
     }
+    void MoveOnPlayer(GameObject player)
+    {
+        Bounds bounds = player.GetComponent<CapsuleCollider2D>().bounds;
 
+        Vector3 centralPoint = bounds.center;
+        transform.position = Vector3.SmoothDamp(transform.position, centralPoint, ref _velocity, _SmoothTime);
+        print(Time.timeScale);
+        if (_fixeOnZ)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        }
+
+    }
+    void ZoomOnPlayer(GameObject player)
+    {
+        Bounds bounds = player.GetComponent<CapsuleCollider2D>().bounds;
+        float newZoom = Mathf.Lerp(1, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x / 25 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
+        _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, newZoom, Time.deltaTime*2f);
+
+    }
     private void ZoomOnRoom(Room room)
     {
         room.BoxCollider.enabled = true;

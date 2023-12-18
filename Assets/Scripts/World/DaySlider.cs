@@ -52,8 +52,15 @@ public class DaySlider : MonoBehaviour
         }
         if (_unclampedValue <= 0)
         {
-            CameraZoomCutscene();
-            GetFired();
+            if (GameManager.Instance.HisfaultBool)
+            {
+                StartCoroutine(CameraZoomCutscene());
+            }
+            else
+            {
+                GetFired();
+            }
+            DoSlider = false;
         }
         _slider.value = Mathf.Lerp(_slider.value, _unclampedValue, _speedUnclamped);
 
@@ -127,12 +134,17 @@ public class DaySlider : MonoBehaviour
         FillImageComponent.color = _currentColor;
     }
 
+    float timeToWait = 10;
     IEnumerator CameraZoomCutscene()
     {
-        Camera.main.gameObject.GetComponent<Cam>().FixOnPlayer(GameManager.Instance.LastPlayerToFail);
+        Camera.main.GetComponent<Cam>().FixOnPlayerVoid(GameManager.Instance.LastPlayerToFail);
+
         //While loop to reducce timescale + Cam func to make;
-        //yield return new WaitForSecondsRealtime(4f);
-        yield return null;
+        Time.timeScale = .5f;
+        yield return new WaitForSeconds(7f);
+        Time.timeScale = 1f;
+
+
         GetFired();
         
         
