@@ -123,7 +123,13 @@ public class Building : MonoBehaviour
                 _gameManager.RoomRemainingText = spawnRoom.transform.Find("Screen").Find("Text");
                 _gameManager.RoomRemainingImage = spawnRoom.transform.Find("Screen").Find("BossNeon");
                 PlayerManager.Instance.PlayersRemaining = spawnRoom.transform.Find("Canvas").GetChild(0).GetComponent<TextMeshProUGUI>();
-                PlayerManager.Instance.PlayersRemaining.text = "4 player(s) left...";
+                PlayerManager.Instance.PlayersRemaining.text = GameManager.Instance.NumberPlayerToSpawn + " player(s) left...";
+                foreach(Transform door in spawnRoom.transform.Find("DoorsStart"))
+                {
+
+                    PlayerManager.Instance.Doors.Add(door);
+                }
+                
 
             }
             else

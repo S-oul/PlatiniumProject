@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,9 +10,10 @@ public class PlayerManager : MonoBehaviour
     PlayerInputManager _inputManager;
     int _sortingOrderTracker = 0;
     TextMeshProUGUI _playersRemaining;
-
+    List<Transform> _doors = new List<Transform>();
     public PlayerInputManager InputManager { get => _inputManager; set => _inputManager = value; }
     public TextMeshProUGUI PlayersRemaining { get => _playersRemaining; set => _playersRemaining = value; }
+    public List<Transform> Doors { get => _doors; set => _doors = value; }
 
     public enum ControllerType
     {
@@ -65,14 +67,18 @@ public class PlayerManager : MonoBehaviour
                 InputManager.DisableJoining();
             }
         }
-        if (GameManager.Instance.PlayerCount == 4)
+        if (GameManager.Instance.PlayerCount == GameManager.Instance.NumberPlayerToSpawn)
         {
             PlayersRemaining.gameObject.SetActive(false);
+            foreach(Transform door in _doors)
+            {
+                door.gameObject.SetActive(false);
+            }
         }
         else
         {
             //PlayersRemaining.text = (4 - GameManager.Instance.PlayerCount) + " player(s) left...";
-            PlayersRemaining.text = (4 - GameManager.Instance.PlayerCount) + " player(s) left...";
+            PlayersRemaining.text = (GameManager.Instance.NumberPlayerToSpawn - GameManager.Instance.PlayerCount) + " player(s) left...";
         }
 
     }

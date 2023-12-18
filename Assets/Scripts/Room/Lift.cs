@@ -15,6 +15,7 @@ public class Lift : Room
 
     public Transform MyPos { get => _myPos; }
     public Transform TeleportPos { get => _teleportPos; set => _teleportPos = value; }
+    public bool CanTeleport { get => _canTeleport; set => _canTeleport = value; }
 
     private GameObject _player;
     private void Awake()
@@ -31,7 +32,7 @@ public class Lift : Room
 
         List<GameObject> players = new List<GameObject>();
         
-        if (_canTeleport)
+        if (CanTeleport)
         {
             foreach(GameObject p in ListPlayer)
             {
@@ -66,9 +67,9 @@ public class Lift : Room
     }
     IEnumerator TeleportCooldown(float time)
     {
-        _canTeleport = false;
+        CanTeleport = false;
         yield return new WaitForSeconds(time);
-        _canTeleport = true;
+        CanTeleport = true;
     }
 
 }

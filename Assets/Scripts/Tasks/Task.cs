@@ -211,7 +211,6 @@ public abstract class Task : MonoBehaviour
 
     public void OnRoomSuccess()
     {
-        Debug.Log(gameObject.name + " = Success " + _difficulty);
         GameManager.Instance.NumberOfTasksMade++;
         GameManager.Instance.RoomRemainingText.Find("Value").GetComponent<TextMeshProUGUI>().text = (GameManager.Instance.RoomTaskList.Count - GameManager.Instance.NumberOfTasksMade).ToString();
 

@@ -39,6 +39,7 @@ public class PlayerCursorManager : MonoBehaviour
             CheckNameAndID();
             player.gameObject.GetComponent<CursorPlayer>().CurrentZoneID = 1;
             CheckController(player);
+            GameManager.Instance.NumberPlayerToSpawn++;
         }
         if(players.Count == 4)
         {

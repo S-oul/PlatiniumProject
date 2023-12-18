@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] DayTimer _dayTimer;
     [SerializeField] DayManager _dayManager;
 
-
+    int _numberPlayerToSpawn;
     private int _roomLose = 0;
     private int _roomWin = 0;
     [SerializeField] int _maxRoomFail = 3;
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
     public bool PauseBool { get => _pauseBool; set => _pauseBool = value; }
     public GameObject PauseMenu { get => _pauseMenu; set => _pauseMenu = value; }
     public GameObject LastPlayerToFail { get => _lastPlayerToFail; set => _lastPlayerToFail = value; }
+    public int NumberPlayerToSpawn { get => _numberPlayerToSpawn; set => _numberPlayerToSpawn = value; }
     public bool HisfaultBool { get => _hisfaultBool; set => _hisfaultBool = value; }
 
     public void ChangeLastPlayerToFail(GameObject g)
@@ -176,6 +177,13 @@ public class GameManager : MonoBehaviour
 
     public void OpenTheFinalDoor()
     {
+        foreach(Lift lift in LiftList)
+        {
+            lift.GetComponent<Room>().CanChangeLight = false;
+            lift.GetComponent<Room>().Light.color = new Color(0.7f, 0, 0, 0.7f);
+            lift.CanTeleport = false;
+            
+        }
         _dayTimer.DoTimer = false;
         _daySlider.IsOnCrunch = true;
         StartCoroutine(_finalDoor.GetComponent<FinalDoor>().OpenDoor());
