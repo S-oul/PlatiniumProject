@@ -20,6 +20,7 @@ public class TamponageTask : InputTask, ITimedTask
     int _p1Value = 0;
     int _p2Value = 0;
 
+    bool _isPenality;
 
     PlayerController _player1;
     PlayerController _player2;
@@ -155,7 +156,11 @@ public class TamponageTask : InputTask, ITimedTask
             {
                 _hasTamponnageSoundPlayedP1 = false;
                 _hasTamponnageSoundPlayedP2 = false;
-                _player1UI.DisplayInputToPress(true, _inputName);
+                if (!_isPenality)
+                {
+                    _player1UI.DisplayInputToPress(true, _inputName);
+                }
+                    
             }
             else if(_p1Value == 1 && _p2Value == 0)
             {
@@ -165,9 +170,13 @@ public class TamponageTask : InputTask, ITimedTask
                     _hasTamponnageSoundPlayedP1 = true;
 
                 }
+
+                if (!_isPenality)
+                {
+                    _player2UI.DisplayInputToPress(true, _inputName);
+                    _player1UI.DisplayInputToPress(false, "");
+                }
                 
-                _player2UI.DisplayInputToPress(true, _inputName);
-                _player1UI.DisplayInputToPress(false, "");
             }
         }
     }
@@ -192,6 +201,7 @@ public class TamponageTask : InputTask, ITimedTask
 
      IEnumerator Penality()
     {
+        _isPenality = true;
         _p1Value = 0;
         _p2Value = 0;
         _player1.GetComponent<PlayerController>().DisableAllInputs();
@@ -204,6 +214,7 @@ public class TamponageTask : InputTask, ITimedTask
         _textScore.text = _numOfClicksDone + "/" + _numOfClicksToDo;
         _player1.GetComponent<PlayerController>().DisableMovementEnableInputs();
         _player2.GetComponent<PlayerController>().DisableMovementEnableInputs();
+        _isPenality = false;
 
     }
 
