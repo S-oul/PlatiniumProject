@@ -896,6 +896,8 @@ MonoBehaviour:
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
   _animator: {fileID: 0}
+  _redHautLift: {fileID: 0}
+  _redPorteLift: {fileID: 0}
 --- !u!212 &91042057
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1139,6 +1141,8 @@ MonoBehaviour:
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
   _animator: {fileID: 0}
+  _redHautLift: {fileID: 0}
+  _redPorteLift: {fileID: 0}
 --- !u!212 &235177747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2594,6 +2598,8 @@ MonoBehaviour:
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
   _animator: {fileID: 0}
+  _redHautLift: {fileID: 0}
+  _redPorteLift: {fileID: 0}
 --- !u!212 &796650069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3561,6 +3567,8 @@ MonoBehaviour:
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
   _animator: {fileID: 0}
+  _redHautLift: {fileID: 0}
+  _redPorteLift: {fileID: 0}
 --- !u!212 &979305927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4465,6 +4473,8 @@ MonoBehaviour:
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
   _animator: {fileID: 0}
+  _redHautLift: {fileID: 0}
+  _redPorteLift: {fileID: 0}
 --- !u!212 &1161253755
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4708,7 +4718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unclampedValue: 1
   _speedTimer: 0.005
-  _speedUnclamped: 0.025
+  _speedUnclamped: 0.5
   _OnRoomLoose: 0.2
   _OnRoomWin: 0.1
   _gradient:
@@ -5212,6 +5222,8 @@ MonoBehaviour:
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
   _animator: {fileID: 0}
+  _redHautLift: {fileID: 0}
+  _redPorteLift: {fileID: 0}
 --- !u!212 &1382611771
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6049,6 +6061,8 @@ MonoBehaviour:
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
   _animator: {fileID: 0}
+  _redHautLift: {fileID: 0}
+  _redPorteLift: {fileID: 0}
 --- !u!212 &1689437616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6579,6 +6593,8 @@ MonoBehaviour:
   _timeToTeleport: 0.5
   _teleporterCooldown: 1
   _animator: {fileID: 0}
+  _redHautLift: {fileID: 0}
+  _redPorteLift: {fileID: 0}
 --- !u!212 &1801621182
 SpriteRenderer:
   m_ObjectHideFlags: 0
