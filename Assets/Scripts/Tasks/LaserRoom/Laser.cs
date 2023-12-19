@@ -32,6 +32,9 @@ public class Laser : MonoBehaviour
 
     RaycastHit2D ray;
 
+    [SerializeField] Animator BossAnim;
+    void TriggerBossLaughAnim() => BossAnim.SetTrigger("BossLaugh");
+
     public float TimePlayerIsDown { get => _timePlayerIsDown; set => _timePlayerIsDown = value; }
     public bool GoLeft { get => _goLeft; set => _goLeft = value; }
     public Transform ToFar { get => _toFar; set => _toFar = value; }
@@ -108,6 +111,7 @@ public class Laser : MonoBehaviour
                     AudioManager.Instance.PlaySFXOS("LaserImpact", _audioSource);
                     StartCoroutine(ray.collider.GetComponent<PlayerController>().PlayerDown(TimePlayerIsDown));
                     GameManager.Instance.DaySlider.RemoveValue(.1f);
+                    TriggerBossLaughAnim();
                 }
             }
         }
