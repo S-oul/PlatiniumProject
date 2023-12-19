@@ -78,7 +78,15 @@ public class Cam : MonoBehaviour
     }
     void MoveOnPlayer(GameObject player)
     {
-        Bounds bounds = player.GetComponent<CapsuleCollider2D>().bounds;
+        Bounds bounds;
+        if (player == null)
+        {
+            bounds = GameManager.Instance.Players[0].GetComponent<CapsuleCollider2D>().bounds;
+        }
+        else
+        {
+            bounds = player.GetComponent<CapsuleCollider2D>().bounds;
+        }
 
         Vector3 centralPoint = bounds.center;
         transform.position = Vector3.SmoothDamp(transform.position, centralPoint, ref _velocity, _SmoothTime);
@@ -91,9 +99,18 @@ public class Cam : MonoBehaviour
     }
     void ZoomOnPlayer(GameObject player)
     {
-        Bounds bounds = player.GetComponent<CapsuleCollider2D>().bounds;
-        float newZoom = Mathf.Lerp(1, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x / 25 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
-        _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, newZoom, Time.deltaTime*2f);
+        Bounds bounds;
+        if (player == null)
+        {
+            bounds = GameManager.Instance.Players[0].GetComponent<CapsuleCollider2D>().bounds;
+        }
+        else
+        {
+            bounds = player.GetComponent<CapsuleCollider2D>().bounds;
+        }
+
+        float newZoom = Mathf.Lerp(3, _maxZoom, _zoomCurve.Evaluate(bounds.extents.x / 25 /*/ (_zoomLimiter - _reduceZoomYLimiter)*/));
+        _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, newZoom, Time.deltaTime*5f);
 
     }
     private void ZoomOnRoom(Room room)

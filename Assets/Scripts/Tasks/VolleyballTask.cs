@@ -48,22 +48,27 @@ public class VolleyballTask : Task
     public GameObject Tentacle { get => _tentacle; set => _tentacle = value; }
 
     public override void End(bool isSuccessful)
-    {
-
+    { 
         base.End(isSuccessful);
-        UIManager.Instance.UIVolley.gameObject.SetActive(false);
-        foreach (GameObject player in PlayersDoingTask)
+        if (isSuccessful)
         {
-            player.GetComponent<PlayerController>().ChangeMobiltyFactor(1, 1);
-        }
+            UIManager.Instance.UIVolley.gameObject.SetActive(false);
+            foreach (GameObject player in PlayersDoingTask)
+            {
+                player.GetComponent<PlayerController>().ChangeMobiltyFactor(1, 1);
+            }
 
-        GameManager.Instance.DayIndex++;
-        List<GameObject> l = new List<GameObject>();
-        l = GameManager.Instance.Players;
-        GameManager.Instance.DaySliderOverDay = GameManager.Instance.DaySlider.GetValue();
-        SceneManager.LoadScene(2);
-        GameManager.Instance.Players = l;
-        
+            GameManager.Instance.DayIndex++;
+            List<GameObject> l = new List<GameObject>();
+            l = GameManager.Instance.Players;
+            GameManager.Instance.DaySliderOverDay = GameManager.Instance.DaySlider.GetValue();
+            SceneManager.LoadScene(2);
+            GameManager.Instance.Players = l;
+        }
+        else
+        {
+            SceneManager.LoadScene(3);
+        }
     }
     public override void Init()
     {
@@ -129,10 +134,7 @@ public class VolleyballTask : Task
     }
 
     public void Point()
-    {
-        
-        
-        
+    {        
         if (_squidPoints < _pointsToWin && _playersPoints < _pointsToWin)
         {
             StartCoroutine(TimerBeforeBall(2f));
@@ -154,7 +156,9 @@ public class VolleyballTask : Task
     IEnumerator LostTask()
     {
         Camera.main.GetComponent<Cam>().FixOnPlayerVoid(GameManager.Instance.LastPlayerToFail);
-        yield return new WaitForSeconds(5f);
+        Time.timeScale = .5f;
+        yield return new WaitForSecondsRealtime(2.5f);
+        Time.timeScale = 1f;
         End(false);
     }
     public void CheckPoints(bool isForPlayer)

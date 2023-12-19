@@ -57,11 +57,18 @@ public class MatrixTask : InputTask
     public override void End(bool isSuccessful)
     {
         base.End(isSuccessful);
-        GameManager.Instance.DayIndex++;
-        List<GameObject> l = new List<GameObject>();
-        l = GameManager.Instance.Players;
-        SceneManager.LoadScene(2);
-        GameManager.Instance.Players = l;
+        if (isSuccessful)
+        {
+            GameManager.Instance.DayIndex++;
+            List<GameObject> l = new List<GameObject>();
+            l = GameManager.Instance.Players;
+            SceneManager.LoadScene(2);
+            GameManager.Instance.Players = l;
+        }
+        else
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     void ShufflePlayerOrder()
@@ -486,7 +493,9 @@ public class MatrixTask : InputTask
     IEnumerator LostTask()
     {
         Camera.main.GetComponent<Cam>().FixOnPlayerVoid(GameManager.Instance.LastPlayerToFail);
-        yield return new WaitForSeconds(5f);
+        Time.timeScale = .5f;
+        yield return new WaitForSecondsRealtime(2.5f);
+        Time.timeScale = 1f;
         End(false);
     }
     IEnumerator DialoguesPlayerLoss()

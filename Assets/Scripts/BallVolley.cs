@@ -36,7 +36,7 @@ public class BallVolley : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-
+                GameManager.Instance.LastPlayerToFail = collision.gameObject;
                 _lastCollisionPlayer = collision.gameObject;
                 _task.PlayerTouch = collision.gameObject;
                 /*if (_canCheckTouchAgain)

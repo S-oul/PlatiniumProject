@@ -47,7 +47,7 @@ MonoBehaviour:
   rumbleLowForce: 0.4
   rumbleHighForce: 0.1
   rumbleTime: 0.4
-  _numberOfPlayers: 4
+  _numberOfPlayers: 1
   _difficulty: 1
   _isReplayable: 0
   _addPlayerAtRunTime: 0
