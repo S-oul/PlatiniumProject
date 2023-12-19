@@ -180,4 +180,13 @@ public class Cam : MonoBehaviour
         Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight / 10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
         Handles.DrawLine(_camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)), _camera.ScreenToWorldPoint(new Vector2(_camera.scaledPixelWidth - _camera.scaledPixelWidth / 10, _camera.scaledPixelHeight - _camera.scaledPixelHeight / 10)));
     }*/
+
+    void gameOverCamAnimation(GameObject targetPlayer)
+    {
+        /* identifi coordinates of target plager
+         * transform camera to match coordinates
+         * zoom in camera
+         */
+    }
+
 }
