@@ -28,10 +28,6 @@ public class MatrixTask : InputTask
     Dictionary<int, Color> inputsPlayer = new Dictionary<int, Color> ();
 
     bool _canCheckInput = false;
-    private void Start()
-    {
-        
-    }
     public override void StartTask()
     {
         if (AudioManager.Instance != null)
@@ -114,13 +110,10 @@ public class MatrixTask : InputTask
 
     void DisplayAllInputs()
     {
-  
         ShufflePlayerOrder();
         _inputsToDo.Clear();
         _inputsToDo = CreateListInputs();
-
         StartCoroutine(DisplayInputs(_inputsToDo));
-
     }
 
 
@@ -354,6 +347,7 @@ public class MatrixTask : InputTask
                 print("Wrong Input");
                 InputValue(false, player);
 
+
             }
             else if (_inputValue == PlayerInputValue.RightValue)
             {
@@ -370,6 +364,10 @@ public class MatrixTask : InputTask
     }
     void InputValue(bool isInputRight, GameObject player)
     {
+        if (!isInputRight && tries == 0)
+        {
+            GameManager.Instance.LastPlayerToFail = player;
+        }
         _canCheckInput = false;
         _teleBoss.SliderActive(false);
         _teleBoss.SliderValue(0);
@@ -442,7 +440,7 @@ public class MatrixTask : InputTask
                     }
                     else
                     {
-                        End(false);
+                        StartCoroutine(LostTask());
                     }
                 }
                 /*_numberOfFails++;
@@ -485,7 +483,12 @@ public class MatrixTask : InputTask
         
 
     }
-
+    IEnumerator LostTask()
+    {
+        Camera.main.GetComponent<Cam>().FixOnPlayerVoid(GameManager.Instance.LastPlayerToFail);
+        yield return new WaitForSeconds(5f);
+        End(false);
+    }
     IEnumerator DialoguesPlayerLoss()
     {
         _teleBoss.DisplayText("You failed?");
