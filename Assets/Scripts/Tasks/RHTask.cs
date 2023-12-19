@@ -15,11 +15,13 @@ public class RHTask : Task
     {
         _gameManager = GameManager.Instance;
         _npcRH = transform.parent.parent.GetComponentInChildren<RH>();
+        _npcRH.TaskRH = this;
     }
     public override void End(bool isSuccessful)
     {
         base.End(isSuccessful);
         StartCoroutine(FeedBack(isSuccessful));
+        
         _npcRH.IsPlayerNeeded = false;
         
     }
@@ -42,7 +44,7 @@ public class RHTask : Task
             _playerNeeded = _playersAsked[Random.Range(0, _playersAsked.Count)];
             _npcRH.DisplayPlayer(_playerNeeded);
             _npcRH.PlayerNeeded = _playerNeeded;
-            _npcRH.TaskRH = this;
+            
             _npcRH.IsPlayerNeeded = true;
 
         }
