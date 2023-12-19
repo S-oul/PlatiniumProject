@@ -148,9 +148,8 @@ public class VolleyballTask : Task
         else if (_playersPoints == _pointsToWin)
         {
 
-            End(true) ;
+            StartCoroutine(WinVolley());
             _textVolleyUI.gameObject.SetActive(false);
-            Debug.Log("Win");
         }
     }
     IEnumerator LostTask()
@@ -160,6 +159,12 @@ public class VolleyballTask : Task
         yield return new WaitForSecondsRealtime(2.5f);
         Time.timeScale = 1f;
         End(false);
+    }
+
+    IEnumerator WinVolley()
+    {
+        yield return new WaitForSeconds(3f);
+        End(true);
     }
     public void CheckPoints(bool isForPlayer)
     {

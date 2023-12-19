@@ -404,7 +404,7 @@ public class MatrixTask : InputTask
                     _phase++;
                     if(_phase == 4)
                     {
-                        End(true);
+                        StartCoroutine(WinMatrix());
                     }
                     else
                     {
@@ -481,7 +481,7 @@ public class MatrixTask : InputTask
                 }
                 else
                 {
-                    End(false);
+                    StartCoroutine(LostTask());
                 }
                 
             }
@@ -498,6 +498,7 @@ public class MatrixTask : InputTask
         Time.timeScale = 1f;
         End(false);
     }
+
     IEnumerator DialoguesPlayerLoss()
     {
         _teleBoss.DisplayText("You failed?");
@@ -507,6 +508,13 @@ public class MatrixTask : InputTask
         yield return new WaitForSeconds(2.5f);
         _teleBoss.DisplayText("");
         DisplayAllInputs();
+    }
+
+    IEnumerator WinMatrix()
+    {
+        _teleBoss.DisplayText("GG.");
+        yield return new WaitForSeconds(3f);
+        End(true);
     }
 
 

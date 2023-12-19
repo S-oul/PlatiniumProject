@@ -270,6 +270,8 @@ public class Building : MonoBehaviour
     private void Generate()
     {
         GameManager.Instance.RoomTaskList.Clear();
+        GameManager.Instance.RoomList.Clear();
+        GameManager.Instance.LiftList.Clear();
         GameManager.Instance.NumberOfTasksMade = 0;
         if (AudioManager.Instance != null)
         {
