@@ -48,7 +48,8 @@ public class RH : NPC, IChattyNPC
     {
         if(collision.tag == "Player")
         {
-            TaskRH.PlayersDoingTask.Add(collision.gameObject);
+            
+            _task.PlayersDoingTask.Add(collision.gameObject);
         }
         
         if(_isPlayerNeeded && collision.gameObject == _playerNeeded )
@@ -64,7 +65,7 @@ public class RH : NPC, IChattyNPC
     {
         if(collision.tag == "Player")
         {
-            TaskRH.PlayersDoingTask.Remove(collision.gameObject);
+            _task.PlayersDoingTask.Remove(collision.gameObject);
 
         }
     }

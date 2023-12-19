@@ -140,7 +140,7 @@ public class VolleyballTask : Task
         else if (_squidPoints == _pointsToWin)
         {
             _textVolleyUI.gameObject.SetActive(false);
-            End(false);
+            StartCoroutine(LostTask());
             Debug.Log("Defeat");
         }
         else if (_playersPoints == _pointsToWin)
@@ -151,7 +151,12 @@ public class VolleyballTask : Task
             Debug.Log("Win");
         }
     }
-
+    IEnumerator LostTask()
+    {
+        Camera.main.GetComponent<Cam>().FixOnPlayerVoid(GameManager.Instance.LastPlayerToFail);
+        yield return new WaitForSeconds(5f);
+        End(false);
+    }
     public void CheckPoints(bool isForPlayer)
     {
         if (isForPlayer)

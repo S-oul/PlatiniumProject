@@ -11,7 +11,7 @@ public class BallVolley : MonoBehaviour
 
     VolleyballTask _task;
 
-    GameObject _lastCollisionObject;
+    GameObject _lastCollisionPlayer;
 
     bool _canCheckCollision;
 
@@ -37,7 +37,7 @@ public class BallVolley : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
 
-                _lastCollisionObject = collision.gameObject;
+                _lastCollisionPlayer = collision.gameObject;
                 _task.PlayerTouch = collision.gameObject;
                 /*if (_canCheckTouchAgain)
                 {
@@ -56,6 +56,7 @@ public class BallVolley : MonoBehaviour
                 /*_rb.AddForce(Vector2.up * 40f);*/
                 //_rb.AddForce(_dir.normalized * _numberOfTouches * 2f);
                 _rb.AddForce(_dir.normalized * 20f);
+                
 
             }
             
@@ -88,7 +89,6 @@ public class BallVolley : MonoBehaviour
             {
                 if (CheckChanceToHit())
                 {
-                    _lastCollisionObject = collision.gameObject;
                     Vector3 dir = new Vector3(Random.Range(-0.8f, -1f), Random.Range(0.8f, 1f), 0).normalized * _force;
                     _task.PlayTentacleAnimation();
                     _rb.velocity = Vector2.zero;
@@ -119,6 +119,7 @@ public class BallVolley : MonoBehaviour
         if (gameObject.transform.localPosition.x < 0)
         {
             StartCoroutine(TimerBeforeDestroy(false));
+            _lastCollisionPlayer = _task.PlayersDoingTask[Random.Range(0, _task.PlayersDoingTask.Count)];
         }
         else if (gameObject.transform.localPosition.x > 0)
         {
@@ -138,7 +139,7 @@ public class BallVolley : MonoBehaviour
         }
         else { return true; }
     }
-
+    
     public IEnumerator TimerBeforeDestroy(bool isForPlayer)
     {
         _task.CheckPoints(isForPlayer);
@@ -150,6 +151,7 @@ public class BallVolley : MonoBehaviour
         else
         {
             GameManager.Instance.DaySlider.RemoveValue(GameManager.Instance.DaySlider.TotalValue/7);
+            GameManager.Instance.LastPlayerToFail = _lastCollisionPlayer;
             _task.TextVolleyUI.gameObject.SetActive(true);
             _task.TextVolleyUI.text = "Point for squid!";
 
