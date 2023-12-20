@@ -71,7 +71,7 @@ public class CVChoice : MonoBehaviour
             if (player.gameObject.GetComponent<CursorPlayer>().HasChosenCV)
             {
                 _playerChosenCount++;
-                if(_playerChosenCount == _playerCursorManager.Players.Count)
+                if(_playerChosenCount ==  4)
                 {
                     SwitchToGame();
                 }
