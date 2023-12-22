@@ -35,6 +35,7 @@ public class CowboyQTE : InputTask
     {
 
         _npcCowboy = transform.parent.parent.GetComponentInChildren<CowboyNPC>();
+        _timeToDoQTE = _timeToDoQTE - ((Difficulty - 1) * 0.2f);
     }
 
     public override void StartTask()

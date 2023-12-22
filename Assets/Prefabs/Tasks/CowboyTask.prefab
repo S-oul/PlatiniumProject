@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ce63f2cb51b1d448b938c4a8bab4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rumbleLowForce: 0.4
+  rumbleHighForce: 0.1
+  rumbleTime: 0.4
   _numberOfPlayers: 1
   _difficulty: 1
   _isReplayable: 1
