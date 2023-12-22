@@ -32,8 +32,8 @@ public class Laser : MonoBehaviour
 
     RaycastHit2D ray;
 
-    [SerializeField] Animator BossAnim;
-    void TriggerBossLaughAnim() => BossAnim.SetTrigger("BossLaugh");
+    [SerializeField] Animator _bossAnim;
+    void TriggerBossLaughAnim() => _bossAnim.SetTrigger("BossLaugh");
 
     public float TimePlayerIsDown { get => _timePlayerIsDown; set => _timePlayerIsDown = value; }
     public bool GoLeft { get => _goLeft; set => _goLeft = value; }
@@ -41,6 +41,7 @@ public class Laser : MonoBehaviour
     public Transform Spawn { get => _spawn; set => _spawn = value; }
     public dir Dir { get => _dir; set => _dir = value; }
 
+    public Animator BossAnim { get => _bossAnim; set => _bossAnim = value; }
 
     public void StartLaser()
     {
@@ -73,6 +74,10 @@ public class Laser : MonoBehaviour
         AudioManager.Instance.PlaySFXLoop(AudioManager.Instance.FindClip("LaserConstant"), _audioSource);
         _line.enabled = true;
 
+    }
+    public void KillMe()
+    {
+        Destroy(this.gameObject);
     }
     private void OnDrawGizmos()
     {
