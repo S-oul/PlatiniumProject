@@ -36,6 +36,7 @@ public class LaserRoom : Task
     Animator _bossAnimator; //to control the boss anomation 
 
     public List<GameObject> LaserGO { get => _laserGO; set => _laserGO = value; }
+    public Animator BossAnimator { get => _bossAnimator; set => _bossAnimator = value; }
 
     float _actualTime;
 
@@ -68,9 +69,13 @@ public class LaserRoom : Task
     }
     void KillAllLaser()
     {
-        for (int i = _laserGO.Count - 1; i > 0; i--)
+        print("HAHAHAHAHA : " + _laserGO.Count);
+        for (int i = 0; i < _laserGO.Count; i++)
         {
-            Destroy(_laserGO[i]);
+            //print(_laserGO[i].name);
+            _laserGO[0].GetComponent<Laser>().KillMe();
+            _laserGO.Clear();
+            //Destroy(_laserGO[0]);
         }
     }
     public override void Init()
@@ -106,13 +111,10 @@ public class LaserRoom : Task
     }
     private void Update()
     {
-/*        if (IsStarted && !IsDone)
+        if (IsStarted && !IsDone)
         {
-            if (!OnePlayerAlive())
-            {
-                End(false);
-            }
-        }*/
+
+        }
     }
 
 
@@ -159,6 +161,7 @@ public class LaserRoom : Task
                 }
                 _actPhase++;
                 KillAllLaser();
+
                 _toActivate1.SetActive(false);
                 _toActivate2.SetActive(true);
                 for (int i = 0; i < GameManager.Instance.Players.Count; i++)
@@ -227,6 +230,7 @@ public class LaserRoom : Task
                     }
                 }
                 _toActivate4.SetActive(false);
+                SceneManager.LoadScene(4);
                 KillAllLaser();
                 TriggerBossHitAnimation();
 

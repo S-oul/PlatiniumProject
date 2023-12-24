@@ -25,6 +25,7 @@ public class LaserSpawner : MonoBehaviour
         g.transform.position = _Pos1.position;
         g.transform.localScale = new Vector3(.16f, .16f, .16f);
         Laser l = g.GetComponent<Laser>();
+        l.BossAnim = GameManager.Instance.FinalRoom.GetComponentInChildren<LaserRoom>().BossAnimator;
         l.ToFar = _Pos2;
         l.Spawn = _Pos1;
         l.Dir = _dir;

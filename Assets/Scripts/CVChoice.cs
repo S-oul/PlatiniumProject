@@ -71,7 +71,7 @@ public class CVChoice : MonoBehaviour
             if (player.gameObject.GetComponent<CursorPlayer>().HasChosenCV)
             {
                 _playerChosenCount++;
-                if(_playerChosenCount == _playerCursorManager.Players.Count)
+                if(_playerChosenCount ==  4)
                 {
                     SwitchToGame();
                 }
@@ -83,7 +83,6 @@ public class CVChoice : MonoBehaviour
     {
         foreach(PlayerInput player in _playerCursorManager.Players)
         {
-            
             DataManager.Instance.DicSpritePlayer.Add(player.devices[0].description, player.GetComponent<CursorPlayer>().CvChosen.AnimationPlayer);
             //Debug.Log(CompilationPipeline.codeOptimization);
             
