@@ -62,7 +62,7 @@ public class MatrixTask : InputTask
             GameManager.Instance.DayIndex++;
             List<GameObject> l = new List<GameObject>();
             l = GameManager.Instance.Players;
-            SceneManager.LoadScene(2);
+            SceneLoading.Instance.LoadScene(2);
             GameManager.Instance.Players = l;
         }
         else

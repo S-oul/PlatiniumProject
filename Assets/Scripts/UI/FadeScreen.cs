@@ -43,8 +43,8 @@ public class FadeScreen : MonoBehaviour
         }
 
         yield return new WaitForSeconds(timeFade);
-
-        SceneManager.LoadScene(2);
+        
+        SceneLoading.Instance.LoadScene(2);
         //print("ca change de scene");
     }
 }
