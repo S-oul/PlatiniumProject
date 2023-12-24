@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Win_Screen.unity
     guid: a2ee4cc54b3a9ce45a8024edc0873b79
+  - enabled: 1
+    path: Assets/Scenes/Volleyball2v2.unity
+    guid: e6a1b7af0c3c6ed43aa880da14ccceba
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e860a7046df12424f8a44eb047d10081, type: 2}

@@ -74,6 +74,13 @@ public class MenuPrincipal : MonoBehaviour
         StartCoroutine(CloseGame(false));
     }
 
+    public void Match()
+    {
+        CamMenu.SetActive(false);
+        CamPlay.SetActive(true);
+        StartCoroutine(LaunchMatch());
+    }
+
     private IEnumerator ScrollText()
     {
         // Définir la position initiale du texte à l'extérieur de l'écran
@@ -106,7 +113,19 @@ public class MenuPrincipal : MonoBehaviour
         CamPlay2.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         //Lancer la partie
+        
         SceneManager.LoadScene("CharacterChoice");
+    }
+
+    private IEnumerator LaunchMatch()
+    {
+        //deplacement des camera
+        yield return new WaitForSeconds(0.5f);
+        CamPlay.SetActive(false);
+        CamPlay2.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        //Lancer la partie
+        SceneManager.LoadScene("Volleyball2v2");
     }
 
     // the image you want to fade, assign in inspector
