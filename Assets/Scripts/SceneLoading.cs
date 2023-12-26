@@ -28,7 +28,7 @@ public class SceneLoading : MonoBehaviour
         _loadingScreen.SetActive(true);
         while (!loading.isDone)
         {
-            float value = Mathf.Clamp01(loading.progress / 0.9f);
+            float value = Mathf.Lerp(_loadingBar.value, Mathf.Clamp01(loading.progress / 0.9f), .6f);
             _loadingBar.value = value;
             yield return null;
         }
